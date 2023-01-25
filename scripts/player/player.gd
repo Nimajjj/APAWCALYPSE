@@ -1,40 +1,62 @@
 extends CharacterBody2D
 
-var id: int
 enum PC_State { IDLE, MOVE, INTERACT, DOWN, DEAD, RELOAD }
+
+var id: int
 var state: PC_State = PC_State.IDLE
 var health: float
 var max_health: float
 var regeneration: float
 var money: int = 0
-var velocity: Vector2 = Vector2.ZERO
-var speed: float
-var acceleration: float
-var friction: float
-var ability: Ability
-var special_consumable: SpecialConsumable
-var weapon: Weapon
+var speed: float = 200
+var acceleration: float = 0.3
+var friction: float = 0.1
+#var ability: Ability
+#var special_consumable: SpecialConsumable
+#var weapon: Weapon
 var aiming_at: Vector2
-var active_bonus: Array(Bonus)
+#var active_bonus: Array(Bonus)
 
-func use_ability():
+@onready var AnimPlayer = $AnimationPlayer
+
+func _physics_process(_delta):
+	_move()
+	
+func _move() -> void:
+	var direction = Vector2.ZERO;
+#	velocity = Vector2()
+	direction.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left");
+	direction.y = Input.get_action_strength("move_down") - Input.get_action_strength("move_up");
+	if direction.length() > 0:
+		velocity = lerp(velocity, direction.normalized() * speed, acceleration);
+#		AnimPlayer.play()
+	else:
+		velocity = lerp(velocity, Vector2.ZERO, friction);
+#		print(velocity)
+#		AnimPlayer.stop();
+	move_and_slide()
+		
+	
+func _inputs_manager() -> void:
 	pass
 
-func start_shooting():
+func use_ability() -> void:
 	pass
 
-func stop_shooting():
+func start_shooting() -> void:
 	pass
 
-func add_bonus(bonus: Bonus):
-	active_bonus.append(bonus)
+func stop_shooting() -> void:
+	pass
 
-func add_special_consumable(consumable: SpecialConsumable):
-	special_consumable = consumable
-
-func add_weapon(new_weapon: Weapon):
-	weapon = new_weapon
-
-func drop_weapon():
-	weapon = null
-
+#func add_bonus(bonus: Bonus) -> void:
+#	active_bonus.append(bonus)
+#
+#func add_special_consumable(consumable: SpecialConsumable) -> void:
+#	special_consumable = consumable
+#
+#func add_weapon(new_weapon: Weapon) -> void:
+#	weapon = new_weapon
+#
+#func drop_weapon() -> void:
+#	weapon = null
