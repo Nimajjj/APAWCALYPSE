@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://7vehn306bqp1"]
+
+[ext_resource type="Script" path="res://scripts/player/i_player.gd" id="1_j1nd2"]
+
+[node name="IPlayer" type="Node2D"]
+script = ExtResource("1_j1nd2")
