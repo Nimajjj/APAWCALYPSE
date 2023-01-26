@@ -1,8 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://cnsyppins1vmv"]
+[gd_scene load_steps=5 format=3 uid="uid://cnsyppins1vmv"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_ils3a"]
+[ext_resource type="Texture2D" uid="uid://d045won1u1x47" path="res://assets/sprites/Garfield.png" id="2_yob70"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_twp6r"]
+radius = 43.0
+height = 104.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_r8csl"]
+height = 164.0
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_ils3a")
@@ -12,17 +18,21 @@ script = ExtResource("1_ils3a")
 [node name="Head" type="Sprite2D" parent="Sprites"]
 
 [node name="Body" type="Sprite2D" parent="Sprites"]
+scale = Vector2(0.944, 0.944)
+texture = ExtResource("2_yob70")
 
 [node name="Arms" type="Sprite2D" parent="Sprites"]
 
 [node name="HitBox" type="CollisionShape2D" parent="."]
+position = Vector2(2, -6)
 shape = SubResource("CapsuleShape2D_twp6r")
 
 [node name="HurtBox" type="Area2D" parent="."]
 
 [node name="HitBox" type="CollisionShape2D" parent="HurtBox"]
-shape = SubResource("CapsuleShape2D_twp6r")
+shape = SubResource("CapsuleShape2D_r8csl")
 
 [node name="Camera" type="Camera2D" parent="."]
+current = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
