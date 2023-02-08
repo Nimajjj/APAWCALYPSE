@@ -1,5 +1,7 @@
+class_name IPlayer
 extends Node2D
 
+var player_scene:PackedScene = preload("res://scenes/player/player.tscn");
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -11,5 +13,8 @@ func _process(delta):
 	pass
 	
 	
-func CreatePC() -> void:
-	pass
+func create_player(id: int) -> Player:
+	var player: Player = player_scene.instantiate()	
+	player.id = id
+	add_child(player)
+	return player;

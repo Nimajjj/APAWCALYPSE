@@ -1,6 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://dtlxudnmue5lg"]
+[gd_scene load_steps=3 format=3 uid="uid://dtlxudnmue5lg"]
 
 [ext_resource type="Script" path="res://scripts/weapon/weapon.gd" id="1_4lm21"]
+[ext_resource type="Texture2D" uid="uid://bdn5lc3q4xr1g" path="res://assets/sprites/ak47.png" id="2_87s1e"]
 
 [node name="Weapon" type="Node2D"]
 script = ExtResource("1_4lm21")
+
+[node name="Sprites" type="Node2D" parent="."]
+
+[node name="Skin" type="Sprite2D" parent="Sprites"]
+texture_filter = 1
+texture = ExtResource("2_87s1e")
