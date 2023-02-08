@@ -1,3 +1,4 @@
+class_name Player
 extends CharacterBody2D
 
 enum PC_State { IDLE, MOVE, INTERACT, DOWN, DEAD, RELOAD }

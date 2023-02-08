@@ -1,6 +1,6 @@
+class_name Enemy
 extends Node2D
 
-class_name Enemy
 
 var max_health: int
 var health: int
@@ -18,5 +18,5 @@ func take_damage(dmg):
 	else:
 		health -= dmg;
 
-func _on_area_enter_HitBox(area):
-	pass
+
+

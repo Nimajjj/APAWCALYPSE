@@ -81,7 +81,7 @@ texture = SubResource("AtlasTexture_b0mma")
 [node name="Arms" type="Sprite2D" parent="Sprites"]
 
 [node name="Camera" type="Camera2D" parent="."]
-zoom = Vector2(8, 8)
+zoom = Vector2(6, 6)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Sprites/Body")
