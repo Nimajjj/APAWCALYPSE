@@ -1,19 +1,25 @@
 extends StaticBody2D
 
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+var price: int = 100
+var open : bool = false 
+var spawner_id : int
 
 
-func _on_area_2d_body_entered(body):
-	pass # Replace with function body.
+func activate(triggerer: Player) -> void : 
+	if price < triggerer.money : 
+		open = true 
+		triggerer.money -= price 
+		visible	 = false
 
 
-func _on_area_2d_body_exited(body):
-	pass # Replace with function body.
+func _on_area_2d_body_entered(body) -> void : 
+	if body.is_in_group("player") : 
+		body.add_interactible(self)
+		
+
+
+func _on_area_2d_body_exited(body) -> void : 
+	if body.is_in_group("player") : 
+		body.remove_interactible(self)
+
+

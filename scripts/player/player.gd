@@ -8,7 +8,7 @@ var state: PC_State = PC_State.IDLE
 var health: float
 var max_health: float
 var regeneration: float
-var money: int = 0
+var money: int = 2000000
 var speed: float = 200
 var acceleration: float = 0.3
 var friction: float = 0.1
@@ -16,6 +16,7 @@ var friction: float = 0.1
 var weapon: Weapon
 var aiming_at: Vector2
 #var active_bonus: Array(BonusEffect)
+var interactive_in_range: Array[Node2D] = []
 
 @onready var AnimPlayer = $AnimationPlayer
 @onready var IWeapon = $IWeapon
@@ -23,6 +24,9 @@ var aiming_at: Vector2
 
 func _physics_process(_delta):
 	_move()
+	
+	if Input.is_action_just_pressed("interact") : 
+		interact()
 
 
 func start_shooting() -> void:
@@ -87,3 +91,16 @@ func take_damage(damage: int) -> void:
 	
 #func _take_bonus(bonus: BonusEffect) -> void:
 #	active_bonus = bonus;
+
+func add_interactible(obj: Node2D) -> void :
+	interactive_in_range.append(obj) 
+	
+func remove_interactible(obj: Node2D) -> void : 
+	for i in interactive_in_range : 
+		if i == obj : 
+			interactive_in_range.erase(i)
+			
+			
+func interact() -> void : 
+	if len(interactive_in_range) > 0 : 
+		interactive_in_range[0].activate(self)
