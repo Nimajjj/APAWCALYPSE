@@ -1,6 +1,5 @@
-extends Node2D
-
 class_name Weapon
+extends Node2D
 
 enum Weapon_Weight {LIGHT, MEDIUM, HEAVY}
 

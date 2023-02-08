@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://ddbld7l6ym7qj"]
+[gd_scene load_steps=5 format=3 uid="uid://ddbld7l6ym7qj"]
 
 [ext_resource type="Script" path="res://scripts/game/game.gd" id="1_i6dkd"]
 [ext_resource type="PackedScene" uid="uid://7vehn306bqp1" path="res://scenes/player/i_player.tscn" id="2_8q5ce"]
-[ext_resource type="PackedScene" uid="uid://xwx3x8648qem" path="res://scenes/weapon/i_weapon.tscn" id="3_58r8v"]
+[ext_resource type="Texture2D" uid="uid://c23frqu1jeku" path="res://assets/sprites/icon.svg" id="3_24v1u"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y3r4x"]
+size = Vector2(125, 144)
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_i6dkd")
@@ -12,6 +15,17 @@ wait_time = 0.1
 
 [node name="IPlayer" parent="." instance=ExtResource("2_8q5ce")]
 
-[node name="IWeapon" parent="IPlayer" instance=ExtResource("3_58r8v")]
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(154, -2)
+scale = Vector2(0.972656, 1.125)
+texture = ExtResource("3_24v1u")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Icon"]
+position = Vector2(-158.329, 1.77778)
+scale = Vector2(1.02811, 0.888889)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Icon/StaticBody2D"]
+position = Vector2(154.5, -3)
+shape = SubResource("RectangleShape2D_y3r4x")
 
 [connection signal="timeout" from="GameTimer" to="." method="_on_game_timer_timeout"]
