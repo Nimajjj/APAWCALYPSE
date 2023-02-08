@@ -4,12 +4,12 @@
 [ext_resource type="Texture2D" uid="uid://c23frqu1jeku" path="res://assets/sprites/icon.svg" id="1_jkima"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lsop8"]
-radius = 40.0
-height = 126.0
+radius = 8.0
+height = 20.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e0n20"]
-radius = 16.0
-height = 80.0
+radius = 2.0
+height = 16.0
 
 [node name="Enemy" type="CharacterBody2D"]
 script = ExtResource("1_fc7h4")
@@ -18,17 +18,19 @@ script = ExtResource("1_fc7h4")
 position = Vector2(0, -47)
 
 [node name="Sprite2D" type="Sprite2D" parent="Node2D"]
-position = Vector2(1, -1)
-scale = Vector2(0.609375, 1)
+position = Vector2(-3.57628e-07, 53)
+scale = Vector2(0.125, 0.15625)
 texture = ExtResource("1_jkima")
 
 [node name="HurtBox" type="Area2D" parent="."]
 position = Vector2(0, -47)
 
 [node name="Hitbox" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(0, 53)
 shape = SubResource("CapsuleShape2D_lsop8")
 debug_color = Color(0.988235, 0, 0.290196, 0.419608)
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
+position = Vector2(0, 14)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_e0n20")

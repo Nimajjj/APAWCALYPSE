@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://blhh87lkbujua"]
+[gd_scene load_steps=4 format=3 uid="uid://blhh87lkbujua"]
 
-[ext_resource type="PackedScene" uid="uid://c75jopc3c5nxb" path="res://scenes/player/player.tscn" id="1_eu4f5"]
+[ext_resource type="Script" path="res://scripts/test/test_02.gd" id="1_i6301"]
+[ext_resource type="PackedScene" uid="uid://7vehn306bqp1" path="res://scenes/player/i_player.tscn" id="2_rjv73"]
 [ext_resource type="PackedScene" uid="uid://byyipr53xhupj" path="res://scenes/enemy/enemy.tscn" id="2_x0jv5"]
 
 [node name="Test02" type="Node2D"]
-
-[node name="Player" parent="." instance=ExtResource("1_eu4f5")]
+script = ExtResource("1_i6301")
 
 [node name="Enemy" parent="." instance=ExtResource("2_x0jv5")]
-position = Vector2(256, 64)
+position = Vector2(87, 17)
+
+[node name="IPlayer" parent="." instance=ExtResource("2_rjv73")]
