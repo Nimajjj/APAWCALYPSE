@@ -13,11 +13,12 @@ var speed: float = 200
 var acceleration: float = 0.3
 var friction: float = 0.1
 #var special_consumable: SpecialConsumable
-#var weapon: Weapon
+var weapon: Weapon
 var aiming_at: Vector2
 #var active_bonus: Array(BonusEffect)
 
 @onready var AnimPlayer = $AnimationPlayer
+@onready var IWeapon = $IWeapon
 
 
 func _physics_process(_delta):
@@ -40,8 +41,9 @@ func stop_shooting() -> void:
 #	special_consumable = consumable
 #
 #
-#func set_weapon(new_weapon: Weapon) -> void:
-#	weapon = new_weapon
+func set_weapon(new_weapon: Weapon) -> void:
+	weapon = new_weapon
+
 #
 #
 #func drop_weapon() -> void:

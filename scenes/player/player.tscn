@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://c75jopc3c5nxb"]
+[gd_scene load_steps=10 format=3 uid="uid://c75jopc3c5nxb"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_ils3a"]
 [ext_resource type="Texture2D" uid="uid://cru7lgeg18wv2" path="res://assets/sprites/siamese.png" id="2_5m8yx"]
+[ext_resource type="PackedScene" uid="uid://xwx3x8648qem" path="res://scenes/weapon/i_weapon.tscn" id="3_oxq5h"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b0mma"]
 atlas = ExtResource("2_5m8yx")
@@ -95,3 +96,5 @@ position = Vector2(1, 6)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_r8csl")
 debug_color = Color(0.92549, 0.239216, 0.333333, 0.419608)
+
+[node name="IWeapon" parent="." instance=ExtResource("3_oxq5h")]
