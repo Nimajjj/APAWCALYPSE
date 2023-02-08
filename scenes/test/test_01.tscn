@@ -1,23 +1,28 @@
-[gd_scene load_steps=5 format=3 uid="uid://c24chu6inr1lm"]
+[gd_scene load_steps=6 format=3 uid="uid://c24chu6inr1lm"]
 
 [ext_resource type="Script" path="res://scripts/test/test_01.gd" id="1_05r0r"]
-[ext_resource type="PackedScene" uid="uid://cnsyppins1vmv" path="res://scenes/player/player.tscn" id="2_wr86l"]
+[ext_resource type="PackedScene" uid="uid://c75jopc3c5nxb" path="res://scenes/player/player.tscn" id="2_wr86l"]
+[ext_resource type="PackedScene" uid="uid://dtlxudnmue5lg" path="res://scenes/weapon/weapon.tscn" id="3_a8mbd"]
 [ext_resource type="Texture2D" uid="uid://c23frqu1jeku" path="res://assets/sprites/icon.svg" id="3_mxb7m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nv6fg"]
-size = Vector2(128, 127)
+size = Vector2(125, 144)
 
 [node name="Test01" type="Node2D"]
 script = ExtResource("1_05r0r")
 
 [node name="Player" parent="." instance=ExtResource("2_wr86l")]
 
+[node name="Weapon" parent="Player" instance=ExtResource("3_a8mbd")]
+position = Vector2(-5, 1)
+
 [node name="Icon" type="Sprite2D" parent="."]
-position = Vector2(204, 93)
+position = Vector2(154, -2)
+scale = Vector2(0.972656, 1.125)
 texture = ExtResource("3_mxb7m")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(204, 91.5)
+position = Vector2(154.5, -3)
 shape = SubResource("RectangleShape2D_nv6fg")

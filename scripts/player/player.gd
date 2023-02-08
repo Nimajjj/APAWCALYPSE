@@ -59,9 +59,11 @@ func _move() -> void:
 	
 	if direction.length() > 0:
 		velocity = lerp(velocity, direction.normalized() * speed, acceleration);
+		AnimPlayer.play("WALK");
 	else:
 		velocity = lerp(velocity, Vector2.ZERO, friction);
-	move_and_slide()
+		AnimPlayer.play("IDLE");
+	move_and_slide();
 	
 
 func get_state() -> PC_State:
