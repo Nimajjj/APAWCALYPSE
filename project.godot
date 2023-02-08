@@ -8,16 +8,6 @@
 
 config_version=5
 
-_global_script_classes=[{
-"base": "Node2D",
-"class": &"Weapon",
-"language": &"GDScript",
-"path": "res://scripts/weapon/weapon.gd"
-}]
-_global_script_class_icons={
-"Weapon": ""
-}
-
 [application]
 
 config/name="APAWCALYPSE"
