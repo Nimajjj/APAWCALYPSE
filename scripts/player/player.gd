@@ -11,21 +11,16 @@ var money: int = 0
 var speed: float = 200
 var acceleration: float = 0.3
 var friction: float = 0.1
-#var ability: Ability
 #var special_consumable: SpecialConsumable
 #var weapon: Weapon
 var aiming_at: Vector2
-#var active_bonus: Array(Bonus)
+#var active_bonus: Array(BonusEffect)
 
 @onready var AnimPlayer = $AnimationPlayer
 
 
 func _physics_process(_delta):
 	_move()
-
-
-func use_ability() -> void:
-	pass
 
 
 func start_shooting() -> void:
@@ -44,12 +39,16 @@ func stop_shooting() -> void:
 #	special_consumable = consumable
 #
 #
-#func add_weapon(new_weapon: Weapon) -> void:
+#func set_weapon(new_weapon: Weapon) -> void:
 #	weapon = new_weapon
 #
 #
 #func drop_weapon() -> void:
 #	weapon = null
+#
+#
+#func _inputs_manager() -> void:
+#	pass
 
 
 func _move() -> void:
@@ -64,6 +63,22 @@ func _move() -> void:
 		velocity = lerp(velocity, Vector2.ZERO, friction);
 	move_and_slide()
 	
+
+func get_state() -> PC_State:
+	return state;
 	
-func _inputs_manager() -> void:
-	pass
+	
+func set_state(new_state: PC_State) -> void:
+	state = new_state;
+	
+	
+#func _on_area_enter_PickupArea(area) -> bool:
+#	pass
+	
+	
+func take_damage(damage: int) -> void:
+	health -= damage;
+	
+	
+#func _take_bonus(bonus: BonusEffect) -> void:
+#	active_bonus = bonus;
