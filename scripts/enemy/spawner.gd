@@ -1,6 +1,6 @@
+class_name Spawner
 extends Node2D
 
-class_name Spawner
 
 var units_left_to_spawn: int
 var units_alive: int

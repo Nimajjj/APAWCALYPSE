@@ -1,3 +1,4 @@
+class_name ISpawner
 extends Node2D
 
 var spawners: Array[Spawner]
