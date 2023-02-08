@@ -7,7 +7,7 @@ var weapon_name: String
 
 var accuracy: int 
 var damage: int
-var range: int
+var weapon_range: int
 var spread: int
 var fire_rate: int
 
@@ -18,13 +18,21 @@ var max_bullet_stock: int
 var current_mag: int = mag_capacity
 var mag_capacity: int
 var reload_time: int
+var bullet_speed: int = 300
 
 var price: int
 var weight: Weapon_Weight
 
 var secondary_weapon: Weapon = null
 
+var BulletScene = preload("res://scenes/weapon/bullet.tscn")
 
+@onready var WeaponEnd = $WeaponEnd
+
+func _process(_delta):
+	shoot()
+	look_at(get_global_mouse_position())
+	
 func has_secondary_weapon() -> bool:
 	return (secondary_weapon != null)
 
@@ -47,4 +55,9 @@ func secondary_shoot():
 	
 	
 func shoot():
-	pass
+	if Input.is_action_just_pressed("shoot"):
+		var _bullet = BulletScene.instantiate()
+		_bullet.position = WeaponEnd.get_global_transform().origin
+		get_tree().get_root().add_child(_bullet)
+		_bullet.shoot(get_global_mouse_position(), bullet_speed)
+

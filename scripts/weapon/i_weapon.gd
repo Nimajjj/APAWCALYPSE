@@ -10,12 +10,12 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	pass
 
 
-func create_weapon(name: String) -> Weapon:
+func create_weapon(weapon_name: String) -> Weapon:
 	var weapon: Weapon = weapon_scene.instantiate()	
-	weapon.name = name
+	weapon.name = weapon_name
 	add_child(weapon)
 	return weapon;

@@ -7,7 +7,12 @@
 script = ExtResource("1_4lm21")
 
 [node name="Sprites" type="Node2D" parent="."]
+position = Vector2(2.06472, 0)
 
 [node name="Skin" type="Sprite2D" parent="Sprites"]
 texture_filter = 1
 texture = ExtResource("2_87s1e")
+flip_h = true
+
+[node name="WeaponEnd" type="Node2D" parent="."]
+position = Vector2(12.0285, 0.5431)
