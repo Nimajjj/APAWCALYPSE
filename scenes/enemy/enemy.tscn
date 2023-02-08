@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://byyipr53xhupj"]
+
+[ext_resource type="Texture2D" uid="uid://c23frqu1jeku" path="res://assets/sprites/icon.svg" id="1_jkima"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lsop8"]
+radius = 40.0
+height = 126.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e0n20"]
+radius = 16.0
+height = 80.0
+
+[node name="Enemy" type="CharacterBody2D"]
+position = Vector2(0, 1)
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D"]
+position = Vector2(0, -1)
+scale = Vector2(0.59375, 1)
+texture = ExtResource("1_jkima")
+
+[node name="HurtBox" type="Area2D" parent="."]
+
+[node name="Hitbox" type="CollisionShape2D" parent="HurtBox"]
+shape = SubResource("CapsuleShape2D_lsop8")
+debug_color = Color(0.988235, 0, 0.290196, 0.419608)
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+position = Vector2(0, 47)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_e0n20")
