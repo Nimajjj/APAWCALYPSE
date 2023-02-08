@@ -8,11 +8,16 @@ var velocity: Vector2
 var speed: int
 var money: int
 var damage: int
+var 
 
-func _move():
+func _physics_process(delta):
+	_move()
+
+
+func _move() -> void:
 	pass
 	
-func take_damage(dmg):
+func take_damage(dmg) -> void:
 	if health - dmg < 0:
 		health = 0;
 	else:
