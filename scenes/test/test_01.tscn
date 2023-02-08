@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://c24chu6inr1lm"]
+[gd_scene load_steps=5 format=3 uid="uid://c24chu6inr1lm"]
 
 [ext_resource type="Script" path="res://scripts/test/test_01.gd" id="1_05r0r"]
 [ext_resource type="PackedScene" uid="uid://cnsyppins1vmv" path="res://scenes/player/player.tscn" id="2_wr86l"]
 [ext_resource type="Texture2D" uid="uid://c23frqu1jeku" path="res://assets/sprites/icon.svg" id="3_mxb7m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nv6fg"]
+size = Vector2(128, 127)
 
 [node name="Test01" type="Node2D"]
 script = ExtResource("1_05r0r")
@@ -10,5 +13,11 @@ script = ExtResource("1_05r0r")
 [node name="Player" parent="." instance=ExtResource("2_wr86l")]
 
 [node name="Icon" type="Sprite2D" parent="."]
-position = Vector2(155, 79)
+position = Vector2(204, 93)
 texture = ExtResource("3_mxb7m")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(204, 91.5)
+shape = SubResource("RectangleShape2D_nv6fg")
