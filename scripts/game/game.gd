@@ -10,7 +10,7 @@ var wave: int = 0
 var time: float = 0.0
 
 @onready var GameTimer: Timer = $GameTimer
-#@onready var IPlayer: IPlayer = $IPlayer
+@onready var IPlayer: IPlayer = $IPlayer
 
 
 func _ready():
@@ -18,7 +18,7 @@ func _ready():
 	
 
 func start_game() -> void:
-#	IPlayer.create_player(1)
+	player_1 = IPlayer.create_player(1)
 	GameTimer.start()
 
 
