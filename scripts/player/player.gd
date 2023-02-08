@@ -1,4 +1,3 @@
-class_name Player
 extends CharacterBody2D
 
 enum PC_State { IDLE, MOVE, INTERACT, DOWN, DEAD, RELOAD }
@@ -60,11 +59,9 @@ func _move() -> void:
 	
 	if direction.length() > 0:
 		velocity = lerp(velocity, direction.normalized() * speed, acceleration);
-		AnimPlayer.play("WALK");
 	else:
 		velocity = lerp(velocity, Vector2.ZERO, friction);
-		AnimPlayer.play("IDLE");
-	move_and_slide();
+	move_and_slide()
 	
 
 func get_state() -> PC_State:

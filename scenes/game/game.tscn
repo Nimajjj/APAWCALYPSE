@@ -1,17 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://ddbld7l6ym7qj"]
+[gd_scene load_steps=2 format=3 uid="uid://ddbld7l6ym7qj"]
 
 [ext_resource type="Script" path="res://scripts/game/game.gd" id="1_i6dkd"]
-[ext_resource type="PackedScene" uid="uid://7vehn306bqp1" path="res://scenes/player/i_player.tscn" id="2_8q5ce"]
-[ext_resource type="PackedScene" uid="uid://xwx3x8648qem" path="res://scenes/weapon/i_weapon.tscn" id="3_58r8v"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_i6dkd")
 
 [node name="GameTimer" type="Timer" parent="."]
 wait_time = 0.1
-
-[node name="IPlayer" parent="." instance=ExtResource("2_8q5ce")]
-
-[node name="IWeapon" parent="IPlayer" instance=ExtResource("3_58r8v")]
 
 [connection signal="timeout" from="GameTimer" to="." method="_on_game_timer_timeout"]
