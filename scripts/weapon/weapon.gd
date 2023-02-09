@@ -9,7 +9,8 @@ var accuracy: int
 var damage: int
 var weapon_range: int
 var spread: int
-var fire_rate: int
+var fire_rate: int = 400
+var actual_rate: int = 0
 
 #var bullet_type: Bullet
 
@@ -55,9 +56,13 @@ func secondary_shoot():
 	
 	
 func shoot():
-	if Input.is_action_just_pressed("shoot"):
-		var _bullet = BulletScene.instantiate()
-		_bullet.position = WeaponEnd.get_global_transform().origin
-		get_tree().get_root().add_child(_bullet)
-		_bullet.shoot(get_global_mouse_position(), bullet_speed)
+	if Input.is_action_pressed("shoot"):
+		if(actual_rate == fire_rate):
+			var _bullet = BulletScene.instantiate()
+			_bullet.position = WeaponEnd.get_global_transform().origin
+			get_tree().get_root().add_child(_bullet)
+			_bullet.shoot(get_global_mouse_position(), bullet_speed)
+			actual_rate = 0
+		actual_rate += 1
+		
 

@@ -5,7 +5,7 @@ var direction: Vector2
 var speed:int = 1
 
 func _physics_process(delta):
-	position += direction * speed * delta
+	position += direction * speed * delta #todo: direction should be center of player
 
 
 func shoot(aim_position: Vector2, bullet_speed: int) -> void:

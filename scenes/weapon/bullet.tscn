@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/weapon/bullet.gd" id="1_cmsd6"]
 [ext_resource type="Texture2D" uid="uid://0fq8fv221kr4" path="res://assets/sprites/bullet-ak.png" id="1_qt0tg"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0lc7i"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qsak8"]
 size = Vector2(2.69531, 0.98213)
 
 [node name="Bullet" type="Area2D"]
@@ -20,4 +20,4 @@ flip_h = true
 
 [node name="HitBox" type="CollisionShape2D" parent="."]
 position = Vector2(1.34375, -0.0078125)
-shape = SubResource("RectangleShape2D_0lc7i")
+shape = SubResource("RectangleShape2D_qsak8")
