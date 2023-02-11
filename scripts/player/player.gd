@@ -20,6 +20,7 @@ var interactive_in_range: Array[Node2D] = []
 
 @onready var AnimPlayer = $AnimationPlayer
 @onready var IWeapon = $IWeapon
+@onready var Camera = $Camera
 
 
 func _physics_process(_delta):
@@ -27,6 +28,10 @@ func _physics_process(_delta):
 	
 	if Input.is_action_just_pressed("interact") : 
 		interact()
+		
+	var mouse_pos = get_global_mouse_position()
+	Camera.offset.x = (mouse_pos.x - global_position.x) / (1280.0 / 125.0)
+	Camera.offset.y = (mouse_pos.y - global_position.y) / (720.0 / 125.0)
 
 
 func start_shooting() -> void:
