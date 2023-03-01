@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://70xqbxdi183x"]
+
+[sub_resource type="GDScript" id="GDScript_p4475"]
+script/source = "extends Node2D
+
+var weapon: Array[IWeapon] = []
+
+var weapon_scene: PackedScene = preload(\"res://scenes/weapon/weapon.tscn\");
+
+
+func create_weapon(weapon_name: String) -> Weapon:
+	var weapon: Weapon = weapon_scene.instantiate()	
+	weapon.name = weapon_name
+	add_child(weapon)
+	return weapon;
+"
+
+[node name="FabricWeapon" type="Node2D"]
+script = SubResource("GDScript_p4475")

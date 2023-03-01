@@ -1,6 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://7vehn306bqp1"]
+[gd_scene format=3 uid="uid://7vehn306bqp1"]
 
-[ext_resource type="Script" path="res://scripts/player/i_player.gd" id="1_j1nd2"]
+[node name="IPlayer" type="CharacterBody2D"]
 
-[node name="IPlayer" type="Node2D"]
-script = ExtResource("1_j1nd2")
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(6, 6)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="DownTimer" type="Timer" parent="."]
+one_shot = true
