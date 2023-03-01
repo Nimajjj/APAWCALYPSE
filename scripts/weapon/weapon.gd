@@ -9,8 +9,8 @@ var accuracy: int
 var damage: int
 var weapon_range: int
 var spread: int
-var fire_rate: int = 1000
-var actual_rate: int = 0
+var fire_rate: int = 10
+var actual_rate: int = 10
 
 #var bullet_type: Bullet
 
