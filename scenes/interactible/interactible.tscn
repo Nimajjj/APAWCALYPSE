@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://opcyl153ve03"]
+
+[node name="Interactible" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="InteractionArea2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea2D"]
