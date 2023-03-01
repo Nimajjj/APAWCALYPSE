@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/enemy/i_spawner.gd" id="1_cysdj"]
+[ext_resource type="PackedScene" uid="uid://bkcug1qy8vauc" path="res://scenes/spawner/spawner.tscn" id="2_3asgm"]
+
+[node name="ISpawner" type="Node2D"]
+script = ExtResource("1_cysdj")
+
+[node name="Spawner" parent="." instance=ExtResource("2_3asgm")]
+position = Vector2(594, 37)
+id = 1
+
+[node name="Spawner2" parent="." instance=ExtResource("2_3asgm")]
+position = Vector2(-232, 74)
+id = 2
+
+[node name="Spawner3" parent="." instance=ExtResource("2_3asgm")]
+position = Vector2(102, -258)
+id = 2

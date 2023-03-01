@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bkcug1qy8vauc"]
+
+[ext_resource type="Script" path="res://scripts/enemy/spawner.gd" id="1_bnc08"]
+[ext_resource type="PackedScene" uid="uid://cmkgbpibc8vgr" path="res://scenes/enemy/i_enemy.tscn" id="2_gf2qn"]
+
+[node name="Spawner" type="Node2D" groups=["spawner"]]
+script = ExtResource("1_bnc08")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="IEnemy" parent="." instance=ExtResource("2_gf2qn")]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
