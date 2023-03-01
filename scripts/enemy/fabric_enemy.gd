@@ -9,13 +9,16 @@ func create_enemy(type: String, pos: Vector2) -> IEnemy:
 	
 	match type:
 		"dog":
-			enemy = dog_scene.instance()
+			enemy = dog_scene.instantiate()
+		"zombie":
+			enemy = zombie_scene.instantiate()
 		_:
 			pass
 			# fucking not normal
 	
-	get_parent().add_child(enemy)
 	enemy.position = pos
-	enemy.set_enemy(IEnemy)
+	get_parent().add_child(enemy)
+	
+	
 	
 	return enemy

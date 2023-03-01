@@ -12,7 +12,7 @@ var health: int
 
 
 func _physics_process(delta):
-	_move()
+	_move(delta)
 
 
 func take_damage(dmg: int, shooter: IPlayer) -> void:
@@ -21,8 +21,11 @@ func take_damage(dmg: int, shooter: IPlayer) -> void:
 		dies()
 
 
-func _move() -> void:
-	pass
+func _move(delta) -> void:
+	var target = get_parent().player
+	var _direction = (target.global_position - global_position).normalized()
+	var _velocity = _direction * speed * delta
+	position += _velocity
 
 
 func dies() -> void:
