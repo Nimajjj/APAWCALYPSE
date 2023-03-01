@@ -1,12 +1,30 @@
 class_name IEnemy
-extends Node2D
-
-var enemy_scene:PackedScene = preload("res://scenes/enemy/enemy.tscn")
+extends CharacterBody2D
 
 
-func create_enemy(hp, speed, money):
-	var enemy: Enemy = enemy_scene.instantiate()
-	enemy.health = hp
-	enemy.speed = speed
-	enemy.money = money
-	add_child(enemy)
+@export var max_health: int
+@export var speed: int
+@export var money: int
+@export var damage: int
+
+#var bonus: IBonus = null
+var health: int
+
+
+func _physics_process(delta):
+	_move()
+
+
+func take_damage(dmg: int, shooter: IPlayer) -> void:
+	health -= dmg
+	if health <= 0:
+		dies()
+
+
+func _move() -> void:
+	pass
+
+
+func dies() -> void:
+#	give money to killer
+	queue_free()
