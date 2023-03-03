@@ -4,7 +4,6 @@ extends CharacterBody2D
 enum PC_State { IDLE, MOVE, INTERACT, DOWN, DEAD }
 
 @export var id: int = -1
-@export var state: PC_State = PC_State.IDLE
 @export var health: float = 0
 @export var max_health: float = 0
 @export var regeneration: float = 0
@@ -12,19 +11,20 @@ enum PC_State { IDLE, MOVE, INTERACT, DOWN, DEAD }
 @export var speed: float = 0
 @export var acceleration: float = 0
 @export var friction: float = 0
-@export var weapon: IWeapon = null
-@export var aiming_at: Vector2 = Vector2.ZERO
-@export var down_timer: float = 0
+@export var weapon: PackedScene = null
 @export var down_time: float = 0
-#@export var active_bonus: Array(IBonus) = []
-@export var interactible_in_range: Array[Interactible] = []
+
+var aiming_at: Vector2 = Vector2.ZERO
+var state: PC_State = PC_State.IDLE
+var active_bonus: Array[IBonus] = []
+var interactible_in_range: Array[Interactible] = []
+var direction = Vector2.ZERO
+var reloading: bool = false
+var down_timer: float = 0
 
 @onready var AnimPlayer = $AnimationPlayer
 @onready var Camera = $Camera2D
 @onready var DownTimer = $DownTimer
-
-var direction = Vector2.ZERO
-var reloading: bool = false
 
 
 func _physics_process(delta):
