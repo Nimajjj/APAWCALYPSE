@@ -71,9 +71,9 @@ _data = {
 
 [node name="Candy" instance=ExtResource("1_si3mp")]
 script = ExtResource("2_kx331")
-speed = 200.0
-acceleration = 0.3
-friction = 0.1
+speed = 25000.0
+acceleration = 0.7
+friction = 0.25
 weapon = ExtResource("3_2rbss")
 
 [node name="Hitbox" parent="." index="0"]

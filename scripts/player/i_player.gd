@@ -172,6 +172,7 @@ func _move_state(delta: float) -> void:
 		Sprite.flip_h = true
 
 	velocity = lerp(velocity, direction.normalized() * speed, acceleration)
+	velocity *= delta
 	AnimPlayer.play("WALK")
 	move_and_slide()
 
