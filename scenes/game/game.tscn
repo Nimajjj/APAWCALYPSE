@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://ddbld7l6ym7qj"]
 
 [ext_resource type="Script" path="res://scripts/game/game.gd" id="1_i6dkd"]
-[ext_resource type="PackedScene" path="res://scenes/player/fabric_player.tscn" id="3_5lw4k"]
+[ext_resource type="PackedScene" uid="uid://cde0l3nccdl6y" path="res://scenes/player/fabric_player.tscn" id="3_5lw4k"]
 [ext_resource type="Texture2D" uid="uid://c23frqu1jeku" path="res://assets/sprites/icon.svg" id="3_24v1u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y3r4x"]
@@ -13,19 +13,19 @@ script = ExtResource("1_i6dkd")
 [node name="GameTimer" type="Timer" parent="."]
 wait_time = 0.1
 
-[node name="Icon" type="Sprite2D" parent="."]
-position = Vector2(154, -2)
-scale = Vector2(0.972656, 1.125)
-texture = ExtResource("3_24v1u")
+[node name="FabricPlayer" parent="." instance=ExtResource("3_5lw4k")]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Icon"]
-position = Vector2(-158.329, 1.77778)
-scale = Vector2(1.02811, 0.888889)
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(0.000350952, 2.6226e-06)
+scale = Vector2(0.999997, 1)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Icon/StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(154.5, -3)
 shape = SubResource("RectangleShape2D_y3r4x")
 
-[node name="FabricPlayer" parent="." instance=ExtResource("3_5lw4k")]
+[node name="Icon" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(154, -2)
+scale = Vector2(0.972659, 1.125)
+texture = ExtResource("3_24v1u")
 
 [connection signal="timeout" from="GameTimer" to="." method="_on_game_timer_timeout"]
