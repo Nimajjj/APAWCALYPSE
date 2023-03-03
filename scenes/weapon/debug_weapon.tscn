@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://byhp1673t6x5d"]
+
+[ext_resource type="PackedScene" uid="uid://cx15vvox6qa4r" path="res://scenes/weapon/i_weapon.tscn" id="1_wrlkm"]
+[ext_resource type="Script" path="res://scripts/weapon/debug_weapon.gd" id="2_x5r60"]
+[ext_resource type="Texture2D" uid="uid://c23frqu1jeku" path="res://assets/sprites/icon.svg" id="2_xnt04"]
+[ext_resource type="PackedScene" uid="uid://cyj1hjipsxiys" path="res://scenes/bullet/debug_bullet.tscn" id="3_5kbau"]
+
+[node name="DebugWeapon" instance=ExtResource("1_wrlkm")]
+script = ExtResource("2_x5r60")
+weapon_name = "DebugWeapon"
+accuracy = 100
+damage = 100
+weapon_range = 2
+fire_rate = 10
+bullet_stock = 100
+max_bullet_stock = 100
+current_mag = 100
+mag_capacity = 100
+BulletScene = ExtResource("3_5kbau")
+
+[node name="WeaponEnd" parent="." index="0"]
+position = Vector2(13, 0)
+
+[node name="Sprite2D" parent="." index="1"]
+modulate = Color(0.478431, 0.196078, 0.0666667, 1)
+position = Vector2(5, 0)
+scale = Vector2(0.125, 0.015625)
+texture = ExtResource("2_xnt04")

@@ -28,6 +28,11 @@ var down_timer: float = 0
 @onready var DownTimer = $DownTimer
 
 
+func _ready() -> void:
+	health = max_health
+	_spawn_default_weapon()
+
+
 func _physics_process(delta):
 	_camera_follow_mouse()
 
@@ -191,3 +196,9 @@ func _camera_follow_mouse() -> void:
 	var mouse_pos = get_global_mouse_position()
 	Camera.offset.x = (mouse_pos.x - global_position.x) / (1280.0 / 125.0)
 	Camera.offset.y = (mouse_pos.y - global_position.y) / (720.0 / 125.0)
+
+
+func _spawn_default_weapon() -> void:
+	var weapon_instance = weapon.instantiate()
+	weapon_instance.position.y = 1
+	add_child(weapon_instance)
