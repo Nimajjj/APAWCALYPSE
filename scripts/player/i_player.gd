@@ -28,9 +28,7 @@ var down_timer: float = 0
 
 
 func _physics_process(delta):
-	var mouse_pos = get_global_mouse_position()
-	Camera.offset.x = (mouse_pos.x - global_position.x) / (1280.0 / 125.0)
-	Camera.offset.y = (mouse_pos.y - global_position.y) / (720.0 / 125.0)
+	_camera_follow_mouse()
 
 	match state:
 		PC_State.IDLE:
@@ -53,8 +51,8 @@ func stop_shooting() -> void:
 	pass
 
 
-#func take_bonus(bonus: IBonus) -> void:
-#	pass
+func take_bonus(bonus: IBonus) -> void:
+	pass
 
 
 func add_weapon(weapon: IWeapon) -> void:
@@ -63,7 +61,32 @@ func add_weapon(weapon: IWeapon) -> void:
 
 func drop_weapon() -> void:
 	weapon = null
-	
+
+
+func heal(heal: float) -> void:
+	health += heal
+	if health > max_health:
+		health = max_health
+
+
+func gain_money(money: int) -> void:
+	self.money += money
+
+
+func add_interactible(obj: Interactible) -> void :
+	interactible_in_range.append(obj)
+
+
+func remove_interactible(obj: Interactible) -> void :
+	for i in interactible_in_range :
+		if i == obj :
+			interactible_in_range.erase(i)
+
+
+func interact() -> void :
+	if len(interactible_in_range) > 0 :
+		interactible_in_range[0].activate(self)
+
 	
 func _start_reload() -> void:
 	pass
@@ -101,32 +124,6 @@ func take_damage(damage: float) -> void:
 		health = 0
 		state = PC_State.DOWN
 		DownTimer.start()
-
-
-
-func heal(heal: float) -> void:
-	health += heal
-	if health > max_health:
-		health = max_health
-
-
-func gain_money(money: int) -> void:
-	self.money += money
-
-
-func add_interactible(obj: Interactible) -> void :
-	interactible_in_range.append(obj)
-
-
-func remove_interactible(obj: Interactible) -> void :
-	for i in interactible_in_range :
-		if i == obj :
-			interactible_in_range.erase(i)
-
-
-func interact() -> void :
-	if len(interactible_in_range) > 0 :
-		interactible_in_range[0].activate(self)
 
 
 func _idle_state() -> void:
@@ -183,3 +180,9 @@ func _down_state() -> void:
 
 func _dead_state() -> void:
 	pass
+
+
+func _camera_follow_mouse() -> void:
+	var mouse_pos = get_global_mouse_position()
+	Camera.offset.x = (mouse_pos.x - global_position.x) / (1280.0 / 125.0)
+	Camera.offset.y = (mouse_pos.y - global_position.y) / (720.0 / 125.0)
