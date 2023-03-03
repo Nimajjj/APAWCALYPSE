@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://gqx8g8aqgnj3"]
+
+[ext_resource type="Script" path="res://scripts/ui/in_game_ui.gd" id="1_dkxx7"]
+
+[node name="InGameUI" type="CanvasLayer"]
+script = ExtResource("1_dkxx7")
+
+[node name="DebugLabel" type="RichTextLabel" parent="."]
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 1264.0
+offset_bottom = 704.0
+text = "APAWCALYPSE - dev"
