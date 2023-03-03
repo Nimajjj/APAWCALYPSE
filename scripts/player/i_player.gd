@@ -22,6 +22,7 @@ var direction = Vector2.ZERO
 var reloading: bool = false
 var down_timer: float = 0
 
+@onready var Sprite = $Sprite2D
 @onready var AnimPlayer = $AnimationPlayer
 @onready var Camera = $Camera2D
 @onready var DownTimer = $DownTimer
@@ -160,8 +161,12 @@ func _move_state(delta: float) -> void:
 	if direction.length() <= 0:
 		state = PC_State.IDLE
 
+	if direction.x < 0:
+		Sprite.flip_h = false
+	elif direction.x > 0:
+		Sprite.flip_h = true
+
 	velocity = lerp(velocity, direction.normalized() * speed, acceleration)
-	print(velocity, direction.normalized() * speed, acceleration)
 	AnimPlayer.play("WALK")
 	move_and_slide()
 
