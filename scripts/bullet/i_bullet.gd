@@ -27,6 +27,7 @@ func shoot(aim_position: Vector2) -> void:
 
 
 func _on_Area2D_body_entered(body: Node) -> void:
+	var shooter: IPlayer = get_tree().get_root().get_child(1).get_child(1).get_child(0)
 	if body is IEnemy:
-		body.damage(damage)
+		body.take_damage(damage, shooter)
 		queue_free()
