@@ -17,7 +17,8 @@ func create_enemy(type: String, pos: Vector2) -> IEnemy:
 			# fucking not normal
 	
 	enemy.position = pos
-	get_parent().add_child(enemy)
+	enemy.health = enemy. max_health
+	add_child(enemy)
 	
 	
 	

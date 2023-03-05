@@ -24,7 +24,7 @@ func take_damage(dmg: int, shooter: IPlayer) -> void:
 
 
 func _move(delta) -> void:
-	var target = get_parent().player
+	var target = get_parent().get_parent().player
 	var _direction = (target.global_position - global_position).normalized()
 	if _direction.x < 0:
 		Sprite.flip_h = false
