@@ -20,7 +20,7 @@ func _physics_process(delta):
 func take_damage(dmg: int, shooter: IPlayer) -> void:
 	health -= dmg
 	if health <= 0:
-		dies()
+		dies(shooter)
 
 
 func _move(delta) -> void:
@@ -34,6 +34,7 @@ func _move(delta) -> void:
 	position += _velocity
 
 
-func dies() -> void:
+func dies(shooter: IPlayer) -> void:
 #	give money to killer
+	print("die")
 	queue_free()
