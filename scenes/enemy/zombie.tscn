@@ -14,7 +14,7 @@ height = 16.0
 
 [node name="Zombie" instance=ExtResource("1_5bvas")]
 script = ExtResource("2_6bqtj")
-max_health = 125
+max_health = 200
 speed = 60
 money = 20
 damage = 25

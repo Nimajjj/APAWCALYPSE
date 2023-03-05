@@ -12,7 +12,7 @@ size = Vector2(40, 4)
 
 [node name="Dog" instance=ExtResource("1_nag8t")]
 script = ExtResource("2_m0ibo")
-max_health = 80
+max_health = 125
 speed = 108
 money = 40
 damage = 25
