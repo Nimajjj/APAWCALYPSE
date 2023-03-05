@@ -4,10 +4,10 @@
 [ext_resource type="Script" path="res://scripts/enemy/dog.gd" id="2_m0ibo"]
 [ext_resource type="Texture2D" uid="uid://2cplx0nvvhe6" path="res://assets/sprites/mon_chien.png" id="3_i1qs2"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8ego5"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p880c"]
 size = Vector2(40, 12)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_u2y66"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wv4yi"]
 size = Vector2(40, 4)
 
 [node name="Dog" instance=ExtResource("1_nag8t")]
@@ -24,11 +24,11 @@ texture = ExtResource("3_i1qs2")
 
 [node name="CollisionShape2D" parent="HurtBox" index="0"]
 position = Vector2(0, -2)
-shape = SubResource("RectangleShape2D_8ego5")
+shape = SubResource("RectangleShape2D_p880c")
 debug_color = Color(0.996078, 0, 0.207843, 0.419608)
 
 [node name="Hitbox" parent="." index="2"]
 position = Vector2(0, 2)
-shape = SubResource("RectangleShape2D_u2y66")
+shape = SubResource("RectangleShape2D_wv4yi")
 
 [connection signal="body_entered" from="HurtBox" to="." method="_on_hurt_box_body_entered"]

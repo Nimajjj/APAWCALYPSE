@@ -4,11 +4,11 @@
 [ext_resource type="Script" path="res://scripts/enemy/zombie.gd" id="2_6bqtj"]
 [ext_resource type="Texture2D" uid="uid://qkls7ytl7pkw" path="res://assets/sprites/zombie.png" id="2_s4pyg"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1cpvv"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3he1k"]
 radius = 8.0
 height = 24.0
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rwk0l"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_huxy6"]
 radius = 4.0
 height = 16.0
 
@@ -25,9 +25,9 @@ texture = ExtResource("2_s4pyg")
 
 [node name="CollisionShape2D" parent="HurtBox" index="0"]
 position = Vector2(0, -8)
-shape = SubResource("CapsuleShape2D_1cpvv")
+shape = SubResource("CapsuleShape2D_3he1k")
 debug_color = Color(0.992157, 0, 0.247059, 0.419608)
 
 [node name="Hitbox" parent="." index="2"]
 rotation = 1.5708
-shape = SubResource("CapsuleShape2D_rwk0l")
+shape = SubResource("CapsuleShape2D_huxy6")
