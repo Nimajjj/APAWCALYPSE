@@ -20,6 +20,7 @@ var active_bonus: Array[IBonus] = []
 var interactible_in_range: Array[Interactible] = []
 var direction = Vector2.ZERO
 var reloading: bool = false
+var score: int = 0
 var down_timer: float = 0
 
 @onready var Sprite = $Sprite2D
