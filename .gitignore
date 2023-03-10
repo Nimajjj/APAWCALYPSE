@@ -9,3 +9,4 @@ export_presets.cfg
 project.godot
 
 addons/
+.idea/
