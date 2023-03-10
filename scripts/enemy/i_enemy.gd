@@ -35,6 +35,7 @@ func _move(delta) -> void:
 
 
 func dies(shooter: IPlayer) -> void:
-#	give money to killer
-	print("die")
+	print("shooter money before kill: ", shooter.money)
+	shooter.gain_money(money)
+	print("shooter money after kill: ", shooter.money)
 	queue_free()
