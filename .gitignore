@@ -7,3 +7,5 @@ export_presets.cfg
 .mono/
 
 project.godot
+
+addons/
