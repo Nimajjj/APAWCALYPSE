@@ -12,9 +12,9 @@ func _physics_process(delta):
 	position += direction * speed * delta 
 
 
-func shoot(player: IPlayer, aim_position: Vector2) -> void:
+func shoot(player: IPlayer, aim_position: Vector2, d: Vector2) -> void:
+	direction = d
 	shooter = player
-	direction = (aim_position - position).normalized()
 	rotation = direction.angle()
 
 	var _timer: Timer = Timer.new()

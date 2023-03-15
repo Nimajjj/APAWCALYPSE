@@ -26,8 +26,12 @@ var actual_rate: int = 0
 
 
 func _process(delta):
+#	look_at(get_global_mouse_position())
+#	listen_shoot_input()
+	var weapon_direction: Vector2 = get_global_mouse_position() - global_position
+	weapon_direction = weapon_direction.normalized()
 	look_at(get_global_mouse_position())
-	listen_shoot_input()
+	listen_shoot_input(weapon_direction)
 
 
 func has_secondary_weapon() -> bool:
@@ -45,7 +49,7 @@ func reload() -> void:
 				bullet_stock = 0
 
 
-func listen_shoot_input() -> void:
+func listen_shoot_input(weapon_direction: Vector2) -> void:
 	if Input.is_action_pressed("shoot"):
 		if(actual_rate == fire_rate):
 			var bullet: IBullet = BulletScene.instantiate()
@@ -54,6 +58,6 @@ func listen_shoot_input() -> void:
 			bullet.life_time = weapon_range
 
 			get_tree().get_root().add_child(bullet)
-			bullet.shoot(get_parent(), get_global_mouse_position())
+			bullet.shoot(get_parent(), get_global_mouse_position(), weapon_direction)
 			actual_rate = 0
 		actual_rate += 1
