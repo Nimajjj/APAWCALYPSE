@@ -1,35 +1,44 @@
 class_name ISpawner
 extends Node2D
 
-var spawners: Array[Spawner]
+@export var id: int
+@export var window: Interactible	# to change to Window
+
+var units: Array[IEnemy] = []
+var units_left_to_spawn: int
+var enabled: bool = false
+var spawn_delay: float
+
+@onready var timer: Timer = $Timer
 
 
-func _ready():
-	init_spawners()
+func enable() -> void:
+	enabled = true
+	timer.connect("timeout", _on_timer_timeout)
 
 
-
-func start_spawners(units_to_spawn):
-	var enabled_spawners: int
-	for spawner in spawners:
-		if spawner.actif:
-			enabled_spawners += 1
+func start(units: int):
+	units_left_to_spawn = units
+	timer.start()
+	timer.wait_time = spawn_delay
+		
 	
+func stop() -> void:
+	timer.stop()
 
 
-func stop_spawners():
-	for spawner in spawners:
-		spawner.stop()
+func is_all_units_dead() -> bool:
+	return get_child_count() == 0
+	
+		
+func is_all_units_spawned() -> bool:
+	return units_left_to_spawn == 0
 
 
-func init_spawners():
-	var children: Array[Node] = get_children()
-	for child in children:
-		if child.is_in_group("spawner"):
-			spawners.append(child)
+func _on_timer_timeout():
+	if is_all_units_spawned():
+		pass
+	else:
+		stop()
 	
 	
-func enable_spawners(id):
-	for spawner in spawners:
-		if spawner.id == id & !spawner.actif:
-			spawner.actif = true
