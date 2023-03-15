@@ -3,16 +3,17 @@ extends Area2D
 
 @export var speed: int
 
+var shooter: IPlayer = null
 var direction: Vector2
 var damage: int
 var life_time: float
-
 
 func _physics_process(delta):
 	position += direction * speed * delta 
 
 
-func shoot(aim_position: Vector2) -> void:
+func shoot(player: IPlayer, aim_position: Vector2) -> void:
+	shooter = player
 	direction = (aim_position - position).normalized()
 	rotation = direction.angle()
 
@@ -27,7 +28,6 @@ func shoot(aim_position: Vector2) -> void:
 
 
 func _on_Area2D_body_entered(body: Node) -> void:
-	var shooter: IPlayer = get_tree().get_root().get_child(1).get_child(1).get_child(0)
 	if body is IEnemy:
 		body.take_damage(damage, shooter)
 		queue_free()

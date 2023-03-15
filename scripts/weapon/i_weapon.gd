@@ -48,12 +48,12 @@ func reload() -> void:
 func listen_shoot_input() -> void:
 	if Input.is_action_pressed("shoot"):
 		if(actual_rate == fire_rate):
-			var _bullet: IBullet = BulletScene.instantiate()
-			_bullet.position = WeaponEnd.get_global_transform().origin
-			_bullet.damage = damage
-			_bullet.life_time = weapon_range
+			var bullet: IBullet = BulletScene.instantiate()
+			bullet.position = WeaponEnd.get_global_transform().origin
+			bullet.damage = damage
+			bullet.life_time = weapon_range
 
-			get_tree().get_root().add_child(_bullet)
-			_bullet.shoot(get_global_mouse_position())
+			get_tree().get_root().add_child(bullet)
+			bullet.shoot(get_parent(), get_global_mouse_position())
 			actual_rate = 0
 		actual_rate += 1
