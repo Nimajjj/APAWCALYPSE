@@ -10,6 +10,8 @@ func activate(player: IPlayer) -> void:
 		open = true
 		player.money -= price
 		visible	 = false
+		
+		# activate spawners with spawner_id (olivier)
 
 
 func can_activate(player: IPlayer) -> bool:
