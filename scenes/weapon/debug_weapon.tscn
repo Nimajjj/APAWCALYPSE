@@ -1,8 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://hes16uoc8yfw"]
+[gd_scene load_steps=5 format=3]
 
 [ext_resource type="PackedScene" uid="uid://cx15vvox6qa4r" path="res://scenes/weapon/i_weapon.tscn" id="1_wrlkm"]
 [ext_resource type="Script" path="res://scripts/weapon/debug_weapon.gd" id="2_x5r60"]
-[ext_resource type="Texture2D" uid="uid://c23frqu1jeku" path="res://assets/sprites/icon.svg" id="2_xnt04"]
+[ext_resource type="Texture2D" uid="uid://c23frqu1jeku" path="res://assets/debug/icon.svg" id="2_xnt04"]
 [ext_resource type="PackedScene" uid="uid://cyj1hjipsxiys" path="res://scenes/bullet/debug_bullet.tscn" id="3_5kbau"]
 
 [node name="DebugWeapon" instance=ExtResource("1_wrlkm")]

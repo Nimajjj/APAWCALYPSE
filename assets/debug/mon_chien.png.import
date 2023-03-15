@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bca1d6mcp8yok"
-path="res://.godot/imported/candy.png-867bdde152c73ce44180b5e1723da2fe.ctex"
+uid="uid://2cplx0nvvhe6"
+path="res://.godot/imported/mon_chien.png-5b480935016965332bc3e3eab8d05568.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/candy.png"
-dest_files=["res://.godot/imported/candy.png-867bdde152c73ce44180b5e1723da2fe.ctex"]
+source_file="res://assets/debug/mon_chien.png"
+dest_files=["res://.godot/imported/mon_chien.png-5b480935016965332bc3e3eab8d05568.ctex"]
 
 [params]
 

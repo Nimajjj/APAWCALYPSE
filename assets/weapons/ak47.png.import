@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cru7lgeg18wv2"
-path="res://.godot/imported/siamese.png-ea2ed125c36c3cd81386a310d0b9f03a.ctex"
+uid="uid://bdn5lc3q4xr1g"
+path="res://.godot/imported/ak47.png-928ccc66fc5f969f45b81ecb28aeaf1d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/siamese.png"
-dest_files=["res://.godot/imported/siamese.png-ea2ed125c36c3cd81386a310d0b9f03a.ctex"]
+source_file="res://assets/weapons/ak47.png"
+dest_files=["res://.godot/imported/ak47.png-928ccc66fc5f969f45b81ecb28aeaf1d.ctex"]
 
 [params]
 

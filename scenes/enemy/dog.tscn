@@ -1,8 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://bakshnctmhdob"]
+[gd_scene load_steps=6 format=3]
 
 [ext_resource type="PackedScene" uid="uid://bwe1kad6agad3" path="res://scenes/enemy/i_enemy.tscn" id="1_nag8t"]
 [ext_resource type="Script" path="res://scripts/enemy/dog.gd" id="2_m0ibo"]
-[ext_resource type="Texture2D" uid="uid://2cplx0nvvhe6" path="res://assets/sprites/mon_chien.png" id="3_i1qs2"]
+[ext_resource type="Texture2D" uid="uid://2cplx0nvvhe6" path="res://assets/debug/mon_chien.png" id="3_i1qs2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p880c"]
 size = Vector2(40, 12)

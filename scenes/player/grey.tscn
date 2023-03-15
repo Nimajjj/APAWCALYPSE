@@ -1,10 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://gw2hv4hl1mqn"]
+[gd_scene load_steps=8 format=3]
 
 [ext_resource type="PackedScene" uid="uid://7vehn306bqp1" path="res://scenes/player/i_player.tscn" id="1_hc12c"]
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="2_le1p6"]
-[ext_resource type="PackedScene" uid="uid://hes16uoc8yfw" path="res://scenes/weapon/debug_weapon.tscn" id="3_k72cf"]
-[ext_resource type="Texture2D" uid="uid://b4suydvqb25a6" path="res://assets/sprites/grey.png" id="4_m4q7u"]
-[ext_resource type="AnimationLibrary" uid="uid://2x1fvsguqtbj" path="res://resources/player_animations.res" id="5_23cgw"]
+[ext_resource type="PackedScene" path="res://scenes/weapon/debug_weapon.tscn" id="3_k72cf"]
+[ext_resource type="Texture2D" uid="uid://b4suydvqb25a6" path="res://assets/debug/grey.png" id="4_m4q7u"]
+[ext_resource type="AnimationLibrary" path="res://resources/player_animations.res" id="5_23cgw"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5oe80"]
 radius = 1.0

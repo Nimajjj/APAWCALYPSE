@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://0fq8fv221kr4"
-path="res://.godot/imported/bullet-ak.png-37f92b4d5d592c3273c3f1074a8dade2.ctex"
+uid="uid://b4yots0w8841m"
+path="res://.godot/imported/badaboum.png-be29d20d2396040c14b505d3b77c36eb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/bullet-ak.png"
-dest_files=["res://.godot/imported/bullet-ak.png-37f92b4d5d592c3273c3f1074a8dade2.ctex"]
+source_file="res://assets/players/badaboum.png"
+dest_files=["res://.godot/imported/badaboum.png-be29d20d2396040c14b505d3b77c36eb.ctex"]
 
 [params]
 

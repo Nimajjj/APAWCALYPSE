@@ -1,9 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://ct8tnd57rfyqx"]
+[gd_scene load_steps=5 format=3]
 
 [ext_resource type="Script" path="res://scripts/test/test_02.gd" id="1_i6301"]
 [ext_resource type="PackedScene" uid="uid://cde0l3nccdl6y" path="res://scenes/player/fabric_player.tscn" id="2_w5b7f"]
-[ext_resource type="PackedScene" uid="uid://dcvqvja81x13d" path="res://scenes/enemy/fabric_enemy.tscn" id="3_g6vc2"]
-[ext_resource type="Texture2D" uid="uid://d045won1u1x47" path="res://assets/sprites/Garfield.png" id="4_xnw2o"]
+[ext_resource type="PackedScene" path="res://scenes/enemy/fabric_enemy.tscn" id="3_g6vc2"]
+[ext_resource type="Texture2D" uid="uid://d045won1u1x47" path="res://assets/ui/portraits/Garfield.png" id="4_xnw2o"]
 
 [node name="Test02" type="Node2D"]
 script = ExtResource("1_i6301")

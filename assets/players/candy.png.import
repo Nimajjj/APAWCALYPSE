@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d045won1u1x47"
-path="res://.godot/imported/Garfield.png-508407802947ccb95d29ec90c9983e24.ctex"
+uid="uid://bca1d6mcp8yok"
+path="res://.godot/imported/candy.png-a5717e489a99d2c2454e828960b4a591.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/Garfield.png"
-dest_files=["res://.godot/imported/Garfield.png-508407802947ccb95d29ec90c9983e24.ctex"]
+source_file="res://assets/players/candy.png"
+dest_files=["res://.godot/imported/candy.png-a5717e489a99d2c2454e828960b4a591.ctex"]
 
 [params]
 

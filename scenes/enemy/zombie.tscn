@@ -1,8 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://0wn6vrj1lfdn"]
+[gd_scene load_steps=6 format=3]
 
 [ext_resource type="PackedScene" uid="uid://bwe1kad6agad3" path="res://scenes/enemy/i_enemy.tscn" id="1_5bvas"]
 [ext_resource type="Script" path="res://scripts/enemy/zombie.gd" id="2_6bqtj"]
-[ext_resource type="Texture2D" uid="uid://qkls7ytl7pkw" path="res://assets/sprites/zombie.png" id="2_s4pyg"]
+[ext_resource type="Texture2D" uid="uid://qkls7ytl7pkw" path="res://assets/enemies/bodies/zombie.png" id="2_s4pyg"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3he1k"]
 radius = 8.0

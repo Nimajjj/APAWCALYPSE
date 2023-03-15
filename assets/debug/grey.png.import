@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://2cplx0nvvhe6"
-path="res://.godot/imported/mon_chien.png-ce395df9ac032caeb68e408f57386546.ctex"
+uid="uid://b4suydvqb25a6"
+path="res://.godot/imported/grey.png-f88dffac3c2d618cbb75891d22ade0fd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/mon_chien.png"
-dest_files=["res://.godot/imported/mon_chien.png-ce395df9ac032caeb68e408f57386546.ctex"]
+source_file="res://assets/debug/grey.png"
+dest_files=["res://.godot/imported/grey.png-f88dffac3c2d618cbb75891d22ade0fd.ctex"]
 
 [params]
 

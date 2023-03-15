@@ -1,9 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://ddbld7l6ym7qj"]
+[gd_scene load_steps=8 format=3 uid="uid://bv13pkbklc4xh"]
 
 [ext_resource type="Script" path="res://scripts/game/game.gd" id="1_i6dkd"]
 [ext_resource type="PackedScene" uid="uid://cde0l3nccdl6y" path="res://scenes/player/fabric_player.tscn" id="3_5lw4k"]
-[ext_resource type="Texture2D" uid="uid://c23frqu1jeku" path="res://assets/sprites/icon.svg" id="3_24v1u"]
+[ext_resource type="Texture2D" uid="uid://c23frqu1jeku" path="res://assets/debug/icon.svg" id="3_cpy5d"]
 [ext_resource type="PackedScene" uid="uid://gqx8g8aqgnj3" path="res://scenes/ui/in_game_ui.tscn" id="4_ovap8"]
+[ext_resource type="PackedScene" path="res://scenes/interactible/door.tscn" id="5_f1uw8"]
+[ext_resource type="PackedScene" path="res://scenes/weapon/debug_weapon.tscn" id="6_hbmnw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y3r4x"]
 size = Vector2(125, 144)
@@ -27,8 +29,15 @@ shape = SubResource("RectangleShape2D_y3r4x")
 [node name="Icon" type="Sprite2D" parent="StaticBody2D"]
 position = Vector2(154, -2)
 scale = Vector2(0.972659, 1.125)
-texture = ExtResource("3_24v1u")
+texture = ExtResource("3_cpy5d")
 
 [node name="InGameUI" parent="." instance=ExtResource("4_ovap8")]
+
+[node name="Door" parent="." instance=ExtResource("5_f1uw8")]
+position = Vector2(4, 304)
+rotation = 1.5708
+
+[node name="DebugWeapon" parent="." instance=ExtResource("6_hbmnw")]
+position = Vector2(222, 217)
 
 [connection signal="timeout" from="GameTimer" to="." method="_on_game_timer_timeout"]

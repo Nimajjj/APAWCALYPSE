@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://qkls7ytl7pkw"
-path="res://.godot/imported/zombie.png-03bc310f484585a7d5dc9d93798216f9.ctex"
+uid="uid://0fq8fv221kr4"
+path="res://.godot/imported/bullet-ak.png-0f001e8bea04d16227faf3e0605c5878.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/zombie.png"
-dest_files=["res://.godot/imported/zombie.png-03bc310f484585a7d5dc9d93798216f9.ctex"]
+source_file="res://assets/ammunitions/bullet-ak.png"
+dest_files=["res://.godot/imported/bullet-ak.png-0f001e8bea04d16227faf3e0605c5878.ctex"]
 
 [params]
 

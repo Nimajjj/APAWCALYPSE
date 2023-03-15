@@ -1,5 +1,9 @@
-[gd_scene format=3 uid="uid://bsatbx1ick1jj"]
+[gd_scene load_steps=2 format=3 uid="uid://bsatbx1ick1jj"]
+
+[ext_resource type="PackedScene" path="res://scenes/enemy/fabric_enemy.tscn" id="1_kn2g1"]
 
 [node name="ISpawner" type="Node2D"]
+
+[node name="FabricEnemy" parent="." instance=ExtResource("1_kn2g1")]
 
 [node name="Timer" type="Timer" parent="."]

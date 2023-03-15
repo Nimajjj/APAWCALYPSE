@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b4yots0w8841m"
-path="res://.godot/imported/badaboum.png-ce23a1e33d269b3062ec26a159c4c1d1.ctex"
+uid="uid://c23frqu1jeku"
+path="res://.godot/imported/icon.svg-520d63b4941c1ee49352e0f17a8cce98.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/badaboum.png"
-dest_files=["res://.godot/imported/badaboum.png-ce23a1e33d269b3062ec26a159c4c1d1.ctex"]
+source_file="res://assets/debug/icon.svg"
+dest_files=["res://.godot/imported/icon.svg-520d63b4941c1ee49352e0f17a8cce98.ctex"]
 
 [params]
 
@@ -32,3 +32,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false

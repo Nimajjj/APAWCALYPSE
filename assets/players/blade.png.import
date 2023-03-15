@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b4suydvqb25a6"
-path="res://.godot/imported/grey.png-6156b446f991000930a8690ce285b0e4.ctex"
+uid="uid://cb8cawxywol2y"
+path="res://.godot/imported/blade.png-fb964274d269fe622f28a8992a10efa7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/grey.png"
-dest_files=["res://.godot/imported/grey.png-6156b446f991000930a8690ce285b0e4.ctex"]
+source_file="res://assets/players/blade.png"
+dest_files=["res://.godot/imported/blade.png-fb964274d269fe622f28a8992a10efa7.ctex"]
 
 [params]
 
