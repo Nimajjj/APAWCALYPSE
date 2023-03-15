@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://byhp1673t6x5d"]
+[gd_scene load_steps=5 format=3 uid="uid://hes16uoc8yfw"]
 
 [ext_resource type="PackedScene" uid="uid://cx15vvox6qa4r" path="res://scenes/weapon/i_weapon.tscn" id="1_wrlkm"]
 [ext_resource type="Script" path="res://scripts/weapon/debug_weapon.gd" id="2_x5r60"]

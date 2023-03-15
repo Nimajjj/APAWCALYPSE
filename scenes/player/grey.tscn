@@ -1,12 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://d30qeq5kl7eb"]
+[gd_scene load_steps=10 format=3 uid="uid://gw2hv4hl1mqn"]
 
-[ext_resource type="PackedScene" uid="uid://7vehn306bqp1" path="res://scenes/player/i_player.tscn" id="1_si3mp"]
-[ext_resource type="Script" path="res://scripts/player/player.gd" id="2_krdwl"]
-[ext_resource type="PackedScene" uid="uid://hes16uoc8yfw" path="res://scenes/weapon/debug_weapon.tscn" id="3_5cdug"]
-[ext_resource type="Texture2D" uid="uid://cru7lgeg18wv2" path="res://assets/sprites/siamese.png" id="3_qc45q"]
+[ext_resource type="PackedScene" uid="uid://7vehn306bqp1" path="res://scenes/player/i_player.tscn" id="1_hc12c"]
+[ext_resource type="Script" path="res://scripts/player/player.gd" id="2_le1p6"]
+[ext_resource type="PackedScene" uid="uid://hes16uoc8yfw" path="res://scenes/weapon/debug_weapon.tscn" id="3_k72cf"]
+[ext_resource type="Texture2D" uid="uid://cru7lgeg18wv2" path="res://assets/sprites/siamese.png" id="3_o2hgc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8ep7y"]
-atlas = ExtResource("3_qc45q")
+atlas = ExtResource("3_o2hgc")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="Animation" id="Animation_wi8hq"]
@@ -65,12 +65,12 @@ _data = {
 "WALK": SubResource("Animation_kr8nd")
 }
 
-[node name="Candy" instance=ExtResource("1_si3mp")]
-script = ExtResource("2_krdwl")
+[node name="Grey" instance=ExtResource("1_hc12c")]
+script = ExtResource("2_le1p6")
 speed = 200.0
 acceleration = 0.3
 friction = 0.1
-weapon = ExtResource("3_5cdug")
+weapon = ExtResource("3_k72cf")
 
 [node name="Sprite2D" parent="." index="1"]
 texture = SubResource("AtlasTexture_8ep7y")
