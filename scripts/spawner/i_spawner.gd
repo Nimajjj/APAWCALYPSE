@@ -21,7 +21,7 @@ func start(units: int):
 	units_left_to_spawn = units
 	timer.start()
 	timer.wait_time = spawn_delay
-		
+	
 	
 func stop() -> void:
 	timer.stop()

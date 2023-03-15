@@ -1,11 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://bv13pkbklc4xh"]
+[gd_scene load_steps=8 format=3 uid="uid://bb22ptpaphk3v"]
 
 [ext_resource type="Script" path="res://scripts/game/game.gd" id="1_i6dkd"]
 [ext_resource type="PackedScene" uid="uid://cde0l3nccdl6y" path="res://scenes/player/fabric_player.tscn" id="3_5lw4k"]
+[ext_resource type="PackedScene" uid="uid://dtdvetjn2wgrs" path="res://scenes/player/bada-boom.tscn" id="3_7l2mi"]
 [ext_resource type="Texture2D" uid="uid://c23frqu1jeku" path="res://assets/debug/icon.svg" id="3_cpy5d"]
 [ext_resource type="PackedScene" uid="uid://gqx8g8aqgnj3" path="res://scenes/ui/in_game_ui.tscn" id="4_ovap8"]
 [ext_resource type="PackedScene" path="res://scenes/interactible/door.tscn" id="5_f1uw8"]
-[ext_resource type="PackedScene" path="res://scenes/weapon/debug_weapon.tscn" id="6_hbmnw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y3r4x"]
 size = Vector2(125, 144)
@@ -17,6 +17,7 @@ script = ExtResource("1_i6dkd")
 wait_time = 0.1
 
 [node name="FabricPlayer" parent="." instance=ExtResource("3_5lw4k")]
+player_scene = ExtResource("3_7l2mi")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(0.000350952, 2.6226e-06)
@@ -36,8 +37,5 @@ texture = ExtResource("3_cpy5d")
 [node name="Door" parent="." instance=ExtResource("5_f1uw8")]
 position = Vector2(4, 304)
 rotation = 1.5708
-
-[node name="DebugWeapon" parent="." instance=ExtResource("6_hbmnw")]
-position = Vector2(222, 217)
 
 [connection signal="timeout" from="GameTimer" to="." method="_on_game_timer_timeout"]

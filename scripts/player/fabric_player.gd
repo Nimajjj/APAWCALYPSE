@@ -2,7 +2,7 @@ extends Node2D
 
 var players: Array[IPlayer] = []
 
-var player_scene: PackedScene = preload("res://scenes/player/candy.tscn");
+@export var player_scene: PackedScene
 
 
 func create_player() -> IPlayer:

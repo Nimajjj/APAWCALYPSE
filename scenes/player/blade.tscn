@@ -1,8 +1,8 @@
-[gd_scene load_steps=8 format=3]
+[gd_scene load_steps=8 format=3 uid="uid://c3qex6dlwt7ny"]
 
 [ext_resource type="PackedScene" uid="uid://7vehn306bqp1" path="res://scenes/player/i_player.tscn" id="1_bmvg6"]
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="2_28pj3"]
-[ext_resource type="PackedScene" path="res://scenes/weapon/debug_weapon.tscn" id="3_hokun"]
+[ext_resource type="PackedScene" uid="uid://byhp1673t6x5d" path="res://scenes/weapon/debug_weapon.tscn" id="3_hokun"]
 [ext_resource type="Texture2D" uid="uid://cb8cawxywol2y" path="res://assets/players/blade.png" id="4_iqjiy"]
 [ext_resource type="AnimationLibrary" path="res://resources/player_animations.res" id="5_xen6a"]
 

@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://bsatbx1ick1jj"]
+[gd_scene load_steps=2 format=3 uid="uid://cy3kakabvwgxc"]
 
-[ext_resource type="PackedScene" path="res://scenes/enemy/fabric_enemy.tscn" id="1_kn2g1"]
+[ext_resource type="PackedScene" uid="uid://dcvqvja81x13d" path="res://scenes/enemy/fabric_enemy.tscn" id="1_kn2g1"]
 
 [node name="ISpawner" type="Node2D"]
 
