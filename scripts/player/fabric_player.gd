@@ -7,7 +7,9 @@ var player_scene: PackedScene = preload("res://scenes/player/candy.tscn");
 
 func create_player() -> IPlayer:
 	var player: IPlayer = player_scene.instantiate()
-	players.append(player)
-	player.id = players.size()
+	
+	player.id = Global.players.size()
+	Global.players.append(player)
+	
 	add_child(player)
 	return player;

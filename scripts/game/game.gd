@@ -5,9 +5,6 @@ var score: int = 0
 var wave: int = 0
 var time: float = 0.0
 
-var players: Array[IPlayer] = []
-var n_players: int = 0
-
 @onready var GameTimer: Timer = $GameTimer
 @onready var FabricPlayer: Node2D = $FabricPlayer
 
@@ -29,8 +26,7 @@ func end_game() -> void:
 
 
 func _new_player() -> void:
-	players.append(FabricPlayer.create_player())
-	n_players += 1
+	FabricPlayer.create_player()
 
 
 func _on_game_timer_timeout():
