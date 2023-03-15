@@ -139,7 +139,7 @@ func _idle_state() -> void:
 	_inputs_reload()
 	_inputs_interact()
 
-	AnimPlayer.play("IDLE")
+	AnimPlayer.play("player_animations/IDLE")
 	if Input.is_action_just_pressed("shoot"):
 		start_shooting()
 	if Input.is_action_just_released("shoot"):
@@ -154,7 +154,7 @@ func _idle_state() -> void:
 		state = PC_State.MOVE
 
 	velocity = lerp(velocity, Vector2.ZERO, friction)
-	AnimPlayer.play("IDLE")
+	AnimPlayer.play("player_animations/IDLE")
 
 
 func _move_state(delta: float) -> void:
@@ -174,7 +174,7 @@ func _move_state(delta: float) -> void:
 
 	velocity = lerp(velocity, direction.normalized() * speed, acceleration)
 	velocity *= delta
-	AnimPlayer.play("WALK")
+	AnimPlayer.play("player_animations/WALK")
 	move_and_slide()
 
 

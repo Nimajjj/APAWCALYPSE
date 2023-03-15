@@ -1,70 +1,15 @@
-[gd_scene load_steps=11 format=3 uid="uid://d30qeq5kl7eb"]
+[gd_scene load_steps=8 format=3 uid="uid://d30qeq5kl7eb"]
 
 [ext_resource type="PackedScene" uid="uid://7vehn306bqp1" path="res://scenes/player/i_player.tscn" id="1_si3mp"]
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="2_krdwl"]
 [ext_resource type="PackedScene" uid="uid://hes16uoc8yfw" path="res://scenes/weapon/debug_weapon.tscn" id="3_5cdug"]
-[ext_resource type="Texture2D" uid="uid://cru7lgeg18wv2" path="res://assets/sprites/siamese.png" id="3_qc45q"]
 [ext_resource type="Shape2D" uid="uid://b0wb8ufpigeiq" path="res://resources/player_hitbox_collision_shape.tres" id="4_ejp5e"]
+[ext_resource type="Texture2D" uid="uid://bca1d6mcp8yok" path="res://assets/sprites/candy.png" id="5_824mt"]
+[ext_resource type="AnimationLibrary" uid="uid://2x1fvsguqtbj" path="res://resources/player_animations.res" id="6_lpcig"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8ep7y"]
-atlas = ExtResource("3_qc45q")
-region = Rect2(32, 0, 32, 32)
-
-[sub_resource type="Animation" id="Animation_wi8hq"]
-resource_name = "IDLE"
-length = 0.4
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture:region")
-tracks/0/interp = 0
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Rect2(0, 0, 32, 32), Rect2(32, 0, 32, 32)]
-}
-
-[sub_resource type="Animation" id="Animation_f031h"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture:region")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Rect2(32, 0, 32, 32)]
-}
-
-[sub_resource type="Animation" id="Animation_kr8nd"]
-resource_name = "WALK"
-length = 0.4
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture:region")
-tracks/0/interp = 0
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Rect2(0, 32, 32, 32), Rect2(32, 32, 32, 32)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_8mv4q"]
-_data = {
-"IDLE": SubResource("Animation_wi8hq"),
-"RESET": SubResource("Animation_f031h"),
-"WALK": SubResource("Animation_kr8nd")
-}
+[sub_resource type="AtlasTexture" id="AtlasTexture_wlvad"]
+atlas = ExtResource("5_824mt")
+region = Rect2(0, 0, 32, 32)
 
 [node name="Candy" instance=ExtResource("1_si3mp")]
 script = ExtResource("2_krdwl")
@@ -79,12 +24,12 @@ rotation = 1.5708
 shape = ExtResource("4_ejp5e")
 
 [node name="Sprite2D" parent="." index="1"]
-texture = SubResource("AtlasTexture_8ep7y")
+texture = SubResource("AtlasTexture_wlvad")
 
-[node name="AnimationPlayer" parent="." index="3"]
-autoplay = "IDLE"
+[node name="AnimationPlayer" parent="." index="4"]
+autoplay = "player_animations/IDLE"
 libraries = {
-"": SubResource("AnimationLibrary_8mv4q")
+"player_animations": ExtResource("6_lpcig")
 }
 
 [connection signal="timeout" from="DownTimer" to="." method="_on_down_timer_timeout"]

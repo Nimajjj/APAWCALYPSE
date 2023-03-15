@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://7vehn306bqp1"]
+[gd_scene load_steps=2 format=3 uid="uid://7vehn306bqp1"]
+
+[ext_resource type="AnimationLibrary" uid="uid://2x1fvsguqtbj" path="res://resources/player_animations.res" id="1_m404w"]
 
 [node name="IPlayer" type="CharacterBody2D"]
 
@@ -9,7 +11,11 @@
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(6, 6)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-
 [node name="DownTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "IDLE"
+libraries = {
+"": ExtResource("1_m404w")
+}
