@@ -1,6 +1,7 @@
 class_name IPlayer
 extends CharacterBody2D
 
+
 enum PC_State { IDLE, MOVE, INTERACT, DOWN, DEAD }
 
 @export var id: int = -1
@@ -35,6 +36,8 @@ func _ready() -> void:
 
 
 func _physics_process(delta):
+	weapon.look_at(get_global_mouse_position())
+	
 	_camera_follow_mouse()
 
 	match state:
@@ -51,7 +54,7 @@ func _physics_process(delta):
 
 
 func start_shooting() -> void:
-	pass
+	weapon.shoot()
 
 
 func stop_shooting() -> void:
@@ -204,3 +207,5 @@ func _spawn_default_weapon() -> void:
 	var weapon_instance = weapon.instantiate()
 	weapon_instance.position.y = 1
 	add_child(weapon_instance)
+	
+	

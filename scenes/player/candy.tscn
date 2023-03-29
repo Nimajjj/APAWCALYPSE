@@ -1,0 +1,38 @@
+[gd_scene load_steps=8 format=3 uid="uid://d2pdb1ouk8fr0"]
+
+[ext_resource type="PackedScene" uid="uid://7vehn306bqp1" path="res://scenes/player/i_player.tscn" id="1_ieq7i"]
+[ext_resource type="Script" path="res://scripts/player/player.gd" id="2_6h5aq"]
+[ext_resource type="PackedScene" path="res://scenes/weapon/debug_weapon.tscn" id="3_3djau"]
+[ext_resource type="Texture2D" uid="uid://bca1d6mcp8yok" path="res://assets/players/candy.png" id="4_hj0b1"]
+[ext_resource type="AnimationLibrary" uid="uid://2x1fvsguqtbj" path="res://resources/player_animations.res" id="5_xemwa"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lfrgh"]
+radius = 1.0
+height = 10.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6qjlh"]
+atlas = ExtResource("4_hj0b1")
+region = Rect2(32, 32, 32, 32)
+
+[node name="Blade" instance=ExtResource("1_ieq7i")]
+script = ExtResource("2_6h5aq")
+speed = 10000.0
+acceleration = 0.3
+friction = 0.1
+weapon = ExtResource("3_3djau")
+
+[node name="Hitbox" parent="." index="0"]
+position = Vector2(1, 8)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_lfrgh")
+
+[node name="Sprite2D" parent="." index="1"]
+texture = SubResource("AtlasTexture_6qjlh")
+
+[node name="AnimationPlayer" parent="." index="4"]
+autoplay = "player_animations/IDLE"
+libraries = {
+"player_animations": ExtResource("5_xemwa")
+}
+
+[connection signal="timeout" from="DownTimer" to="." method="_on_down_timer_timeout"]
