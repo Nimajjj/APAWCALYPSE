@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bb22ptpaphk3v"]
+[gd_scene load_steps=9 format=3 uid="uid://bb22ptpaphk3v"]
 
 [ext_resource type="Script" path="res://scripts/game/game.gd" id="1_i6dkd"]
 [ext_resource type="PackedScene" uid="uid://cde0l3nccdl6y" path="res://scenes/player/fabric_player.tscn" id="3_5lw4k"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://c23frqu1jeku" path="res://assets/debug/icon.svg" id="3_cpy5d"]
 [ext_resource type="PackedScene" uid="uid://gqx8g8aqgnj3" path="res://scenes/ui/in_game_ui.tscn" id="4_ovap8"]
 [ext_resource type="PackedScene" path="res://scenes/interactible/door.tscn" id="5_f1uw8"]
+[ext_resource type="PackedScene" uid="uid://cy3kakabvwgxc" path="res://scenes/spawner/i_spawner.tscn" id="7_u6g5j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y3r4x"]
 size = Vector2(125, 144)
@@ -15,6 +16,7 @@ script = ExtResource("1_i6dkd")
 
 [node name="GameTimer" type="Timer" parent="."]
 wait_time = 0.1
+autostart = true
 
 [node name="FabricPlayer" parent="." instance=ExtResource("3_5lw4k")]
 player_scene = ExtResource("3_7l2mi")
@@ -37,5 +39,15 @@ texture = ExtResource("3_cpy5d")
 [node name="Door" parent="." instance=ExtResource("5_f1uw8")]
 position = Vector2(4, 304)
 rotation = 1.5708
+
+[node name="ISpawner" parent="." instance=ExtResource("7_u6g5j")]
+position = Vector2(64, -16)
+enabled = true
+
+[node name="ISpawner2" parent="." instance=ExtResource("7_u6g5j")]
+position = Vector2(40, -48)
+
+[node name="ISpawner3" parent="." instance=ExtResource("7_u6g5j")]
+position = Vector2(40, -48)
 
 [connection signal="timeout" from="GameTimer" to="." method="_on_game_timer_timeout"]

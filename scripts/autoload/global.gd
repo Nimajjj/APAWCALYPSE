@@ -6,3 +6,5 @@ var game: Game = null
 var in_game_ui: CanvasLayer = null
 
 var players: Array[IPlayer] = []
+var spawners: Array[ISpawner] = []
+var units: Array[IEnemy] = []
