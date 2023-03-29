@@ -26,8 +26,6 @@ var weapon_direction: Vector2
 @onready var WeaponEnd = $WeaponEnd
 
 func _process(delta):
-#	look_at(get_global_mouse_position())
-#	listen_shoot_input()
 	weapon_direction = get_global_mouse_position() - global_position
 	weapon_direction = weapon_direction.normalized()
 	
@@ -54,7 +52,6 @@ func shoot() -> void:
 		bullet.position = WeaponEnd.get_global_transform().origin
 		bullet.damage = damage
 		bullet.life_time = weapon_range
-
 		get_tree().get_root().add_child(bullet)
 		bullet.shoot(get_parent(), get_global_mouse_position(), weapon_direction)
 		actual_rate = 0

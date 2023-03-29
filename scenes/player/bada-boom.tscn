@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://7vehn306bqp1" path="res://scenes/player/i_player.tscn" id="1_yu2ge"]
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="2_kq1hu"]
-[ext_resource type="PackedScene" uid="uid://hes16uoc8yfw" path="res://scenes/weapon/debug_weapon.tscn" id="3_qdcwj"]
-[ext_resource type="Texture2D" uid="uid://b4yots0w8841m" path="res://assets/sprites/badaboum.png" id="4_m4qiq"]
+[ext_resource type="PackedScene" path="res://scenes/weapon/debug_weapon.tscn" id="3_qdcwj"]
+[ext_resource type="Texture2D" uid="uid://b4yots0w8841m" path="res://assets/players/badaboum.png" id="4_m4qiq"]
 [ext_resource type="AnimationLibrary" uid="uid://2x1fvsguqtbj" path="res://resources/player_animations.res" id="5_kxnnt"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_iuwn7"]
@@ -12,7 +12,7 @@ height = 10.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8ep7y"]
 atlas = ExtResource("4_m4qiq")
-region = Rect2(0, 0, 32, 32)
+region = Rect2(64, 64, 32, 32)
 
 [node name="Bada-Boom" instance=ExtResource("1_yu2ge")]
 script = ExtResource("2_kq1hu")
