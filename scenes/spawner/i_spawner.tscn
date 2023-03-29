@@ -1,9 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://cy3kakabvwgxc"]
+[gd_scene load_steps=3 format=3 uid="uid://cy3kakabvwgxc"]
 
 [ext_resource type="PackedScene" uid="uid://dcvqvja81x13d" path="res://scenes/enemy/fabric_enemy.tscn" id="1_kn2g1"]
+[ext_resource type="Script" path="res://scripts/spawner/i_spawner.gd" id="1_wmlks"]
 
 [node name="ISpawner" type="Node2D"]
+script = ExtResource("1_wmlks")
 
 [node name="FabricEnemy" parent="." instance=ExtResource("1_kn2g1")]
 
 [node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -3,13 +3,15 @@ extends Node2D
 
 @export var id: int
 @export var window: Interactible	# to change to Window
+@export var enabled: bool = false
 
-var units: Array[IEnemy] = []
+
 var units_left_to_spawn: int
-var enabled: bool = false
-var spawn_delay: float
+var spawn_delay: float = 2
+
 
 @onready var timer: Timer = $Timer
+@onready var FabricEnemy: Node2D = $FabricEnemy
 
 
 func enable() -> void:
@@ -17,10 +19,10 @@ func enable() -> void:
 	timer.connect("timeout", _on_timer_timeout)
 
 
-func start(units: int):
-	units_left_to_spawn = units
+func start(units_to_spawn: int):
+	units_left_to_spawn = units_to_spawn
 	timer.start()
-	timer.wait_time = spawn_delay
+	timer.wait_time = spawn_delay	
 	
 	
 func stop() -> void:
@@ -36,8 +38,12 @@ func is_all_units_spawned() -> bool:
 
 
 func _on_timer_timeout():
-	if is_all_units_spawned():
-		pass
+	if !is_all_units_spawned():
+		if units_left_to_spawn%3 == 0 :
+			Global.units.append(FabricEnemy.create_enemy("dog", FabricEnemy.position))
+		else:
+			Global.units.append(FabricEnemy.create_enemy("zombie", FabricEnemy.position))
+		units_left_to_spawn -= 1
 	else:
 		stop()
 	

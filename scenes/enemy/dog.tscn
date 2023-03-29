@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3]
+[gd_scene load_steps=6 format=3 uid="uid://b8nckp8u5i328"]
 
 [ext_resource type="PackedScene" uid="uid://bwe1kad6agad3" path="res://scenes/enemy/i_enemy.tscn" id="1_nag8t"]
 [ext_resource type="Script" path="res://scripts/enemy/dog.gd" id="2_m0ibo"]
@@ -13,8 +13,8 @@ size = Vector2(40, 4)
 [node name="Dog" instance=ExtResource("1_nag8t")]
 script = ExtResource("2_m0ibo")
 max_health = 125
-speed = 108
-money = 40
+speed = 50
+money = 25
 damage = 25
 
 [node name="Sprite2D" parent="." index="0"]
