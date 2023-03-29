@@ -14,7 +14,7 @@ height = 10.0
 atlas = ExtResource("4_hj0b1")
 region = Rect2(32, 32, 32, 32)
 
-[node name="Blade" instance=ExtResource("1_ieq7i")]
+[node name="Blade2" instance=ExtResource("1_ieq7i")]
 script = ExtResource("2_6h5aq")
 speed = 10000.0
 acceleration = 0.3

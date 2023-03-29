@@ -82,6 +82,11 @@ func heal(heal: float) -> void:
 
 func gain_money(money: int) -> void:
 	self.money += money
+	
+	
+func gain_score(score: int) -> void:
+	Global.game.score += score
+	self.score += score # Personal score of the player
 
 
 func add_interactible(obj: Interactible) -> void :

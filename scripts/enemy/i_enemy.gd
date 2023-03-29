@@ -37,5 +37,6 @@ func _move(delta) -> void:
 func dies(shooter: IPlayer) -> void:
 	print("shooter money before kill: ", shooter.money)
 	shooter.gain_money(money)
+	shooter.gain_score(randi_range(1, 10))
 	print("shooter money after kill: ", shooter.money)
 	queue_free()
