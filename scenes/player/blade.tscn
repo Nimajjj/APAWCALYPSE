@@ -1,10 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://c3qex6dlwt7ny"]
+[gd_scene load_steps=8 format=3 uid="uid://b5mxw47fi3jv8"]
 
 [ext_resource type="PackedScene" uid="uid://7vehn306bqp1" path="res://scenes/player/i_player.tscn" id="1_bmvg6"]
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="2_28pj3"]
-[ext_resource type="PackedScene" uid="uid://byhp1673t6x5d" path="res://scenes/weapon/debug_weapon.tscn" id="3_hokun"]
+[ext_resource type="PackedScene" uid="uid://dv6jswgtcf20l" path="res://scenes/weapon/ak-47.tscn" id="3_lw7so"]
 [ext_resource type="Texture2D" uid="uid://cb8cawxywol2y" path="res://assets/players/blade.png" id="4_iqjiy"]
-[ext_resource type="AnimationLibrary" path="res://resources/player_animations.res" id="5_xen6a"]
+[ext_resource type="AnimationLibrary" uid="uid://2x1fvsguqtbj" path="res://resources/player_animations.res" id="5_xen6a"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lfrgh"]
 radius = 1.0
@@ -19,7 +19,7 @@ script = ExtResource("2_28pj3")
 speed = 10000.0
 acceleration = 0.3
 friction = 0.1
-weapon = ExtResource("3_hokun")
+weapon = ExtResource("3_lw7so")
 
 [node name="Hitbox" parent="." index="0"]
 position = Vector2(1, 8)

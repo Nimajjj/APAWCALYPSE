@@ -1,8 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://dtdvetjn2wgrs"]
+[gd_scene load_steps=8 format=3 uid="uid://lb7ejhl3xej8"]
 
 [ext_resource type="PackedScene" uid="uid://7vehn306bqp1" path="res://scenes/player/i_player.tscn" id="1_yu2ge"]
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="2_kq1hu"]
-[ext_resource type="PackedScene" path="res://scenes/weapon/debug_weapon.tscn" id="3_qdcwj"]
+[ext_resource type="PackedScene" uid="uid://dv6jswgtcf20l" path="res://scenes/weapon/ak-47.tscn" id="3_4i8px"]
 [ext_resource type="Texture2D" uid="uid://b4yots0w8841m" path="res://assets/players/badaboum.png" id="4_m4qiq"]
 [ext_resource type="AnimationLibrary" uid="uid://2x1fvsguqtbj" path="res://resources/player_animations.res" id="5_kxnnt"]
 
@@ -19,7 +19,7 @@ script = ExtResource("2_kq1hu")
 speed = 10000.0
 acceleration = 0.3
 friction = 0.1
-weapon = ExtResource("3_qdcwj")
+weapon = ExtResource("3_4i8px")
 
 [node name="Hitbox" parent="." index="0"]
 position = Vector2(1, 8)
