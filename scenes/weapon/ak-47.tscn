@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cx15vvox6qa4r" path="res://scenes/weapon/i_weapon.tscn" id="1_vqg52"]
 [ext_resource type="Script" path="res://scripts/weapon/debug_weapon.gd" id="2_rv17n"]
-[ext_resource type="PackedScene" path="res://scenes/bullet/debug_bullet.tscn" id="3_pelrk"]
+[ext_resource type="PackedScene" uid="uid://b7y2suvmwcoud" path="res://scenes/bullet/debug_bullet.tscn" id="3_pelrk"]
 [ext_resource type="Texture2D" uid="uid://bdn5lc3q4xr1g" path="res://assets/weapons/ak47.png" id="4_72vqh"]
 
 [node name="AK-47" instance=ExtResource("1_vqg52")]
@@ -11,7 +11,8 @@ weapon_name = "DebugWeapon"
 accuracy = 100
 damage = 100
 weapon_range = 2
-fire_rate = 10
+spread = 0.08
+fire_rate = 6
 bullet_stock = 100
 max_bullet_stock = 100
 current_mag = 100

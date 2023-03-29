@@ -6,8 +6,8 @@ enum Weapon_Weight {LIGHT, MEDIUM, HEAVY}
 @export var weapon_name: String = ""
 @export var accuracy: int = 0
 @export var damage: int = 0
-@export var weapon_range: int = 0
-@export var spread: int = 0
+@export var weapon_range: float = 0
+@export var spread: float = 0.0
 @export var fire_rate: int = 0
 @export var bullet_stock: int = 0
 @export var max_bullet_stock: int = 0
@@ -53,6 +53,8 @@ func shoot() -> void:
 		bullet.damage = damage
 		bullet.life_time = weapon_range
 		get_tree().get_root().add_child(bullet)
-		bullet.shoot(get_parent(), get_global_mouse_position(), weapon_direction)
+		var spread_angle = randf_range(-spread, spread)
+		var shoot_direction = weapon_direction.rotated(spread_angle)
+		bullet.shoot(get_parent(), get_global_mouse_position(), shoot_direction)
 		actual_rate = 0
 	actual_rate += 1

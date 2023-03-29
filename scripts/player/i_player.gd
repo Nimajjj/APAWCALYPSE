@@ -12,9 +12,10 @@ enum PC_State { IDLE, MOVE, INTERACT, DOWN, DEAD }
 @export var speed: float = 0
 @export var acceleration: float = 0
 @export var friction: float = 0
-@export var weapon: PackedScene = null
+@export var weapon_scene: PackedScene = null
 @export var down_time: float = 0
 
+var weapon: IWeapon = null
 var aiming_at: Vector2 = Vector2.ZERO
 var state: PC_State = PC_State.IDLE
 var active_bonus: Array[IBonus] = []
@@ -33,7 +34,7 @@ var down_timer: float = 0
 func _ready() -> void:
 	health = max_health
 	_spawn_default_weapon()
-
+	
 
 func _physics_process(delta):
 	weapon.look_at(get_global_mouse_position())
@@ -112,7 +113,7 @@ func _inputs_directions() -> void:
 
 
 func _inputs_shoot() -> void:
-	if Input.is_action_just_pressed("shoot"):
+	if Input.is_action_pressed("shoot"):
 		start_shooting()
 	if Input.is_action_just_released("shoot"):
 		stop_shooting()
@@ -207,8 +208,8 @@ func _camera_follow_mouse() -> void:
 
 
 func _spawn_default_weapon() -> void:
-	var weapon_instance = weapon.instantiate()
-	weapon_instance.position.y = 1
-	add_child(weapon_instance)
+	weapon = weapon_scene.instantiate()
+	weapon.position.y = 1
+	add_child(weapon)
 	
 	

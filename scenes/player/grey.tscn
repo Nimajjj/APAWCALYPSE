@@ -19,7 +19,7 @@ script = ExtResource("2_le1p6")
 speed = 10000.0
 acceleration = 0.3
 friction = 0.1
-weapon = ExtResource("3_i7vhw")
+weapon_scene = ExtResource("3_i7vhw")
 
 [node name="Hitbox" parent="." index="0"]
 position = Vector2(1, 8)

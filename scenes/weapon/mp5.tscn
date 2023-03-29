@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cx15vvox6qa4r" path="res://scenes/weapon/i_weapon.tscn" id="1_fst88"]
 [ext_resource type="Script" path="res://scripts/weapon/debug_weapon.gd" id="2_0werj"]
-[ext_resource type="PackedScene" path="res://scenes/bullet/debug_bullet.tscn" id="3_ubqvq"]
+[ext_resource type="PackedScene" uid="uid://b7y2suvmwcoud" path="res://scenes/bullet/debug_bullet.tscn" id="3_ubqvq"]
 [ext_resource type="Texture2D" uid="uid://eb4wl0qstcsc" path="res://assets/weapons/mp-5.png" id="4_i7b4s"]
 
 [node name="MP5" instance=ExtResource("1_fst88")]
@@ -11,7 +11,7 @@ weapon_name = "DebugWeapon"
 accuracy = 100
 damage = 100
 weapon_range = 2
-fire_rate = 10
+fire_rate = 8
 bullet_stock = 100
 max_bullet_stock = 100
 current_mag = 100
