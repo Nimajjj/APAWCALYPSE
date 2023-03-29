@@ -11,3 +11,10 @@ offset_top = 16.0
 offset_right = 1264.0
 offset_bottom = 704.0
 text = "APAWCALYPSE - dev"
+
+[node name="InteractibleLabel" type="Label" parent="."]
+offset_top = 528.0
+offset_right = 1280.0
+offset_bottom = 554.0
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -8,7 +8,7 @@ enum PC_State { IDLE, MOVE, INTERACT, DOWN, DEAD }
 @export var health: float = 0
 @export var max_health: float = 0
 @export var regeneration: float = 0
-@export var money: int = 0
+@export var money: int = 1000
 @export var speed: float = 0
 @export var acceleration: float = 0
 @export var friction: float = 0
@@ -85,12 +85,15 @@ func gain_money(money: int) -> void:
 
 func add_interactible(obj: Interactible) -> void :
 	interactible_in_range.append(obj)
+	Global.in_game_ui.InteractibleLabel.text = obj.message
 
 
 func remove_interactible(obj: Interactible) -> void :
 	for i in interactible_in_range :
 		if i == obj :
 			interactible_in_range.erase(i)
+			Global.in_game_ui.InteractibleLabel.text = ""
+
 
 
 func interact() -> void :

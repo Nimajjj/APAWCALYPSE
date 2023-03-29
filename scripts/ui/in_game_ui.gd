@@ -1,10 +1,10 @@
 extends CanvasLayer
 
 @onready var DebugLabel: RichTextLabel = $DebugLabel
+@onready var InteractibleLabel: Label = $InteractibleLabel
 
-
-func _ready():
-	pass
+func _enter_tree():
+	Global.in_game_ui = self
 
 
 func _process(_delta):

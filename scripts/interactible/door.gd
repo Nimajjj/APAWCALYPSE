@@ -1,9 +1,12 @@
 extends Interactible
 
-@export var price: int = 0
+@export var price: int = 100
 @export var open: bool = false
 @export var spawner_id: int = -1
 
+
+func _ready(): 
+	message = "Press E to open the door "
 
 func activate(player: IPlayer) -> void:
 	if can_activate(player) :

@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3]
+[gd_scene load_steps=6 format=3 uid="uid://c5jw2cb3wlijy"]
 
 [ext_resource type="PackedScene" uid="uid://opcyl153ve03" path="res://scenes/interactible/interactible.tscn" id="1_oo8cf"]
 [ext_resource type="Script" path="res://scripts/interactible/door.gd" id="2_jbedx"]
@@ -12,6 +12,9 @@ size = Vector2(128, 20)
 
 [node name="Door" instance=ExtResource("1_oo8cf")]
 script = ExtResource("2_jbedx")
+price = null
+open = null
+spawner_id = null
 
 [node name="Sprite2D" parent="." index="0"]
 scale = Vector2(1, 0.125)
