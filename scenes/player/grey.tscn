@@ -1,8 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://cb87gnggenn3r"]
+[gd_scene load_steps=8 format=3]
 
 [ext_resource type="PackedScene" uid="uid://7vehn306bqp1" path="res://scenes/player/i_player.tscn" id="1_hc12c"]
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="2_le1p6"]
-[ext_resource type="PackedScene" uid="uid://dv6jswgtcf20l" path="res://scenes/weapon/ak-47.tscn" id="3_i7vhw"]
+[ext_resource type="PackedScene" uid="uid://b3ih678xdn0sf" path="res://scenes/weapon/ak-47.tscn" id="3_i7vhw"]
 [ext_resource type="Texture2D" uid="uid://b4suydvqb25a6" path="res://assets/debug/grey.png" id="4_m4q7u"]
 [ext_resource type="AnimationLibrary" uid="uid://2x1fvsguqtbj" path="res://resources/player_animations.res" id="5_23cgw"]
 

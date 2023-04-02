@@ -10,6 +10,7 @@ func create_player() -> IPlayer:
 	
 	player.id = Global.players.size()
 	Global.players.append(player)
+	Global.map.add_child(player)
+	player.position = position
 	
-	add_child(player)
 	return player;

@@ -1,25 +1,24 @@
-[gd_scene load_steps=8 format=3 uid="uid://d2pdb1ouk8fr0"]
+[gd_scene load_steps=7 format=3]
 
-[ext_resource type="PackedScene" uid="uid://7vehn306bqp1" path="res://scenes/player/i_player.tscn" id="1_ieq7i"]
-[ext_resource type="Script" path="res://scripts/player/player.gd" id="2_6h5aq"]
-[ext_resource type="PackedScene" uid="uid://dv6jswgtcf20l" path="res://scenes/weapon/ak-47.tscn" id="3_x83mq"]
-[ext_resource type="Texture2D" uid="uid://bca1d6mcp8yok" path="res://assets/players/candy.png" id="4_hj0b1"]
-[ext_resource type="AnimationLibrary" uid="uid://2x1fvsguqtbj" path="res://resources/player_animations.res" id="5_xemwa"]
+[ext_resource type="Script" path="res://scripts/player/player.gd" id="2_j3tyb"]
+[ext_resource type="PackedScene" uid="uid://b3ih678xdn0sf" path="res://scenes/weapon/ak-47.tscn" id="2_wulj3"]
+[ext_resource type="Texture2D" uid="uid://bca1d6mcp8yok" path="res://assets/players/candy.png" id="4_dfmcs"]
+[ext_resource type="AnimationLibrary" uid="uid://2x1fvsguqtbj" path="res://resources/player_animations.res" id="5_aci77"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lfrgh"]
 radius = 1.0
 height = 10.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6qjlh"]
-atlas = ExtResource("4_hj0b1")
+atlas = ExtResource("4_dfmcs")
 region = Rect2(32, 32, 32, 32)
 
-[node name="Blade2" instance=ExtResource("1_ieq7i")]
+[node name="Blade" instance=ExtResource("1_ieq7i")]
 script = ExtResource("2_6h5aq")
 speed = 10000.0
 acceleration = 0.3
 friction = 0.1
-weapon_scene = ExtResource("3_x83mq")
+weapon_scene = ExtResource("2_wulj3")
 
 [node name="Hitbox" parent="." index="0"]
 position = Vector2(1, 8)
@@ -32,7 +31,7 @@ texture = SubResource("AtlasTexture_6qjlh")
 [node name="AnimationPlayer" parent="." index="4"]
 autoplay = "player_animations/IDLE"
 libraries = {
-"player_animations": ExtResource("5_xemwa")
+"player_animations": ExtResource("5_aci77")
 }
 
 [connection signal="timeout" from="DownTimer" to="." method="_on_down_timer_timeout"]

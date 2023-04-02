@@ -1,8 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://b8ogxvx0vy2sg"]
+[gd_scene load_steps=5 format=3 uid="uid://ctj08c620xcra"]
 
 [ext_resource type="PackedScene" uid="uid://cx15vvox6qa4r" path="res://scenes/weapon/i_weapon.tscn" id="1_jygeb"]
 [ext_resource type="Script" path="res://scripts/weapon/shotgun.gd" id="2_vtkd2"]
-[ext_resource type="PackedScene" uid="uid://b7y2suvmwcoud" path="res://scenes/bullet/debug_bullet.tscn" id="3_k64v3"]
+[ext_resource type="PackedScene" path="res://scenes/bullet/debug_bullet.tscn" id="3_k64v3"]
 [ext_resource type="Texture2D" uid="uid://dy3uldg27vmal" path="res://assets/weapons/shotgun.png" id="4_73p1p"]
 
 [node name="Shotgun" instance=ExtResource("1_jygeb")]

@@ -6,13 +6,15 @@ extends Interactible
 
 
 func _ready(): 
-	message = "Press E to open the door "
+	message = "Press [E] to open the door for {0}$".format([price])
 
 func activate(player: IPlayer) -> void:
 	if can_activate(player) :
 		open = true
 		player.money -= price
 		visible	 = false
+		
+		queue_free()
 		
 		# activate spawners with spawner_id (olivier)
 

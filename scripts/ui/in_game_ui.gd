@@ -9,7 +9,6 @@ func _enter_tree():
 
 func _process(_delta):
 	var _text: String = ""
-	
 	_text += Global.version + "\n"
 	_text += "FPS: " + str(Engine.get_frames_per_second()) + "\n"
 	_text += "Time: " + str(snapped(Global.game.time, 0.01)) + "\n"

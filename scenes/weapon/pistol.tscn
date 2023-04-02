@@ -1,8 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dqsghl5cgf51g"]
+[gd_scene load_steps=5 format=3]
 
 [ext_resource type="PackedScene" uid="uid://cx15vvox6qa4r" path="res://scenes/weapon/i_weapon.tscn" id="1_yjq44"]
 [ext_resource type="Script" path="res://scripts/weapon/debug_weapon.gd" id="2_20bg0"]
-[ext_resource type="PackedScene" uid="uid://b7y2suvmwcoud" path="res://scenes/bullet/debug_bullet.tscn" id="3_xan0v"]
+[ext_resource type="PackedScene" path="res://scenes/bullet/debug_bullet.tscn" id="3_xan0v"]
 [ext_resource type="Texture2D" uid="uid://bf7di52q5ukun" path="res://assets/weapons/pistol.png" id="4_c5ste"]
 
 [node name="Pistol" instance=ExtResource("1_yjq44")]
