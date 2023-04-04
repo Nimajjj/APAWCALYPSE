@@ -31,3 +31,5 @@ func _on_Area2D_body_entered(body: Node) -> void:
 	if body is IEnemy:
 		body.take_damage(damage, shooter)
 		queue_free()
+	if body.name == "WallCollisions":
+		queue_free()
