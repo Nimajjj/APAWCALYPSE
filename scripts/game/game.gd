@@ -51,9 +51,6 @@ func _on_game_timer_timeout():
 	time += 0.1
 	
 func _on_wave_timer_timeout():
-	print("Gobal.units_left_to_spawn: ", Global.units_left_to_spawn)
-	print("enabled_spawner: ", enabled_spawner)
-	print("units to spawn: ", Global.units_left_to_spawn/enabled_spawner)
 	if !spawners_activated:
 		for spawner in Global.spawners:
 				if spawner.enabled:

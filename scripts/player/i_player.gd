@@ -29,11 +29,14 @@ var down_timer: float = 0
 @onready var AnimPlayer = $AnimationPlayer
 @onready var Camera = $Camera2D
 @onready var DownTimer = $DownTimer
+@onready var Hitbox = $Hitbox
 
 
 func _ready() -> void:
 	health = max_health
 	_spawn_default_weapon()
+	
+	Hitbox.connect("body_entered", Callable(func(body: Node): _on_Area2D_body_entered(body)))
 
 func _physics_process(delta):
 	weapon.look_at(get_global_mouse_position())
@@ -224,4 +227,8 @@ func _spawn_default_weapon() -> void:
 	add_weapon(weapon_scene.instantiate())
 	weapon.position = Vector2(1, -6)
 	
-	
+
+func _on_Area2D_body_entered(body: Node) -> void:
+	print("bodyentered")
+	if body is IEnemy && state != PC_State.DOWN && state != PC_State.DEAD:
+		take_damage(body.damage)

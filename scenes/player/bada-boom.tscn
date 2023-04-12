@@ -1,17 +1,17 @@
-[gd_scene load_steps=8 format=3 uid="uid://14rkgn2ti7cc"]
+[gd_scene load_steps=9 format=3 uid="uid://14rkgn2ti7cc"]
 
 [ext_resource type="PackedScene" uid="uid://7vehn306bqp1" path="res://scenes/player/i_player.tscn" id="1_7i7gw"]
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="2_ulh68"]
-<<<<<<< HEAD
-[ext_resource type="PackedScene" path="res://scenes/weapon/sniper.tscn" id="3_3d6co"]
-=======
-[ext_resource type="PackedScene" uid="uid://du2qfi4navyj5" path="res://scenes/weapon/machinegun.tscn" id="3_hd15d"]
->>>>>>> 72c76626ff6fb56d185507528db1ba9ffe2cc806
+[ext_resource type="PackedScene" path="res://scenes/weapon/machinegun.tscn" id="3_hd15d"]
 [ext_resource type="Texture2D" uid="uid://b4yots0w8841m" path="res://assets/players/badaboum.png" id="4_7kit0"]
 [ext_resource type="AnimationLibrary" uid="uid://2x1fvsguqtbj" path="res://resources/player_animations.res" id="5_bwmwt"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_iuwn7"]
-radius = 1.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_m52up"]
+radius = 2.0
+height = 10.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w31yf"]
+radius = 3.0
 height = 10.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8ep7y"]
@@ -25,19 +25,26 @@ acceleration = 0.3
 friction = 0.1
 weapon_scene = ExtResource("3_hd15d")
 
-[node name="Hitbox" parent="." index="0"]
+[node name="CollisionBox" parent="." index="0"]
+position = Vector2(0, -1)
 rotation = 1.5708
-shape = SubResource("CapsuleShape2D_iuwn7")
+shape = SubResource("CapsuleShape2D_m52up")
 
-[node name="Sprite2D" parent="." index="1"]
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2(0, -1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_w31yf")
+debug_color = Color(0.988235, 0, 0.317647, 0.419608)
+
+[node name="Sprite2D" parent="." index="2"]
 position = Vector2(-1, -8)
 texture = SubResource("AtlasTexture_8ep7y")
 
-[node name="Camera2D" parent="." index="2"]
+[node name="Camera2D" parent="." index="3"]
 position = Vector2(-1, -8)
 zoom = Vector2(5, 5)
 
-[node name="AnimationPlayer" parent="." index="4"]
+[node name="AnimationPlayer" parent="." index="5"]
 autoplay = "player_animations/IDLE"
 libraries = {
 "player_animations": ExtResource("5_bwmwt")
