@@ -1,8 +1,6 @@
-[gd_scene load_steps=6 format=3]
+[gd_scene load_steps=4 format=3 uid="uid://byppx7n13wq3j"]
 
 [ext_resource type="Script" path="res://scripts/test/test_01.gd" id="1_05r0r"]
-[ext_resource type="PackedScene" path="res://scenes/player/player.tscn" id="2_wr86l"]
-[ext_resource type="PackedScene" path="res://scenes/weapon/weapon.tscn" id="3_a8mbd"]
 [ext_resource type="Texture2D" uid="uid://c23frqu1jeku" path="res://assets/debug/icon.svg" id="3_mxb7m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nv6fg"]
@@ -10,11 +8,6 @@ size = Vector2(125, 144)
 
 [node name="Test01" type="Node2D"]
 script = ExtResource("1_05r0r")
-
-[node name="Player" parent="." instance=ExtResource("2_wr86l")]
-
-[node name="Weapon" parent="Player" instance=ExtResource("3_a8mbd")]
-position = Vector2(-5, 1)
 
 [node name="Icon" type="Sprite2D" parent="."]
 position = Vector2(154, -2)
