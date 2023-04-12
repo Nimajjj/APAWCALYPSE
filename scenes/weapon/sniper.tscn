@@ -12,10 +12,10 @@ accuracy = 100
 damage = 500
 weapon_range = 2
 fire_rate = 80
-bullet_stock = 100
-max_bullet_stock = 100
-current_mag = 100
-mag_capacity = 100
+stock_factor = 6
+mag_capacity = 5
+reload_time = 3
+weight = 2
 BulletScene = ExtResource("3_3dpcx")
 
 [node name="WeaponEnd" parent="." index="0"]

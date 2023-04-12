@@ -11,6 +11,10 @@ damage = 20
 weapon_range = 0.1
 spread = 0.4
 fire_rate = 40
+stock_factor = 5
+mag_capacity = 60
+reload_time = 1.5
+weight = 1
 BulletScene = ExtResource("3_vbljp")
 
 [node name="WeaponEnd" parent="." index="0"]

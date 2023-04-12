@@ -14,7 +14,7 @@ enum Weapon_Weight {LIGHT, MEDIUM, HEAVY}
 @export var max_bullet_stock: int = 0
 @export var current_mag: int = 0
 @export var mag_capacity: int = 0
-@export var reload_time: int = 0
+@export var reload_time: float = 0
 @export var price: int = 0
 @export var weight: Weapon_Weight
 
@@ -31,7 +31,7 @@ var reloading: bool = false
 
 func _ready():
 	current_mag = mag_capacity
-	bullet_stock = mag_capacity
+	bullet_stock = mag_capacity * 2
 	max_bullet_stock = bullet_stock * stock_factor
 	
 	timer.wait_time = reload_time
