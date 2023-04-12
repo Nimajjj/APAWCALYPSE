@@ -17,6 +17,10 @@ func create_enemy(type: String, pos: Vector2) -> IEnemy:
 			# fucking not normal
 	
 	enemy.position = pos
+	enemy.max_health += Global.game.wave * 2
+	enemy.damage += Global.game.wave * 1.75
+	enemy.money += Global.game.wave * randi() % 5
+	enemy.speed += randi() % 20
 	enemy.health = enemy.max_health
 	add_child(enemy)
 	Global.units_alive += 1
