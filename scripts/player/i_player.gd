@@ -38,14 +38,10 @@ func _ready() -> void:
 
 func _physics_process(delta):
 	weapon.look_at(get_global_mouse_position())
-	weapon.get_node("Sprite2D").flip_v = $Sprite2D.flip_h
-	weapon.get_node("Sprite2D").offset = Vector2(1, 4) if $Sprite2D.flip_h else Vector2(3, -4)
-	
 	
 	if Input.is_action_just_pressed("rmb"):
 		position = get_global_mouse_position()
-		
-	
+
 	_camera_follow_mouse()
 
 	match state:
@@ -76,6 +72,7 @@ func take_bonus(bonus: IBonus) -> void:
 func add_weapon(wp: IWeapon) -> void:
 	drop_weapon()
 	weapon = wp.duplicate()
+	weapon.position = Vector2(1, -6)
 	add_child(weapon)
 
 
@@ -225,7 +222,6 @@ func _camera_follow_mouse() -> void:
 
 func _spawn_default_weapon() -> void:
 	add_weapon(weapon_scene.instantiate())
-	weapon.position.y = -6
-	weapon.position.x = -2
+	weapon.position = Vector2(1, -6)
 	
 	

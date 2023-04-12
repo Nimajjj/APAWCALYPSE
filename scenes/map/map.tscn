@@ -6,9 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://df31hgrhng0rn" path="res://assets/debug/lol_fuck.png" id="4_lra84"]
 [ext_resource type="Texture2D" uid="uid://bxssdkop52n44" path="res://assets/debug/lol_fuck_2.png" id="5_dgfpq"]
 [ext_resource type="Texture2D" uid="uid://odoaqs5xsk4e" path="res://assets/debug/lol_fuck_4.png" id="5_t76fh"]
-[ext_resource type="PackedScene" uid="uid://c1di05lj11sig" path="res://scenes/interactible/window.tscn" id="7_l0fyw"]
+[ext_resource type="PackedScene" uid="uid://p4js65rf6ci7" path="res://scenes/interactible/window.tscn" id="7_l0fyw"]
 [ext_resource type="PackedScene" uid="uid://bkmuprlamyren" path="res://scenes/interactible/weapon_rack.tscn" id="8_niepf"]
-[ext_resource type="PackedScene" uid="uid://c84fchplhf41c" path="res://scenes/weapon/mp5.tscn" id="9_5u3wt"]
+[ext_resource type="PackedScene" uid="uid://dfyqiwfcotw5e" path="res://scenes/weapon/mp5.tscn" id="9_5u3wt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3gngv"]
 size = Vector2(128, 6)

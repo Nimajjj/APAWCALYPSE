@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://chv4x7nltbsiv"]
+[gd_scene load_steps=5 format=3 uid="uid://06uaslr128p0"]
 
 [ext_resource type="PackedScene" uid="uid://dky1x2jibxbqs" path="res://scenes/bullet/i_bullet.tscn" id="1_mnh5s"]
 [ext_resource type="Script" path="res://scripts/bullet/bullet.gd" id="2_68tpq"]
@@ -9,7 +9,7 @@ size = Vector2(2, 1)
 
 [node name="MP5Bullet" instance=ExtResource("1_mnh5s")]
 script = ExtResource("2_68tpq")
-speed = 500
+speed = 1000
 
 [node name="Sprite2D" parent="." index="0"]
 position = Vector2(1, 0)

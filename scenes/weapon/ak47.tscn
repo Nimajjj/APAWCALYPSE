@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cx15vvox6qa4r" path="res://scenes/weapon/i_weapon.tscn" id="1_bsx4r"]
 [ext_resource type="Script" path="res://scripts/weapon/debug_weapon.gd" id="2_lgu7n"]
-[ext_resource type="PackedScene" uid="uid://06uaslr128p0" path="res://scenes/bullet/mp5_bullet.tscn" id="3_p8drc"]
+[ext_resource type="PackedScene" uid="uid://dpt6803qrretg" path="res://scenes/bullet/ak47_bullet.tscn" id="3_1mhlr"]
 [ext_resource type="Texture2D" uid="uid://bdn5lc3q4xr1g" path="res://assets/weapons/ak47.png" id="4_um4nx"]
 
 [node name="AK47" instance=ExtResource("1_bsx4r")]
@@ -16,13 +16,14 @@ bullet_stock = 100
 max_bullet_stock = 100
 current_mag = 100
 mag_capacity = 100
-BulletScene = ExtResource("3_p8drc")
+BulletScene = ExtResource("3_1mhlr")
 
 [node name="WeaponEnd" parent="." index="0"]
-position = Vector2(12, -2)
+position = Vector2(9, -1)
 
 [node name="Sprite2D" parent="." index="1"]
 texture_filter = 1
-position = Vector2(6, -2)
-scale = Vector2(-0.611037, 0.445313)
+position = Vector2(2, -1)
+scale = Vector2(0.7, 0.7)
 texture = ExtResource("4_um4nx")
+flip_h = true

@@ -27,7 +27,7 @@ height = 10.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6qjlh"]
 atlas = ExtResource("4_dfmcs")
-region = Rect2(0, 0, 32, 32)
+region = Rect2(0, 32, 32, 32)
 
 [node name="Candy" instance=ExtResource("1_u7lr1")]
 script = ExtResource("2_j3tyb")

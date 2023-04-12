@@ -1,8 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://c84fchplhf41c"]
+[gd_scene load_steps=5 format=3 uid="uid://dfyqiwfcotw5e"]
 
 [ext_resource type="PackedScene" uid="uid://cx15vvox6qa4r" path="res://scenes/weapon/i_weapon.tscn" id="1_fst88"]
 [ext_resource type="Script" path="res://scripts/weapon/debug_weapon.gd" id="2_0werj"]
-[ext_resource type="PackedScene" uid="uid://chv4x7nltbsiv" path="res://scenes/bullet/mp5_bullet.tscn" id="3_7pclt"]
+[ext_resource type="PackedScene" uid="uid://06uaslr128p0" path="res://scenes/bullet/mp5_bullet.tscn" id="3_7pclt"]
 [ext_resource type="Texture2D" uid="uid://eb4wl0qstcsc" path="res://assets/weapons/mp-5.png" id="4_i7b4s"]
 
 [node name="MP5" instance=ExtResource("1_fst88")]
@@ -20,10 +20,11 @@ mag_capacity = 100
 BulletScene = ExtResource("3_7pclt")
 
 [node name="WeaponEnd" parent="." index="0"]
-position = Vector2(14, 0)
+position = Vector2(8, -1)
 
 [node name="Sprite2D" parent="." index="1"]
 texture_filter = 1
-rotation = 3.14159
+scale = Vector2(0.6, 0.6)
 texture = ExtResource("4_i7b4s")
 offset = Vector2(1, -4)
+flip_h = true
