@@ -73,11 +73,14 @@ func take_bonus(bonus: IBonus) -> void:
 	pass
 
 
-func add_weapon(weapon: IWeapon) -> void:
-	pass
+func add_weapon(wp: IWeapon) -> void:
+	drop_weapon()
+	weapon = wp
+	add_child(weapon)
 
 
 func drop_weapon() -> void:
+	weapon.queue_free()
 	weapon = null
 
 
