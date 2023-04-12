@@ -11,6 +11,7 @@
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 
 [node name="HealthBar" type="ProgressBar" parent="."]
+visible = false
 modulate = Color(1, 0, 0, 1)
 z_index = 2
 offset_left = -14.0
