@@ -1,33 +1,21 @@
-[gd_scene load_steps=7 format=3 uid="uid://cjhviqcck81o7"]
+[gd_scene load_steps=5 format=3 uid="uid://bkmuprlamyren"]
 
 [ext_resource type="PackedScene" uid="uid://opcyl153ve03" path="res://scenes/interactible/interactible.tscn" id="1_awf3u"]
 [ext_resource type="Script" path="res://scripts/interactible/weapon_rack.gd" id="2_t1gbp"]
-[ext_resource type="PackedScene" path="res://scenes/weapon/ak-47.tscn" id="3_0vl2d"]
-[ext_resource type="Texture2D" uid="uid://c23frqu1jeku" path="res://assets/debug/icon.svg" id="3_ex7ra"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_iul66"]
-atlas = ExtResource("3_ex7ra")
-region = Rect2(0, 0, 128, 128)
+[ext_resource type="Texture2D" uid="uid://br1jlnqphca77" path="res://assets/interactibles/weapon_rackt.png" id="4_onbo7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n0qxo"]
-size = Vector2(209.5, 216)
+size = Vector2(38, 32)
 
 [node name="WeaponRack" instance=ExtResource("1_awf3u")]
-position = Vector2(276, -22)
 script = ExtResource("2_t1gbp")
-weapon_scene = ExtResource("3_0vl2d")
 
 [node name="Sprite2D" parent="." index="0"]
-position = Vector2(-326.5, 17)
-scale = Vector2(0.820313, 1.71875)
-texture = SubResource("AtlasTexture_iul66")
-
-[node name="InteractionArea2D" parent="." index="1"]
-position = Vector2(-166, 8)
+texture = ExtResource("4_onbo7")
 
 [node name="CollisionShape2D" parent="InteractionArea2D" index="0"]
-position = Vector2(-107, 11)
 shape = SubResource("RectangleShape2D_n0qxo")
+debug_color = Color(0.701961, 0.419608, 0, 0.419608)
 
 [connection signal="body_entered" from="InteractionArea2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="InteractionArea2D" to="." method="_on_area_2d_body_exited"]
