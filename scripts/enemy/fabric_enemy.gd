@@ -9,10 +9,8 @@ func create_enemy(type: String, pos: Vector2) -> IEnemy:
 	
 	match type:
 		"dog":
-			print("Creating a dog")
 			enemy = dog_scene.instantiate()
 		"zombie":
-			print("Creating a zombie")
 			enemy = zombie_scene.instantiate()
 		_:
 			pass
@@ -21,6 +19,5 @@ func create_enemy(type: String, pos: Vector2) -> IEnemy:
 	enemy.position = pos
 	enemy.health = enemy.max_health
 	add_child(enemy)
-	
-	
+	Global.units_alive += 1
 	return enemy

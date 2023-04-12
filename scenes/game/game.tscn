@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://biupxcsfus1is"]
+[gd_scene load_steps=10 format=3 uid="uid://bb22ptpaphk3v"]
 
 [ext_resource type="Script" path="res://scripts/game/game.gd" id="1_i6dkd"]
 [ext_resource type="PackedScene" uid="uid://cde0l3nccdl6y" path="res://scenes/player/fabric_player.tscn" id="3_5lw4k"]
 [ext_resource type="PackedScene" uid="uid://14rkgn2ti7cc" path="res://scenes/player/bada-boom.tscn" id="3_tjkv0"]
 [ext_resource type="PackedScene" uid="uid://gqx8g8aqgnj3" path="res://scenes/ui/in_game_ui.tscn" id="4_ovap8"]
 [ext_resource type="PackedScene" uid="uid://0uko40vv3t8u" path="res://scenes/map/map.tscn" id="5_xh8sa"]
+[ext_resource type="PackedScene" uid="uid://cy3kakabvwgxc" path="res://scenes/spawner/i_spawner.tscn" id="7_u6g5j"]
 [ext_resource type="Shader" path="res://scenes/game/game.gdshader" id="9_xwh7v"]
 [ext_resource type="Texture2D" uid="uid://df31hgrhng0rn" path="res://assets/debug/lol_fuck.png" id="11_7bhvk"]
 
@@ -18,6 +19,9 @@ script = ExtResource("1_i6dkd")
 
 [node name="GameTimer" type="Timer" parent="."]
 wait_time = 0.1
+
+[node name="WaveTimer" type="Timer" parent="."]
+wait_time = 5.0
 
 [node name="FabricPlayer" parent="." instance=ExtResource("3_5lw4k")]
 position = Vector2(57, 63)
@@ -48,4 +52,13 @@ offset_bottom = 128.0
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("11_7bhvk")
 
+[node name="ISpawner" parent="." instance=ExtResource("7_u6g5j")]
+position = Vector2(40, 6)
+enabled = true
+
+[node name="ISpawner2" parent="." instance=ExtResource("7_u6g5j")]
+position = Vector2(40, 128)
+enabled = true
+
 [connection signal="timeout" from="GameTimer" to="." method="_on_game_timer_timeout"]
+[connection signal="timeout" from="WaveTimer" to="." method="_on_wave_timer_timeout"]

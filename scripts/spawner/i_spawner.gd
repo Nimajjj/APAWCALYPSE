@@ -29,21 +29,24 @@ func stop() -> void:
 	timer.stop()
 
 
-func is_all_units_dead() -> bool:
-	return get_child_count() == 0
+func is_last_wave_dead():
+	if Global.is_all_units_spawned() && Global.is_all_units_dead():
+		Global.game.wave_activated = false
+		Global.game.new_wave()
 	
-		
-func is_all_units_spawned() -> bool:
+	
+func is_all_spawner_units_spawned() -> bool:
 	return units_left_to_spawn == 0
 
 
 func _on_timer_timeout():
-	if !is_all_units_spawned():
+	if !is_all_spawner_units_spawned():
 		if units_left_to_spawn%3 == 0 :
 			Global.units.append(FabricEnemy.create_enemy("dog", FabricEnemy.position))
 		else:
 			Global.units.append(FabricEnemy.create_enemy("zombie", FabricEnemy.position))
 		units_left_to_spawn -= 1
+		Global.units_left_to_spawn -= 1
 	else:
 		stop()
 	
