@@ -11,7 +11,7 @@ y_sort_enabled = true
 [node name="Sprite2D" type="Sprite2D" parent="."]
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(6, 6)
+zoom = Vector2(100, 100)
 
 [node name="DownTimer" type="Timer" parent="."]
 one_shot = true
