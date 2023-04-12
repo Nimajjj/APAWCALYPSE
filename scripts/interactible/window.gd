@@ -1,25 +1,36 @@
 extends Interactible
 
-@export var price: int = 100
-@export var is_broken: bool = false
+var health: int = 3
 
-# Called when the node enters the scene tree for the first time.
+@onready var sprite: Sprite2D = $Sprite2D
+
 func _ready():
-		if (is_broken == true) :
-			message = "Press E to repair the window $100"
-						
-		
+	message = "Press [E] to repair"
+	_update_sprite()
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func activate(player: IPlayer) -> void:
-		pass 
-		
-		
+	health += 1
+	if health > 3:
+		health = 3
+
+	player.money += 10
+
+	_update_sprite()
+
+
+func take_damage(_damage: float = 1) -> void:
+	health -= 1
+	if health <= 0:
+		health = 0
 
 
 func can_activate(player: IPlayer) -> bool:
-	return player.money >= price 
+	return health != 3
+
+
+func _update_sprite() -> void:
+	sprite.texture.region.position.y = (3 * 32) - health * 32
 
 
 func _on_area_2d_body_entered(body) -> void :
