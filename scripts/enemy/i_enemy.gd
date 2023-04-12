@@ -16,6 +16,7 @@ var health: int
 
 
 func _ready():
+	HealthBar.visible = false
 	HealthBar.max_value = max_health
 	HealthBar.value = max_health
 
