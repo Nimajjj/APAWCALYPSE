@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://biupxcsfus1is"]
+[gd_scene load_steps=9 format=3 uid="uid://biupxcsfus1is"]
 
 [ext_resource type="Script" path="res://scripts/game/game.gd" id="1_i6dkd"]
 [ext_resource type="PackedScene" uid="uid://cde0l3nccdl6y" path="res://scenes/player/fabric_player.tscn" id="3_5lw4k"]
@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://0uko40vv3t8u" path="res://scenes/map/map.tscn" id="5_xh8sa"]
 [ext_resource type="PackedScene" uid="uid://cy3kakabvwgxc" path="res://scenes/spawner/i_spawner.tscn" id="7_u6g5j"]
 [ext_resource type="Shader" path="res://scenes/game/game.gdshader" id="9_xwh7v"]
-[ext_resource type="Texture2D" uid="uid://df31hgrhng0rn" path="res://assets/debug/lol_fuck.png" id="11_7bhvk"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_u0mf1"]
 shader = ExtResource("9_xwh7v")
@@ -39,17 +38,6 @@ grow_vertical = 2
 color = Color(0.109804, 0.109804, 0.109804, 0.25098)
 
 [node name="Map" parent="." instance=ExtResource("5_xh8sa")]
-
-[node name="Sprite2D" type="TextureRect" parent="."]
-top_level = true
-light_mask = 0
-z_index = 9
-offset_left = 112.0
-offset_top = 64.0
-offset_right = 144.0
-offset_bottom = 128.0
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("11_7bhvk")
 
 [node name="ISpawner" parent="." instance=ExtResource("7_u6g5j")]
 position = Vector2(72, -26)
