@@ -64,7 +64,7 @@ size = Vector2(7.25, 64.5)
 size = Vector2(7.25, 55.25)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yimiy"]
-size = Vector2(7.25, 38.625)
+size = Vector2(7.25, 64.625)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p0o32"]
 size = Vector2(7.25, 64.1563)
@@ -199,7 +199,7 @@ size = Vector2(214.48, 5)
 size = Vector2(214.48, 5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w7lwk"]
-size = Vector2(30.9209, 5)
+size = Vector2(32.2302, 5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ii0nt"]
 size = Vector2(527.842, 5)
