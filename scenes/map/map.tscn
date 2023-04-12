@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://0uko40vv3t8u"]
+[gd_scene load_steps=31 format=3 uid="uid://0uko40vv3t8u"]
 
 [ext_resource type="Script" path="res://scripts/map/map.gd" id="1_oyfej"]
 [ext_resource type="PackedScene" uid="uid://coesa2k8edyng" path="res://scenes/tile_maps/tile_map_test.tscn" id="2_nrnrc"]
@@ -6,6 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://df31hgrhng0rn" path="res://assets/debug/lol_fuck.png" id="4_lra84"]
 [ext_resource type="Texture2D" uid="uid://bxssdkop52n44" path="res://assets/debug/lol_fuck_2.png" id="5_dgfpq"]
 [ext_resource type="Texture2D" uid="uid://odoaqs5xsk4e" path="res://assets/debug/lol_fuck_4.png" id="5_t76fh"]
+[ext_resource type="PackedScene" uid="uid://c1di05lj11sig" path="res://scenes/interactible/window.tscn" id="7_l0fyw"]
+[ext_resource type="PackedScene" uid="uid://bkmuprlamyren" path="res://scenes/interactible/weapon_rack.tscn" id="8_niepf"]
+[ext_resource type="PackedScene" uid="uid://c84fchplhf41c" path="res://scenes/weapon/mp5.tscn" id="9_5u3wt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3gngv"]
 size = Vector2(128, 6)
@@ -61,10 +64,27 @@ fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(1, 1)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_46r0g"]
-polygon = PackedVector2Array(-170, -63, -56, -63, -56, -21, -65, -21, -66, -15, 63, -15, 63, -53, 56, -53, 56, -21, -49, -21, -49, -69, -177, -69, -177, 81, -49, 81, -49, 33, 56, 33, 56, 49, 63, 49, 63, 27, -65, 27, -65, 33, -55, 33, -56, 75, -170, 75)
+polygon = PackedVector2Array(-170, -63, -56, -63, -56, -21, -65, -21, -65, -15, 63, -15, 63, -53, 56, -53, 56, -21, -49, -21, -49, -69, -177, -69, -177, 81, -49, 81, -49, 33, 56, 33, 56, 49, 63, 49, 63, 27, -65, 27, -65, 33, -55, 33, -56, 75, -170, 75)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_vocx6"]
 polygon = PackedVector2Array(272, 10, 272, 112, 313, 112, 313, 234, 199, 234, 199, 112, 240, 112, 240, 106, 192, 106, 192, 240, 320, 240, 320, 106, 279, 106, 279, 16, 352, 16, 351, -134, 161, -134, 161, 16, 240, 16, 240, 16, 233, 16, 240, 16, 240, 10, 167, 10, 167, -128, 345, -128, 345, 10)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_omkth"]
+load_path = "res://.godot/imported/windows.png-afb923fdd61133e09f4ebebb18e5ef94.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_73lkg"]
+atlas = SubResource("CompressedTexture2D_omkth")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p2g4x"]
+size = Vector2(32, 19)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_w4pth"]
+load_path = "res://.godot/imported/windows.png-afb923fdd61133e09f4ebebb18e5ef94.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2r1vq"]
+atlas = SubResource("CompressedTexture2D_w4pth")
+region = Rect2(0, 0, 32, 32)
 
 [node name="Map" type="Node2D"]
 y_sort_enabled = true
@@ -163,7 +183,7 @@ shape = SubResource("RectangleShape2D_3gngv")
 [node name="Lights" type="Node2D" parent="."]
 
 [node name="PointLight2D3" type="PointLight2D" parent="Lights"]
-position = Vector2(177, 63)
+position = Vector2(153, 70)
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_swt7n")
 
@@ -258,3 +278,42 @@ scale = Vector2(0.5, 0.5)
 [node name="Door1" parent="Doors" instance=ExtResource("3_yavrc")]
 position = Vector2(256, 105)
 scale = Vector2(0.5, 0.5)
+
+[node name="Windows" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Window" parent="Windows" instance=ExtResource("7_l0fyw")]
+position = Vector2(40, -14)
+scale = Vector2(1.2233, 1.39714)
+
+[node name="Sprite2D" parent="Windows/Window" index="0"]
+texture = SubResource("AtlasTexture_73lkg")
+
+[node name="CollisionShape2D" parent="Windows/Window/InteractionArea2D" index="0"]
+position = Vector2(0, 12)
+shape = SubResource("RectangleShape2D_p2g4x")
+
+[node name="Window2" parent="Windows" instance=ExtResource("7_l0fyw")]
+position = Vector2(40, 129)
+
+[node name="Sprite2D" parent="Windows/Window2" index="0"]
+texture = SubResource("AtlasTexture_2r1vq")
+
+[node name="CollisionShape2D" parent="Windows/Window2/InteractionArea2D" index="0"]
+position = Vector2(0, 9)
+
+[node name="WeaponRacks" type="Node2D" parent="."]
+
+[node name="WeaponRack" parent="WeaponRacks" instance=ExtResource("8_niepf")]
+z_index = 1
+y_sort_enabled = true
+position = Vector2(141, 35)
+scale = Vector2(0.5, 0.5)
+weapon_scene = ExtResource("9_5u3wt")
+
+[node name="CollisionShape2D" parent="WeaponRacks/WeaponRack/InteractionArea2D" index="0"]
+position = Vector2(0, 20)
+
+[editable path="Windows/Window"]
+[editable path="Windows/Window2"]
+[editable path="WeaponRacks/WeaponRack"]
