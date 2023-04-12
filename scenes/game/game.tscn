@@ -20,7 +20,7 @@ script = ExtResource("1_i6dkd")
 wait_time = 0.1
 
 [node name="WaveTimer" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 0.001
 
 [node name="FabricPlayer" parent="." instance=ExtResource("3_5lw4k")]
 position = Vector2(57, 63)

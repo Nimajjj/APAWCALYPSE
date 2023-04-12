@@ -57,4 +57,3 @@ func dies(shooter: IPlayer) -> void:
 	get_parent().get_parent().is_last_wave_dead()
 	queue_free()
 
-

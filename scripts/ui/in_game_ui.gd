@@ -18,5 +18,10 @@ func _process(_delta):
 	if Global.players.size() > 0:
 		_text += "Money: " + str(Global.players[0].money) + "\n"
 		_text += "Health: " + str(Global.players[0].health) + "\n"
-	
+		_text += "Current Mag: " + str(Global.players[0].weapon.current_mag) + "\n"
+		_text += "Mag Capacity: " + str(Global.players[0].weapon.mag_capacity) + "\n"
+		_text += "Bullet Stock: " + str(Global.players[0].weapon.bullet_stock) + "\n"
+		_text += "Max Bullet Stock: " + str(Global.players[0].weapon.max_bullet_stock) + "\n"
+		_text += "Stock Factor: " + str(Global.players[0].weapon.stock_factor) + "\n"
+
 	DebugLabel.text = _text
