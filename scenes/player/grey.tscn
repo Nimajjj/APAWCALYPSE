@@ -1,10 +1,25 @@
-[gd_scene load_steps=8 format=3]
+[gd_scene load_steps=11 format=3 uid="uid://8uwustjnclv2"]
 
 [ext_resource type="PackedScene" uid="uid://7vehn306bqp1" path="res://scenes/player/i_player.tscn" id="1_hc12c"]
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="2_le1p6"]
-[ext_resource type="PackedScene" uid="uid://b3ih678xdn0sf" path="res://scenes/weapon/ak-47.tscn" id="3_i7vhw"]
+[ext_resource type="Script" path="res://scripts/weapon/debug_weapon.gd" id="3_q55qs"]
+[ext_resource type="PackedScene" uid="uid://dpt6803qrretg" path="res://scenes/bullet/ak47_bullet.tscn" id="4_6bloj"]
 [ext_resource type="Texture2D" uid="uid://b4suydvqb25a6" path="res://assets/debug/grey.png" id="4_m4q7u"]
 [ext_resource type="AnimationLibrary" uid="uid://2x1fvsguqtbj" path="res://resources/player_animations.res" id="5_23cgw"]
+[ext_resource type="Texture2D" uid="uid://bdn5lc3q4xr1g" path="res://assets/weapons/ak47.png" id="5_qiqkr"]
+
+[sub_resource type="PackedScene" id="PackedScene_55yfv"]
+_bundled = {
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"names": PackedStringArray("AK-47", "script", "weapon_name", "accuracy", "damage", "weapon_range", "spread", "fire_rate", "bullet_stock", "max_bullet_stock", "current_mag", "mag_capacity", "BulletScene", "WeaponEnd", "position", "Sprite2D", "texture_filter", "position", "rotation", "texture", "flip_v"),
+"node_count": 3,
+"node_paths": [NodePath("."), NodePath(".")],
+"nodes": PackedInt32Array(-1, -1, 2147483647, 0, -1, 12, 1, 0, 2, 1, 3, 2, 4, 3, 5, 4, 6, 5, 7, 6, 8, 7, 9, 8, 10, 9, 11, 10, 12, 11, 0, 1073741824, -1, 2147483647, 262157, -1, 1, 14, 12, 0, 1073741825, -1, 2147483647, 524303, -1, 5, 16, 13, 17, 14, 18, 15, 19, 16, 20, 17, 0),
+"variants": [ExtResource("3_q55qs"), "DebugWeapon", 100, 100, 2.0, 0.08, 6, 100, 100, 100, 100, ExtResource("4_6bloj"), Vector2(12, 0), 1, Vector2(5.82302, 0), 3.14159, ExtResource("5_qiqkr"), true],
+"version": 3
+}
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5oe80"]
 radius = 1.0
@@ -19,7 +34,7 @@ script = ExtResource("2_le1p6")
 speed = 10000.0
 acceleration = 0.3
 friction = 0.1
-weapon_scene = ExtResource("3_i7vhw")
+weapon_scene = SubResource("PackedScene_55yfv")
 
 [node name="Hitbox" parent="." index="0"]
 position = Vector2(1, 8)

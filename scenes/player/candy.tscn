@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="2_j3tyb"]
-[ext_resource type="PackedScene" uid="uid://b3ih678xdn0sf" path="res://scenes/weapon/ak-47.tscn" id="2_wulj3"]
+[ext_resource type="PackedScene" uid="uid://b3ih678xdn0sf" path="res://scenes/weapon/ak47.tscn" id="2_wulj3"]
 [ext_resource type="Texture2D" uid="uid://bca1d6mcp8yok" path="res://assets/players/candy.png" id="4_dfmcs"]
 [ext_resource type="AnimationLibrary" uid="uid://2x1fvsguqtbj" path="res://resources/player_animations.res" id="5_aci77"]
 
