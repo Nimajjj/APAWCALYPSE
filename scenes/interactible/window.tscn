@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://p4js65rf6ci7"]
+
+[ext_resource type="PackedScene" uid="uid://opcyl153ve03" path="res://scenes/interactible/interactible.tscn" id="1_6row8"]
+[ext_resource type="Texture2D" uid="uid://ce1eeouig7swl" path="res://assets/tilesheet/windows.png" id="2_5vlrf"]
+[ext_resource type="Script" path="res://scripts/interactible/window.gd" id="2_qygae"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ksokn"]
+atlas = ExtResource("2_5vlrf")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wsj2k"]
+size = Vector2(32, 19)
+
+[node name="Window" instance=ExtResource("1_6row8")]
+script = ExtResource("2_qygae")
+
+[node name="Sprite2D" parent="." index="0"]
+texture = SubResource("AtlasTexture_ksokn")
+
+[node name="CollisionShape2D" parent="InteractionArea2D" index="0"]
+shape = SubResource("RectangleShape2D_wsj2k")
+debug_color = Color(0.701961, 0.537255, 0, 0.419608)
+
+[connection signal="body_entered" from="InteractionArea2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="InteractionArea2D" to="." method="_on_area_2d_body_exited"]

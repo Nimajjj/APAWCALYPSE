@@ -1,12 +1,15 @@
+<<<<<<< HEAD
 [gd_scene load_steps=14 format=3 uid="uid://qyf7t0tpd5tp"]
+=======
+[gd_scene load_steps=10 format=3 uid="uid://bb22ptpaphk3v"]
+>>>>>>> 28094665863219e74691f141ac8e2a0890867def
 
 [ext_resource type="Script" path="res://scripts/game/game.gd" id="1_i6dkd"]
 [ext_resource type="PackedScene" uid="uid://cde0l3nccdl6y" path="res://scenes/player/fabric_player.tscn" id="3_5lw4k"]
-[ext_resource type="PackedScene" uid="uid://7vehn306bqp1" path="res://scenes/player/i_player.tscn" id="3_pvgxf"]
+[ext_resource type="PackedScene" uid="uid://14rkgn2ti7cc" path="res://scenes/player/bada-boom.tscn" id="3_tjkv0"]
 [ext_resource type="PackedScene" uid="uid://gqx8g8aqgnj3" path="res://scenes/ui/in_game_ui.tscn" id="4_ovap8"]
-[ext_resource type="Script" path="res://scripts/player/player.gd" id="4_shabi"]
-[ext_resource type="PackedScene" uid="uid://c84fchplhf41c" path="res://scenes/weapon/mp5.tscn" id="5_2s0g7"]
 [ext_resource type="PackedScene" uid="uid://0uko40vv3t8u" path="res://scenes/map/map.tscn" id="5_xh8sa"]
+<<<<<<< HEAD
 [ext_resource type="Texture2D" uid="uid://b4yots0w8841m" path="res://assets/players/badaboum.png" id="6_2fina"]
 [ext_resource type="AnimationLibrary" uid="uid://2x1fvsguqtbj" path="res://resources/player_animations.res" id="7_2q0f8"]
 [ext_resource type="Texture2D" uid="uid://df31hgrhng0rn" path="res://assets/debug/lol_fuck.png" id="11_7bhvk"]
@@ -34,6 +37,15 @@ _bundled = {
 }],
 "version": 3
 }
+=======
+[ext_resource type="PackedScene" uid="uid://cy3kakabvwgxc" path="res://scenes/spawner/i_spawner.tscn" id="7_u6g5j"]
+[ext_resource type="Shader" path="res://scenes/game/game.gdshader" id="9_xwh7v"]
+[ext_resource type="Texture2D" uid="uid://df31hgrhng0rn" path="res://assets/debug/lol_fuck.png" id="11_7bhvk"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u0mf1"]
+shader = ExtResource("9_xwh7v")
+shader_parameter/scanline_count = 500.0
+>>>>>>> 28094665863219e74691f141ac8e2a0890867def
 
 [node name="Game" type="Node2D"]
 y_sort_enabled = true
@@ -42,12 +54,27 @@ script = ExtResource("1_i6dkd")
 [node name="GameTimer" type="Timer" parent="."]
 wait_time = 0.1
 
+[node name="WaveTimer" type="Timer" parent="."]
+wait_time = 5.0
+
 [node name="FabricPlayer" parent="." instance=ExtResource("3_5lw4k")]
 position = Vector2(57, 63)
-player_scene = SubResource("PackedScene_7xdgm")
+player_scene = ExtResource("3_tjkv0")
 
 [node name="InGameUI" parent="." instance=ExtResource("4_ovap8")]
 
+<<<<<<< HEAD
+=======
+[node name="ShaderRect" type="ColorRect" parent="InGameUI"]
+material = SubResource("ShaderMaterial_u0mf1")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.109804, 0.109804, 0.109804, 0.25098)
+
+>>>>>>> 28094665863219e74691f141ac8e2a0890867def
 [node name="Map" parent="." instance=ExtResource("5_xh8sa")]
 
 [node name="Sprite2D" type="TextureRect" parent="."]
@@ -61,4 +88,13 @@ offset_bottom = 128.0
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("11_7bhvk")
 
+[node name="ISpawner" parent="." instance=ExtResource("7_u6g5j")]
+position = Vector2(40, 6)
+enabled = true
+
+[node name="ISpawner2" parent="." instance=ExtResource("7_u6g5j")]
+position = Vector2(40, 128)
+enabled = true
+
 [connection signal="timeout" from="GameTimer" to="." method="_on_game_timer_timeout"]
+[connection signal="timeout" from="WaveTimer" to="." method="_on_wave_timer_timeout"]

@@ -16,6 +16,7 @@ func shoot() -> void:
 			get_tree().get_root().add_child(bullet)
 			var spread_angle = randf_range(-spread, spread)
 			var shoot_direction = weapon_direction.rotated(spread_angle)
+			bullet.speed -= randi() % 50
 			bullet.shoot(get_parent(), get_global_mouse_position(), shoot_direction)
 			actual_rate = 0
 	actual_rate += 1

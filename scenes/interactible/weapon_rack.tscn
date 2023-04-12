@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://bkmuprlamyren"]
+
+[ext_resource type="PackedScene" uid="uid://opcyl153ve03" path="res://scenes/interactible/interactible.tscn" id="1_awf3u"]
+[ext_resource type="Script" path="res://scripts/interactible/weapon_rack.gd" id="2_t1gbp"]
+[ext_resource type="Texture2D" uid="uid://br1jlnqphca77" path="res://assets/interactibles/weapon_rackt.png" id="4_onbo7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n0qxo"]
+size = Vector2(38, 14.5)
+
+[node name="WeaponRack" instance=ExtResource("1_awf3u")]
+script = ExtResource("2_t1gbp")
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("4_onbo7")
+
+[node name="CollisionShape2D" parent="InteractionArea2D" index="0"]
+shape = SubResource("RectangleShape2D_n0qxo")
+debug_color = Color(0.701961, 0.419608, 0, 0.419608)
+
+[connection signal="body_entered" from="InteractionArea2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="InteractionArea2D" to="." method="_on_area_2d_body_exited"]

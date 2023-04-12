@@ -35,8 +35,8 @@ func _move(delta) -> void:
 
 
 func dies(shooter: IPlayer) -> void:
-	print("shooter money before kill: ", shooter.money)
 	shooter.gain_money(money)
 	shooter.gain_score(randi_range(1, 10))
-	print("shooter money after kill: ", shooter.money)
+	Global.units_alive -= 1
+	get_parent().get_parent().is_last_wave_dead()
 	queue_free()
