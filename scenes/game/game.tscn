@@ -1,5 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bb22ptpaphk3v"]
-[gd_scene load_steps=9 format=3 uid="uid://biupxcsfus1is"]
+[gd_scene load_steps=9 format=3 uid="uid://bb22ptpaphk3v"]
 
 [ext_resource type="Script" path="res://scripts/game/game.gd" id="1_i6dkd"]
 [ext_resource type="PackedScene" uid="uid://cde0l3nccdl6y" path="res://scenes/player/fabric_player.tscn" id="3_5lw4k"]
@@ -21,7 +20,7 @@ script = ExtResource("1_i6dkd")
 wait_time = 0.1
 
 [node name="WaveTimer" type="Timer" parent="."]
-wait_time = 0.001
+wait_time = 5.0
 
 [node name="FabricPlayer" parent="." instance=ExtResource("3_5lw4k")]
 position = Vector2(57, 63)

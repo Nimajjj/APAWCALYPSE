@@ -34,7 +34,6 @@ func take_damage(dmg: int, shooter: IPlayer) -> void:
 	HealthBar.value = health
 		
 
-
 func _move(delta) -> void:
 	var target = Global.players[0]
 	var _direction = (target.global_position - global_position).normalized()
