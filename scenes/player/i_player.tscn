@@ -6,7 +6,11 @@
 z_index = 1
 y_sort_enabled = true
 
-[node name="Hitbox" type="CollisionShape2D" parent="."]
+[node name="CollisionBox" type="CollisionShape2D" parent="."]
+
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 
