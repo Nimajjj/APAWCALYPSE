@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://p4js65rf6ci7"]
+
+[ext_resource type="PackedScene" uid="uid://opcyl153ve03" path="res://scenes/interactible/interactible.tscn" id="1_6row8"]
+
+[node name="window" instance=ExtResource("1_6row8")]
