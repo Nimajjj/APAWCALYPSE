@@ -34,7 +34,6 @@ var down_timer: float = 0
 func _ready() -> void:
 	health = max_health
 	_spawn_default_weapon()
-	
 
 func _physics_process(delta):
 	weapon.look_at(get_global_mouse_position())
@@ -147,6 +146,7 @@ func _inputs_interact() -> void:
 
 func take_damage(damage: float) -> void:
 	health -= damage
+	AnimPlayer.play("player_animations/DAMAGE")
 	if health <= 0:
 		health = 0
 		state = PC_State.DOWN

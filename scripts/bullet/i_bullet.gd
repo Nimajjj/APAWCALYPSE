@@ -33,6 +33,7 @@ func shoot(player: IPlayer, aim_position: Vector2, d: Vector2) -> void:
 func _on_Area2D_body_entered(body: Node) -> void:
 	if body is IEnemy:
 		body.take_damage(damage, shooter)
-		queue_free()
+		if name != "SniperBullet":
+			queue_free()
 	if body.name == "WallCollisions":
 		queue_free()

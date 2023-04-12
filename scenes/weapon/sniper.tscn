@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://brfif4wd4q5ha"]
+
+[ext_resource type="PackedScene" uid="uid://cx15vvox6qa4r" path="res://scenes/weapon/i_weapon.tscn" id="1_8kl0v"]
+[ext_resource type="Script" path="res://scripts/weapon/debug_weapon.gd" id="2_h7x6a"]
+[ext_resource type="PackedScene" uid="uid://dpt6803qrretg" path="res://scenes/bullet/ak47_bullet.tscn" id="3_wgbjx"]
+[ext_resource type="Texture2D" uid="uid://bi6jqk3khtl76" path="res://assets/weapons/sniper.png" id="4_odsjv"]
+
+[node name="Sniper" instance=ExtResource("1_8kl0v")]
+script = ExtResource("2_h7x6a")
+weapon_name = "DebugWeapon"
+accuracy = 100
+damage = 500
+weapon_range = 2
+fire_rate = 80
+bullet_stock = 100
+max_bullet_stock = 100
+current_mag = 100
+mag_capacity = 100
+BulletScene = ExtResource("3_wgbjx")
+
+[node name="WeaponEnd" parent="." index="0"]
+position = Vector2(11, -1)
+
+[node name="Sprite2D" parent="." index="1"]
+texture_filter = 1
+position = Vector2(-4.76837e-07, -1)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("4_odsjv")
+flip_h = true

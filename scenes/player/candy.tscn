@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="2_j3tyb"]
 [ext_resource type="Script" path="res://scripts/weapon/debug_weapon.gd" id="3_h5wl0"]
 [ext_resource type="Texture2D" uid="uid://bca1d6mcp8yok" path="res://assets/players/candy.png" id="4_dfmcs"]
-[ext_resource type="PackedScene" path="res://scenes/bullet/ak47_bullet.tscn" id="4_k1i2h"]
+[ext_resource type="PackedScene" uid="uid://dpt6803qrretg" path="res://scenes/bullet/ak47_bullet.tscn" id="4_k1i2h"]
 [ext_resource type="AnimationLibrary" uid="uid://2x1fvsguqtbj" path="res://resources/player_animations.res" id="5_aci77"]
 [ext_resource type="Texture2D" uid="uid://bdn5lc3q4xr1g" path="res://assets/weapons/ak47.png" id="5_xieu6"]
 
