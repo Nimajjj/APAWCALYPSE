@@ -12,10 +12,9 @@ accuracy = 100
 damage = 15
 weapon_range = 2
 fire_rate = 2
-bullet_stock = 100
-max_bullet_stock = 100
-current_mag = 100
-mag_capacity = 100
+stock_factor = 4
+mag_capacity = 300
+reload_time = 3
 weight = 2
 BulletScene = ExtResource("3_n6dd7")
 

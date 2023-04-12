@@ -5,3 +5,6 @@
 [node name="WeaponEnd" type="Node2D" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
