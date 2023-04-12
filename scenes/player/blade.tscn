@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://7vehn306bqp1" path="res://scenes/player/i_player.tscn" id="1_bmvg6"]
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="2_28pj3"]
 [ext_resource type="Script" path="res://scripts/weapon/debug_weapon.gd" id="3_yhcc5"]
-[ext_resource type="PackedScene" uid="uid://dpt6803qrretg" path="res://scenes/bullet/ak47_bullet.tscn" id="4_1dcjy"]
+[ext_resource type="PackedScene" path="res://scenes/bullet/ak47_bullet.tscn" id="4_1dcjy"]
 [ext_resource type="Texture2D" uid="uid://cb8cawxywol2y" path="res://assets/players/blade.png" id="4_iqjiy"]
 [ext_resource type="Texture2D" uid="uid://bdn5lc3q4xr1g" path="res://assets/weapons/ak47.png" id="5_1lyxl"]
 [ext_resource type="AnimationLibrary" uid="uid://2x1fvsguqtbj" path="res://resources/player_animations.res" id="5_xen6a"]
@@ -43,6 +43,9 @@ shape = SubResource("CapsuleShape2D_lfrgh")
 
 [node name="Sprite2D" parent="." index="1"]
 texture = SubResource("AtlasTexture_6qjlh")
+
+[node name="Camera2D" parent="." index="2"]
+zoom = Vector2(5, 5)
 
 [node name="AnimationPlayer" parent="." index="4"]
 autoplay = "player_animations/IDLE"

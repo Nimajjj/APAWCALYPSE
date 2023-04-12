@@ -9,7 +9,10 @@ var damage: int
 var life_time: float
 
 func _physics_process(delta):
-	position += direction * speed * delta 
+#	position += direction * speed * delta 
+	
+	for __ in range(speed * delta):
+		position += direction
 
 
 func shoot(player: IPlayer, aim_position: Vector2, d: Vector2) -> void:
