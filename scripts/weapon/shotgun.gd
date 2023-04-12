@@ -1,9 +1,9 @@
 extends IWeapon
 
 
-func _ready():
-	spread = 0.4
-	weapon_range = 0.1
+#func _ready():
+##	spread = 0.4
+#	weapon_range = 0.1
 
 
 func shoot() -> void:

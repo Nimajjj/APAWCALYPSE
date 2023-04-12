@@ -17,5 +17,6 @@ func _process(_delta):
 	
 	if Global.players.size() > 0:
 		_text += "Money: " + str(Global.players[0].money) + "\n"
+		_text += "Health: " + str(Global.players[0].health) + "\n"
 	
 	DebugLabel.text = _text

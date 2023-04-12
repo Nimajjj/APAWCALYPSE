@@ -7,6 +7,9 @@
 
 [node name="Shotgun" instance=ExtResource("1_jygeb")]
 script = ExtResource("2_vtkd2")
+damage = 20
+weapon_range = 0.1
+spread = 0.4
 fire_rate = 40
 BulletScene = ExtResource("3_vbljp")
 
