@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://qyf7t0tpd5tp"]
+[gd_scene load_steps=14 format=3 uid="uid://qyf7t0tpd5tp"]
 
 [ext_resource type="Script" path="res://scripts/game/game.gd" id="1_i6dkd"]
 [ext_resource type="PackedScene" uid="uid://cde0l3nccdl6y" path="res://scenes/player/fabric_player.tscn" id="3_5lw4k"]
@@ -9,7 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://0uko40vv3t8u" path="res://scenes/map/map.tscn" id="5_xh8sa"]
 [ext_resource type="Texture2D" uid="uid://b4yots0w8841m" path="res://assets/players/badaboum.png" id="6_2fina"]
 [ext_resource type="AnimationLibrary" uid="uid://2x1fvsguqtbj" path="res://resources/player_animations.res" id="7_2q0f8"]
-[ext_resource type="Shader" path="res://scenes/game/game.gdshader" id="9_xwh7v"]
 [ext_resource type="Texture2D" uid="uid://df31hgrhng0rn" path="res://assets/debug/lol_fuck.png" id="11_7bhvk"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_iuwn7"]
@@ -36,10 +35,6 @@ _bundled = {
 "version": 3
 }
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_u0mf1"]
-shader = ExtResource("9_xwh7v")
-shader_parameter/scanline_count = 500.0
-
 [node name="Game" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_i6dkd")
@@ -52,15 +47,6 @@ position = Vector2(57, 63)
 player_scene = SubResource("PackedScene_7xdgm")
 
 [node name="InGameUI" parent="." instance=ExtResource("4_ovap8")]
-
-[node name="CRT" type="ColorRect" parent="InGameUI"]
-material = SubResource("ShaderMaterial_u0mf1")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.109804, 0.109804, 0.109804, 0.25098)
 
 [node name="Map" parent="." instance=ExtResource("5_xh8sa")]
 

@@ -31,6 +31,7 @@ texture = SubResource("AtlasTexture_8ep7y")
 
 [node name="Camera2D" parent="." index="2"]
 position = Vector2(-1, -8)
+zoom = Vector2(2, 2)
 
 [node name="AnimationPlayer" parent="." index="4"]
 autoplay = "player_animations/IDLE"
