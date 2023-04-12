@@ -20,7 +20,6 @@ func _ready():
 	HealthBar.max_value = max_health
 	HealthBar.value = max_health
 
-
 func _physics_process(delta):
 	_move(delta)
 
@@ -58,3 +57,5 @@ func dies(shooter: IPlayer) -> void:
 	Global.units_alive -= 1
 	get_parent().get_parent().is_last_wave_dead()
 	queue_free()
+
+

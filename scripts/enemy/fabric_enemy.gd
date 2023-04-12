@@ -18,7 +18,6 @@ func create_enemy(type: String, pos: Vector2) -> IEnemy:
 	
 	enemy.position = pos
 	enemy.health = enemy.max_health
-	print("wave:", Global.game.wave)
 	add_child(enemy)
 	Global.units_alive += 1
 	return enemy
