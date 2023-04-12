@@ -210,7 +210,7 @@ size = Vector2(448.921, 5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1cmjm"]
 size = Vector2(191.234, 5)
 
-[node name="Map2" type="Node2D"]
+[node name="Map" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_oyfej")
 

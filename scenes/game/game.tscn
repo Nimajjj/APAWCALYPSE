@@ -52,11 +52,11 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("11_7bhvk")
 
 [node name="ISpawner" parent="." instance=ExtResource("7_u6g5j")]
-position = Vector2(40, 6)
+position = Vector2(72, -26)
 enabled = true
 
 [node name="ISpawner2" parent="." instance=ExtResource("7_u6g5j")]
-position = Vector2(40, 128)
+position = Vector2(216, -24)
 enabled = true
 
 [connection signal="timeout" from="GameTimer" to="." method="_on_game_timer_timeout"]
