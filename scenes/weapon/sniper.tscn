@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cx15vvox6qa4r" path="res://scenes/weapon/i_weapon.tscn" id="1_8kl0v"]
 [ext_resource type="Script" path="res://scripts/weapon/debug_weapon.gd" id="2_h7x6a"]
-[ext_resource type="PackedScene" uid="uid://dpt6803qrretg" path="res://scenes/bullet/ak47_bullet.tscn" id="3_wgbjx"]
+[ext_resource type="PackedScene" uid="uid://dnbkhprwvcm4p" path="res://scenes/bullet/sniper_bullet.tscn" id="3_3dpcx"]
 [ext_resource type="Texture2D" uid="uid://bi6jqk3khtl76" path="res://assets/weapons/sniper.png" id="4_odsjv"]
 
 [node name="Sniper" instance=ExtResource("1_8kl0v")]
@@ -16,7 +16,7 @@ bullet_stock = 100
 max_bullet_stock = 100
 current_mag = 100
 mag_capacity = 100
-BulletScene = ExtResource("3_wgbjx")
+BulletScene = ExtResource("3_3dpcx")
 
 [node name="WeaponEnd" parent="." index="0"]
 position = Vector2(11, -1)
