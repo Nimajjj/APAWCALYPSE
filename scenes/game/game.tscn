@@ -1,40 +1,12 @@
-[gd_scene load_steps=16 format=3 uid="uid://biupxcsfus1is"]
+[gd_scene load_steps=9 format=3 uid="uid://biupxcsfus1is"]
 
 [ext_resource type="Script" path="res://scripts/game/game.gd" id="1_i6dkd"]
 [ext_resource type="PackedScene" uid="uid://cde0l3nccdl6y" path="res://scenes/player/fabric_player.tscn" id="3_5lw4k"]
-[ext_resource type="PackedScene" uid="uid://7vehn306bqp1" path="res://scenes/player/i_player.tscn" id="3_pvgxf"]
+[ext_resource type="PackedScene" uid="uid://14rkgn2ti7cc" path="res://scenes/player/bada-boom.tscn" id="3_tjkv0"]
 [ext_resource type="PackedScene" uid="uid://gqx8g8aqgnj3" path="res://scenes/ui/in_game_ui.tscn" id="4_ovap8"]
-[ext_resource type="Script" path="res://scripts/player/player.gd" id="4_shabi"]
-[ext_resource type="PackedScene" uid="uid://c84fchplhf41c" path="res://scenes/weapon/mp5.tscn" id="5_2s0g7"]
 [ext_resource type="PackedScene" uid="uid://0uko40vv3t8u" path="res://scenes/map/map.tscn" id="5_xh8sa"]
-[ext_resource type="Texture2D" uid="uid://b4yots0w8841m" path="res://assets/players/badaboum.png" id="6_2fina"]
-[ext_resource type="AnimationLibrary" uid="uid://2x1fvsguqtbj" path="res://resources/player_animations.res" id="7_2q0f8"]
 [ext_resource type="Shader" path="res://scenes/game/game.gdshader" id="9_xwh7v"]
 [ext_resource type="Texture2D" uid="uid://df31hgrhng0rn" path="res://assets/debug/lol_fuck.png" id="11_7bhvk"]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_iuwn7"]
-radius = 1.0
-height = 10.0
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8ep7y"]
-atlas = ExtResource("6_2fina")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="PackedScene" id="PackedScene_7xdgm"]
-_bundled = {
-"base_scene": 0,
-"conn_count": 1,
-"conns": PackedInt32Array(1073741824, 0, 18, 17, 2, 0, 0),
-"editable_instances": [],
-"names": PackedStringArray("Bada-Boom", "script", "speed", "acceleration", "friction", "weapon_scene", "Hitbox", "rotation", "shape", "Sprite2D", "position", "texture", "Camera2D", "DownTimer", "AnimationPlayer", "autoplay", "libraries", "_on_down_timer_timeout", "timeout"),
-"node_count": 5,
-"node_paths": [NodePath("DownTimer")],
-"nodes": PackedInt32Array(-1, -1, 2147483647, 0, -1, 5, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 0, 0, 0, 2147483647, 262150, -1, 2, 7, 6, 8, 7, 0, 0, 0, 2147483647, 524297, -1, 2, 10, 8, 11, 9, 0, 0, 0, 2147483647, 786444, -1, 1, 10, 8, 0, 0, 0, 2147483647, 1310734, -1, 2, 15, 10, 16, 11, 0),
-"variants": [ExtResource("3_pvgxf"), ExtResource("4_shabi"), 25000.0, 0.3, 0.1, ExtResource("5_2s0g7"), 1.5708, SubResource("CapsuleShape2D_iuwn7"), Vector2(-1, -8), SubResource("AtlasTexture_8ep7y"), "player_animations/IDLE", {
-"player_animations": ExtResource("7_2q0f8")
-}],
-"version": 3
-}
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_u0mf1"]
 shader = ExtResource("9_xwh7v")
@@ -49,7 +21,7 @@ wait_time = 0.1
 
 [node name="FabricPlayer" parent="." instance=ExtResource("3_5lw4k")]
 position = Vector2(57, 63)
-player_scene = SubResource("PackedScene_7xdgm")
+player_scene = ExtResource("3_tjkv0")
 
 [node name="InGameUI" parent="." instance=ExtResource("4_ovap8")]
 

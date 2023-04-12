@@ -75,13 +75,14 @@ func take_bonus(bonus: IBonus) -> void:
 
 func add_weapon(wp: IWeapon) -> void:
 	drop_weapon()
-	weapon = wp
+	weapon = wp.duplicate()
 	add_child(weapon)
 
 
 func drop_weapon() -> void:
-	weapon.queue_free()
-	weapon = null
+	if weapon != null:
+		weapon.queue_free()
+		weapon = null
 
 
 func heal(heal: float) -> void:
@@ -223,9 +224,8 @@ func _camera_follow_mouse() -> void:
 
 
 func _spawn_default_weapon() -> void:
-	weapon = weapon_scene.instantiate()
+	add_weapon(weapon_scene.instantiate())
 	weapon.position.y = -6
 	weapon.position.x = -2
-	add_child(weapon)
 	
 	

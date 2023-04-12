@@ -18,7 +18,7 @@ func _ready():
 func activate(player: IPlayer) -> void:
 	if can_activate(player) :
 		player.money -= price
-		player.add_weapon(weapon)
+		player.add_weapon(weapon.duplicate())
 
 
 func can_activate(player: IPlayer) -> bool:

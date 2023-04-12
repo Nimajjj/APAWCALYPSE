@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://odoaqs5xsk4e" path="res://assets/debug/lol_fuck_4.png" id="5_t76fh"]
 [ext_resource type="PackedScene" uid="uid://c1di05lj11sig" path="res://scenes/interactible/window.tscn" id="7_l0fyw"]
 [ext_resource type="PackedScene" uid="uid://bkmuprlamyren" path="res://scenes/interactible/weapon_rack.tscn" id="8_niepf"]
-[ext_resource type="PackedScene" uid="uid://c84fchplhf41c" path="res://scenes/weapon/mp5.tscn" id="9_5u3wt"]
+[ext_resource type="PackedScene" path="res://scenes/weapon/ak47.tscn" id="9_euhmr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3gngv"]
 size = Vector2(128, 6)
@@ -311,7 +311,7 @@ z_index = 1
 y_sort_enabled = true
 position = Vector2(141, 35)
 scale = Vector2(0.5, 0.5)
-weapon_scene = ExtResource("9_5u3wt")
+weapon_scene = ExtResource("9_euhmr")
 
 [node name="CollisionShape2D" parent="WeaponRacks/WeaponRack/InteractionArea2D" index="0"]
 position = Vector2(0, 20)
