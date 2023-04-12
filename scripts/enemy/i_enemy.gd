@@ -1,6 +1,7 @@
 class_name IEnemy
 extends CharacterBody2D
 
+var blood_effect_scene: PackedScene = preload("res://scenes/effects/blood_effect.tscn")
 
 @onready var Sprite = $Sprite2D
 
@@ -35,6 +36,11 @@ func _move(delta) -> void:
 
 
 func dies(shooter: IPlayer) -> void:
+	var blood_effect: CPUParticles2D = blood_effect_scene.instantiate()
+	blood_effect.position = position
+	blood_effect.rotation = global_position.angle_to_point(shooter.global_position) + PI
+	get_parent().add_child(blood_effect)
+	
 	shooter.gain_money(money)
 	shooter.gain_score(randi_range(1, 10))
 	Global.units_alive -= 1

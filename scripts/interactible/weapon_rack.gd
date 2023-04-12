@@ -7,11 +7,10 @@ var weapon : IWeapon = null
 
 func _ready():
 	weapon = weapon_scene.instantiate()
-	weapon.z_index = 1
+	weapon.get_node("Sprite2D").scale = Vector2(1.25, 1.25)
+	weapon.position.x -= (weapon.get_node("Sprite2D").texture.get_size().x * weapon.get_node("Sprite2D").scale.x) / 6
 	add_child(weapon)
-	weapon.position.x -= weapon.get_node("Sprite2D").texture.get_size().x / 8
-	weapon.position.y -= weapon.get_node("Sprite2D").texture.get_size().y / 4
-	weapon.get_node("Sprite2D").flip_v = true
+	
 	message = "Press [E] to buy {0} for {1}$".format([weapon.name, price])
 
 
