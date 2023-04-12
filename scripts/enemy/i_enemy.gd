@@ -4,6 +4,7 @@ extends CharacterBody2D
 var blood_effect_scene: PackedScene = preload("res://scenes/effects/blood_effect.tscn")
 
 @onready var Sprite = $Sprite2D
+@onready var HealthBar = $HealthBar
 
 @export var max_health: int
 @export var speed: int
@@ -14,14 +15,24 @@ var blood_effect_scene: PackedScene = preload("res://scenes/effects/blood_effect
 var health: int
 
 
+func _ready():
+	HealthBar.max_value = max_health
+	HealthBar.value = max_health
+
+
 func _physics_process(delta):
 	_move(delta)
 
 
 func take_damage(dmg: int, shooter: IPlayer) -> void:
+	HealthBar.visible = true
+	
 	health -= dmg
 	if health <= 0:
 		dies(shooter)
+	
+	HealthBar.value = health
+		
 
 
 func _move(delta) -> void:

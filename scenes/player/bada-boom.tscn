@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://7vehn306bqp1" path="res://scenes/player/i_player.tscn" id="1_7i7gw"]
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="2_ulh68"]
-[ext_resource type="PackedScene" uid="uid://ctj08c620xcra" path="res://scenes/weapon/shotgun.tscn" id="3_01owe"]
+[ext_resource type="PackedScene" uid="uid://bgdbxs7eywq16" path="res://scenes/weapon/shotgun.tscn" id="3_01owe"]
 [ext_resource type="Texture2D" uid="uid://b4yots0w8841m" path="res://assets/players/badaboum.png" id="4_7kit0"]
 [ext_resource type="AnimationLibrary" uid="uid://2x1fvsguqtbj" path="res://resources/player_animations.res" id="5_bwmwt"]
 

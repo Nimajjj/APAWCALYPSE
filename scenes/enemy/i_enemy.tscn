@@ -9,3 +9,12 @@
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+modulate = Color(1, 0, 0, 1)
+z_index = 2
+offset_left = -14.0
+offset_top = -24.0
+offset_right = 14.0
+offset_bottom = -20.0
+show_percentage = false
