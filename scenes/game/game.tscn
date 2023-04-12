@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cde0l3nccdl6y" path="res://scenes/player/fabric_player.tscn" id="3_5lw4k"]
 [ext_resource type="PackedScene" uid="uid://14rkgn2ti7cc" path="res://scenes/player/bada-boom.tscn" id="3_tjkv0"]
 [ext_resource type="PackedScene" uid="uid://gqx8g8aqgnj3" path="res://scenes/ui/in_game_ui.tscn" id="4_ovap8"]
-[ext_resource type="PackedScene" uid="uid://0uko40vv3t8u" path="res://scenes/map/map.tscn" id="5_xh8sa"]
+[ext_resource type="PackedScene" uid="uid://blwpppkr3ge0b" path="res://scenes/map/mapbackup.tscn" id="7_5ahoo"]
 [ext_resource type="PackedScene" uid="uid://cy3kakabvwgxc" path="res://scenes/spawner/i_spawner.tscn" id="7_u6g5j"]
 [ext_resource type="Shader" path="res://scenes/game/game.gdshader" id="9_xwh7v"]
 
@@ -37,8 +37,6 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.109804, 0.109804, 0.109804, 0.25098)
 
-[node name="Map" parent="." instance=ExtResource("5_xh8sa")]
-
 [node name="ISpawner" parent="." instance=ExtResource("7_u6g5j")]
 position = Vector2(72, -26)
 enabled = true
@@ -46,6 +44,8 @@ enabled = true
 [node name="ISpawner2" parent="." instance=ExtResource("7_u6g5j")]
 position = Vector2(216, -24)
 enabled = true
+
+[node name="Map" parent="." instance=ExtResource("7_5ahoo")]
 
 [connection signal="timeout" from="GameTimer" to="." method="_on_game_timer_timeout"]
 [connection signal="timeout" from="WaveTimer" to="." method="_on_wave_timer_timeout"]

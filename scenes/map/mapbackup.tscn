@@ -1,8 +1,9 @@
-[gd_scene load_steps=73 format=3 uid="uid://blwpppkr3ge0b"]
+[gd_scene load_steps=74 format=3 uid="uid://blwpppkr3ge0b"]
 
 [ext_resource type="Script" path="res://scripts/map/map.gd" id="1_72a1t"]
 [ext_resource type="PackedScene" uid="uid://coesa2k8edyng" path="res://scenes/tile_maps/tile_map_test.tscn" id="2_kpmfk"]
 [ext_resource type="Script" path="res://scripts/interactible/door.gd" id="3_lo0ad"]
+[ext_resource type="PackedScene" uid="uid://627xe4481ujh" path="res://scenes/effects/blood_container.tscn" id="4_642or"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_idfa2"]
 
@@ -502,3 +503,5 @@ shape = SubResource("RectangleShape2D_edhga")
 [node name="CollisionShape2D5" type="CollisionShape2D" parent="WallCollisions"]
 position = Vector2(1434.38, -38)
 shape = SubResource("RectangleShape2D_1cmjm")
+
+[node name="BloodContainer" parent="." instance=ExtResource("4_642or")]
