@@ -41,10 +41,7 @@ func is_all_spawner_units_spawned() -> bool:
 
 func _on_timer_timeout():
 	if !is_all_spawner_units_spawned():
-		if units_left_to_spawn%3 == 0 :
-			Global.units.append(FabricEnemy.create_enemy("dog", FabricEnemy.position))
-		else:
-			Global.units.append(FabricEnemy.create_enemy("zombie", FabricEnemy.position))
+		Global.units.append(FabricEnemy.create_enemy("zombie", FabricEnemy.position))
 		units_left_to_spawn -= 1
 		Global.units_left_to_spawn -= 1
 	else:
