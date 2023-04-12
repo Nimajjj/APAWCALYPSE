@@ -30,7 +30,6 @@ player_scene = ExtResource("3_tjkv0")
 [node name="InGameUI" parent="." instance=ExtResource("4_ovap8")]
 
 [node name="ShaderRect" type="ColorRect" parent="InGameUI"]
-visible = false
 material = SubResource("ShaderMaterial_u0mf1")
 anchors_preset = 15
 anchor_right = 1.0

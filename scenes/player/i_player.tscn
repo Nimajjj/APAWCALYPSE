@@ -3,6 +3,7 @@
 [ext_resource type="AnimationLibrary" uid="uid://2x1fvsguqtbj" path="res://resources/player_animations.res" id="1_m404w"]
 
 [node name="IPlayer" type="CharacterBody2D"]
+z_index = 1
 y_sort_enabled = true
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]

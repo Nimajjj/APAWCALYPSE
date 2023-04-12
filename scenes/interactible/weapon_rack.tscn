@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://br1jlnqphca77" path="res://assets/interactibles/weapon_rackt.png" id="4_onbo7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n0qxo"]
-size = Vector2(38, 32)
+size = Vector2(38, 14.5)
 
 [node name="WeaponRack" instance=ExtResource("1_awf3u")]
 script = ExtResource("2_t1gbp")
