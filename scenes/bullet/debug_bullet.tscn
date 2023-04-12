@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://dpnidjh6tpi1m"]
+
+[ext_resource type="PackedScene" uid="uid://dky1x2jibxbqs" path="res://scenes/bullet/i_bullet.tscn" id="1_ngq5l"]
+[ext_resource type="Texture2D" uid="uid://0fq8fv221kr4" path="res://assets/ammunitions/bullet-ak.png" id="2_83wea"]
+[ext_resource type="Script" path="res://scripts/bullet/debug_bullet.gd" id="2_xyhll"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mrjoj"]
+size = Vector2(4, 2)
+
+[node name="DebugBullet" instance=ExtResource("1_ngq5l")]
+script = ExtResource("2_xyhll")
+speed = 1000
+
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(2, 0)
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("2_83wea")
+flip_h = true
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(2, 0)
+shape = SubResource("RectangleShape2D_mrjoj")
