@@ -2,7 +2,11 @@
 
 [ext_resource type="PackedScene" uid="uid://7vehn306bqp1" path="res://scenes/player/i_player.tscn" id="1_7i7gw"]
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="2_ulh68"]
+<<<<<<< HEAD
 [ext_resource type="PackedScene" path="res://scenes/weapon/sniper.tscn" id="3_3d6co"]
+=======
+[ext_resource type="PackedScene" uid="uid://du2qfi4navyj5" path="res://scenes/weapon/machinegun.tscn" id="3_hd15d"]
+>>>>>>> 72c76626ff6fb56d185507528db1ba9ffe2cc806
 [ext_resource type="Texture2D" uid="uid://b4yots0w8841m" path="res://assets/players/badaboum.png" id="4_7kit0"]
 [ext_resource type="AnimationLibrary" uid="uid://2x1fvsguqtbj" path="res://resources/player_animations.res" id="5_bwmwt"]
 
@@ -19,7 +23,7 @@ script = ExtResource("2_ulh68")
 speed = 25000.0
 acceleration = 0.3
 friction = 0.1
-weapon_scene = ExtResource("3_3d6co")
+weapon_scene = ExtResource("3_hd15d")
 
 [node name="Hitbox" parent="." index="0"]
 rotation = 1.5708

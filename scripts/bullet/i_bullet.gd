@@ -27,12 +27,12 @@ func shoot(player: IPlayer, aim_position: Vector2, d: Vector2) -> void:
 	add_child(_timer)
 	_timer.start()
 
-	connect("body_entered", Callable(func(body: Node): _on_Area2D_body_entered(body)))
+	connect("area_entered", Callable(func(body: Node): _on_Area2D_body_entered(body)))
 
 
 func _on_Area2D_body_entered(body: Node) -> void:
-	if body is IEnemy:
-		body.take_damage(damage, shooter)
+	if body.get_parent() is IEnemy:
+		body.get_parent().take_damage(damage, shooter)
 		if name != "SniperBullet":
 			queue_free()
 	if body.name == "WallCollisions":
