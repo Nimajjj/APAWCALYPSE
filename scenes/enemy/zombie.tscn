@@ -1,8 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://knp2qkbwmogo"]
+[gd_scene load_steps=9 format=3 uid="uid://knp2qkbwmogo"]
 
 [ext_resource type="PackedScene" uid="uid://bwe1kad6agad3" path="res://scenes/enemy/i_enemy.tscn" id="1_5bvas"]
 [ext_resource type="Script" path="res://scripts/enemy/zombie.gd" id="2_6bqtj"]
-[ext_resource type="Texture2D" uid="uid://qkls7ytl7pkw" path="res://assets/enemies/bodies/zombie.png" id="2_s4pyg"]
+[ext_resource type="Texture2D" uid="uid://duqpj4n3ksk4n" path="res://assets/enemies/bodies/SpriteSheetBodies.png" id="3_gxn0d"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3he1k"]
 radius = 8.0
@@ -12,6 +12,43 @@ height = 24.0
 radius = 4.0
 height = 16.0
 
+[sub_resource type="Animation" id="Animation_81sqb"]
+resource_name = "zombie_walk"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../Sprite2D:region_rect")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Rect2(0, 0, 32, 32), Rect2(32, 0, 32, 32)]
+}
+
+[sub_resource type="Animation" id="Animation_kke6f"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 0, 32, 32)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_t5h4m"]
+_data = {
+"RESET": SubResource("Animation_kke6f"),
+"zombie_walk": SubResource("Animation_81sqb")
+}
+
 [node name="Zombie" instance=ExtResource("1_5bvas")]
 script = ExtResource("2_6bqtj")
 max_health = 200
@@ -20,8 +57,11 @@ money = 20
 damage = 25
 
 [node name="Sprite2D" parent="." index="0"]
-position = Vector2(-8, -12)
-texture = ExtResource("2_s4pyg")
+position = Vector2(0, -8)
+scale = Vector2(1, 1.03125)
+texture = ExtResource("3_gxn0d")
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 32)
 
 [node name="CollisionShape2D" parent="HurtBox" index="0"]
 position = Vector2(0, -8)
@@ -31,3 +71,10 @@ debug_color = Color(0.992157, 0, 0.247059, 0.419608)
 [node name="Hitbox" parent="." index="2"]
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_huxy6")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
+root_node = NodePath("../HurtBox/CollisionShape2D")
+autoplay = "zombie_walk"
+libraries = {
+"": SubResource("AnimationLibrary_t5h4m")
+}
