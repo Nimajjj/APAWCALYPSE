@@ -192,8 +192,8 @@ func _move_state(delta: float) -> void:
 	elif direction.x > 0:
 		Sprite.flip_h = true
 
-	velocity = lerp(velocity, direction.normalized() * speed, acceleration)
-	velocity *= delta
+	velocity = (lerp(velocity, direction.normalized() * (speed - (weapon.weight*8000)), acceleration)) * delta
+
 	AnimPlayer.play("player_animations/WALK")
 	move_and_slide()
 

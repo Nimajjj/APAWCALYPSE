@@ -16,6 +16,7 @@ bullet_stock = 100
 max_bullet_stock = 100
 current_mag = 100
 mag_capacity = 100
+weight = 2
 BulletScene = ExtResource("3_n6dd7")
 
 [node name="WeaponEnd" parent="." index="0"]
