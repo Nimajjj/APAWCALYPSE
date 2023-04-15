@@ -13,6 +13,8 @@ price = 100
 weapon_scene = null
 
 [node name="Sprite2D" parent="." index="0"]
+position = Vector2(0, 0)
+scale = Vector2(1, 1)
 texture = ExtResource("4_onbo7")
 
 [node name="CollisionShape2D" parent="InteractionArea2D" index="0"]
