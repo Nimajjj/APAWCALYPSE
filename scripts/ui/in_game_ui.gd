@@ -2,12 +2,17 @@ extends CanvasLayer
 
 @onready var DebugLabel: RichTextLabel = $DebugLabel
 @onready var InteractibleLabel: Label = $InteractibleLabel
+@onready var MoneyLabel: Label = $MoneyLabel
+@onready var ScoreLabel: Label = $ScoreLabel
 
 func _enter_tree():
 	Global.in_game_ui = self
 
 
 func _process(_delta):
+	ScoreLabel.text = str(Global.game.score)
+	MoneyLabel.text = str(Global.players[0].money)
+	
 	var _text: String = ""
 	_text += Global.version + "\n"
 	_text += "FPS: " + str(Engine.get_frames_per_second()) + "\n"
