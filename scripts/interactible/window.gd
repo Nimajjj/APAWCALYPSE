@@ -13,9 +13,7 @@ func activate(player: IPlayer) -> void:
 	health += 1
 	if health > 3:
 		health = 3
-
 	player.money += 10
-
 	_update_sprite()
 
 

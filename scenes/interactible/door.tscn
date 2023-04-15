@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://blhpxsfuysnls"]
+[gd_scene load_steps=7 format=3 uid="uid://c5jw2cb3wlijy"]
 
 [ext_resource type="PackedScene" uid="uid://opcyl153ve03" path="res://scenes/interactible/interactible.tscn" id="1_oo8cf"]
 [ext_resource type="Script" path="res://scripts/interactible/door.gd" id="2_jbedx"]
@@ -15,6 +15,9 @@ polygon = PackedVector2Array(-32, 14, 32, 14, 32, 8, -32, 8)
 
 [node name="Door" instance=ExtResource("1_oo8cf")]
 script = ExtResource("2_jbedx")
+price = 100
+open = false
+spawner_id = -1
 
 [node name="Sprite2D" parent="." index="0"]
 position = Vector2(0, -13)

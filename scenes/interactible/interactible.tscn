@@ -1,9 +1,21 @@
-[gd_scene format=3 uid="uid://opcyl153ve03"]
+[gd_scene load_steps=4 format=3 uid="uid://opcyl153ve03"]
+
+[ext_resource type="Script" path="res://scripts/interactible/mistery_box.gd" id="1_2iv4l"]
+[ext_resource type="Texture2D" uid="uid://cdmlaq7ooxm8h" path="res://assets/interactibles/bonuses.png" id="1_6du6f"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_787om"]
 
 [node name="Interactible" type="Node2D"]
+script = ExtResource("1_2iv4l")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(683.75, 192.25)
+scale = Vector2(9.07813, 7.85938)
+texture = ExtResource("1_6du6f")
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 32)
 
 [node name="InteractionArea2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea2D"]
+shape = SubResource("RectangleShape2D_787om")
