@@ -1,8 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://knp2qkbwmogo"]
+[gd_scene load_steps=11 format=3 uid="uid://knp2qkbwmogo"]
 
 [ext_resource type="PackedScene" uid="uid://bwe1kad6agad3" path="res://scenes/enemy/i_enemy.tscn" id="1_5bvas"]
 [ext_resource type="Script" path="res://scripts/enemy/zombie.gd" id="2_6bqtj"]
+[ext_resource type="Shader" path="res://resources/flash_shader.gdshader" id="3_65vta"]
 [ext_resource type="Texture2D" uid="uid://duqpj4n3ksk4n" path="res://assets/enemies/bodies/SpriteSheetBodies.png" id="3_gxn0d"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vrhw5"]
+shader = ExtResource("3_65vta")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_modifier = 0.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3he1k"]
 radius = 8.0
@@ -57,6 +63,7 @@ money = 20
 damage = 25
 
 [node name="Sprite2D" parent="." index="0"]
+material = SubResource("ShaderMaterial_vrhw5")
 position = Vector2(0, -8)
 scale = Vector2(1, 1.03125)
 texture = ExtResource("3_gxn0d")
