@@ -1,13 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://7vehn306bqp1"]
+[gd_scene load_steps=2 format=3 uid="uid://7vehn306bqp1"]
 
-[ext_resource type="Shader" path="res://scenes/player/i_player.gdshader" id="1_2ytym"]
 [ext_resource type="AnimationLibrary" uid="uid://2x1fvsguqtbj" path="res://resources/player_animations.res" id="1_m404w"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_w6hnf"]
-shader = ExtResource("1_2ytym")
-shader_parameter/light_pos = Vector2(0, 0)
-shader_parameter/shadow_size = 100.0
-shader_parameter/shadow_intensity = 1.0
 
 [node name="IPlayer" type="CharacterBody2D"]
 z_index = 1
@@ -20,7 +13,6 @@ y_sort_enabled = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_w6hnf")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(6, 6)
