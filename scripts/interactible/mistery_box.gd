@@ -4,6 +4,9 @@ var price: int = 100
 
 var weapons: Array = []
 
+var x: int = 2
+var rand: int 
+var randomposition : int
 var i: int 
 @onready var timer: Timer = $Timer
 @onready var secondtimer: Timer = $SecondTimer
@@ -33,6 +36,7 @@ func activate(player: IPlayer) -> void:
 		sprite.region_rect.position.x = 0
 		isopened = false 
 		message = "Press [E] to open the box"
+		change_position()
 		return
 	if can_activate(player) && !isopened:
 		player.money -= price
@@ -78,11 +82,38 @@ func _on_timer_timeout():
 		
 		
 	
-
+func change_position():
+	rand = randi() % 2 + 1
+	print(rand)
+	if x == rand : 
+		randomposition = randi() % 6 + 1
+		if randomposition == 1 && position.x != 1382: 
+			position.x = 1382
+			position.y = 7
+		if randomposition == 2 && position.x != 85 :
+			position.x = 85
+			position.y = 222
+		if randomposition == 3 && position.x != 1231 :
+			position.x = 1231
+			position.y = 390
+		if randomposition == 4 && position.x != 1130:
+			position.x = 1130
+			position.y = 577
+		if randomposition == 5 && position.x != 184 :
+			position.x = 184
+			position.y = 316
+		if randomposition == 6 && position.x != -277 :
+			position.x = -277
+			position.y = 456
+	else : 
+		return
+	return
+		
 
 func _on_second_timer_timeout():
 	weapon.queue_free()
 	sprite.region_rect.position.x = 0
-	isopened = false 
+	isopened = false
 	message = "Press [E] to open the box"
+	change_position() 
 	return

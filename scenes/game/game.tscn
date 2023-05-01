@@ -15,6 +15,7 @@ shader_parameter/scanline_count = 500.0
 [node name="Game" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_i6dkd")
+metadata/_edit_vertical_guides_ = []
 
 [node name="GameTimer" type="Timer" parent="."]
 wait_time = 0.1

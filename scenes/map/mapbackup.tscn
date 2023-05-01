@@ -4,11 +4,11 @@
 [ext_resource type="PackedScene" uid="uid://coesa2k8edyng" path="res://scenes/tile_maps/tile_map_test.tscn" id="2_kpmfk"]
 [ext_resource type="Script" path="res://scripts/interactible/door.gd" id="3_lo0ad"]
 [ext_resource type="PackedScene" uid="uid://627xe4481ujh" path="res://scenes/effects/blood_container.tscn" id="4_642or"]
-[ext_resource type="PackedScene" uid="uid://c1di05lj11sig" path="res://scenes/interactible/window.tscn" id="5_gqvwt"]
+[ext_resource type="PackedScene" uid="uid://p4js65rf6ci7" path="res://scenes/interactible/window.tscn" id="5_gqvwt"]
 [ext_resource type="PackedScene" uid="uid://blhpxsfuysnls" path="res://scenes/interactible/door.tscn" id="6_7i11v"]
 [ext_resource type="PackedScene" uid="uid://bkmuprlamyren" path="res://scenes/interactible/weapon_rack.tscn" id="7_qgfxu"]
 [ext_resource type="PackedScene" uid="uid://du2qfi4navyj5" path="res://scenes/weapon/machinegun.tscn" id="8_6dtvr"]
-[ext_resource type="PackedScene" uid="uid://c5drq6u2kkeg2" path="res://scenes/interactible/mistery_box.tscn" id="9_bnshr"]
+[ext_resource type="PackedScene" uid="uid://deh0ejmvq7sma" path="res://scenes/interactible/mistery_box.tscn" id="9_bnshr"]
 [ext_resource type="PackedScene" uid="uid://bytkjmnlimjdj" path="res://scenes/weapon/ak47.tscn" id="10_3chnx"]
 [ext_resource type="PackedScene" uid="uid://dfyqiwfcotw5e" path="res://scenes/weapon/mp5.tscn" id="11_dbqg0"]
 [ext_resource type="PackedScene" uid="uid://cnovlywgf3473" path="res://scenes/weapon/pistol.tscn" id="12_a6chr"]
@@ -539,7 +539,7 @@ weapon_scene = ExtResource("8_6dtvr")
 offset = Vector2(0, -8)
 
 [node name="MisteryBox" parent="." instance=ExtResource("9_bnshr")]
-position = Vector2(103, 148)
+position = Vector2(74, 215)
 
 [node name="WeaponRack2" parent="." instance=ExtResource("7_qgfxu")]
 position = Vector2(35, 46)
