@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://knp2qkbwmogo"]
+[gd_scene load_steps=10 format=3 uid="uid://knp2qkbwmogo"]
 
 [ext_resource type="PackedScene" uid="uid://bwe1kad6agad3" path="res://scenes/enemy/i_enemy.tscn" id="1_5bvas"]
 [ext_resource type="Script" path="res://scripts/enemy/zombie.gd" id="2_6bqtj"]
@@ -18,21 +18,6 @@ height = 24.0
 radius = 4.0
 height = 16.0
 
-[sub_resource type="Animation" id="Animation_kke6f"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../../Sprite2D:region_rect")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Rect2(0, 0, 32, 32)]
-}
-
 [sub_resource type="Animation" id="Animation_81sqb"]
 resource_name = "zombie_walk"
 loop_mode = 1
@@ -51,7 +36,6 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_t5h4m"]
 _data = {
-"RESET": SubResource("Animation_kke6f"),
 "zombie_walk": SubResource("Animation_81sqb")
 }
 
