@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://c5drq6u2kkeg2"]
+[gd_scene load_steps=4 format=3 uid="uid://deh0ejmvq7sma"]
 
 [ext_resource type="PackedScene" uid="uid://opcyl153ve03" path="res://scenes/interactible/interactible.tscn" id="1_7rslg"]
 [ext_resource type="Texture2D" uid="uid://dwnplfijl1c56" path="res://assets/weapons/weapons.png" id="2_p7nge"]
@@ -25,6 +25,10 @@ region_rect = Rect2(0, 0, 32, 32)
 [node name="Timer" type="Timer" parent="." index="3"]
 wait_time = 0.25
 
+[node name="SecondTimer" type="Timer" parent="." index="4"]
+wait_time = 10.0
+
 [connection signal="body_entered" from="InteractionArea2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="InteractionArea2D" to="." method="_on_area_2d_body_exited"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="SecondTimer" to="." method="_on_second_timer_timeout"]

@@ -6,6 +6,7 @@ var weapons: Array = []
 
 var i: int 
 @onready var timer: Timer = $Timer
+@onready var secondtimer: Timer = $SecondTimer
 var t: int = 0 
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var shuffle_weapon: Sprite2D = $ShuffleWeapon
@@ -28,6 +29,7 @@ func activate(player: IPlayer) -> void:
 	if isopened :
 		player.add_weapon(weapon.duplicate())
 		weapon.queue_free()
+		secondtimer.stop()
 		sprite.region_rect.position.x = 0
 		isopened = false 
 		message = "Press [E] to open the box"
@@ -70,6 +72,17 @@ func _on_timer_timeout():
 		add_child(weapon)
 		message = "Press [E] to take {0}".format([weapon.name])
 		t = 0 
+		secondtimer.start()
 		isopened = true
 		
+		
+		
 	
+
+
+func _on_second_timer_timeout():
+	weapon.queue_free()
+	sprite.region_rect.position.x = 0
+	isopened = false 
+	message = "Press [E] to open the box"
+	return
