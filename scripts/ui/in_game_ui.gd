@@ -5,6 +5,8 @@ extends CanvasLayer
 @onready var MoneyLabel: Label = $MoneyLabel
 @onready var ScoreLabel: Label = $ScoreLabel
 @onready var HealthBar: ProgressBar = $HealthBar
+@onready var MunitionLabel: Label = $MunitionLabel
+@onready var MunitionLabel2: Label = $MunitionLabel2
 
 func _enter_tree():
 	Global.in_game_ui = self
@@ -14,6 +16,12 @@ func _process(_delta):
 	ScoreLabel.text = str(Global.game.score)
 	MoneyLabel.text = str(Global.players[0].money)
 	HealthBar.value = Global.players[0].health
+	MunitionLabel.text = "{0}".format([
+		Global.players[0].weapon.current_mag
+	])
+	MunitionLabel2.text = "{0}".format([
+		Global.players[0].weapon.bullet_stock,
+	])
 	
 	var _text: String = ""
 	_text += Global.version + "\n"

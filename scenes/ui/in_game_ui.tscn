@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://gqx8g8aqgnj3"]
+[gd_scene load_steps=6 format=3 uid="uid://gqx8g8aqgnj3"]
 
 [ext_resource type="Script" path="res://scripts/ui/in_game_ui.gd" id="1_dkxx7"]
 [ext_resource type="Texture2D" uid="uid://crw8mpj7fm4th" path="res://assets/ui/overlay/player_overlay.png" id="2_22fes"]
 [ext_resource type="Texture2D" uid="uid://dxmad4fp8a8h1" path="res://assets/ui/portraits/portraits.png" id="3_vxc1h"]
+[ext_resource type="Texture2D" uid="uid://chysko4b3104i" path="res://assets/ui/overlay/munition.png" id="4_nufsj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cl8a2"]
 atlas = ExtResource("3_vxc1h")
@@ -58,7 +59,7 @@ anchor_right = 1.0
 offset_top = 64.0
 offset_bottom = 112.0
 grow_horizontal = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(0.890196, 0.807843, 0.333333, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
 theme_override_font_sizes/font_size = 24
@@ -75,3 +76,36 @@ offset_bottom = 61.0
 max_value = 200.0
 value = 50.0
 show_percentage = false
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = 1192.0
+offset_top = 678.0
+offset_right = 1224.0
+offset_bottom = 710.0
+scale = Vector2(0.65, 0.65)
+texture = ExtResource("4_nufsj")
+
+[node name="MunitionLabel" type="Label" parent="."]
+offset_left = 1059.0
+offset_top = 662.0
+offset_right = 1187.0
+offset_bottom = 710.0
+theme_override_colors/font_color = Color(0.890196, 0.807843, 0.333333, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 32
+text = "12"
+horizontal_alignment = 2
+
+[node name="MunitionLabel2" type="Label" parent="."]
+offset_left = 1217.0
+offset_top = 664.0
+offset_right = 1345.0
+offset_bottom = 712.0
+theme_override_colors/font_color = Color(0.890196, 0.807843, 0.333333, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 24
+text = "300
+"
+vertical_alignment = 1
