@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://brfif4wd4q5ha"]
+[gd_scene load_steps=5 format=3 uid="uid://brfif4wd4q5ha"]
 
 [ext_resource type="PackedScene" uid="uid://cx15vvox6qa4r" path="res://scenes/weapon/i_weapon.tscn" id="1_8kl0v"]
 [ext_resource type="Script" path="res://scripts/weapon/debug_weapon.gd" id="2_h7x6a"]
-[ext_resource type="PackedScene" path="res://scenes/bullet/sniper_bullet.tscn" id="3_3dpcx"]
-[ext_resource type="PackedScene" uid="uid://co7xkly0r22ux" path="res://scenes/effects/shoot_effect.tscn" id="4_hea7r"]
+[ext_resource type="PackedScene" uid="uid://dnbkhprwvcm4p" path="res://scenes/bullet/sniper_bullet.tscn" id="3_3dpcx"]
 [ext_resource type="Texture2D" uid="uid://bi6jqk3khtl76" path="res://assets/weapons/sniper.png" id="4_odsjv"]
 
 [node name="Sniper" instance=ExtResource("1_8kl0v")]
@@ -18,7 +17,6 @@ mag_capacity = 5
 reload_time = 3
 weight = 2
 BulletScene = ExtResource("3_3dpcx")
-ShootEffectScene = ExtResource("4_hea7r")
 
 [node name="WeaponEnd" parent="." index="0"]
 position = Vector2(11, -1)

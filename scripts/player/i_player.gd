@@ -14,6 +14,8 @@ enum PC_State { IDLE, MOVE, INTERACT, DOWN, DEAD }
 @export var friction: float = 0
 @export var weapon_scene: PackedScene = null
 @export var down_time: float = 0
+@export var knockback_force: float = 0
+@export var knockback_direction: Vector2 = Vector2.ZERO
 
 var weapon: IWeapon = null
 var aiming_at: Vector2 = Vector2.ZERO
@@ -154,15 +156,22 @@ func _inputs_interact() -> void:
 		interact()
 
 
-func take_damage(damage: float) -> void:
+func receive_knockback(damage_source_pos: Vector2) -> void:
+	knockback_direction = (position - damage_source_pos).normalized()
+	knockback_force = 1000
+	position += knockback_direction * knockback_force * 0.01
+
+
+func take_damage(damage: float, damager_pos: Vector2) -> void:
 	if HitTimer.time_left <= 0:
 		Sprite.material.set_shader_parameter("flash_modifier", 1.0)
 		FlashTimer.start()
 		
 		health -= damage
-	#	todo: convert damage animation to shader (Nimajjj)
 		AnimPlayer.play("player_animations/DAMAGE")
 		HitTimer.start()
+		receive_knockback(damager_pos)
+
 		if health <= 0:
 			health = 0
 			state = PC_State.DOWN
@@ -243,4 +252,4 @@ func _spawn_default_weapon() -> void:
 
 func _on_Area2D_body_entered(body: Node) -> void:
 	if body is IEnemy && state != PC_State.DOWN && state != PC_State.DEAD:
-		take_damage(body.damage)
+		take_damage(body.damage, body.global_position)

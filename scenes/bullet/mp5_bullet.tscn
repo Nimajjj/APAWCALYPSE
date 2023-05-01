@@ -8,7 +8,6 @@
 size = Vector2(2, 1)
 
 [node name="MP5Bullet" instance=ExtResource("1_mnh5s")]
-scale = Vector2(1.5, 1.5)
 script = ExtResource("2_68tpq")
 speed = 500
 
