@@ -65,3 +65,13 @@ theme_override_font_sizes/font_size = 24
 text = "00000000"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+modulate = Color(1, 0, 0, 1)
+offset_left = 123.0
+offset_top = 19.0
+offset_right = 269.0
+offset_bottom = 61.0
+max_value = 200.0
+value = 50.0
+show_percentage = false

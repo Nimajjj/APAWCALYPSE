@@ -4,6 +4,7 @@ extends CanvasLayer
 @onready var InteractibleLabel: Label = $InteractibleLabel
 @onready var MoneyLabel: Label = $MoneyLabel
 @onready var ScoreLabel: Label = $ScoreLabel
+@onready var HealthBar: ProgressBar = $HealthBar
 
 func _enter_tree():
 	Global.in_game_ui = self
@@ -12,6 +13,7 @@ func _enter_tree():
 func _process(_delta):
 	ScoreLabel.text = str(Global.game.score)
 	MoneyLabel.text = str(Global.players[0].money)
+	HealthBar.value = Global.players[0].health
 	
 	var _text: String = ""
 	_text += Global.version + "\n"
