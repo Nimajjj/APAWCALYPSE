@@ -7,6 +7,7 @@ func shoot() -> void:
 		if(current_mag > 0):
 			for i in range(12):
 				var bullet: IBullet = BulletScene.instantiate()
+				shoot_effect.emitting = true
 				bullet.position = WeaponEnd.get_global_transform().origin
 				bullet.damage = damage
 				bullet.life_time = weapon_range
