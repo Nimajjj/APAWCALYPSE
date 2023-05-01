@@ -26,6 +26,7 @@ var direction = Vector2.ZERO
 var reloading: bool = false
 var score: int = 0
 var down_timer: float = 0
+var shaking = false
 
 @onready var Sprite = $Sprite2D
 @onready var AnimPlayer = $AnimationPlayer
@@ -53,7 +54,8 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("rmb"):
 		position = get_global_mouse_position()
 
-	_camera_follow_mouse()
+	if !shaking:
+		_camera_follow_mouse()
 
 	match state:
 		PC_State.IDLE:
@@ -120,7 +122,6 @@ func remove_interactible(obj: Interactible) -> void :
 			Global.in_game_ui.InteractibleLabel.text = ""
 
 
-
 func interact() -> void :
 	if len(interactible_in_range) > 0 :
 		interactible_in_range[0].activate(self)
@@ -162,6 +163,35 @@ func receive_knockback(damage_source_pos: Vector2) -> void:
 	position += knockback_direction * knockback_force * 0.01
 
 
+func shake_camera(duration: int, offset_x: float, offset_y: float, angle: float):
+	if shaking:
+		return
+	shaking = true
+	var start_pos = Camera.position
+	var start_rot = Camera.rotation_degrees
+	var fixed_start_pos = Camera.position
+	var fixed_start_rot = Camera.rotation_degrees
+	var loop = 0
+	var r = 1
+	var i = 0.0
+	while loop < duration:
+		var rand_offset = Vector2(randf_range(1.0, offset_x), randf_range(1.0, offset_y)) * r
+		var rand_angle = randf_range(1.0, angle) * r
+		r *= -1
+		var target_pos = start_pos + rand_offset
+		var target_rot = start_rot + rand_angle
+		Camera.position = start_pos.lerp(target_pos, i)
+		Camera.rotation_degrees = start_rot + rand_angle * i
+		i += 0.25 # adjust speed here
+		await(get_tree().create_timer(0.05).timeout)
+		loop += 1
+		start_pos = target_pos
+		start_rot = target_rot
+	Camera.position = fixed_start_pos
+	Camera.rotation_degrees = fixed_start_rot
+	shaking = false
+
+
 func take_damage(damage: float, damager_pos: Vector2) -> void:
 	if HitTimer.time_left <= 0:
 		Sprite.material.set_shader_parameter("flash_modifier", 1.0)
@@ -171,6 +201,7 @@ func take_damage(damage: float, damager_pos: Vector2) -> void:
 		AnimPlayer.play("player_animations/DAMAGE")
 		HitTimer.start()
 		receive_knockback(damager_pos)
+		shake_camera(3, 4, 4, 2)
 
 		if health <= 0:
 			health = 0

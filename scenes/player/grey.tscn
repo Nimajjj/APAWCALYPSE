@@ -1,12 +1,19 @@
-[gd_scene load_steps=10 format=3 uid="uid://0g44dkc5bf7i"]
+[gd_scene load_steps=13 format=3 uid="uid://0g44dkc5bf7i"]
 
 [ext_resource type="PackedScene" uid="uid://7vehn306bqp1" path="res://scenes/player/i_player.tscn" id="1_hc12c"]
+[ext_resource type="Shader" path="res://resources/flash_shader.gdshader" id="2_3k7oo"]
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="2_le1p6"]
 [ext_resource type="Script" path="res://scripts/weapon/debug_weapon.gd" id="3_q55qs"]
 [ext_resource type="PackedScene" uid="uid://brekurlc0t1i7" path="res://scenes/bullet/ak47_bullet.tscn" id="4_6bloj"]
 [ext_resource type="Texture2D" uid="uid://b4suydvqb25a6" path="res://assets/debug/grey.png" id="4_m4q7u"]
 [ext_resource type="AnimationLibrary" uid="uid://2x1fvsguqtbj" path="res://resources/player_animations.res" id="5_23cgw"]
 [ext_resource type="Texture2D" uid="uid://bdn5lc3q4xr1g" path="res://assets/weapons/ak47.png" id="5_qiqkr"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gos3w"]
+resource_local_to_scene = true
+shader = ExtResource("2_3k7oo")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_modifier = 0.0
 
 [sub_resource type="PackedScene" id="PackedScene_55yfv"]
 _bundled = {
@@ -21,11 +28,18 @@ _bundled = {
 "version": 3
 }
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t8rbc"]
+resource_local_to_scene = true
+shader = ExtResource("2_3k7oo")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_modifier = 0.0
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_0xw1m"]
 atlas = ExtResource("4_m4q7u")
 region = Rect2(0, 0, 32, 32)
 
 [node name="Grey" instance=ExtResource("1_hc12c")]
+material = SubResource("ShaderMaterial_gos3w")
 script = ExtResource("2_le1p6")
 speed = 10000.0
 acceleration = 0.3
@@ -37,12 +51,13 @@ position = Vector2(1, 8)
 rotation = 1.5708
 
 [node name="Sprite2D" parent="." index="2"]
+material = SubResource("ShaderMaterial_t8rbc")
 texture = SubResource("AtlasTexture_0xw1m")
 
 [node name="Camera2D" parent="." index="3"]
 zoom = Vector2(5, 5)
 
-[node name="AnimationPlayer" parent="." index="5"]
+[node name="AnimationPlayer" parent="." index="6"]
 autoplay = "player_animations/IDLE"
 libraries = {
 "player_animations": ExtResource("5_23cgw")

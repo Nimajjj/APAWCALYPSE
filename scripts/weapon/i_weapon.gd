@@ -95,6 +95,7 @@ func shoot() -> void:
 			var shoot_direction = weapon_direction.rotated(spread_angle)
 			bullet.shoot(get_parent(), get_global_mouse_position(), shoot_direction)
 			actual_rate = 0
+			get_parent().shake_camera(3, weight + 1, weight + 1, weight)
 	actual_rate += 1
 	
 func stop_shooting() -> void:

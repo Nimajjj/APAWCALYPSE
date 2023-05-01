@@ -1,16 +1,30 @@
-[gd_scene load_steps=7 format=3 uid="uid://cgjnvl1a6cjys"]
+[gd_scene load_steps=10 format=3 uid="uid://cgjnvl1a6cjys"]
 
 [ext_resource type="PackedScene" uid="uid://7vehn306bqp1" path="res://scenes/player/i_player.tscn" id="1_bmvg6"]
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="2_28pj3"]
+[ext_resource type="Shader" path="res://resources/flash_shader.gdshader" id="2_iwtgi"]
 [ext_resource type="PackedScene" uid="uid://du2qfi4navyj5" path="res://scenes/weapon/machinegun.tscn" id="3_h53s2"]
 [ext_resource type="Texture2D" uid="uid://cb8cawxywol2y" path="res://assets/players/blade.png" id="4_iqjiy"]
 [ext_resource type="AnimationLibrary" uid="uid://2x1fvsguqtbj" path="res://resources/player_animations.res" id="5_xen6a"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8rf3s"]
+resource_local_to_scene = true
+shader = ExtResource("2_iwtgi")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_modifier = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2yb3l"]
+resource_local_to_scene = true
+shader = ExtResource("2_iwtgi")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_modifier = 0.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6qjlh"]
 atlas = ExtResource("4_iqjiy")
 region = Rect2(0, 0, 32, 32)
 
 [node name="Blade" instance=ExtResource("1_bmvg6")]
+material = SubResource("ShaderMaterial_8rf3s")
 script = ExtResource("2_28pj3")
 speed = 10000.0
 acceleration = 0.3
@@ -22,12 +36,13 @@ position = Vector2(1, 8)
 rotation = 1.5708
 
 [node name="Sprite2D" parent="." index="2"]
+material = SubResource("ShaderMaterial_2yb3l")
 texture = SubResource("AtlasTexture_6qjlh")
 
 [node name="Camera2D" parent="." index="3"]
 zoom = Vector2(5, 5)
 
-[node name="AnimationPlayer" parent="." index="5"]
+[node name="AnimationPlayer" parent="." index="6"]
 autoplay = "player_animations/IDLE"
 libraries = {
 "player_animations": ExtResource("5_xen6a")
