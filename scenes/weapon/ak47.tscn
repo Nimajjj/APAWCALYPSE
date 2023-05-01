@@ -2,11 +2,12 @@
 
 [ext_resource type="PackedScene" uid="uid://cx15vvox6qa4r" path="res://scenes/weapon/i_weapon.tscn" id="1_bsx4r"]
 [ext_resource type="Script" path="res://scripts/weapon/debug_weapon.gd" id="2_lgu7n"]
-[ext_resource type="PackedScene" uid="uid://brekurlc0t1i7" path="res://scenes/bullet/ak47_bullet.tscn" id="3_1mhlr"]
+[ext_resource type="PackedScene" uid="uid://pme1phjfptfl" path="res://scenes/bullet/bullet_3.tscn" id="3_aqh7f"]
 [ext_resource type="PackedScene" path="res://scenes/effects/shoot_effect.tscn" id="4_ejiav"]
 [ext_resource type="Texture2D" uid="uid://bdn5lc3q4xr1g" path="res://assets/weapons/ak47.png" id="4_um4nx"]
 
 [node name="AK47" instance=ExtResource("1_bsx4r")]
+position = Vector2(1, 0)
 script = ExtResource("2_lgu7n")
 weapon_name = "DebugWeapon"
 accuracy = 100
@@ -17,7 +18,7 @@ stock_factor = 7
 mag_capacity = 30
 reload_time = 1
 weight = 1
-BulletScene = ExtResource("3_1mhlr")
+BulletScene = ExtResource("3_aqh7f")
 ShootEffectScene = ExtResource("4_ejiav")
 
 [node name="WeaponEnd" parent="." index="0"]

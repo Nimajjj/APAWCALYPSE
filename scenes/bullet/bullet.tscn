@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://e38wk0wf50fq"]
+
+[ext_resource type="PackedScene" uid="uid://dky1x2jibxbqs" path="res://scenes/bullet/i_bullet.tscn" id="1_ls7mj"]
+[ext_resource type="Script" path="res://scripts/bullet/bullet.gd" id="2_4lwe5"]
+[ext_resource type="Texture2D" uid="uid://otpcrm70chym" path="res://assets/ammunitions/bullet.png" id="2_541yg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5jgl4"]
+size = Vector2(32, 20)
+
+[node name="Bullet" instance=ExtResource("1_ls7mj")]
+scale = Vector2(0.15, 0.15)
+script = ExtResource("2_4lwe5")
+speed = 1000
+
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(16, 0)
+texture = ExtResource("2_541yg")
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(16, 0)
+shape = SubResource("RectangleShape2D_5jgl4")

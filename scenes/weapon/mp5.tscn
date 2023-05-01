@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cx15vvox6qa4r" path="res://scenes/weapon/i_weapon.tscn" id="1_fst88"]
 [ext_resource type="Script" path="res://scripts/weapon/debug_weapon.gd" id="2_0werj"]
-[ext_resource type="PackedScene" uid="uid://chv4x7nltbsiv" path="res://scenes/bullet/mp5_bullet.tscn" id="3_7pclt"]
+[ext_resource type="PackedScene" uid="uid://pme1phjfptfl" path="res://scenes/bullet/bullet_3.tscn" id="3_ol1bx"]
 [ext_resource type="Texture2D" uid="uid://eb4wl0qstcsc" path="res://assets/weapons/mp-5.png" id="4_i7b4s"]
 [ext_resource type="PackedScene" path="res://scenes/effects/shoot_effect.tscn" id="4_r26cp"]
 
@@ -17,7 +17,7 @@ fire_rate = 10
 stock_factor = 10
 mag_capacity = 30
 reload_time = 0.5
-BulletScene = ExtResource("3_7pclt")
+BulletScene = ExtResource("3_ol1bx")
 ShootEffectScene = ExtResource("4_r26cp")
 
 [node name="WeaponEnd" parent="." index="0"]

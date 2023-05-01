@@ -2,12 +2,11 @@
 
 [ext_resource type="PackedScene" uid="uid://cx15vvox6qa4r" path="res://scenes/weapon/i_weapon.tscn" id="1_yjq44"]
 [ext_resource type="Script" path="res://scripts/weapon/debug_weapon.gd" id="2_20bg0"]
-[ext_resource type="PackedScene" uid="uid://chv4x7nltbsiv" path="res://scenes/bullet/mp5_bullet.tscn" id="3_ttu8u"]
+[ext_resource type="PackedScene" uid="uid://e38wk0wf50fq" path="res://scenes/bullet/bullet.tscn" id="3_husa1"]
 [ext_resource type="Texture2D" uid="uid://bf7di52q5ukun" path="res://assets/weapons/pistol.png" id="4_c5ste"]
 [ext_resource type="PackedScene" path="res://scenes/effects/shoot_effect.tscn" id="4_ks4be"]
 
 [node name="Pistol" instance=ExtResource("1_yjq44")]
-scale = Vector2(1.2, 1.2)
 script = ExtResource("2_20bg0")
 weapon_name = "DebugWeapon"
 accuracy = 100
@@ -17,7 +16,7 @@ fire_rate = 25
 stock_factor = 10
 mag_capacity = 12
 reload_time = 1
-BulletScene = ExtResource("3_ttu8u")
+BulletScene = ExtResource("3_husa1")
 ShootEffectScene = ExtResource("4_ks4be")
 
 [node name="WeaponEnd" parent="." index="0"]
@@ -25,6 +24,7 @@ position = Vector2(5.83333, -1.66667)
 
 [node name="Sprite2D" parent="." index="1"]
 texture_filter = 1
-position = Vector2(0, -2.5)
-scale = Vector2(-0.611037, 0.445313)
+position = Vector2(0, -4)
+scale = Vector2(0.7, 0.7)
 texture = ExtResource("4_c5ste")
+flip_h = true

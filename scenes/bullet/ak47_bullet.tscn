@@ -5,18 +5,18 @@
 [ext_resource type="Texture2D" uid="uid://0fq8fv221kr4" path="res://assets/ammunitions/bullet-ak.png" id="3_rdfno"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mrjoj"]
-size = Vector2(4, 2)
+size = Vector2(27, 7)
 
 [node name="AK47Bullet" instance=ExtResource("1_cdpi5")]
+scale = Vector2(0.2, 0.2)
 script = ExtResource("2_rhkph")
 speed = 1000
 
 [node name="Sprite2D" parent="." index="0"]
-position = Vector2(2, 0)
-scale = Vector2(0.15, 0.15)
+position = Vector2(13, 0)
 texture = ExtResource("3_rdfno")
 flip_h = true
 
 [node name="CollisionShape2D" parent="." index="1"]
-position = Vector2(2, 0)
+position = Vector2(13.5, 0.5)
 shape = SubResource("RectangleShape2D_mrjoj")
