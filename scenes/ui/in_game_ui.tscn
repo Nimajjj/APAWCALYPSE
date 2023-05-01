@@ -1,13 +1,75 @@
-[gd_scene load_steps=6 format=3 uid="uid://gqx8g8aqgnj3"]
+[gd_scene load_steps=10 format=3 uid="uid://gqx8g8aqgnj3"]
 
 [ext_resource type="Script" path="res://scripts/ui/in_game_ui.gd" id="1_dkxx7"]
 [ext_resource type="Texture2D" uid="uid://crw8mpj7fm4th" path="res://assets/ui/overlay/player_overlay.png" id="2_22fes"]
 [ext_resource type="Texture2D" uid="uid://dxmad4fp8a8h1" path="res://assets/ui/portraits/portraits.png" id="3_vxc1h"]
 [ext_resource type="Texture2D" uid="uid://chysko4b3104i" path="res://assets/ui/overlay/munition.png" id="4_nufsj"]
+[ext_resource type="Texture2D" uid="uid://cx1x7yu4bp4nb" path="res://assets/ui/overlay/reload.png" id="5_yj46y"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cl8a2"]
 atlas = ExtResource("3_vxc1h")
 region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="Animation" id="Animation_2euu2"]
+resource_name = "reload"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect2:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextureRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TextureRect2:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -6.28319]
+}
+
+[sub_resource type="Animation" id="Animation_dm2fx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect2:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-6.28319]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_x220k"]
+_data = {
+"RESET": SubResource("Animation_dm2fx"),
+"reload": SubResource("Animation_2euu2")
+}
 
 [node name="InGameUI" type="CanvasLayer"]
 script = ExtResource("1_dkxx7")
@@ -85,6 +147,12 @@ offset_bottom = 710.0
 scale = Vector2(0.65, 0.65)
 texture = ExtResource("4_nufsj")
 
+[node name="TextureRect2" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1202, 688)
+rotation = -6.28319
+texture = ExtResource("5_yj46y")
+
 [node name="MunitionLabel" type="Label" parent="."]
 offset_left = 1059.0
 offset_top = 662.0
@@ -109,3 +177,8 @@ theme_override_font_sizes/font_size = 24
 text = "300
 "
 vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_x220k")
+}

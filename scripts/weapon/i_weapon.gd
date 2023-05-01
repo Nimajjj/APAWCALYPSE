@@ -64,6 +64,7 @@ func trigger_reload() -> void:
 	if bullet_stock == 0: return
 	timer.start()
 	reloading = true
+	Global.in_game_ui.reloading()
 
 func reload() -> void:
 	if current_mag < mag_capacity:
@@ -78,6 +79,7 @@ func reload() -> void:
 		refilled_bullets = 0
 		timer.stop()
 		reloading = false
+		Global.in_game_ui.stop_reloading()
 
 
 func shoot() -> void:

@@ -40,3 +40,13 @@ func _process(_delta):
 		_text += "Stock Factor: " + str(Global.players[0].weapon.stock_factor) + "\n"
 
 	DebugLabel.text = _text
+
+
+func reloading() -> void:
+	$AnimationPlayer.play("reload")
+	
+	
+func stop_reloading() -> void:
+	$AnimationPlayer.stop()
+	$TextureRect.visible = true
+	$TextureRect2.visible = false
