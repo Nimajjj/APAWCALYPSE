@@ -1,7 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://7vehn306bqp1"]
+[gd_scene load_steps=5 format=3 uid="uid://7vehn306bqp1"]
 
 [ext_resource type="AnimationLibrary" uid="uid://2x1fvsguqtbj" path="res://resources/player_animations.res" id="1_m404w"]
 [ext_resource type="Shader" path="res://resources/flash_shader.gdshader" id="1_q6wjh"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fceh3"]
+resource_local_to_scene = true
+shader = ExtResource("1_q6wjh")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_modifier = 0.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_i0k62"]
 resource_local_to_scene = true
@@ -12,6 +18,7 @@ shader_parameter/flash_modifier = 0.0
 [node name="IPlayer" type="CharacterBody2D"]
 z_index = 1
 y_sort_enabled = true
+material = SubResource("ShaderMaterial_fceh3")
 
 [node name="CollisionBox" type="CollisionShape2D" parent="."]
 
