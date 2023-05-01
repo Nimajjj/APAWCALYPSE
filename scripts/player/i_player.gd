@@ -30,6 +30,7 @@ var down_timer: float = 0
 @onready var Camera = $Camera2D
 @onready var DownTimer = $DownTimer
 @onready var Hitbox = $Hitbox
+@onready var HitTimer = $HitTimer
 
 
 func _ready() -> void:
@@ -148,12 +149,15 @@ func _inputs_interact() -> void:
 
 
 func take_damage(damage: float) -> void:
-	health -= damage
-	AnimPlayer.play("player_animations/DAMAGE")
-	if health <= 0:
-		health = 0
-		state = PC_State.DOWN
-		DownTimer.start()
+	if HitTimer.time_left <= 0:
+		health -= damage
+	#	todo: convert damage animation to shader (Nimajjj)
+		AnimPlayer.play("player_animations/DAMAGE")
+		HitTimer.start()
+		if health <= 0:
+			health = 0
+			state = PC_State.DOWN
+			DownTimer.start()
 
 
 func _idle_state() -> void:

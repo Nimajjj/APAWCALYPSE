@@ -25,3 +25,6 @@ autoplay = "IDLE"
 libraries = {
 "": ExtResource("1_m404w")
 }
+
+[node name="HitTimer" type="Timer" parent="."]
+one_shot = true
