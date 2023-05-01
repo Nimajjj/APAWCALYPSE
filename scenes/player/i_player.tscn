@@ -1,6 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://7vehn306bqp1"]
+[gd_scene load_steps=4 format=3 uid="uid://7vehn306bqp1"]
 
 [ext_resource type="AnimationLibrary" uid="uid://2x1fvsguqtbj" path="res://resources/player_animations.res" id="1_m404w"]
+[ext_resource type="Shader" path="res://resources/flash_shader.gdshader" id="1_q6wjh"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i0k62"]
+resource_local_to_scene = true
+shader = ExtResource("1_q6wjh")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_modifier = 0.0
 
 [node name="IPlayer" type="CharacterBody2D"]
 z_index = 1
@@ -13,12 +20,16 @@ y_sort_enabled = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_i0k62")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(6, 6)
 
 [node name="DownTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="FlashTimer" type="Timer" parent="."]
+wait_time = 0.1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "IDLE"

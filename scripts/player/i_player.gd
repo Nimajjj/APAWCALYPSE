@@ -31,11 +31,17 @@ var down_timer: float = 0
 @onready var DownTimer = $DownTimer
 @onready var Hitbox = $Hitbox
 @onready var HitTimer = $HitTimer
+@onready var FlashTimer = $FlashTimer
 
 
 func _ready() -> void:
 	health = max_health
 	_spawn_default_weapon()
+	
+	Sprite.material = Sprite.material.duplicate()
+	FlashTimer.connect("timeout", func():
+		Sprite.material.set_shader_parameter("flash_modifier", 0.0)
+	)
 	
 	Hitbox.connect("body_entered", Callable(func(body: Node): _on_Area2D_body_entered(body)))
 
@@ -150,6 +156,9 @@ func _inputs_interact() -> void:
 
 func take_damage(damage: float) -> void:
 	if HitTimer.time_left <= 0:
+		Sprite.material.set_shader_parameter("flash_modifier", 1.0)
+		FlashTimer.start()
+		
 		health -= damage
 	#	todo: convert damage animation to shader (Nimajjj)
 		AnimPlayer.play("player_animations/DAMAGE")
