@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cx15vvox6qa4r" path="res://scenes/weapon/i_weapon.tscn" id="1_bsx4r"]
 [ext_resource type="Script" path="res://scripts/weapon/debug_weapon.gd" id="2_lgu7n"]
-[ext_resource type="PackedScene" uid="uid://dpt6803qrretg" path="res://scenes/bullet/ak47_bullet.tscn" id="3_1mhlr"]
+[ext_resource type="PackedScene" uid="uid://brekurlc0t1i7" path="res://scenes/bullet/ak47_bullet.tscn" id="3_1mhlr"]
 [ext_resource type="Texture2D" uid="uid://bdn5lc3q4xr1g" path="res://assets/weapons/ak47.png" id="4_um4nx"]
 
 [node name="AK47" instance=ExtResource("1_bsx4r")]
