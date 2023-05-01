@@ -3,6 +3,9 @@ extends CharacterBody2D
 
 var blood_effect_scene: PackedScene = preload("res://scenes/effects/gpu_blood_effect.tscn")
 
+
+var dead: bool = false
+
 @onready var Sprite = $Sprite2D
 @onready var HealthBar = $HealthBar
 @onready var timer = $Timer
@@ -55,17 +58,19 @@ func _move(delta) -> void:
 
 
 func dies(shooter: IPlayer) -> void:
-	var blood_effect: GPUParticles2D = blood_effect_scene.instantiate()
-	blood_effect.global_position = global_position
-	blood_effect.rotation = global_position.angle_to_point(shooter.global_position) + PI
-	Global.blood_container.add_child(blood_effect)
-	
-	shooter.gain_money(money)
-	shooter.gain_score(randi_range(1, 10))
-	Global.units_alive -= 1
-	get_parent().get_parent().is_last_wave_dead()
-	
-	Sprite.material.set_shader_parameter("flash_modifier", 0.0)
-	
-	queue_free()
+	if not dead:
+		dead = true
+		var blood_effect: GPUParticles2D = blood_effect_scene.instantiate()
+		blood_effect.global_position = global_position
+		blood_effect.rotation = global_position.angle_to_point(shooter.global_position) + PI
+		Global.blood_container.add_child(blood_effect)
+		
+		shooter.gain_money(money)
+		shooter.gain_score(randi_range(1, 10))
+		Global.units_alive -= 1
+		get_parent().get_parent().is_last_wave_dead()
+		
+		Sprite.material.set_shader_parameter("flash_modifier", 0.0)
+		
+		queue_free()
 
