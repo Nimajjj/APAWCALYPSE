@@ -9,7 +9,7 @@
 script = ExtResource("2_0werj")
 weapon_name = "DebugWeapon"
 accuracy = 100
-damage = 100
+damage = 40
 weapon_range = 2
 spread = 0.21
 fire_rate = 10
