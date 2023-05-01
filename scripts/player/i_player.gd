@@ -64,7 +64,7 @@ func start_shooting() -> void:
 
 
 func stop_shooting() -> void:
-	pass
+	weapon.stop_shooting()
 
 
 func take_bonus(bonus: IBonus) -> void:
@@ -229,6 +229,5 @@ func _spawn_default_weapon() -> void:
 	
 
 func _on_Area2D_body_entered(body: Node) -> void:
-	print("bodyentered")
 	if body is IEnemy && state != PC_State.DOWN && state != PC_State.DEAD:
 		take_damage(body.damage)

@@ -1,21 +1,29 @@
-[gd_scene load_steps=5 format=3 uid="uid://bgdbxs7eywq16"]
+[gd_scene load_steps=6 format=3 uid="uid://bgdbxs7eywq16"]
 
 [ext_resource type="PackedScene" uid="uid://cx15vvox6qa4r" path="res://scenes/weapon/i_weapon.tscn" id="1_jygeb"]
 [ext_resource type="Script" path="res://scripts/weapon/shotgun.gd" id="2_vtkd2"]
-[ext_resource type="PackedScene" uid="uid://b8872oj5l3ib0" path="res://scenes/bullet/shotgun_bullet.tscn" id="3_vbljp"]
+[ext_resource type="PackedScene" path="res://scenes/bullet/shotgun_bullet.tscn" id="3_vbljp"]
+[ext_resource type="PackedScene" uid="uid://co7xkly0r22ux" path="res://scenes/effects/shoot_effect.tscn" id="4_2kala"]
 [ext_resource type="Texture2D" uid="uid://dy3uldg27vmal" path="res://assets/weapons/shotgun.png" id="4_73p1p"]
 
 [node name="Shotgun" instance=ExtResource("1_jygeb")]
 script = ExtResource("2_vtkd2")
+weapon_name = null
+accuracy = null
 damage = 20
 weapon_range = 0.1
 spread = 0.4
 fire_rate = 40
+bullet_stock = null
 stock_factor = 5
+max_bullet_stock = null
+current_mag = null
 mag_capacity = 60
 reload_time = 1.5
+price = null
 weight = 1
 BulletScene = ExtResource("3_vbljp")
+ShootEffectScene = ExtResource("4_2kala")
 
 [node name="WeaponEnd" parent="." index="0"]
 position = Vector2(9, -1)

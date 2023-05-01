@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://c5jw2cb3wlijy"]
+[gd_scene load_steps=7 format=3 uid="uid://blhpxsfuysnls"]
 
 [ext_resource type="PackedScene" uid="uid://opcyl153ve03" path="res://scenes/interactible/interactible.tscn" id="1_oo8cf"]
 [ext_resource type="Script" path="res://scripts/interactible/door.gd" id="2_jbedx"]
@@ -8,35 +8,42 @@
 size = Vector2(64, 24)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w4qeg"]
-size = Vector2(64, 6)
+size = Vector2(64, 8)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_87bx7"]
-polygon = PackedVector2Array(-32, 14, 32, 14, 32, 8, -32, 8)
+polygon = PackedVector2Array(-32, 14, 9, 14, 32, 14, 32, 8, -32, 8)
 
 [node name="Door" instance=ExtResource("1_oo8cf")]
+z_index = 1
+y_sort_enabled = true
+position = Vector2(0, -1)
 script = ExtResource("2_jbedx")
 price = 100
 open = false
 spawner_id = -1
 
 [node name="Sprite2D" parent="." index="0"]
-position = Vector2(0, -13)
+position = Vector2(0, -19)
+scale = Vector2(1, 1)
 texture = ExtResource("3_mvlsd")
+region_enabled = false
 
 [node name="InteractionArea2D" parent="." index="1"]
 position = Vector2(0, 11)
 
 [node name="CollisionShape2D" parent="InteractionArea2D" index="0"]
+position = Vector2(0, -11)
 shape = SubResource("RectangleShape2D_o1wjk")
 debug_color = Color(0.701961, 0.419608, 0, 0.419608)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." index="2"]
-position = Vector2(0, 11)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" index="0"]
+position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_w4qeg")
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="." index="3"]
+position = Vector2(0, -11)
 occluder = SubResource("OccluderPolygon2D_87bx7")
 
 [connection signal="body_entered" from="InteractionArea2D" to="." method="_on_area_2d_body_entered"]

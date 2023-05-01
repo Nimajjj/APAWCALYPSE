@@ -20,16 +20,23 @@ enum Weapon_Weight {LIGHT, MEDIUM, HEAVY}
 
 @export var secondary_weapon: IWeapon = null
 @export var BulletScene: PackedScene = null
+@export var ShootEffectScene: PackedScene
 
 var actual_rate: int = 0
 var weapon_direction: Vector2
 var reloading: bool = false
+var shoot_effect: GPUParticles2D = null
 
 @onready var WeaponEnd = $WeaponEnd
 @onready var timer = $Timer
 
 
+
 func _ready():
+	if ShootEffectScene != null:
+		shoot_effect = ShootEffectScene.instantiate()
+		WeaponEnd.add_child(shoot_effect)
+	
 	current_mag = mag_capacity
 	bullet_stock = mag_capacity * 2
 	max_bullet_stock = bullet_stock * stock_factor
@@ -39,6 +46,7 @@ func _ready():
 
 
 func _process(delta):
+	
 	weapon_direction = get_global_mouse_position() - global_position
 	weapon_direction = weapon_direction.normalized()
 	if(current_mag == 0 && !reloading):
@@ -76,6 +84,7 @@ func shoot() -> void:
 	if reloading: return
 	if(actual_rate == fire_rate):
 		if(current_mag > 0):
+			shoot_effect.emitting = true
 			var bullet: IBullet = BulletScene.instantiate()
 			bullet.position = WeaponEnd.get_global_transform().origin
 			bullet.damage = damage
@@ -87,6 +96,9 @@ func shoot() -> void:
 			bullet.shoot(get_parent(), get_global_mouse_position(), shoot_direction)
 			actual_rate = 0
 	actual_rate += 1
+	
+func stop_shooting() -> void:
+	shoot_effect.emitting = false
 
 
 func _on_timer_timeout() -> void:

@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dfyqiwfcotw5e"]
+[gd_scene load_steps=6 format=3 uid="uid://dfyqiwfcotw5e"]
 
 [ext_resource type="PackedScene" uid="uid://cx15vvox6qa4r" path="res://scenes/weapon/i_weapon.tscn" id="1_fst88"]
 [ext_resource type="Script" path="res://scripts/weapon/debug_weapon.gd" id="2_0werj"]
 [ext_resource type="PackedScene" uid="uid://chv4x7nltbsiv" path="res://scenes/bullet/mp5_bullet.tscn" id="3_7pclt"]
 [ext_resource type="Texture2D" uid="uid://eb4wl0qstcsc" path="res://assets/weapons/mp-5.png" id="4_i7b4s"]
+[ext_resource type="PackedScene" uid="uid://cowwp365y2cjp" path="res://scenes/effects/machine_gun_effect.tscn" id="4_l2bss"]
 
 [node name="MP5" instance=ExtResource("1_fst88")]
 script = ExtResource("2_0werj")
@@ -17,6 +18,7 @@ stock_factor = 10
 mag_capacity = 30
 reload_time = 0.5
 BulletScene = ExtResource("3_7pclt")
+ShootEffectScene = ExtResource("4_l2bss")
 
 [node name="WeaponEnd" parent="." index="0"]
 position = Vector2(8, -1)

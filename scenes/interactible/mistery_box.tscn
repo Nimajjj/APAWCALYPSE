@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://deh0ejmvq7sma"]
+[gd_scene load_steps=4 format=3 uid="uid://c5drq6u2kkeg2"]
 
 [ext_resource type="PackedScene" uid="uid://opcyl153ve03" path="res://scenes/interactible/interactible.tscn" id="1_7rslg"]
 [ext_resource type="Texture2D" uid="uid://dwnplfijl1c56" path="res://assets/weapons/weapons.png" id="2_p7nge"]

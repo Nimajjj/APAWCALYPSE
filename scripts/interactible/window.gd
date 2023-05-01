@@ -1,6 +1,6 @@
 extends Interactible
 
-var health: int = 3
+var health: int = 0
 
 @onready var sprite: Sprite2D = $Sprite2D
 

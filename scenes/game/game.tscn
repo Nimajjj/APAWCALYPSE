@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://biupxcsfus1is"]
+[gd_scene load_steps=9 format=3 uid="uid://bb22ptpaphk3v"]
 
 [ext_resource type="Script" path="res://scripts/game/game.gd" id="1_i6dkd"]
 [ext_resource type="PackedScene" uid="uid://cde0l3nccdl6y" path="res://scenes/player/fabric_player.tscn" id="3_5lw4k"]
@@ -33,10 +33,6 @@ material = SubResource("ShaderMaterial_u0mf1")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 18.0
-offset_top = 629.0
-offset_right = 18.0
-offset_bottom = 629.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.109804, 0.109804, 0.109804, 0.25098)
