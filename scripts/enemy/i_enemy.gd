@@ -5,6 +5,7 @@ var blood_effect_scene: PackedScene = preload("res://scenes/effects/gpu_blood_ef
 
 @onready var Sprite = $Sprite2D
 @onready var HealthBar = $HealthBar
+@onready var timer = $Timer
 
 @export var max_health: int
 @export var speed: int
@@ -19,6 +20,12 @@ func _ready():
 	HealthBar.visible = false
 	HealthBar.max_value = max_health
 	HealthBar.value = max_health
+	
+	
+	Sprite.material = Sprite.material.duplicate()
+	timer.connect("timeout", func():
+		Sprite.material.set_shader_parameter("flash_modifier", 0.0)
+	)
 
 func _physics_process(delta):
 	_move(delta)
@@ -26,6 +33,8 @@ func _physics_process(delta):
 
 func take_damage(dmg: int, shooter: IPlayer) -> void:
 	HealthBar.visible = true
+	Sprite.material.set_shader_parameter("flash_modifier", 1.0)
+	timer.start()
 	
 	health -= dmg
 	if health <= 0:
@@ -55,5 +64,8 @@ func dies(shooter: IPlayer) -> void:
 	shooter.gain_score(randi_range(1, 10))
 	Global.units_alive -= 1
 	get_parent().get_parent().is_last_wave_dead()
+	
+	Sprite.material.set_shader_parameter("flash_modifier", 0.0)
+	
 	queue_free()
 
