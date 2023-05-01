@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://br1jlnqphca77" path="res://assets/interactibles/weapon_rackt.png" id="4_onbo7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n0qxo"]
-size = Vector2(38, 14.5)
+size = Vector2(32, 17.25)
 
 [node name="WeaponRack" instance=ExtResource("1_awf3u")]
 script = ExtResource("2_t1gbp")
@@ -18,6 +18,7 @@ scale = Vector2(1, 1)
 texture = ExtResource("4_onbo7")
 
 [node name="CollisionShape2D" parent="InteractionArea2D" index="0"]
+position = Vector2(0, 15.375)
 shape = SubResource("RectangleShape2D_n0qxo")
 debug_color = Color(0.701961, 0.419608, 0, 0.419608)
 

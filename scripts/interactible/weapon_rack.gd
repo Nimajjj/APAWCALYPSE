@@ -5,10 +5,14 @@ extends Interactible
 
 var weapon : IWeapon = null
 
+@onready var sprite: Sprite2D = $Sprite2D
+
 func _ready():
 	weapon = weapon_scene.instantiate()
 	weapon.get_node("Sprite2D").scale = Vector2(1.25, 1.25)
 	weapon.position.x -= (weapon.get_node("Sprite2D").texture.get_size().x * weapon.get_node("Sprite2D").scale.x) / 6
+	weapon.position.y += sprite.offset.y
+	weapon.z_index = 1
 	add_child(weapon)
 	
 	message = "Press [E] to buy {0} for {1}$".format([weapon.name, price])
