@@ -5,9 +5,10 @@
 [ext_resource type="Texture2D" uid="uid://dho6b1lindugm" path="res://assets/ammunitions/bullet-sniper.png" id="3_5i2to"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mrjoj"]
-size = Vector2(6, 2)
+size = Vector2(6.92308, 3.07692)
 
 [node name="SniperBullet" instance=ExtResource("1_ccdd1")]
+scale = Vector2(1.3, 1.3)
 script = ExtResource("2_bq7db")
 speed = 1000
 
@@ -18,5 +19,5 @@ texture = ExtResource("3_5i2to")
 flip_h = true
 
 [node name="CollisionShape2D" parent="." index="1"]
-position = Vector2(2, 0)
+position = Vector2(1.92308, -2.29249e-08)
 shape = SubResource("RectangleShape2D_mrjoj")

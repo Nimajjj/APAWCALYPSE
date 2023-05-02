@@ -17,6 +17,7 @@ enum Weapon_Weight {LIGHT, MEDIUM, HEAVY}
 @export var reload_time: float = 0
 @export var price: int = 0
 @export var weight: Weapon_Weight
+@export var shake_power: float = 0
 
 @export var secondary_weapon: IWeapon = null
 @export var BulletScene: PackedScene = null
@@ -97,7 +98,7 @@ func shoot() -> void:
 			var shoot_direction = weapon_direction.rotated(spread_angle)
 			bullet.shoot(get_parent(), get_global_mouse_position(), shoot_direction)
 			actual_rate = 0
-			get_parent().shake_camera(3, weight + 1, weight + 1, weight)
+			get_parent().shake_camera(3, shake_power, shake_power, shake_power / 2)
 			$AudioStreamPlayer.play()
 	actual_rate += 1
 	

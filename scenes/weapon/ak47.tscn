@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cx15vvox6qa4r" path="res://scenes/weapon/i_weapon.tscn" id="1_bsx4r"]
 [ext_resource type="Script" path="res://scripts/weapon/debug_weapon.gd" id="2_lgu7n"]
 [ext_resource type="PackedScene" uid="uid://pme1phjfptfl" path="res://scenes/bullet/bullet_3.tscn" id="3_aqh7f"]
-[ext_resource type="PackedScene" uid="uid://cowwp365y2cjp" path="res://scenes/effects/machine_gun_effect.tscn" id="4_cccbo"]
+[ext_resource type="PackedScene" path="res://scenes/effects/machine_gun_effect.tscn" id="4_cccbo"]
 [ext_resource type="Texture2D" uid="uid://bdn5lc3q4xr1g" path="res://assets/weapons/ak47.png" id="4_um4nx"]
 [ext_resource type="AudioStream" uid="uid://dloj7u8m6jj6t" path="res://assets/sfx/weapon/wpn_fire_ak47.mp3" id="6_tkb40"]
 
@@ -12,15 +12,14 @@ position = Vector2(1, 0)
 script = ExtResource("2_lgu7n")
 weapon_name = "DebugWeapon"
 accuracy = 100
-damage = 100
+damage = 65
 weapon_range = 2
 fire_rate = 11
-bullet_stock = 100
-max_bullet_stock = 100
-current_mag = 100
-mag_capacity = 100
+stock_factor = 6
+mag_capacity = 30
 reload_time = 1
 weight = 1
+shake_power = 0.5
 BulletScene = ExtResource("3_aqh7f")
 ShootEffectScene = ExtResource("4_cccbo")
 
