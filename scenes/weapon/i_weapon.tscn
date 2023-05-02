@@ -10,3 +10,6 @@
 one_shot = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="FireRateTimer" type="Timer" parent="."]
+one_shot = true

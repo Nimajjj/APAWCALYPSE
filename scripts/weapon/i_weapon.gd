@@ -8,7 +8,7 @@ enum Weapon_Weight {LIGHT, MEDIUM, HEAVY}
 @export var damage: int = 0
 @export var weapon_range: float = 0
 @export var spread: float = 0.0
-@export var fire_rate: int = 0
+@export var fire_rate: float = 0
 @export var bullet_stock: int = 0
 @export var stock_factor: int = 0
 @export var max_bullet_stock: int = 0
@@ -27,10 +27,11 @@ var actual_rate: int = 0
 var weapon_direction: Vector2
 var reloading: bool = false
 var shoot_effect: GPUParticles2D = null
+var can_shoot: bool = true
 
 @onready var WeaponEnd = $WeaponEnd
 @onready var timer = $Timer
-
+@onready var fire_rate_timer = $FireRateTimer
 
 
 func _ready():
@@ -41,9 +42,11 @@ func _ready():
 	current_mag = mag_capacity
 	bullet_stock = mag_capacity * 2
 	max_bullet_stock = bullet_stock * stock_factor
-	
+
+	fire_rate_timer.wait_time = fire_rate
 	timer.wait_time = reload_time
 	timer.connect("timeout", func(): reload())
+	fire_rate_timer.connect("timeout", func(): reset_fire_rate())
 
 
 func _process(delta):
@@ -85,8 +88,11 @@ func reload() -> void:
 
 func shoot() -> void:
 	if reloading: return
-	if(actual_rate == fire_rate):
+	if(fire_rate_timer.time_left > 0): return
+	if(can_shoot):
 		if(current_mag > 0):
+			fire_rate_timer.start()
+			can_shoot = false
 			shoot_effect.emitting = true
 			var bullet: IBullet = BulletScene.instantiate()
 			bullet.position = WeaponEnd.get_global_transform().origin
@@ -100,11 +106,13 @@ func shoot() -> void:
 			actual_rate = 0
 			get_parent().shake_camera(3, shake_power, shake_power, shake_power / 2)
 			$AudioStreamPlayer.play()
-	actual_rate += 1
+		actual_rate += 1
 	
 func stop_shooting() -> void:
 	shoot_effect.emitting = false
 
+func reset_fire_rate() -> void:
+	can_shoot = true
 
 func _on_timer_timeout() -> void:
 	reload()
