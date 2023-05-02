@@ -7,6 +7,8 @@ extends AudioStreamPlayer
 func _ready():
 	SoundManager.register(group, self)
 
+func _exit_tree():
+	SoundManager.remove(group, self)
 
 func set_volume(vol: float) -> void:
 	volume_db = vol
