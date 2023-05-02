@@ -1,10 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://gqx8g8aqgnj3"]
+[gd_scene load_steps=13 format=3 uid="uid://gqx8g8aqgnj3"]
 
 [ext_resource type="Script" path="res://scripts/ui/in_game_ui.gd" id="1_dkxx7"]
 [ext_resource type="Texture2D" uid="uid://crw8mpj7fm4th" path="res://assets/ui/overlay/player_overlay.png" id="2_22fes"]
 [ext_resource type="Texture2D" uid="uid://dxmad4fp8a8h1" path="res://assets/ui/portraits/portraits.png" id="3_vxc1h"]
 [ext_resource type="Texture2D" uid="uid://chysko4b3104i" path="res://assets/ui/overlay/munition.png" id="4_nufsj"]
 [ext_resource type="Texture2D" uid="uid://cx1x7yu4bp4nb" path="res://assets/ui/overlay/reload.png" id="5_yj46y"]
+[ext_resource type="Script" path="res://scripts/ui/option_menu.gd" id="6_dtxai"]
+[ext_resource type="Script" path="res://scripts/ui/pause_menu.gd" id="6_rb0yr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cl8a2"]
 atlas = ExtResource("3_vxc1h")
@@ -71,13 +73,20 @@ _data = {
 "reload": SubResource("Animation_2euu2")
 }
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i5p2j"]
+bg_color = Color(0.141176, 0.141176, 0.141176, 0.980392)
+expand_margin_left = 8.0
+expand_margin_top = 8.0
+expand_margin_right = 8.0
+expand_margin_bottom = 8.0
+
 [node name="InGameUI" type="CanvasLayer"]
 script = ExtResource("1_dkxx7")
 
 [node name="DebugLabel" type="RichTextLabel" parent="."]
 offset_left = 16.0
 offset_top = 135.0
-offset_right = 1264.0
+offset_right = 448.0
 offset_bottom = 704.0
 text = "APAWCALYPSE - dev"
 
@@ -182,3 +191,120 @@ vertical_alignment = 1
 libraries = {
 "": SubResource("AnimationLibrary_x220k")
 }
+
+[node name="PauseMenu" type="PanelContainer" parent="."]
+process_mode = 3
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -20.0
+offset_right = 128.0
+offset_bottom = 88.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+script = ExtResource("6_rb0yr")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu"]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="PauseMenu/VBoxContainer"]
+layout_mode = 2
+text = "PAUSE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ResumeButton" type="Button" parent="PauseMenu/VBoxContainer"]
+layout_mode = 2
+text = "Resume"
+
+[node name="OptionButton" type="Button" parent="PauseMenu/VBoxContainer"]
+layout_mode = 2
+text = "Option"
+
+[node name="QuitButton" type="Button" parent="PauseMenu/VBoxContainer"]
+layout_mode = 2
+text = "Quit"
+
+[node name="OptionMenu" type="PanelContainer" parent="."]
+process_mode = 2
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -20.0
+offset_right = 128.0
+offset_bottom = 88.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_i5p2j")
+script = ExtResource("6_dtxai")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="OptionMenu"]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="OptionMenu/VBoxContainer"]
+layout_mode = 2
+text = "OPTION"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SubTitleLabel" type="Label" parent="OptionMenu/VBoxContainer"]
+layout_mode = 2
+text = "------ sound ------"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="OptionMenu/VBoxContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="Label" type="Label" parent="OptionMenu/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "MUSIC"
+
+[node name="MusicSlider" type="HSlider" parent="OptionMenu/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+value = 50.0
+
+[node name="Label2" type="Label" parent="OptionMenu/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "SFX"
+
+[node name="SFXSlider" type="HSlider" parent="OptionMenu/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+value = 50.0
+
+[node name="Label3" type="Label" parent="OptionMenu/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "GUI"
+
+[node name="GUISlider" type="HSlider" parent="OptionMenu/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+value = 50.0
+
+[node name="BackButton" type="Button" parent="OptionMenu/VBoxContainer"]
+layout_mode = 2
+text = "BACK"
+
+[connection signal="pressed" from="PauseMenu/VBoxContainer/ResumeButton" to="PauseMenu" method="_on_resume_button_pressed"]
+[connection signal="pressed" from="PauseMenu/VBoxContainer/OptionButton" to="PauseMenu" method="_on_option_button_pressed"]
+[connection signal="pressed" from="PauseMenu/VBoxContainer/QuitButton" to="PauseMenu" method="_on_quit_button_pressed"]
+[connection signal="value_changed" from="OptionMenu/VBoxContainer/GridContainer/MusicSlider" to="OptionMenu" method="_on_music_slider_value_changed"]
+[connection signal="value_changed" from="OptionMenu/VBoxContainer/GridContainer/SFXSlider" to="OptionMenu" method="_on_sfx_slider_value_changed"]
+[connection signal="value_changed" from="OptionMenu/VBoxContainer/GridContainer/GUISlider" to="OptionMenu" method="_on_gui_slider_value_changed"]
+[connection signal="pressed" from="OptionMenu/VBoxContainer/BackButton" to="OptionMenu" method="_on_back_button_pressed"]
