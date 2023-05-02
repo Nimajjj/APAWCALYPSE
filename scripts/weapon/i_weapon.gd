@@ -38,7 +38,7 @@ func _ready():
 	if ShootEffectScene != null:
 		shoot_effect = ShootEffectScene.instantiate()
 		WeaponEnd.add_child(shoot_effect)
-	
+
 	current_mag = mag_capacity
 	bullet_stock = mag_capacity * 2
 	max_bullet_stock = bullet_stock * stock_factor
@@ -50,12 +50,12 @@ func _ready():
 
 
 func _process(delta):
-	
+
 	weapon_direction = get_global_mouse_position() - global_position
 	weapon_direction = weapon_direction.normalized()
 	if(current_mag == 0 && !reloading):
 		trigger_reload()
-		
+
 	if Input.is_action_just_pressed("reload"):
 		trigger_reload()
 
@@ -65,10 +65,12 @@ func has_secondary_weapon() -> bool:
 
 
 func trigger_reload() -> void:
+	if current_mag == mag_capacity: return
 	if bullet_stock == 0: return
 	timer.start()
-	reloading = true
 	Global.in_game_ui.reloading()
+	reloading = true
+
 
 func reload() -> void:
 	if current_mag < mag_capacity:
@@ -107,7 +109,7 @@ func shoot() -> void:
 			get_parent().shake_camera(3, shake_power, shake_power, shake_power / 2)
 			$AudioStreamPlayer.play()
 		actual_rate += 1
-	
+
 func stop_shooting() -> void:
 	shoot_effect.emitting = false
 
