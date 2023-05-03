@@ -528,7 +528,7 @@ scale = Vector2(1.125, 1.125)
 position = Vector2(1, 21)
 
 [node name="Door" parent="." instance=ExtResource("6_7i11v")]
-position = Vector2(272, 269)
+position = Vector2(272, 263)
 scale = Vector2(0.5, 0.5)
 
 [node name="WeaponRack" parent="." instance=ExtResource("7_qgfxu")]
@@ -562,6 +562,10 @@ weapon_scene = ExtResource("13_go1ip")
 
 [node name="MisteryBox" parent="." instance=ExtResource("9_bnshr")]
 position = Vector2(82, 219)
+
+[node name="Door2" parent="." instance=ExtResource("6_7i11v")]
+position = Vector2(512, 39)
+scale = Vector2(0.5, 0.5)
 
 [editable path="Window"]
 [editable path="WeaponRack"]
