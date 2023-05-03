@@ -2,6 +2,7 @@ class_name IBullet
 extends Area2D
 
 @export var speed: int
+@export var piercing: bool = false
 
 var shooter: IPlayer = null
 var direction: Vector2
@@ -33,7 +34,7 @@ func shoot(player: IPlayer, aim_position: Vector2, d: Vector2) -> void:
 func _on_Area2D_body_entered(body: Node) -> void:
 	if body.get_parent() is IEnemy:
 		body.get_parent().take_damage(damage, shooter)
-		if name != "SniperBullet":
+		if !piercing:
 			queue_free()
 	if body.name == "WallCollisions":
 		queue_free()
