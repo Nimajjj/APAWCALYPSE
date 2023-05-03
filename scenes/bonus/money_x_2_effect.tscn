@@ -6,3 +6,6 @@
 [node name="MoneyX2Effect" instance=ExtResource("1_4kna5")]
 script = ExtResource("2_1aav0")
 effectDuration = 5.0
+
+[node name="EffectDuration" parent="." index="0"]
+wait_time = 5.0

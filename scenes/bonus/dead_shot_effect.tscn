@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cbts0v17ff3ye"]
+
+[ext_resource type="PackedScene" uid="uid://dhhkjbore0vgo" path="res://scenes/bonus/i_bonus_effect.tscn" id="1_nevuq"]
+[ext_resource type="Script" path="res://scripts/bonus/dead_shot_effect.gd" id="2_do5mp"]
+
+[node name="DeadShotEffect" instance=ExtResource("1_nevuq")]
+script = ExtResource("2_do5mp")
+
+[node name="EffectDuration" parent="." index="0"]
+wait_time = 5.0

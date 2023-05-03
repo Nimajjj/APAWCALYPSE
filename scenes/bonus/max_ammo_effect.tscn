@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cqtxd52q368bu"]
+
+[ext_resource type="PackedScene" uid="uid://dhhkjbore0vgo" path="res://scenes/bonus/i_bonus_effect.tscn" id="1_it0di"]
+[ext_resource type="Script" path="res://scripts/bonus/max_ammo_effect.gd" id="2_uuui4"]
+
+[node name="MaxAmmoEffect" instance=ExtResource("1_it0di")]
+script = ExtResource("2_uuui4")
+
+[node name="EffectDuration" parent="." index="0"]
+wait_time = 5.0

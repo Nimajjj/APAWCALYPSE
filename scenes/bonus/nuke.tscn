@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://3jwv43lx1075"]
+
+[ext_resource type="PackedScene" uid="uid://g73qv8040qid" path="res://scenes/bonus/i_bonus.tscn" id="1_iqm3a"]
+[ext_resource type="PackedScene" uid="uid://bcrkgx65r53b8" path="res://scenes/bonus/nuke_effect.tscn" id="2_nn4jn"]
+[ext_resource type="Texture2D" uid="uid://dufgp2haytpu2" path="res://assets/bonus/nuke.png" id="3_soha8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_smbsx"]
+size = Vector2(17, 9)
+
+[node name="Nuke" instance=ExtResource("1_iqm3a")]
+BonusDuration = 5.0
+BonusEffect = ExtResource("2_nn4jn")
+
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(-0.5, 0.5)
+scale = Vector2(0.65625, 0.65625)
+texture = ExtResource("3_soha8")
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_smbsx")

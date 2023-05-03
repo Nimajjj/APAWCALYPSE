@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://bcdrjscwenplh"]
+
+[ext_resource type="PackedScene" uid="uid://g73qv8040qid" path="res://scenes/bonus/i_bonus.tscn" id="1_npjgd"]
+[ext_resource type="PackedScene" uid="uid://cqtxd52q368bu" path="res://scenes/bonus/max_ammo_effect.tscn" id="2_1wovk"]
+[ext_resource type="Texture2D" uid="uid://dlpjks6ytxysv" path="res://assets/bonus/max-ammo.png" id="3_p4m75"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_smbsx"]
+size = Vector2(19, 17)
+
+[node name="MaxAmmo" instance=ExtResource("1_npjgd")]
+BonusDuration = 5.0
+BonusEffect = ExtResource("2_1wovk")
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("3_p4m75")
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2(0.5, -2.5)
+shape = SubResource("RectangleShape2D_smbsx")

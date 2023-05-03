@@ -20,8 +20,7 @@ func _effect() -> void:
 	pass # override
 
 
-
 func end_effect() -> void:
 	print("end_effect")
-	get_parent().active_bonus.erase(self)
+	get_parent().active_bonus.erase(self.name.trim_suffix("Effect"))
 	queue_free()

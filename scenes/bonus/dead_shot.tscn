@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://dh5kmhabjey0"]
+
+[ext_resource type="PackedScene" uid="uid://g73qv8040qid" path="res://scenes/bonus/i_bonus.tscn" id="1_p0fbo"]
+[ext_resource type="PackedScene" uid="uid://cbts0v17ff3ye" path="res://scenes/bonus/dead_shot_effect.tscn" id="2_p8f5y"]
+[ext_resource type="Texture2D" uid="uid://d1jdm2fix3dvt" path="res://assets/bonus/deadshot.png" id="3_mcrak"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_smbsx"]
+size = Vector2(20, 15)
+
+[node name="DeadShot" instance=ExtResource("1_p0fbo")]
+BonusDuration = 5.0
+BonusEffect = ExtResource("2_p8f5y")
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("3_mcrak")
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2(0, -1.5)
+shape = SubResource("RectangleShape2D_smbsx")

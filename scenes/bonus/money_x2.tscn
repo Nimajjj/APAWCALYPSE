@@ -2,17 +2,18 @@
 
 [ext_resource type="PackedScene" uid="uid://g73qv8040qid" path="res://scenes/bonus/i_bonus.tscn" id="1_xwx21"]
 [ext_resource type="PackedScene" uid="uid://dsccl8ka76803" path="res://scenes/bonus/money_x_2_effect.tscn" id="2_5whbc"]
-[ext_resource type="Texture2D" uid="uid://dtgcjnfisgl7o" path="res://assets/debug/light.png" id="2_ppt1q"]
+[ext_resource type="Texture2D" uid="uid://plee12n8ho6x" path="res://assets/bonus/money-x2.png" id="3_gfi8k"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_8ikw7"]
-radius = 16.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_smbsx"]
+size = Vector2(20, 17)
 
 [node name="MoneyX2" instance=ExtResource("1_xwx21")]
 BonusDuration = 10.0
 BonusEffect = ExtResource("2_5whbc")
 
 [node name="Sprite2D" parent="." index="0"]
-texture = ExtResource("2_ppt1q")
+texture = ExtResource("3_gfi8k")
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
-shape = SubResource("CircleShape2D_8ikw7")
+position = Vector2(0, -2.5)
+shape = SubResource("RectangleShape2D_smbsx")
