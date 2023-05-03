@@ -1,4 +1,4 @@
-[gd_scene load_steps=84 format=3 uid="uid://bm50l1y58hh1f"]
+[gd_scene load_steps=83 format=3 uid="uid://bm50l1y58hh1f"]
 
 [ext_resource type="Script" path="res://scripts/map/map.gd" id="1_72a1t"]
 [ext_resource type="PackedScene" uid="uid://coesa2k8edyng" path="res://scenes/tile_maps/tile_map_test.tscn" id="2_kpmfk"]
@@ -12,8 +12,8 @@
 [ext_resource type="PackedScene" uid="uid://bytkjmnlimjdj" path="res://scenes/weapon/ak47.tscn" id="10_3chnx"]
 [ext_resource type="PackedScene" uid="uid://dfyqiwfcotw5e" path="res://scenes/weapon/mp5.tscn" id="11_dbqg0"]
 [ext_resource type="PackedScene" uid="uid://cnovlywgf3473" path="res://scenes/weapon/pistol.tscn" id="12_a6chr"]
+[ext_resource type="PackedScene" uid="uid://brfif4wd4q5ha" path="res://scenes/weapon/sniper.tscn" id="13_go1ip"]
 [ext_resource type="PackedScene" uid="uid://bgdbxs7eywq16" path="res://scenes/weapon/shotgun.tscn" id="13_xhu66"]
-[ext_resource type="PackedScene" uid="uid://brfif4wd4q5ha" path="res://scenes/weapon/sniper.tscn" id="14_u6qoh"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_idfa2"]
 
@@ -558,7 +558,7 @@ weapon_scene = ExtResource("13_xhu66")
 
 [node name="WeaponRack6" parent="." instance=ExtResource("7_qgfxu")]
 position = Vector2(176, 46)
-weapon_scene = ExtResource("14_u6qoh")
+weapon_scene = ExtResource("13_go1ip")
 
 [node name="MisteryBox" parent="." instance=ExtResource("9_bnshr")]
 position = Vector2(82, 219)

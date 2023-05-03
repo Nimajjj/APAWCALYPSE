@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dhhkjbore0vgo"]
+
+[node name="IBonusEffect" type="Node2D"]
+
+[node name="EffectDuration" type="Timer" parent="."]
+one_shot = true

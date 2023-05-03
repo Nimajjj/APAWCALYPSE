@@ -20,7 +20,7 @@ enum PC_State { IDLE, MOVE, INTERACT, DOWN, DEAD }
 var weapon: IWeapon = null
 var aiming_at: Vector2 = Vector2.ZERO
 var state: PC_State = PC_State.IDLE
-var active_bonus: Array[IBonus] = []
+var active_bonus: Array[String] = []
 var interactible_in_range: Array[Interactible] = []
 var direction = Vector2.ZERO
 var reloading: bool = false

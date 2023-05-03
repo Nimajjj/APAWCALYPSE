@@ -38,6 +38,7 @@ func _process(_delta):
 		_text += "Bullet Stock: " + str(Global.players[0].weapon.bullet_stock) + "\n"
 		_text += "Max Bullet Stock: " + str(Global.players[0].weapon.max_bullet_stock) + "\n"
 		_text += "Stock Factor: " + str(Global.players[0].weapon.stock_factor) + "\n"
+		_text += "Active Bonuses : " + str(Global.players[0].active_bonus) + "\n"
 
 	DebugLabel.text = _text
 

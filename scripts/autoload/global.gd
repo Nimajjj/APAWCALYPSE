@@ -6,6 +6,7 @@ var game: Game = null
 var map: Map = null
 var in_game_ui: CanvasLayer = null
 var blood_container: Node2D = null
+var fabric_bonus: Node2D = null
 
 
 var players: Array[IPlayer] = []

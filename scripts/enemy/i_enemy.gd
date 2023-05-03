@@ -2,7 +2,7 @@ class_name IEnemy
 extends CharacterBody2D
 
 var blood_effect_scene: PackedScene = preload("res://scenes/effects/gpu_blood_effect.tscn")
-
+var bonus_scene: PackedScene = preload("res://scenes/bonus/i_bonus.tscn")
 
 var dead: bool = false
 var slowed: bool = false
@@ -90,5 +90,9 @@ func dies(shooter: IPlayer) -> void:
 		get_parent().get_parent().is_last_wave_dead()
 		
 		Sprite.material.set_shader_parameter("flash_modifier", 0.0)
+
+		if randi_range(0, 1) == 0: #todo: increase drop rate (low drop rate to test)
+			print("spawn bonus")
+			Global.fabric_bonus.spawn_bonus(global_position)
 		
 		queue_free()

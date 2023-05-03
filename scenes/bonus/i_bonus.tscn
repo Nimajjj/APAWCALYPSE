@@ -4,3 +4,14 @@
 
 [node name="IBonus" type="Node2D"]
 script = ExtResource("1_y7h5q")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+
+[node name="DispawnTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]

@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cx15vvox6qa4r" path="res://scenes/weapon/i_weapon.tscn" id="1_8kl0v"]
 [ext_resource type="Script" path="res://scripts/weapon/sniper.gd" id="2_jpmer"]
 [ext_resource type="PackedScene" uid="uid://e38wk0wf50fq" path="res://scenes/bullet/bullet.tscn" id="3_1o6i4"]
-[ext_resource type="PackedScene" uid="uid://co7xkly0r22ux" path="res://scenes/effects/shoot_effect.tscn" id="4_hea7r"]
+[ext_resource type="PackedScene" path="res://scenes/effects/shoot_effect.tscn" id="4_hea7r"]
 [ext_resource type="Texture2D" uid="uid://bi6jqk3khtl76" path="res://assets/weapons/sniper.png" id="4_odsjv"]
 
 [node name="Sniper" instance=ExtResource("1_8kl0v")]
