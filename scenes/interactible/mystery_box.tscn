@@ -1,12 +1,12 @@
 [gd_scene load_steps=4 format=3 uid="uid://deh0ejmvq7sma"]
 
-[ext_resource type="PackedScene" uid="uid://opcyl153ve03" path="res://scenes/interactible/interactible.tscn" id="1_7rslg"]
-[ext_resource type="Texture2D" uid="uid://dwnplfijl1c56" path="res://assets/weapons/weapons.png" id="2_p7nge"]
+[ext_resource type="PackedScene" uid="uid://dihhgl1j62h8t" path="res://scenes/interactible/interactible.tscn" id="1_ns6kj"]
+[ext_resource type="Texture2D" uid="uid://dwnplfijl1c56" path="res://assets/weapons/weapons.png" id="2_2mk2o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3ydjm"]
 size = Vector2(48, 48)
 
-[node name="MisteryBox" instance=ExtResource("1_7rslg")]
+[node name="MisteryBox" instance=ExtResource("1_ns6kj")]
 
 [node name="Sprite2D" parent="." index="0"]
 position = Vector2(0, 0)
@@ -18,7 +18,7 @@ shape = SubResource("RectangleShape2D_3ydjm")
 [node name="ShuffleWeapon" type="Sprite2D" parent="." index="2"]
 visible = false
 position = Vector2(0, -24)
-texture = ExtResource("2_p7nge")
+texture = ExtResource("2_2mk2o")
 region_enabled = true
 region_rect = Rect2(0, 0, 32, 32)
 
@@ -27,6 +27,7 @@ wait_time = 0.25
 
 [node name="SecondTimer" type="Timer" parent="." index="4"]
 wait_time = 10.0
+one_shot = true
 
 [connection signal="body_entered" from="InteractionArea2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="InteractionArea2D" to="." method="_on_area_2d_body_exited"]

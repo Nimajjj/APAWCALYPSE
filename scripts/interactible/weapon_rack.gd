@@ -14,7 +14,6 @@ func _ready():
 	weapon.position.y += sprite.offset.y
 	weapon.z_index = 1
 	add_child(weapon)
-	
 	message = "Press [E] to buy {0} for {1}$".format([weapon.name, price])
 
 

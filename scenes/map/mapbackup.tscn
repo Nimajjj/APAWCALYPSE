@@ -1,4 +1,4 @@
-[gd_scene load_steps=84 format=3 uid="uid://blwpppkr3ge0b"]
+[gd_scene load_steps=83 format=3 uid="uid://bm50l1y58hh1f"]
 
 [ext_resource type="Script" path="res://scripts/map/map.gd" id="1_72a1t"]
 [ext_resource type="PackedScene" uid="uid://coesa2k8edyng" path="res://scenes/tile_maps/tile_map_test.tscn" id="2_kpmfk"]
@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://blhpxsfuysnls" path="res://scenes/interactible/door.tscn" id="6_7i11v"]
 [ext_resource type="PackedScene" uid="uid://bkmuprlamyren" path="res://scenes/interactible/weapon_rack.tscn" id="7_qgfxu"]
 [ext_resource type="PackedScene" uid="uid://du2qfi4navyj5" path="res://scenes/weapon/machinegun.tscn" id="8_6dtvr"]
-[ext_resource type="PackedScene" uid="uid://deh0ejmvq7sma" path="res://scenes/interactible/mistery_box.tscn" id="9_bnshr"]
 [ext_resource type="PackedScene" uid="uid://bytkjmnlimjdj" path="res://scenes/weapon/ak47.tscn" id="10_3chnx"]
 [ext_resource type="PackedScene" uid="uid://dfyqiwfcotw5e" path="res://scenes/weapon/mp5.tscn" id="11_dbqg0"]
 [ext_resource type="PackedScene" uid="uid://cnovlywgf3473" path="res://scenes/weapon/pistol.tscn" id="12_a6chr"]
@@ -537,9 +536,6 @@ weapon_scene = ExtResource("8_6dtvr")
 
 [node name="Sprite2D" parent="WeaponRack" index="0"]
 offset = Vector2(0, -8)
-
-[node name="MisteryBox" parent="." instance=ExtResource("9_bnshr")]
-position = Vector2(74, 215)
 
 [node name="WeaponRack2" parent="." instance=ExtResource("7_qgfxu")]
 position = Vector2(35, 46)
