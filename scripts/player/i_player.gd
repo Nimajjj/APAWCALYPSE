@@ -35,6 +35,7 @@ var shaking = false
 @onready var Hitbox = $Hitbox
 @onready var HitTimer = $HitTimer
 @onready var FlashTimer = $FlashTimer
+@onready var raycast = $RayCast2D
 
 
 func _ready() -> void:
@@ -160,10 +161,14 @@ func _inputs_interact() -> void:
 func receive_knockback(damage_source_pos: Vector2) -> void:
 	knockback_direction = (position - damage_source_pos).normalized()
 	knockback_force = 1000
-	position += knockback_direction * knockback_force * 0.01
+	raycast.target_position = (knockback_direction * (knockback_force * 0.01)) * 1.1
+	raycast.force_raycast_update()
+	if(!raycast.is_colliding()):
+		position += knockback_direction * knockback_force * 0.01
 
 
-func shake_camera(duration: int, offset_x: float, offset_y: float, angle: float):
+
+func shake_camera(duration: int, offset_x: float, offset_y: float, angle: float) -> void:
 	if shaking:
 		return
 	shaking = true
@@ -272,8 +277,8 @@ func _dead_state() -> void:
 
 func _camera_follow_mouse() -> void:
 	var mouse_pos = get_global_mouse_position()
-	Camera.offset.x = (mouse_pos.x - global_position.x) / (1280.0 / 125.0)
-	Camera.offset.y = (mouse_pos.y - global_position.y) / (720.0 / 125.0)
+	Camera.offset.x = ((mouse_pos.x - global_position.x) / (1280.0 / 125.0)) * 0.2
+	Camera.offset.y = ((mouse_pos.y - global_position.y) / (720.0 / 125.0)) * 0.2
 
 
 func _spawn_default_weapon() -> void:

@@ -46,3 +46,5 @@ libraries = {
 
 [node name="HitTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
