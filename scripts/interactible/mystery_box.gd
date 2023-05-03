@@ -20,7 +20,6 @@ var weapons_scenes: Array[PackedScene] = []
 var weapon : IWeapon = null
 
 func _ready():
-	change_position()
 	message = "Press [E] to open the box"
 	weapons_scenes.append(preload("res://scenes/weapon/ak47.tscn"))
 	weapons_scenes.append(preload("res://scenes/weapon/mp5.tscn"))

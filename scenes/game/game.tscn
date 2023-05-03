@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cde0l3nccdl6y" path="res://scenes/player/fabric_player.tscn" id="3_5lw4k"]
 [ext_resource type="PackedScene" uid="uid://14rkgn2ti7cc" path="res://scenes/player/bada-boom.tscn" id="3_tjkv0"]
 [ext_resource type="PackedScene" uid="uid://gqx8g8aqgnj3" path="res://scenes/ui/in_game_ui.tscn" id="4_ovap8"]
-[ext_resource type="PackedScene" uid="uid://blwpppkr3ge0b" path="res://scenes/map/mapbackup.tscn" id="7_5ahoo"]
+[ext_resource type="PackedScene" uid="uid://bm50l1y58hh1f" path="res://scenes/map/mapbackup.tscn" id="7_5ahoo"]
 [ext_resource type="PackedScene" uid="uid://cy3kakabvwgxc" path="res://scenes/spawner/i_spawner.tscn" id="7_u6g5j"]
 [ext_resource type="Shader" path="res://scenes/game/game.gdshader" id="9_xwh7v"]
 

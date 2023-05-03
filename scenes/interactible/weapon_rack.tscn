@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bkmuprlamyren"]
 
-[ext_resource type="PackedScene" uid="uid://opcyl153ve03" path="res://scenes/interactible/interactible.tscn" id="1_awf3u"]
+[ext_resource type="PackedScene" uid="uid://dihhgl1j62h8t" path="res://scenes/interactible/interactible.tscn" id="1_awf3u"]
 [ext_resource type="Script" path="res://scripts/interactible/weapon_rack.gd" id="2_t1gbp"]
 [ext_resource type="Texture2D" uid="uid://br1jlnqphca77" path="res://assets/interactibles/weapon_rackt.png" id="4_onbo7"]
 

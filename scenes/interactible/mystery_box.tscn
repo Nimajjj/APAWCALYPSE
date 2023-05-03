@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://deh0ejmvq7sma"]
+[gd_scene load_steps=5 format=3 uid="uid://deh0ejmvq7sma"]
 
 [ext_resource type="PackedScene" uid="uid://dihhgl1j62h8t" path="res://scenes/interactible/interactible.tscn" id="1_ns6kj"]
 [ext_resource type="Texture2D" uid="uid://dwnplfijl1c56" path="res://assets/weapons/weapons.png" id="2_2mk2o"]
+[ext_resource type="Texture2D" uid="uid://cdmlaq7ooxm8h" path="res://assets/interactibles/bonuses.png" id="2_gpjgq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3ydjm"]
 size = Vector2(48, 48)
@@ -11,6 +12,7 @@ size = Vector2(48, 48)
 [node name="Sprite2D" parent="." index="0"]
 position = Vector2(0, 0)
 scale = Vector2(1, 1)
+texture = ExtResource("2_gpjgq")
 
 [node name="CollisionShape2D" parent="InteractionArea2D" index="0"]
 shape = SubResource("RectangleShape2D_3ydjm")
