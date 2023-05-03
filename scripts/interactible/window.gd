@@ -16,16 +16,13 @@ func activate(player: IPlayer) -> void:
 	player.money += 10
 	_update_sprite()
 
-
 func take_damage(_damage: float = 1) -> void:
 	health -= 1
 	if health <= 0:
 		health = 0
 
-
 func can_activate(player: IPlayer) -> bool:
 	return health != 3
-
 
 func _update_sprite() -> void:
 	sprite.texture.region.position.y = (3 * 32) - health * 32
