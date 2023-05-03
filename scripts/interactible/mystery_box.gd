@@ -68,6 +68,7 @@ func _on_timer_timeout():
 	t += 1
 	shuffle_weapon.visible = true 
 	shuffle_weapon.region_rect.position.y += 32
+	shuffle_weapon.z_index = 2
 	if 	shuffle_weapon.region_rect.position.y > 96 :
 		shuffle_weapon.region_rect.position.y = 0
 	if t == 10 : 
@@ -76,6 +77,7 @@ func _on_timer_timeout():
 		i = randi() % weapons_scenes.size() 
 		weapon = weapons_scenes[i].instantiate()
 		weapon.position = shuffle_weapon.position
+		weapon.z_index = 2
 		add_child(weapon)
 		message = "Press [E] to take {0}".format([weapon.name])
 		t = 0 

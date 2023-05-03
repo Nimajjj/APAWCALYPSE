@@ -1,4 +1,4 @@
-[gd_scene load_steps=83 format=3 uid="uid://b2h2yv70nnfm"]
+[gd_scene load_steps=83 format=3 uid="uid://uulop00p7rqj"]
 
 [ext_resource type="Script" path="res://scripts/map/map.gd" id="1_y6ia0"]
 [ext_resource type="PackedScene" uid="uid://coesa2k8edyng" path="res://scenes/tile_maps/tile_map_test.tscn" id="2_tkkrl"]
@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://blhpxsfuysnls" path="res://scenes/interactible/door.tscn" id="6_mx7iy"]
 [ext_resource type="PackedScene" uid="uid://bkmuprlamyren" path="res://scenes/interactible/weapon_rack.tscn" id="7_yc43g"]
 [ext_resource type="PackedScene" uid="uid://du2qfi4navyj5" path="res://scenes/weapon/machinegun.tscn" id="8_4u84u"]
-[ext_resource type="PackedScene" path="res://scenes/interactible/mistery_box.tscn" id="9_khrxj"]
+[ext_resource type="PackedScene" uid="uid://deh0ejmvq7sma" path="res://scenes/interactible/mystery_box.tscn" id="9_khrxj"]
 [ext_resource type="PackedScene" uid="uid://bytkjmnlimjdj" path="res://scenes/weapon/ak47.tscn" id="10_gu8yx"]
 [ext_resource type="PackedScene" uid="uid://dfyqiwfcotw5e" path="res://scenes/weapon/mp5.tscn" id="11_0h71i"]
 [ext_resource type="PackedScene" uid="uid://cnovlywgf3473" path="res://scenes/weapon/pistol.tscn" id="12_d2j34"]
