@@ -7,4 +7,4 @@
 script = ExtResource("2_uuui4")
 
 [node name="EffectDuration" parent="." index="0"]
-wait_time = 5.0
+wait_time = 0.01

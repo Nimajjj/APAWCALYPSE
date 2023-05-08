@@ -13,7 +13,7 @@ func apply_effect() -> void:
 	timer.start()
 	if get_parent() is IPlayer:
 		get_parent().active_bonus.append(self.name.trim_suffix("Effect"))
-	_effect()
+		_effect()
 
 
 func _effect() -> void:
@@ -21,6 +21,4 @@ func _effect() -> void:
 
 
 func end_effect() -> void:
-	print("end_effect")
-	get_parent().active_bonus.erase(self.name.trim_suffix("Effect"))
-	queue_free()
+	pass # override

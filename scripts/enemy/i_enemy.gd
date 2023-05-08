@@ -45,9 +45,11 @@ func take_damage(dmg: int, shooter: IPlayer) -> void:
 	HealthBar.visible = true
 	Sprite.material.set_shader_parameter("flash_modifier", 1.0)
 	timer.start()
+	if(shooter.dead_shot):
+		dies(shooter)
+		return
 	
 	slow()
-	
 	health -= dmg
 	if health <= 0:
 		dies(shooter)

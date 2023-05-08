@@ -28,6 +28,9 @@ var score: int = 0
 var down_timer: float = 0
 var shaking = false
 
+var money_x2: bool = false
+var dead_shot: bool = false
+
 @onready var Sprite = $Sprite2D
 @onready var AnimPlayer = $AnimationPlayer
 @onready var Camera = $Camera2D
@@ -103,8 +106,9 @@ func heal(heal: float) -> void:
 
 
 func gain_money(money: int) -> void:
-	self.money += money
-	
+	if(money_x2): self.money += money * 2
+	else: self.money += money
+
 	
 func gain_score(score: int) -> void:
 	Global.game.score += score
@@ -165,7 +169,6 @@ func receive_knockback(damage_source_pos: Vector2) -> void:
 	raycast.force_raycast_update()
 	if(!raycast.is_colliding()):
 		position += knockback_direction * knockback_force * 0.01
-
 
 
 func shake_camera(duration: int, offset_x: float, offset_y: float, angle: float) -> void:
