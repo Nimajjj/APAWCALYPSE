@@ -18,7 +18,7 @@ func enable() -> void:
 	enabled = true
 	timer.connect("timeout", _on_timer_timeout)
 
-func start(units_to_spawn: int, is_boss: bool) -> void:
+func start_spawner(units_to_spawn: int, is_boss: bool) -> void:
 	units_left_to_spawn = units_to_spawn
 	timer.start()
 	timer.wait_time = spawn_delay
