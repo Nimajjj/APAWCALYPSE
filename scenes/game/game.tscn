@@ -23,6 +23,12 @@ wait_time = 0.1
 [node name="WaveTimer" type="Timer" parent="."]
 wait_time = 0.001
 
+[node name="FabricPlayer" parent="." instance=ExtResource("3_5lw4k")]
+position = Vector2(750, 633)
+player_scene = ExtResource("3_tjkv0")
+
+[node name="FabricBonus" parent="." instance=ExtResource("8_c7hem")]
+
 [node name="InGameUI" parent="." instance=ExtResource("4_ovap8")]
 
 [node name="ShaderRect" type="ColorRect" parent="InGameUI"]
@@ -34,12 +40,6 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0.109804, 0.109804, 0.109804, 0.25098)
-
-[node name="FabricPlayer" parent="." instance=ExtResource("3_5lw4k")]
-position = Vector2(758, 555)
-player_scene = ExtResource("3_tjkv0")
-
-[node name="FabricBonus" parent="." instance=ExtResource("8_c7hem")]
 
 [node name="Map" parent="." instance=ExtResource("8_v07o2")]
 

@@ -1,19 +1,20 @@
 [gd_scene load_steps=7 format=3 uid="uid://p4js65rf6ci7"]
 
 [ext_resource type="PackedScene" uid="uid://dihhgl1j62h8t" path="res://scenes/interactible/interactible.tscn" id="1_6row8"]
-[ext_resource type="Texture2D" uid="uid://ce1eeouig7swl" path="res://assets/tilesheet/windows.png" id="2_5vlrf"]
 [ext_resource type="Script" path="res://scripts/interactible/window.gd" id="2_qygae"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ksokn"]
-atlas = ExtResource("2_5vlrf")
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_00qgb"]
+load_path = "res://.godot/imported/windows.png-afb923fdd61133e09f4ebebb18e5ef94.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n3668"]
+atlas = SubResource("CompressedTexture2D_00qgb")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wsj2k"]
-size = Vector2(32, 9.8125)
+size = Vector2(32, 9.5)
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sk168"]
-radius = 3.0
-height = 10.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c65wt"]
+size = Vector2(24, 8)
 
 [node name="Window" instance=ExtResource("1_6row8")]
 z_index = 2
@@ -24,9 +25,10 @@ script = ExtResource("2_qygae")
 [node name="Sprite2D" parent="." index="0"]
 position = Vector2(0, -16)
 scale = Vector2(1, 1)
-texture = SubResource("AtlasTexture_ksokn")
+texture = SubResource("AtlasTexture_n3668")
 
 [node name="CollisionShape2D" parent="InteractionArea2D" index="0"]
+position = Vector2(0, 4.75)
 shape = SubResource("RectangleShape2D_wsj2k")
 debug_color = Color(0.701961, 0.537255, 0, 0.419608)
 
@@ -36,9 +38,8 @@ wait_time = 3.0
 [node name="HitBox" type="Area2D" parent="." index="3"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" index="0"]
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_sk168")
-debug_color = Color(0.976471, 0, 0.403922, 0.419608)
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_c65wt")
 
 [connection signal="body_entered" from="InteractionArea2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="InteractionArea2D" to="." method="_on_area_2d_body_exited"]

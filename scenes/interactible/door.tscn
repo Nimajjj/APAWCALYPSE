@@ -5,13 +5,13 @@
 [ext_resource type="Texture2D" uid="uid://nfa4ys2t1vnq" path="res://assets/interactibles/door_closse_front.png" id="3_mvlsd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o1wjk"]
-size = Vector2(34, 51)
+size = Vector2(64, 24)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w4qeg"]
-size = Vector2(6, 52)
+size = Vector2(64, 8)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_87bx7"]
-polygon = PackedVector2Array(-14, 23, -8, 23, -8, -3, -8, -29, -14, -29, -14, 11)
+polygon = PackedVector2Array(-32, 14, 9, 14, 32, 14, 32, 8, -32, 8)
 
 [node name="Door" instance=ExtResource("1_oo8cf")]
 z_index = 1

@@ -5,7 +5,7 @@ extends Interactible
 @export var spawner_id: int = -1
 
 
-func _ready(): 
+func _ready():
 	message = "Press [E] to open the door for {0}$".format([price])
 
 func activate(player: IPlayer) -> void:
@@ -14,10 +14,13 @@ func activate(player: IPlayer) -> void:
 		player.money -= price
 		visible	 = false
 		
-		queue_free()
-		
-		# activate spawners with spawner_id (olivier)
+		if spawner_id != -1:
+			var spawners := get_tree().get_nodes_in_group("spawners")
+			for spawner in spawners:
+				if spawner.id == spawner_id:
+					spawner.enabled = true
 
+		queue_free()
 
 func can_activate(player: IPlayer) -> bool:
 	return player.money >= price && !open

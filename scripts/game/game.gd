@@ -21,13 +21,13 @@ func _ready():
 func start_game() -> void:
 	_new_player()
 	GameTimer.start()
+	
 	var spawners := get_tree().get_nodes_in_group("spawners")
 	for spawner in spawners:
 		Global.spawners.append(spawner as ISpawner)
-
-
+					
 	new_wave()
-	
+
 func new_wave():
 	if !wave_activated:
 		WaveTimer.start()
@@ -38,7 +38,7 @@ func new_wave():
 		for spawner in Global.spawners:
 			if spawner.enabled:
 				enabled_spawner += 1
-		Global.units_left_to_spawn = enabled_spawner * 5 * wave
+		Global.units_left_to_spawn = enabled_spawner * 3 * wave
 	
 func end_game() -> void:
 	wave = 0
