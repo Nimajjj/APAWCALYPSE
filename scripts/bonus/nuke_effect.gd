@@ -7,13 +7,11 @@ func _effect() -> void:
 
 
 func end_effect() -> void:
-	for child in Global.game.get_children():
-		if "ISpawner" in child.name:
-			var fabric_enemy = child.get_node("FabricEnemy")
-			if fabric_enemy != null:
-				for enemy_child in fabric_enemy.get_children():
-					if enemy_child is IEnemy:
-						enemy_child.dies(get_parent())
+#	print(Global.spawners)
+
+	var enemies := get_tree().get_nodes_in_group("enemy")
+	for enemy in enemies:
+		enemy.dies(get_parent())
 
 	print("Nuke ended")
 	get_parent().active_bonus.erase((self.name.trim_suffix("Effect").to_lower()))
