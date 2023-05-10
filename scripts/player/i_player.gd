@@ -171,6 +171,7 @@ func receive_knockback(damage_source_pos: Vector2) -> void:
 		position += knockback_direction * knockback_force * 0.01
 
 
+
 func shake_camera(duration: int, offset_x: float, offset_y: float, angle: float) -> void:
 	if shaking:
 		return
