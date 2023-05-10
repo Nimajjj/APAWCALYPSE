@@ -16,7 +16,7 @@ height = 24.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_huxy6"]
 radius = 4.0
-height = 16.0
+height = 14.0
 
 [sub_resource type="Animation" id="Animation_81sqb"]
 resource_name = "zombie_walk"
@@ -41,7 +41,7 @@ _data = {
 
 [node name="Zombie" instance=ExtResource("1_5bvas")]
 script = ExtResource("2_6bqtj")
-max_health = 200
+max_health = 250
 speed = 2000
 money = 20
 damage = 25
@@ -51,7 +51,7 @@ material = SubResource("ShaderMaterial_vrhw5")
 position = Vector2(0, -8)
 texture = ExtResource("3_gxn0d")
 region_enabled = true
-region_rect = Rect2(32, 0, 32, 32)
+region_rect = Rect2(0, 0, 32, 32)
 
 [node name="CollisionShape2D" parent="HurtBox" index="0"]
 position = Vector2(0, -8)

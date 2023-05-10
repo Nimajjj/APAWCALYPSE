@@ -1,8 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://c56m1yso7il3u"]
+[gd_scene load_steps=12 format=3 uid="uid://bl4m1pul0pe07"]
 
 [ext_resource type="PackedScene" uid="uid://bwe1kad6agad3" path="res://scenes/enemy/i_enemy.tscn" id="1_sa5ur"]
 [ext_resource type="Texture2D" uid="uid://duqpj4n3ksk4n" path="res://assets/enemies/bodies/SpriteSheetBodies.png" id="2_hwghg"]
-[ext_resource type="Script" path="res://scenes/enemy/big_zombie.gd" id="2_tt2hw"]
+[ext_resource type="Script" path="res://scripts/enemy/big_zombie.gd" id="2_ndys7"]
 
 [sub_resource type="Shader" id="Shader_7oj4d"]
 code = "shader_type canvas_item;
@@ -35,21 +35,6 @@ height = 32.0
 radius = 4.0
 height = 18.0
 
-[sub_resource type="Animation" id="Animation_c8jf2"]
-resource_name = "big_zombie_walk"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../../Sprite2D:texture:region")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Rect2(0, 64, 32, 32)]
-}
-
 [sub_resource type="Animation" id="Animation_coldp"]
 loop_mode = 1
 tracks/0/type = "value"
@@ -65,6 +50,21 @@ tracks/0/keys = {
 "values": [Rect2(0, 64, 32, 32), Rect2(32, 64, 32, 32)]
 }
 
+[sub_resource type="Animation" id="Animation_c8jf2"]
+resource_name = "big_zombie_walk"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../Sprite2D:texture:region")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 64, 32, 32)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2v8e2"]
 _data = {
 "RESET": SubResource("Animation_coldp"),
@@ -72,7 +72,7 @@ _data = {
 }
 
 [node name="BigZombie" instance=ExtResource("1_sa5ur")]
-script = ExtResource("2_tt2hw")
+script = ExtResource("2_ndys7")
 max_health = 5000
 speed = 1500
 money = 75
@@ -97,6 +97,7 @@ shape = SubResource("CapsuleShape2D_liixd")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
 root_node = NodePath("../HurtBox/CollisionShape2D")
+autoplay = "big_zombie_walk"
 libraries = {
 "": SubResource("AnimationLibrary_2v8e2")
 }
