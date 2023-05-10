@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://bd3ty4evprf7v"]
+
+[ext_resource type="PackedScene" uid="uid://p4js65rf6ci7" path="res://scenes/interactible/window.tscn" id="1_kw3fk"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_jicfu"]
+load_path = "res://.godot/imported/windows.png-afb923fdd61133e09f4ebebb18e5ef94.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4agju"]
+atlas = SubResource("CompressedTexture2D_jicfu")
+region = Rect2(32, 0, 32, 32)
+
+[node name="SideWindow" instance=ExtResource("1_kw3fk")]
+
+[node name="Sprite2D" parent="." index="0"]
+texture = SubResource("AtlasTexture_4agju")
