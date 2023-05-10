@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://s6vhpuquljxl"
-path="res://.godot/imported/UI.png-5bfbaf1e2335677e4ea1cffe2f7b8cca.ctex"
+uid="uid://85cfutdsqk6"
+path="res://.godot/imported/reload_pump.png-add22bbcbaf0b2d580b7c644e513d6c2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ui/overlay/UI.png"
-dest_files=["res://.godot/imported/UI.png-5bfbaf1e2335677e4ea1cffe2f7b8cca.ctex"]
+source_file="res://assets/interactibles/reload_pump.png"
+dest_files=["res://.godot/imported/reload_pump.png-add22bbcbaf0b2d580b7c644e513d6c2.ctex"]
 
 [params]
 

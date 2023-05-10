@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://cwcwy8abhf3l8"]
+
+[ext_resource type="PackedScene" uid="uid://dihhgl1j62h8t" path="res://scenes/interactible/interactible.tscn" id="1_4miet"]
+[ext_resource type="Script" path="res://scripts/interactible/speed_pump.gd" id="2_np1sb"]
+[ext_resource type="Texture2D" uid="uid://dxwxjnq6yd7t0" path="res://assets/interactibles/speed_pump.png" id="3_vekfx"]
+
+[node name="SpeedPump" instance=ExtResource("1_4miet")]
+script = ExtResource("2_np1sb")
+price = 300
+nextGain = 1000
+maxSpeed = 38000
+
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(5.96046e-08, 0)
+scale = Vector2(0.439, 0.435)
+texture = ExtResource("3_vekfx")
+region_rect = Rect2(8.07968, 1.94557, 48.2416, 68.5544)
+
+[node name="InteractionArea2D" parent="." index="1"]
+scale = Vector2(1.845, 1.845)
+
+[connection signal="body_entered" from="InteractionArea2D" to="." method="_on_interaction_area_2d_body_entered"]
+[connection signal="body_exited" from="InteractionArea2D" to="." method="_on_interaction_area_2d_body_exited"]

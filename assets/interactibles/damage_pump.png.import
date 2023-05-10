@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://s6vhpuquljxl"
-path="res://.godot/imported/UI.png-5bfbaf1e2335677e4ea1cffe2f7b8cca.ctex"
+uid="uid://dioug1pm1lad2"
+path="res://.godot/imported/damage_pump.png-644b313bdfffaab5ef3c435b81dc9311.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ui/overlay/UI.png"
-dest_files=["res://.godot/imported/UI.png-5bfbaf1e2335677e4ea1cffe2f7b8cca.ctex"]
+source_file="res://assets/interactibles/damage_pump.png"
+dest_files=["res://.godot/imported/damage_pump.png-644b313bdfffaab5ef3c435b81dc9311.ctex"]
 
 [params]
 

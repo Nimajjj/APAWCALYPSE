@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://s6vhpuquljxl"
-path="res://.godot/imported/UI.png-5bfbaf1e2335677e4ea1cffe2f7b8cca.ctex"
+uid="uid://7wv3r842uovf"
+path="res://.godot/imported/health_pump.png-2052d2ae7b3331bde71e4de1d8081d0f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ui/overlay/UI.png"
-dest_files=["res://.godot/imported/UI.png-5bfbaf1e2335677e4ea1cffe2f7b8cca.ctex"]
+source_file="res://assets/interactibles/health_pump.png"
+dest_files=["res://.godot/imported/health_pump.png-2052d2ae7b3331bde71e4de1d8081d0f.ctex"]
 
 [params]
 
