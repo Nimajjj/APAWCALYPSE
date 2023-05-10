@@ -41610,7 +41610,7 @@ sources/20 = SubResource("TileSetAtlasSource_cbh68")
 sources/21 = SubResource("TileSetAtlasSource_gqmgq")
 sources/22 = SubResource("TileSetAtlasSource_7rkq8")
 
-[node name="TileMapTest" type="TileMap"]
+[node name="TileMap" type="TileMap"]
 y_sort_enabled = true
 tile_set = SubResource("TileSet_xaala")
 format = 2

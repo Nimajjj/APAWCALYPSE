@@ -18,12 +18,15 @@ func _enter_tree():
 func _ready():
 	start_game()
 	
+	
 func start_game() -> void:
 	_new_player()
-	GameTimer.start()
-	for i in get_children():
-		if i is ISpawner:
-			Global.spawners.append(i)
+	GameTimer.start()			
+	var spawners := get_tree().get_nodes_in_group("spawners")
+	for spawner in spawners:
+		Global.spawners.append(spawner as ISpawner)
+	
+
 	new_wave()
 	
 func new_wave():

@@ -8,12 +8,14 @@
 size = Vector2(32, 17.25)
 
 [node name="WeaponRack" instance=ExtResource("1_awf3u")]
+position = Vector2(0, -24)
+scale = Vector2(1.5, 1.5)
 script = ExtResource("2_t1gbp")
 price = 100
 weapon_scene = null
 
 [node name="Sprite2D" parent="." index="0"]
-position = Vector2(0, 0)
+position = Vector2(0, -10.6667)
 scale = Vector2(1, 1)
 texture = ExtResource("4_onbo7")
 

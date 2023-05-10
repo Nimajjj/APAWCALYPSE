@@ -1,12 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://bb22ptpaphk3v"]
+[gd_scene load_steps=9 format=3 uid="uid://bb22ptpaphk3v"]
 
 [ext_resource type="Script" path="res://scripts/game/game.gd" id="1_i6dkd"]
 [ext_resource type="PackedScene" uid="uid://cde0l3nccdl6y" path="res://scenes/player/fabric_player.tscn" id="3_5lw4k"]
 [ext_resource type="PackedScene" uid="uid://14rkgn2ti7cc" path="res://scenes/player/bada-boom.tscn" id="3_tjkv0"]
 [ext_resource type="PackedScene" uid="uid://gqx8g8aqgnj3" path="res://scenes/ui/in_game_ui.tscn" id="4_ovap8"]
-[ext_resource type="PackedScene" uid="uid://b2h2yv70nnfm" path="res://scenes/map/mapbackup3.tscn" id="7_0jp62"]
-[ext_resource type="PackedScene" uid="uid://cy3kakabvwgxc" path="res://scenes/spawner/i_spawner.tscn" id="7_u6g5j"]
-[ext_resource type="PackedScene" path="res://scenes/bonus/FabricBonus.tscn" id="8_c7hem"]
+[ext_resource type="PackedScene" uid="uid://b24dnm5eimvai" path="res://scenes/bonus/FabricBonus.tscn" id="8_c7hem"]
+[ext_resource type="PackedScene" uid="uid://df4bjbuh4i7of" path="res://scenes/map/map.tscn" id="8_v07o2"]
 [ext_resource type="Shader" path="res://scenes/game/game.gdshader" id="9_xwh7v"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_u0mf1"]
@@ -24,10 +23,6 @@ wait_time = 0.1
 [node name="WaveTimer" type="Timer" parent="."]
 wait_time = 0.001
 
-[node name="FabricPlayer" parent="." instance=ExtResource("3_5lw4k")]
-position = Vector2(57, 63)
-player_scene = ExtResource("3_tjkv0")
-
 [node name="InGameUI" parent="." instance=ExtResource("4_ovap8")]
 
 [node name="ShaderRect" type="ColorRect" parent="InGameUI"]
@@ -40,17 +35,13 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0.109804, 0.109804, 0.109804, 0.25098)
 
-[node name="ISpawner" parent="." instance=ExtResource("7_u6g5j")]
-position = Vector2(72, -26)
-enabled = true
-
-[node name="ISpawner2" parent="." instance=ExtResource("7_u6g5j")]
-position = Vector2(216, -24)
-enabled = true
-
-[node name="Map2" parent="." instance=ExtResource("7_0jp62")]
+[node name="FabricPlayer" parent="." instance=ExtResource("3_5lw4k")]
+position = Vector2(758, 555)
+player_scene = ExtResource("3_tjkv0")
 
 [node name="FabricBonus" parent="." instance=ExtResource("8_c7hem")]
+
+[node name="Map" parent="." instance=ExtResource("8_v07o2")]
 
 [connection signal="timeout" from="GameTimer" to="." method="_on_game_timer_timeout"]
 [connection signal="timeout" from="WaveTimer" to="." method="_on_wave_timer_timeout"]

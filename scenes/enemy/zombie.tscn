@@ -49,7 +49,6 @@ damage = 25
 [node name="Sprite2D" parent="." index="0"]
 material = SubResource("ShaderMaterial_vrhw5")
 position = Vector2(0, -8)
-scale = Vector2(1, 1.03125)
 texture = ExtResource("3_gxn0d")
 region_enabled = true
 region_rect = Rect2(0, 0, 32, 32)

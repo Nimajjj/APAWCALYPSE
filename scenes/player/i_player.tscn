@@ -19,6 +19,7 @@ shader_parameter/flash_modifier = 0.0
 z_index = 1
 y_sort_enabled = true
 material = SubResource("ShaderMaterial_fceh3")
+scale = Vector2(2, 2)
 
 [node name="CollisionBox" type="CollisionShape2D" parent="."]
 
@@ -30,7 +31,7 @@ material = SubResource("ShaderMaterial_fceh3")
 material = SubResource("ShaderMaterial_i0k62")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(6, 6)
+zoom = Vector2(3, 3)
 
 [node name="DownTimer" type="Timer" parent="."]
 one_shot = true

@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dcvqvja81x13d" path="res://scenes/enemy/fabric_enemy.tscn" id="1_kn2g1"]
 [ext_resource type="Script" path="res://scripts/spawner/i_spawner.gd" id="1_wmlks"]
 
-[node name="ISpawner" type="Node2D"]
+[node name="ISpawner" type="Node2D" groups=["spawners"]]
 script = ExtResource("1_wmlks")
 
 [node name="FabricEnemy" parent="." instance=ExtResource("1_kn2g1")]

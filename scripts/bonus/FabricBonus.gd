@@ -20,4 +20,4 @@ func pick_random_bonus() -> IBonus:
 func spawn_bonus(pos: Vector2) -> void:
 	var bonus = pick_random_bonus()
 	bonus.position = pos
-	Global.map.add_child(bonus)
+	Global.map.call_deferred("add_child", bonus)

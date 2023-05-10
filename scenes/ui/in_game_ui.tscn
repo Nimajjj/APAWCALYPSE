@@ -96,9 +96,9 @@ offset_bottom = 704.0
 text = "APAWCALYPSE - dev"
 
 [node name="InteractibleLabel" type="Label" parent="."]
-offset_top = 576.0
-offset_right = 1280.0
-offset_bottom = 613.0
+offset_top = 920.0
+offset_right = 1920.0
+offset_bottom = 960.0
 theme_override_colors/font_color = Color(0.890196, 0.807843, 0.333333, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
@@ -107,12 +107,13 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="BonusesOverlay" type="TextureRect" parent="."]
-offset_left = 19.0
-offset_top = 618.0
-offset_right = 102.0
-offset_bottom = 642.0
-scale = Vector2(4, 4)
+offset_left = 8.0
+offset_top = 1032.0
+offset_right = 91.0
+offset_bottom = 1056.0
+scale = Vector2(2, 2)
 texture = ExtResource("2_swpd3")
+metadata/_edit_group_ = true
 
 [node name="BonusesHBox" type="HBoxContainer" parent="BonusesOverlay"]
 clip_contents = true
@@ -199,24 +200,24 @@ value = 50.0
 show_percentage = false
 
 [node name="TextureRect" type="TextureRect" parent="."]
-offset_left = 1192.0
-offset_top = 678.0
-offset_right = 1224.0
-offset_bottom = 710.0
+offset_left = 1829.0
+offset_top = 1032.0
+offset_right = 1861.0
+offset_bottom = 1064.0
 scale = Vector2(0.65, 0.65)
 texture = ExtResource("4_nufsj")
 
 [node name="TextureRect2" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(1202, 688)
+position = Vector2(1840, 1040)
 rotation = -6.28319
 texture = ExtResource("5_yj46y")
 
 [node name="MunitionLabel" type="Label" parent="."]
-offset_left = 1059.0
-offset_top = 662.0
-offset_right = 1187.0
-offset_bottom = 710.0
+offset_left = 1696.0
+offset_top = 1016.0
+offset_right = 1824.0
+offset_bottom = 1064.0
 theme_override_colors/font_color = Color(0.890196, 0.807843, 0.333333, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
@@ -225,10 +226,10 @@ text = "12"
 horizontal_alignment = 2
 
 [node name="MunitionLabel2" type="Label" parent="."]
-offset_left = 1217.0
-offset_top = 664.0
-offset_right = 1345.0
-offset_bottom = 712.0
+offset_left = 1854.0
+offset_top = 1018.0
+offset_right = 1982.0
+offset_bottom = 1066.0
 theme_override_colors/font_color = Color(0.890196, 0.807843, 0.333333, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8

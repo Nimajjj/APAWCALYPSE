@@ -27,7 +27,6 @@ func _ready():
 	weapons_scenes.append(preload("res://scenes/weapon/shotgun.tscn"))
 	weapons_scenes.append(preload("res://scenes/weapon/pistol.tscn"))
 	
-	
 
 func activate(player: IPlayer) -> void:
 	if isopened :
@@ -90,12 +89,12 @@ func _on_timer_timeout():
 	
 func change_position():
 	var possible_pos: Array[Vector2] = [
-		Vector2(1382, 7),
-		Vector2(85, 222),
-		Vector2(1231, 390),
-		Vector2(1130, 577),
-		Vector2(184, 316),
-		Vector2(-277, 456),
+		Vector2(984, 626),
+		Vector2(1071, 1321),
+		Vector2(1972, 340),
+		Vector2(3354, 418),
+		Vector2(3071, 1265),
+		Vector2(3310, 1636),
 	]
 	var new_pos: Vector2 = possible_pos[randi() % possible_pos.size()]
 	if new_pos == position:
