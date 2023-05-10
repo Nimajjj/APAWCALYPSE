@@ -1,14 +1,12 @@
-[gd_scene load_steps=83 format=3 uid="uid://uulop00p7rqj"]
+[gd_scene load_steps=81 format=3 uid="uid://b2h2yv70nnfm"]
 
 [ext_resource type="Script" path="res://scripts/map/map.gd" id="1_y6ia0"]
 [ext_resource type="PackedScene" uid="uid://coesa2k8edyng" path="res://scenes/tile_maps/tile_map_test.tscn" id="2_tkkrl"]
 [ext_resource type="Script" path="res://scripts/interactible/door.gd" id="3_34g42"]
 [ext_resource type="PackedScene" uid="uid://627xe4481ujh" path="res://scenes/effects/blood_container.tscn" id="4_cv5ky"]
-[ext_resource type="PackedScene" uid="uid://p4js65rf6ci7" path="res://scenes/interactible/window.tscn" id="5_7as3c"]
 [ext_resource type="PackedScene" uid="uid://blhpxsfuysnls" path="res://scenes/interactible/door.tscn" id="6_mx7iy"]
 [ext_resource type="PackedScene" uid="uid://bkmuprlamyren" path="res://scenes/interactible/weapon_rack.tscn" id="7_yc43g"]
 [ext_resource type="PackedScene" uid="uid://du2qfi4navyj5" path="res://scenes/weapon/machinegun.tscn" id="8_4u84u"]
-[ext_resource type="PackedScene" uid="uid://deh0ejmvq7sma" path="res://scenes/interactible/mystery_box.tscn" id="9_khrxj"]
 [ext_resource type="PackedScene" uid="uid://bytkjmnlimjdj" path="res://scenes/weapon/ak47.tscn" id="10_gu8yx"]
 [ext_resource type="PackedScene" uid="uid://dfyqiwfcotw5e" path="res://scenes/weapon/mp5.tscn" id="11_0h71i"]
 [ext_resource type="PackedScene" uid="uid://cnovlywgf3473" path="res://scenes/weapon/pistol.tscn" id="12_d2j34"]
@@ -252,11 +250,11 @@ position = Vector2(238, -12.0625)
 shape = SubResource("RectangleShape2D_8mbkm")
 
 [node name="CollisionShape2D9" type="CollisionShape2D" parent="WallCollisions"]
-position = Vector2(558, 52.4688)
+position = Vector2(563, 52)
 shape = SubResource("RectangleShape2D_gfcay")
 
 [node name="CollisionShape2D10" type="CollisionShape2D" parent="WallCollisions"]
-position = Vector2(759, 52)
+position = Vector2(766, 52)
 shape = SubResource("RectangleShape2D_aetfx")
 
 [node name="CollisionShape2D19" type="CollisionShape2D" parent="WallCollisions"]
@@ -280,11 +278,11 @@ position = Vector2(1143, -132)
 shape = SubResource("RectangleShape2D_gv01k")
 
 [node name="CollisionShape2D27" type="CollisionShape2D" parent="WallCollisions"]
-position = Vector2(271, 316)
+position = Vector2(273, 314)
 shape = SubResource("RectangleShape2D_t22g8")
 
 [node name="CollisionShape2D42" type="CollisionShape2D" parent="WallCollisions"]
-position = Vector2(327, 155)
+position = Vector2(331, 155)
 shape = SubResource("RectangleShape2D_o3nfn")
 
 [node name="CollisionShape2D43" type="CollisionShape2D" parent="WallCollisions"]
@@ -356,7 +354,7 @@ position = Vector2(1432, 355)
 shape = SubResource("RectangleShape2D_ho6bo")
 
 [node name="CollisionShape2D40" type="CollisionShape2D" parent="WallCollisions"]
-position = Vector2(1463, 611.5)
+position = Vector2(1477, 607)
 shape = SubResource("RectangleShape2D_itmah")
 
 [node name="CollisionShape2D41" type="CollisionShape2D" parent="WallCollisions"]
@@ -404,11 +402,11 @@ position = Vector2(533.194, 42)
 shape = SubResource("RectangleShape2D_f2sgy")
 
 [node name="CollisionShape2D16" type="CollisionShape2D" parent="WallCollisions"]
-position = Vector2(609.903, 170)
+position = Vector2(616, 169)
 shape = SubResource("RectangleShape2D_8yo0l")
 
 [node name="CollisionShape2D17" type="CollisionShape2D" parent="WallCollisions"]
-position = Vector2(731.451, 170)
+position = Vector2(739, 170)
 shape = SubResource("RectangleShape2D_7f5wh")
 
 [node name="CollisionShape2D7" type="CollisionShape2D" parent="WallCollisions"]
@@ -436,7 +434,7 @@ position = Vector2(1203.08, 474)
 shape = SubResource("RectangleShape2D_ji332")
 
 [node name="CollisionShape2D53" type="CollisionShape2D" parent="WallCollisions"]
-position = Vector2(539, 362)
+position = Vector2(542, 361)
 shape = SubResource("RectangleShape2D_82m4u")
 
 [node name="CollisionShape2D54" type="CollisionShape2D" parent="WallCollisions"]
@@ -468,7 +466,7 @@ position = Vector2(163, 506)
 shape = SubResource("RectangleShape2D_eoatd")
 
 [node name="CollisionShape2D63" type="CollisionShape2D" parent="WallCollisions"]
-position = Vector2(307.352, 362)
+position = Vector2(311, 360)
 shape = SubResource("RectangleShape2D_5m75n")
 
 [node name="CollisionShape2D64" type="CollisionShape2D" parent="WallCollisions"]
@@ -504,7 +502,7 @@ position = Vector2(1515, 554)
 shape = SubResource("RectangleShape2D_w7lwk")
 
 [node name="CollisionShape2D47" type="CollisionShape2D" parent="WallCollisions"]
-position = Vector2(1203, 554)
+position = Vector2(1211, 553)
 shape = SubResource("RectangleShape2D_ii0nt")
 
 [node name="CollisionShape2D48" type="CollisionShape2D" parent="WallCollisions"]
@@ -516,15 +514,6 @@ position = Vector2(1434.38, -38)
 shape = SubResource("RectangleShape2D_1cmjm")
 
 [node name="BloodContainer" parent="." instance=ExtResource("4_cv5ky")]
-
-[node name="Window" parent="." instance=ExtResource("5_7as3c")]
-position = Vector2(72, -46)
-
-[node name="Sprite2D" parent="Window" index="0"]
-z_index = 1
-
-[node name="CollisionShape2D" parent="Window/InteractionArea2D" index="0"]
-position = Vector2(0, 19)
 
 [node name="Door" parent="." instance=ExtResource("6_mx7iy")]
 position = Vector2(272, 269)
@@ -538,9 +527,6 @@ weapon_scene = ExtResource("8_4u84u")
 
 [node name="Sprite2D" parent="WeaponRack" index="0"]
 offset = Vector2(0, -8)
-
-[node name="MisteryBox" parent="." instance=ExtResource("9_khrxj")]
-position = Vector2(74, 215)
 
 [node name="WeaponRack2" parent="." instance=ExtResource("7_yc43g")]
 position = Vector2(35, 46)
@@ -562,5 +548,4 @@ weapon_scene = ExtResource("13_5ba6p")
 position = Vector2(176, 46)
 weapon_scene = ExtResource("14_jf5mu")
 
-[editable path="Window"]
 [editable path="WeaponRack"]

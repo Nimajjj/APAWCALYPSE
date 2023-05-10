@@ -1,4 +1,4 @@
-[gd_scene load_steps=83 format=3 uid="uid://dc40fh2rpij76"]
+[gd_scene load_steps=83 format=3 uid="uid://ct57veqcmemed"]
 
 [ext_resource type="Script" path="res://scripts/map/map.gd" id="1_7dpu1"]
 [ext_resource type="PackedScene" uid="uid://coesa2k8edyng" path="res://scenes/tile_maps/tile_map_test.tscn" id="2_yom28"]
@@ -218,7 +218,7 @@ size = Vector2(448.921, 5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1cmjm"]
 size = Vector2(191.234, 5)
 
-[node name="Map" type="Node2D"]
+[node name="Map2" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_7dpu1")
 
