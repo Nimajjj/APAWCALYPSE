@@ -41,6 +41,8 @@ var reload_factor: float = 1
 @onready var Hitbox = $Hitbox
 @onready var HitTimer = $HitTimer
 @onready var FlashTimer = $FlashTimer
+@onready var StartRegenerationTimer = $StartRegenerationTimer
+@onready var RegenerationTicksTimer = $RegenerationTicksTimer
 @onready var raycast = $RayCast2D
 
 
@@ -52,6 +54,9 @@ func _ready() -> void:
 	FlashTimer.connect("timeout", func():
 		Sprite.material.set_shader_parameter("flash_modifier", 0.0)
 	)
+
+	StartRegenerationTimer.connect("timeout", func(): RegenerationTicksTimer.start())
+	RegenerationTicksTimer.connect("timeout", func(): heal(self.max_health * 0.02))
 	
 	Hitbox.connect("body_entered", Callable(func(body: Node): _on_Area2D_body_entered(body)))
 
@@ -209,7 +214,8 @@ func take_damage(damage: float, damager_pos: Vector2) -> void:
 	if HitTimer.time_left <= 0:
 		Sprite.material.set_shader_parameter("flash_modifier", 1.0)
 		FlashTimer.start()
-		
+		StartRegenerationTimer.start()
+		RegenerationTicksTimer.stop()
 		health -= damage
 		AnimPlayer.play("player_animations/DAMAGE")
 		HitTimer.start()

@@ -49,3 +49,10 @@ libraries = {
 one_shot = true
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
+
+[node name="StartRegenerationTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="RegenerationTicksTimer" type="Timer" parent="."]
+wait_time = 1.0
