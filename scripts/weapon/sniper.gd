@@ -1,7 +1,7 @@
 extends IWeapon
 
 
-func shoot() -> void:
+func shoot(player_damage_factor: int) -> void:
 	if reloading: return
 	if(fire_rate_timer.time_left > 0): return
 	if(can_shoot):
@@ -11,7 +11,7 @@ func shoot() -> void:
 			shoot_effect.emitting = true
 			var bullet: IBullet = BulletScene.instantiate()
 			bullet.position = WeaponEnd.get_global_transform().origin
-			bullet.damage = damage
+			bullet.damage = damage * player_damage_factor
 			bullet.life_time = weapon_range
 			bullet.piercing = true
 			current_mag -= 1

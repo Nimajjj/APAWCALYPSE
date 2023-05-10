@@ -44,7 +44,8 @@ func _ready():
 	max_bullet_stock = bullet_stock * stock_factor
 
 	fire_rate_timer.wait_time = fire_rate
-	timer.wait_time = reload_time
+	if(get_parent() is IPlayer):
+		timer.wait_time = reload_time * get_parent().reload_factor
 	timer.connect("timeout", func(): reload())
 	fire_rate_timer.connect("timeout", func(): reset_fire_rate())
 
@@ -67,6 +68,8 @@ func has_secondary_weapon() -> bool:
 func trigger_reload() -> void:
 	if current_mag == mag_capacity: return
 	if bullet_stock == 0: return
+	if(get_parent() is IPlayer):
+		timer.wait_time = reload_time * get_parent().reload_factor # update reload time
 	timer.start()
 	Global.in_game_ui.reloading()
 	reloading = true
@@ -88,7 +91,7 @@ func reload() -> void:
 		Global.in_game_ui.stop_reloading()
 
 
-func shoot() -> void:
+func shoot(player_damage_factor: int) -> void:
 	if reloading: return
 	if(fire_rate_timer.time_left > 0): return
 	if(can_shoot):
@@ -98,7 +101,7 @@ func shoot() -> void:
 			shoot_effect.emitting = true
 			var bullet: IBullet = BulletScene.instantiate()
 			bullet.position = WeaponEnd.get_global_transform().origin
-			bullet.damage = damage
+			bullet.damage = damage * player_damage_factor
 			bullet.life_time = weapon_range
 			current_mag -= 1
 			get_tree().get_root().add_child(bullet)

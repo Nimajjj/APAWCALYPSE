@@ -8,7 +8,7 @@ enum PC_State { IDLE, MOVE, INTERACT, DOWN, DEAD }
 @export var health: float = 0
 @export var max_health: float = 200
 @export var regeneration: float = 0
-@export var money: int = 1000
+@export var money: int = 10000000
 @export var speed: float = 0
 @export var acceleration: float = 0
 @export var friction: float = 0
@@ -30,6 +30,9 @@ var shaking = false
 
 var money_x2: bool = false
 var dead_shot: bool = false
+
+var damage_factor: float = 1
+var reload_factor: float = 1
 
 @onready var Sprite = $Sprite2D
 @onready var AnimPlayer = $AnimationPlayer
@@ -76,7 +79,7 @@ func _physics_process(delta):
 
 
 func start_shooting() -> void:
-	weapon.shoot()
+	weapon.shoot(damage_factor)
 
 
 func stop_shooting() -> void:
@@ -111,7 +114,6 @@ func gain_money(money: int) -> void:
 	else: self.money += money
 
 
-	
 func gain_score(score: int) -> void:
 	Global.game.score += score
 	self.score += score # Personal score of the player
