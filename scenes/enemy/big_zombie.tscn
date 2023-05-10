@@ -1,0 +1,106 @@
+[gd_scene load_steps=12 format=3 uid="uid://c56m1yso7il3u"]
+
+[ext_resource type="PackedScene" uid="uid://bwe1kad6agad3" path="res://scenes/enemy/i_enemy.tscn" id="1_sa5ur"]
+[ext_resource type="Texture2D" uid="uid://duqpj4n3ksk4n" path="res://assets/enemies/bodies/SpriteSheetBodies.png" id="2_hwghg"]
+[ext_resource type="Script" path="res://scenes/enemy/big_zombie.gd" id="2_tt2hw"]
+
+[sub_resource type="Shader" id="Shader_7oj4d"]
+code = "shader_type canvas_item;
+
+uniform vec4 flash_color: source_color = vec4(1.0);
+uniform float flash_modifier: hint_range(0.0, 1.0) = 0.0;
+
+void fragment() {
+	vec4 color = texture(TEXTURE, UV);
+	color.rgb = mix(color.rgb, flash_color.rgb, flash_modifier);
+	COLOR = color;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8wc3b"]
+resource_local_to_scene = true
+shader = SubResource("Shader_7oj4d")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_modifier = 0.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pr3vb"]
+atlas = ExtResource("2_hwghg")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6bxgn"]
+radius = 12.0
+height = 32.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_liixd"]
+radius = 4.0
+height = 18.0
+
+[sub_resource type="Animation" id="Animation_c8jf2"]
+resource_name = "big_zombie_walk"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../Sprite2D:texture:region")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 64, 32, 32)]
+}
+
+[sub_resource type="Animation" id="Animation_coldp"]
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../Sprite2D:texture:region")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Rect2(0, 64, 32, 32), Rect2(32, 64, 32, 32)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2v8e2"]
+_data = {
+"RESET": SubResource("Animation_coldp"),
+"big_zombie_walk": SubResource("Animation_c8jf2")
+}
+
+[node name="BigZombie" instance=ExtResource("1_sa5ur")]
+script = ExtResource("2_tt2hw")
+max_health = 5000
+speed = 1500
+money = 75
+damage = 75
+
+[node name="Sprite2D" parent="." index="0"]
+material = SubResource("ShaderMaterial_8wc3b")
+position = Vector2(0, -8)
+texture = SubResource("AtlasTexture_pr3vb")
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 32)
+
+[node name="CollisionShape2D" parent="HurtBox" index="0"]
+position = Vector2(0, -8)
+shape = SubResource("CapsuleShape2D_6bxgn")
+debug_color = Color(0.992157, 0, 0.231373, 0.419608)
+
+[node name="Hitbox" parent="." index="2"]
+position = Vector2(0, 4)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_liixd")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
+root_node = NodePath("../HurtBox/CollisionShape2D")
+libraries = {
+"": SubResource("AnimationLibrary_2v8e2")
+}
+
+[node name="HealthBar" parent="." index="4"]
+offset_top = -28.0
+offset_bottom = 4.0

@@ -54,7 +54,13 @@ func _on_game_timer_timeout():
 	
 func _on_wave_timer_timeout():
 	if !spawners_activated:
+		var boss_spawn = randi() % enabled_spawner
+		var spawner_index = 0
 		for spawner in Global.spawners:
-				if spawner.enabled:
-					spawner.start(Global.units_left_to_spawn/enabled_spawner)
+			if spawner.enabled:
+				if spawner_index == boss_spawn && wave % 2 == 0:
+					spawner.start(Global.units_left_to_spawn/enabled_spawner, true)
+				else:
+					spawner.start(Global.units_left_to_spawn/enabled_spawner, false)
+				spawner_index += 1
 		spawners_activated = true

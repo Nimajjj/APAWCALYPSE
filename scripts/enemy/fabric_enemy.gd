@@ -1,21 +1,18 @@
 extends Node2D
 
 var zombie_scene: PackedScene = preload("res://scenes/enemy/zombie.tscn")
-var dog_scene: PackedScene = preload("res://scenes/enemy/dog.tscn")
+var big_zombie_scene: PackedScene = preload("res://scenes/enemy/big_zombie.tscn")
 
 
-func create_enemy(type: String, posistion: Vector2, destination: Vector2) -> IEnemy:
+func create_enemy(posistion: Vector2, destination: Vector2, boss: bool) -> IEnemy:
 	var enemy: IEnemy
 
-	match type:
-		"dog":
-			enemy = dog_scene.instantiate()
-		"zombie":
-			enemy = zombie_scene.instantiate()
-		_:
-			pass
+	if boss:
+		enemy = big_zombie_scene.instantiate()
+	else:
+		enemy = zombie_scene.instantiate()
 
-	# make the position a little bit random
+	
 	posistion.x += randi_range(-50, 50)
 	enemy.position = posistion
 	enemy.max_health += Global.game.wave * 2
