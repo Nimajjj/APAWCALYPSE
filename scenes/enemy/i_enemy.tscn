@@ -51,3 +51,9 @@ one_shot = true
 
 [node name="SlowTimer" type="Timer" parent="."]
 wait_time = 0.5
+
+[node name="PathTimer" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+debug_enabled = true
