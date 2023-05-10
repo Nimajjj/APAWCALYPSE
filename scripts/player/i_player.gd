@@ -109,6 +109,7 @@ func gain_money(money: int) -> void:
 	if(money_x2): self.money += money * 2
 	else: self.money += money
 
+
 	
 func gain_score(score: int) -> void:
 	Global.game.score += score

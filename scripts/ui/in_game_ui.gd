@@ -7,6 +7,8 @@ extends CanvasLayer
 @onready var HealthBar: ProgressBar = $HealthBar
 @onready var MunitionLabel: Label = $MunitionLabel
 @onready var MunitionLabel2: Label = $MunitionLabel2
+@onready var BonusesOverlay: TextureRect = $BonusesOverlay
+@onready var BonusesHBox: HBoxContainer = $BonusesOverlay/BonusesHBox
 
 func _enter_tree():
 	Global.in_game_ui = self
@@ -38,9 +40,15 @@ func _process(_delta):
 		_text += "Bullet Stock: " + str(Global.players[0].weapon.bullet_stock) + "\n"
 		_text += "Max Bullet Stock: " + str(Global.players[0].weapon.max_bullet_stock) + "\n"
 		_text += "Stock Factor: " + str(Global.players[0].weapon.stock_factor) + "\n"
-		_text += "Active Bonuses : " + str(Global.players[0].active_bonus) + "\n"
 
 	DebugLabel.text = _text
+
+	var active_bonuses: Array = Global.players[0].active_bonus
+	for bonus in BonusesHBox.get_children():
+		if bonus.name.to_lower() in active_bonuses:
+			bonus.modulate = Color(1, 1, 1, 1.5)
+		else:
+			bonus.modulate = Color(1, 1, 1, 0.39)
 
 
 func reloading() -> void:

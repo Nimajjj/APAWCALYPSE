@@ -16,5 +16,5 @@ func end_effect() -> void:
 						enemy_child.dies(get_parent())
 
 	print("Nuke ended")
-	get_parent().active_bonus.erase(self.name.trim_suffix("Effect"))
+	get_parent().active_bonus.erase((self.name.trim_suffix("Effect").to_lower()))
 	queue_free()

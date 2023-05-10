@@ -20,9 +20,10 @@ func _process(delta: float) -> void:
 func _on_hitbox_area_entered(body) -> void:
 	if body.get_parent() is IPlayer:
 		var effect := BonusEffect.instantiate()
-		body.get_parent().add_child(effect)
-		effect.apply_effect()
-		queue_free()
+		if(!body.get_parent().active_bonus.has(effect.name.trim_suffix("Effect").to_lower())):
+			body.get_parent().add_child(effect)
+			effect.apply_effect()
+			queue_free()
 
 
 func delete_bonus() -> void:

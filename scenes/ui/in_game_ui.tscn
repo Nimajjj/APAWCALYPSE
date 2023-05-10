@@ -1,10 +1,15 @@
-[gd_scene load_steps=13 format=3 uid="uid://gqx8g8aqgnj3"]
+[gd_scene load_steps=18 format=3 uid="uid://gqx8g8aqgnj3"]
 
 [ext_resource type="Script" path="res://scripts/ui/in_game_ui.gd" id="1_dkxx7"]
 [ext_resource type="Texture2D" uid="uid://crw8mpj7fm4th" path="res://assets/ui/overlay/player_overlay.png" id="2_22fes"]
+[ext_resource type="Texture2D" uid="uid://cnde4lmgu04i0" path="res://assets/ui/overlay/bonuses_overlay.png" id="2_swpd3"]
 [ext_resource type="Texture2D" uid="uid://dxmad4fp8a8h1" path="res://assets/ui/portraits/portraits.png" id="3_vxc1h"]
+[ext_resource type="Texture2D" uid="uid://plee12n8ho6x" path="res://assets/bonus/money-x2.png" id="3_xd1pi"]
+[ext_resource type="Texture2D" uid="uid://dufgp2haytpu2" path="res://assets/bonus/nuke.png" id="4_0yf7u"]
 [ext_resource type="Texture2D" uid="uid://chysko4b3104i" path="res://assets/ui/overlay/munition.png" id="4_nufsj"]
+[ext_resource type="Texture2D" uid="uid://d1jdm2fix3dvt" path="res://assets/bonus/deadshot.png" id="5_gn0a5"]
 [ext_resource type="Texture2D" uid="uid://cx1x7yu4bp4nb" path="res://assets/ui/overlay/reload.png" id="5_yj46y"]
+[ext_resource type="Texture2D" uid="uid://dlpjks6ytxysv" path="res://assets/bonus/max-ammo.png" id="6_2pb35"]
 [ext_resource type="Script" path="res://scripts/ui/option_menu.gd" id="6_dtxai"]
 [ext_resource type="Script" path="res://scripts/ui/pause_menu.gd" id="6_rb0yr"]
 
@@ -100,6 +105,51 @@ theme_override_constants/outline_size = 8
 theme_override_font_sizes/font_size = 24
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="BonusesOverlay" type="TextureRect" parent="."]
+offset_left = 19.0
+offset_top = 618.0
+offset_right = 102.0
+offset_bottom = 642.0
+scale = Vector2(4, 4)
+texture = ExtResource("2_swpd3")
+
+[node name="BonusesHBox" type="HBoxContainer" parent="BonusesOverlay"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.5
+offset_top = 3.5
+offset_right = -5.5
+offset_bottom = -5.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MoneyX2" type="TextureRect" parent="BonusesOverlay/BonusesHBox"]
+self_modulate = Color(1, 1, 1, 0.392157)
+layout_mode = 2
+texture = ExtResource("3_xd1pi")
+expand_mode = 2
+
+[node name="Nuke" type="TextureRect" parent="BonusesOverlay/BonusesHBox"]
+self_modulate = Color(1, 1, 1, 0.392157)
+layout_mode = 2
+texture = ExtResource("4_0yf7u")
+expand_mode = 2
+
+[node name="Deadshot" type="TextureRect" parent="BonusesOverlay/BonusesHBox"]
+self_modulate = Color(1, 1, 1, 0.392157)
+layout_mode = 2
+texture = ExtResource("5_gn0a5")
+expand_mode = 2
+
+[node name="MaxAmmo" type="TextureRect" parent="BonusesOverlay/BonusesHBox"]
+self_modulate = Color(1, 1, 1, 0.392157)
+layout_mode = 2
+texture = ExtResource("6_2pb35")
+expand_mode = 2
 
 [node name="PlayerOverlay" type="TextureRect" parent="."]
 offset_left = 16.0

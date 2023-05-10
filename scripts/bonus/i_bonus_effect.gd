@@ -12,7 +12,7 @@ func apply_effect() -> void:
 	timer.wait_time = effectDuration
 	timer.start()
 	if get_parent() is IPlayer:
-		get_parent().active_bonus.append(self.name.trim_suffix("Effect"))
+		get_parent().active_bonus.append((self.name.trim_suffix("Effect").to_lower()))
 		_effect()
 
 

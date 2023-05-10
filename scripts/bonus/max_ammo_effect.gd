@@ -15,5 +15,5 @@ func _effect() -> void:
 
 func end_effect() -> void:
 	print("Max ammo ended")
-	get_parent().active_bonus.erase(self.name.trim_suffix("Effect"))
+	get_parent().active_bonus.erase((self.name.trim_suffix("Effect").to_lower()))
 	queue_free()
