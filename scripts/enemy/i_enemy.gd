@@ -7,6 +7,7 @@ var bonus_scene: PackedScene = preload("res://scenes/bonus/i_bonus.tscn")
 var dead: bool = false
 var slowed: bool = false
 var target = Global.players[0]
+var direction: String
 
 @onready var Sprite = $Sprite2D
 @onready var HealthBar = $HealthBar
@@ -48,7 +49,15 @@ func _physics_process(delta):
 		var _direction = (target - global_position).normalized()
 		_move(delta, _direction)
 	elif state == 1:
-		var _velocity = (Vector2.DOWN * speed * delta) / 125
+		var _velocity: Vector2
+		if direction == "down":
+			_velocity = (Vector2.DOWN * speed * delta) / 125
+		elif direction == "up":
+			_velocity = (Vector2.UP * speed * delta) / 125
+		elif direction == "left":
+			_velocity = (Vector2.LEFT * speed * delta) / 125
+		else:
+			_velocity = (Vector2.RIGHT * speed * delta) / 125
 		position += _velocity
 	elif state == 2:
 		var _direction = to_local(agent.get_next_path_position()).normalized()

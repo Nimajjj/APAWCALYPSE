@@ -31,6 +31,11 @@ region = Rect2(0, 0, 32, 32)
 atlas = SubResource("CompressedTexture2D_00qgb")
 region = Rect2(0, 0, 32, 32)
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_xck6c"]
+vertices = PackedVector2Array(622, 321, 1120, 321, 1114, 597, 896, 597, 622, 916, 896, 800, 1106, 916, 1106, 800)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 0, 3, 5), PackedInt32Array(6, 4, 5, 7)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(622, 321, 622, 916, 1106, 916, 1106, 800, 896, 800, 896, 597, 1114, 597, 1120, 321)])
+
 [node name="Map" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_oyfej")
@@ -168,29 +173,46 @@ position = Vector2(752, 320)
 [node name="Sprite2D" parent="Interactibles/Windows/Window" index="0"]
 texture = SubResource("AtlasTexture_fpmf7")
 
+[node name="CollisionShape2D" parent="Interactibles/Windows/Window/InteractionArea2D" index="0"]
+position = Vector2(0, 9)
+
+[node name="CollisionShape2D" parent="Interactibles/Windows/Window/HitBox" index="0"]
+position = Vector2(0, -9)
+
 [node name="Window7" parent="Interactibles/Windows" instance=ExtResource("12_6yoxn")]
 position = Vector2(144, 1088)
 
 [node name="Window9" parent="Interactibles/Windows" instance=ExtResource("12_6yoxn")]
 z_index = 1
 position = Vector2(976, 1896)
-metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" parent="Interactibles/Windows/Window9/InteractionArea2D" index="0"]
-position = Vector2(0, -12)
+z_index = 5
+position = Vector2(0, -16)
+
+[node name="CollisionShape2D" parent="Interactibles/Windows/Window9/HitBox" index="0"]
+z_index = 5
+position = Vector2(0, -0.5)
 
 [node name="Window10" parent="Interactibles/Windows" instance=ExtResource("12_6yoxn")]
 z_index = 1
 position = Vector2(1648, 1888)
-metadata/_edit_group_ = true
+
+[node name="InteractionArea2D" parent="Interactibles/Windows/Window10" index="1"]
+z_index = 1
 
 [node name="CollisionShape2D" parent="Interactibles/Windows/Window10/InteractionArea2D" index="0"]
-position = Vector2(0, -12)
+position = Vector2(0, -11.5)
+
+[node name="HitBox" parent="Interactibles/Windows/Window10" index="3"]
+z_index = 1
+
+[node name="CollisionShape2D" parent="Interactibles/Windows/Window10/HitBox" index="0"]
+position = Vector2(0.5, 4)
 
 [node name="Window12" parent="Interactibles/Windows" instance=ExtResource("12_6yoxn")]
 z_index = 1
 position = Vector2(464, 1568)
-metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" parent="Interactibles/Windows/Window12/InteractionArea2D" index="0"]
 position = Vector2(0, -12)
@@ -198,24 +220,46 @@ position = Vector2(0, -12)
 [node name="Window11" parent="Interactibles/Windows" instance=ExtResource("12_6yoxn")]
 z_index = 1
 position = Vector2(2608, 1888)
-metadata/_edit_group_ = true
+
+[node name="InteractionArea2D" parent="Interactibles/Windows/Window11" index="1"]
+z_index = 1
 
 [node name="CollisionShape2D" parent="Interactibles/Windows/Window11/InteractionArea2D" index="0"]
-position = Vector2(0, -12)
+position = Vector2(0, -11.5)
+
+[node name="HitBox" parent="Interactibles/Windows/Window11" index="3"]
+z_index = 1
+
+[node name="CollisionShape2D" parent="Interactibles/Windows/Window11/HitBox" index="0"]
+position = Vector2(0, 4.5)
 
 [node name="Window13" parent="Interactibles/Windows" instance=ExtResource("12_6yoxn")]
 z_index = 1
-position = Vector2(3400, 1888)
-metadata/_edit_group_ = true
+position = Vector2(3408, 1891)
+
+[node name="InteractionArea2D" parent="Interactibles/Windows/Window13" index="1"]
+z_index = 1
 
 [node name="CollisionShape2D" parent="Interactibles/Windows/Window13/InteractionArea2D" index="0"]
-position = Vector2(0, -12)
+position = Vector2(0, -13)
+
+[node name="HitBox" parent="Interactibles/Windows/Window13" index="3"]
+z_index = 1
+
+[node name="CollisionShape2D" parent="Interactibles/Windows/Window13/HitBox" index="0"]
+position = Vector2(0, 2.5)
 
 [node name="Window2" parent="Interactibles/Windows" instance=ExtResource("12_6yoxn")]
 position = Vector2(1040, 320)
 
 [node name="Sprite2D" parent="Interactibles/Windows/Window2" index="0"]
 texture = SubResource("AtlasTexture_nkn6w")
+
+[node name="CollisionShape2D" parent="Interactibles/Windows/Window2/InteractionArea2D" index="0"]
+position = Vector2(0, 8)
+
+[node name="CollisionShape2D" parent="Interactibles/Windows/Window2/HitBox" index="0"]
+position = Vector2(0, -9.5)
 
 [node name="Window3" parent="Interactibles/Windows" instance=ExtResource("12_6yoxn")]
 position = Vector2(1648, 323)
@@ -263,68 +307,81 @@ position = Vector2(0, 8.94308)
 [node name="Spawners" type="Node2D" parent="."]
 
 [node name="ISpawner" parent="Spawners" instance=ExtResource("13_ir52n")]
-position = Vector2(752, 168)
+position = Vector2(753, 235)
 enabled = true
-destination = Vector2(752, 500)
+direction = "down"
+destination = Vector2(752, 310)
 
 [node name="ISpawner7" parent="Spawners" instance=ExtResource("13_ir52n")]
 position = Vector2(144, 992)
 id = 6
+direction = "down"
 destination = Vector2(144, 1500)
 
 [node name="ISpawner8" parent="Spawners" instance=ExtResource("13_ir52n")]
 position = Vector2(464, 1632)
 id = 6
+direction = "up"
 destination = Vector2(464, -500)
 
 [node name="ISpawner9" parent="Spawners" instance=ExtResource("13_ir52n")]
 position = Vector2(976, 1984)
 id = 5
+direction = "up"
 destination = Vector2(976, -500)
 
 [node name="ISpawner10" parent="Spawners" instance=ExtResource("13_ir52n")]
 position = Vector2(1646, 1982)
 id = 5
+direction = "up"
 destination = Vector2(1648, -500)
 
 [node name="ISpawner11" parent="Spawners" instance=ExtResource("13_ir52n")]
 position = Vector2(2608, 1952)
 id = 7
+direction = "up"
 destination = Vector2(2608, -500)
 
 [node name="ISpawner12" parent="Spawners" instance=ExtResource("13_ir52n")]
 position = Vector2(3408, 1952)
 id = 7
+direction = "up"
 destination = Vector2(3408, -500)
 
 [node name="ISpawner2" parent="Spawners" instance=ExtResource("13_ir52n")]
-position = Vector2(1040, 168)
+position = Vector2(1041, 236)
 enabled = true
-destination = Vector2(1040, 500)
+direction = "down"
+destination = Vector2(1040, 310)
 
 [node name="ISpawner3" parent="Spawners" instance=ExtResource("13_ir52n")]
 position = Vector2(1648, 168)
 id = 2
+direction = "down"
 destination = Vector2(1648, 500)
 
 [node name="ISpawner4" parent="Spawners" instance=ExtResource("13_ir52n")]
 position = Vector2(2288, 176)
 id = 3
+direction = "down"
 destination = Vector2(2288, 500)
 
 [node name="ISpawner5" parent="Spawners" instance=ExtResource("13_ir52n")]
 position = Vector2(3568, 176)
 id = 3
+direction = "down"
 destination = Vector2(3568, 500)
 
 [node name="ISpawner6" parent="Spawners" instance=ExtResource("13_ir52n")]
 position = Vector2(3216, -128)
 id = 4
+direction = "down"
 destination = Vector2(3216, 500)
 
 [node name="Navigation" type="Node2D" parent="."]
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="Navigation"]
+navigation_polygon = SubResource("NavigationPolygon_xck6c")
 
 [editable path="Interactibles/Windows/Window"]
 [editable path="Interactibles/Windows/Window7"]

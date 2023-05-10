@@ -97,7 +97,7 @@ shape = SubResource("CapsuleShape2D_liixd")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
 root_node = NodePath("../HurtBox/CollisionShape2D")
-autoplay = "big_zombie_walk"
+autoplay = "RESET"
 libraries = {
 "": SubResource("AnimationLibrary_2v8e2")
 }

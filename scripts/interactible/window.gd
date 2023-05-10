@@ -16,7 +16,7 @@ func _ready():
 
 func _physics_process(delta):
 	for body in interaction_area.get_overlapping_bodies():
-		if body is IEnemy:
+		if body is IEnemy && body.state != 2:
 			print("Changing to state 2")
 			body.state = 2
 			body.target = Global.players[0]
@@ -31,6 +31,7 @@ func _physics_process(delta):
 			if health == 0:
 				print("Changing to state 1")
 				body.state = 1
+				print("enemy direction: ", body.direction)
 
 
 func activate(player: IPlayer) -> void:

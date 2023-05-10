@@ -6,16 +6,12 @@ var woman_zombie_scene: PackedScene = preload("res://scenes/enemy/woman_zombie.t
 var big_zombie_scene: PackedScene = preload("res://scenes/enemy/big_zombie.tscn")
 
 
-func create_enemy(posistion: Vector2, destination: Vector2, boss: bool) -> IEnemy:
+func create_enemy(posistion: Vector2, destination: Vector2, boss: bool, direction: String) -> IEnemy:
 	var enemy: IEnemy
 
 	if boss:
 		enemy = big_zombie_scene.instantiate()
 	else:
-		# choose a random number between 0 and 100
-		# if the number is less than 65, spawn a zombie
-		# if the number is between 66 and 75, spawn a floda
-		# else spawn a woman zombie
 		var rand = randi() % 100
 		print(rand)
 		if rand < 65:
@@ -33,6 +29,7 @@ func create_enemy(posistion: Vector2, destination: Vector2, boss: bool) -> IEnem
 	enemy.speed += randi() % 300
 	enemy.health = enemy.max_health
 	enemy.state = 0
+	enemy.direction = direction
 	enemy.destination = destination
 	enemy.target = enemy.destination
 	add_child(enemy)

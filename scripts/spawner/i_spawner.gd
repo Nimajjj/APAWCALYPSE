@@ -8,6 +8,7 @@ var spawn_delay: float = 2
 
 @export var id: int
 @export var enabled: bool = false
+@export var direction: String
 @export var destination: Vector2
 
 @onready var timer: Timer = $Timer
@@ -37,7 +38,7 @@ func is_all_spawner_units_spawned() -> bool:
 
 func _on_timer_timeout():
 	if !is_all_spawner_units_spawned():
-		Global.units.append(fabric_enemy.create_enemy(fabric_enemy.position, destination, is_boss_wave))
+		Global.units.append(fabric_enemy.create_enemy(fabric_enemy.position, destination, is_boss_wave, direction))
 		if is_boss_wave:
 			is_boss_wave = false
 		units_left_to_spawn -= 1
