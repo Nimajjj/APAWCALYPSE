@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://p4js65rf6ci7"]
+[gd_scene load_steps=7 format=3 uid="uid://p4js65rf6ci7"]
 
 [ext_resource type="PackedScene" uid="uid://dihhgl1j62h8t" path="res://scenes/interactible/interactible.tscn" id="1_6row8"]
 [ext_resource type="Texture2D" uid="uid://ce1eeouig7swl" path="res://assets/tilesheet/windows.png" id="2_5vlrf"]
@@ -9,7 +9,11 @@ atlas = ExtResource("2_5vlrf")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wsj2k"]
-size = Vector2(32, 19)
+size = Vector2(32, 9.8125)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sk168"]
+radius = 3.0
+height = 10.0
 
 [node name="Window" instance=ExtResource("1_6row8")]
 script = ExtResource("2_qygae")
@@ -21,6 +25,16 @@ texture = SubResource("AtlasTexture_ksokn")
 [node name="CollisionShape2D" parent="InteractionArea2D" index="0"]
 shape = SubResource("RectangleShape2D_wsj2k")
 debug_color = Color(0.701961, 0.537255, 0, 0.419608)
+
+[node name="HitTimer" type="Timer" parent="." index="2"]
+wait_time = 3.0
+
+[node name="HitBox" type="Area2D" parent="." index="3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" index="0"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_sk168")
+debug_color = Color(0.976471, 0, 0.403922, 0.419608)
 
 [connection signal="body_entered" from="InteractionArea2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="InteractionArea2D" to="." method="_on_area_2d_body_exited"]

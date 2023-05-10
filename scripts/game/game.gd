@@ -22,10 +22,12 @@ func start_game() -> void:
 	_new_player()
 	GameTimer.start()
 	for i in get_children():
-		if i is ISpawner:
-			Global.spawners.append(i)
+		if i is Map:
+			for j in i.get_children():
+				if j is ISpawner:
+					Global.spawners.append(j)
 	new_wave()
-	
+
 func new_wave():
 	if !wave_activated:
 		WaveTimer.start()
@@ -36,7 +38,7 @@ func new_wave():
 		for spawner in Global.spawners:
 			if spawner.enabled:
 				enabled_spawner += 1
-		Global.units_left_to_spawn = enabled_spawner * 5 * wave
+		Global.units_left_to_spawn = enabled_spawner * 3 * wave
 	
 func end_game() -> void:
 	wave = 0

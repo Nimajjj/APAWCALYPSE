@@ -57,6 +57,7 @@ func _physics_process(delta):
 	
 	if Input.is_action_just_pressed("rmb"):
 		position = get_global_mouse_position()
+		print(position)
 
 	if !shaking:
 		_camera_follow_mouse()
