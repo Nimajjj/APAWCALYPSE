@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://df4bjbuh4i7of"]
+[gd_scene load_steps=23 format=3 uid="uid://df4bjbuh4i7of"]
 
 [ext_resource type="Script" path="res://scripts/map/map.gd" id="1_oyfej"]
 [ext_resource type="PackedScene" uid="uid://coesa2k8edyng" path="res://scenes/tile_maps/tile_map_test.tscn" id="2_nrnrc"]
@@ -15,6 +15,10 @@
 [ext_resource type="PackedScene" uid="uid://deh0ejmvq7sma" path="res://scenes/interactible/mystery_box.tscn" id="12_b748d"]
 [ext_resource type="PackedScene" uid="uid://6vxt8i1m4ong" path="res://scenes/interactible/side_door.tscn" id="12_nj25h"]
 [ext_resource type="PackedScene" uid="uid://cy3kakabvwgxc" path="res://scenes/spawner/i_spawner.tscn" id="13_ir52n"]
+[ext_resource type="PackedScene" path="res://scenes/interactible/speed_pump.tscn" id="15_6o5p1"]
+[ext_resource type="PackedScene" path="res://scenes/interactible/damage_pump.tscn" id="16_hrdpq"]
+[ext_resource type="PackedScene" path="res://scenes/interactible/health_pump.tscn" id="17_prh6i"]
+[ext_resource type="PackedScene" path="res://scenes/interactible/reload_pump.tscn" id="18_dpikg"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_00qgb"]
 load_path = "res://.godot/imported/windows.png-afb923fdd61133e09f4ebebb18e5ef94.ctex"
@@ -228,6 +232,34 @@ position = Vector2(3568, 323)
 [node name="MisteryBox" parent="Interactibles" instance=ExtResource("12_b748d")]
 position = Vector2(992, 632)
 
+[node name="Pumps" type="Node2D" parent="Interactibles"]
+z_index = 2
+scale = Vector2(2, 2)
+
+[node name="SpeedPump" parent="Interactibles/Pumps" instance=ExtResource("15_6o5p1")]
+position = Vector2(22.5, 541)
+
+[node name="CollisionShape2D" parent="Interactibles/Pumps/SpeedPump/InteractionArea2D" index="0"]
+position = Vector2(0, 8.13007)
+
+[node name="DamagePump" parent="Interactibles/Pumps" instance=ExtResource("16_hrdpq")]
+position = Vector2(1526.5, -3)
+
+[node name="CollisionShape2D" parent="Interactibles/Pumps/DamagePump/InteractionArea2D" index="0"]
+position = Vector2(0, 7.31707)
+
+[node name="HealthPump" parent="Interactibles/Pumps" instance=ExtResource("17_prh6i")]
+position = Vector2(1837.5, 666)
+
+[node name="CollisionShape2D" parent="Interactibles/Pumps/HealthPump/InteractionArea2D" index="0"]
+position = Vector2(0, 7.04608)
+
+[node name="ReloadPump" parent="Interactibles/Pumps" instance=ExtResource("18_dpikg")]
+position = Vector2(1137.5, 744.5)
+
+[node name="CollisionShape2D" parent="Interactibles/Pumps/ReloadPump/InteractionArea2D" index="0"]
+position = Vector2(0, 8.94308)
+
 [node name="Spawners" type="Node2D" parent="."]
 
 [node name="ISpawner" parent="Spawners" instance=ExtResource("13_ir52n")]
@@ -306,3 +338,7 @@ destination = Vector2(3216, 500)
 [editable path="Interactibles/Windows/Window4"]
 [editable path="Interactibles/Windows/Window5"]
 [editable path="Interactibles/Windows/Window6"]
+[editable path="Interactibles/Pumps/SpeedPump"]
+[editable path="Interactibles/Pumps/DamagePump"]
+[editable path="Interactibles/Pumps/HealthPump"]
+[editable path="Interactibles/Pumps/ReloadPump"]
