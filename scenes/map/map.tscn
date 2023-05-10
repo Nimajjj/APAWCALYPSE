@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://df4bjbuh4i7of"]
+[gd_scene load_steps=24 format=3 uid="uid://df4bjbuh4i7of"]
 
 [ext_resource type="Script" path="res://scripts/map/map.gd" id="1_oyfej"]
 [ext_resource type="PackedScene" uid="uid://coesa2k8edyng" path="res://scenes/tile_maps/tile_map_test.tscn" id="2_nrnrc"]
@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://bytkjmnlimjdj" path="res://scenes/weapon/ak47.tscn" id="10_fpuei"]
 [ext_resource type="PackedScene" uid="uid://p4js65rf6ci7" path="res://scenes/interactible/window.tscn" id="12_6yoxn"]
 [ext_resource type="PackedScene" uid="uid://deh0ejmvq7sma" path="res://scenes/interactible/mystery_box.tscn" id="12_b748d"]
-[ext_resource type="PackedScene" uid="uid://6vxt8i1m4ong" path="res://scenes/interactible/side_door.tscn" id="12_nj25h"]
+[ext_resource type="PackedScene" uid="uid://dbanfqudrb6yr" path="res://scenes/interactible/side_door.tscn" id="12_nj25h"]
 [ext_resource type="PackedScene" uid="uid://cy3kakabvwgxc" path="res://scenes/spawner/i_spawner.tscn" id="13_ir52n"]
 [ext_resource type="PackedScene" path="res://scenes/interactible/speed_pump.tscn" id="15_6o5p1"]
 [ext_resource type="PackedScene" path="res://scenes/interactible/damage_pump.tscn" id="16_hrdpq"]
