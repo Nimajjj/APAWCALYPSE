@@ -1,22 +1,36 @@
-[gd_scene load_steps=4 format=3 uid="uid://dbanfqudrb6yr"]
+[gd_scene load_steps=7 format=3 uid="uid://6vxt8i1m4ong"]
 
 [ext_resource type="PackedScene" uid="uid://blhpxsfuysnls" path="res://scenes/interactible/door.tscn" id="1_owtr6"]
 [ext_resource type="Texture2D" uid="uid://c8sptavmlkpv7" path="res://assets/interactibles/side-door-porte.png" id="2_rshak"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_alann"]
 atlas = ExtResource("2_rshak")
-region = Rect2(0, 0, 32, 64)
+region = Rect2(0, 0, 10, 117)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_auhxw"]
+size = Vector2(64, 46.75)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jrurq"]
+size = Vector2(8, 46.5)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_0fp10"]
+polygon = PackedVector2Array(-7, 23, -7, -23, -15, -23, -15, 23)
 
 [node name="SideDoor" instance=ExtResource("1_owtr6")]
+y_sort_enabled = false
 
 [node name="Sprite2D" parent="." index="0"]
+position = Vector2(0, -34)
 texture = SubResource("AtlasTexture_alann")
 
 [node name="CollisionShape2D" parent="InteractionArea2D" index="0"]
-position = Vector2(-12, -24)
+position = Vector2(0, -32.625)
+shape = SubResource("RectangleShape2D_auhxw")
 
 [node name="CollisionShape2D" parent="StaticBody2D" index="0"]
-position = Vector2(-12, -13)
+position = Vector2(0, -21.75)
+shape = SubResource("RectangleShape2D_jrurq")
 
 [node name="LightOccluder2D" parent="." index="3"]
-position = Vector2(-1, -10)
+position = Vector2(11, -22)
+occluder = SubResource("OccluderPolygon2D_0fp10")

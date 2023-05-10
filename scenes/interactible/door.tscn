@@ -4,14 +4,14 @@
 [ext_resource type="Script" path="res://scripts/interactible/door.gd" id="2_jbedx"]
 [ext_resource type="Texture2D" uid="uid://nfa4ys2t1vnq" path="res://assets/interactibles/door_closse_front.png" id="3_mvlsd"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_o1wjk"]
-size = Vector2(64, 24)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qamw1"]
+size = Vector2(64, 66.75)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_w4qeg"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t48wf"]
 size = Vector2(64, 8)
 
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_87bx7"]
-polygon = PackedVector2Array(-32, 14, 9, 14, 32, 14, 32, 8, -32, 8)
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_2cm3n"]
+polygon = PackedVector2Array(32, 12, -32, 12, -32, 20, 32, 20)
 
 [node name="Door" instance=ExtResource("1_oo8cf")]
 z_index = 1
@@ -32,19 +32,19 @@ region_enabled = false
 position = Vector2(0, 11)
 
 [node name="CollisionShape2D" parent="InteractionArea2D" index="0"]
-position = Vector2(0, -11)
-shape = SubResource("RectangleShape2D_o1wjk")
+position = Vector2(0, -6)
+shape = SubResource("RectangleShape2D_qamw1")
 debug_color = Color(0.701961, 0.419608, 0, 0.419608)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." index="2"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" index="0"]
-position = Vector2(0, 1)
-shape = SubResource("RectangleShape2D_w4qeg")
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_t48wf")
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="." index="3"]
 position = Vector2(0, -11)
-occluder = SubResource("OccluderPolygon2D_87bx7")
+occluder = SubResource("OccluderPolygon2D_2cm3n")
 
 [connection signal="body_entered" from="InteractionArea2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="InteractionArea2D" to="." method="_on_area_2d_body_exited"]
