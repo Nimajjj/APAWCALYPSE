@@ -19,3 +19,6 @@ texture = ExtResource("3_soha8")
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
 position = Vector2(-1, 0.5)
 shape = SubResource("RectangleShape2D_smbsx")
+
+[node name="DispawnTimer" parent="." index="2"]
+wait_time = 30.0

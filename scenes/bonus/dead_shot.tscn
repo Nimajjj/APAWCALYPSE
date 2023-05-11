@@ -17,3 +17,6 @@ texture = ExtResource("3_mcrak")
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
 position = Vector2(0, -1.5)
 shape = SubResource("RectangleShape2D_smbsx")
+
+[node name="DispawnTimer" parent="." index="2"]
+wait_time = 30.0

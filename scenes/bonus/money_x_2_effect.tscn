@@ -8,4 +8,4 @@ script = ExtResource("2_1aav0")
 effectDuration = 5.0
 
 [node name="EffectDuration" parent="." index="0"]
-wait_time = 5.0
+wait_time = 15.0
