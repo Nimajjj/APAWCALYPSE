@@ -32,9 +32,9 @@ atlas = SubResource("CompressedTexture2D_00qgb")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_xck6c"]
-vertices = PackedVector2Array(622, 321, 1120, 321, 1114, 597, 896, 597, 622, 916, 896, 800, 1106, 916, 1106, 800)
+vertices = PackedVector2Array(622, 321, 1120, 321, 1120, 597, 896, 597, 622, 916, 896, 800, 1106, 916, 1106, 800)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 0, 3, 5), PackedInt32Array(6, 4, 5, 7)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(622, 321, 622, 916, 1106, 916, 1106, 800, 896, 800, 896, 597, 1114, 597, 1120, 321)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(622, 321, 622, 916, 1106, 916, 1106, 800, 896, 800, 896, 597, 1120, 597, 1120, 321)])
 
 [node name="Map" type="Node2D"]
 y_sort_enabled = true
@@ -380,7 +380,7 @@ destination = Vector2(3216, 500)
 
 [node name="Navigation" type="Node2D" parent="."]
 
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="Navigation"]
+[node name="FirstRoomNavigation" type="NavigationRegion2D" parent="Navigation"]
 navigation_polygon = SubResource("NavigationPolygon_xck6c")
 
 [editable path="Interactibles/Windows/Window"]

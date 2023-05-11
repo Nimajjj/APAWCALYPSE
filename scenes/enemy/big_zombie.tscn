@@ -1,8 +1,8 @@
 [gd_scene load_steps=12 format=3 uid="uid://bl4m1pul0pe07"]
 
 [ext_resource type="PackedScene" uid="uid://bwe1kad6agad3" path="res://scenes/enemy/i_enemy.tscn" id="1_sa5ur"]
-[ext_resource type="Texture2D" uid="uid://duqpj4n3ksk4n" path="res://assets/enemies/bodies/SpriteSheetBodies.png" id="2_hwghg"]
 [ext_resource type="Script" path="res://scripts/enemy/big_zombie.gd" id="2_ndys7"]
+[ext_resource type="Texture2D" uid="uid://cr4xb16rs253j" path="res://assets/enemies/bodies/bodies.png" id="3_6h3a2"]
 
 [sub_resource type="Shader" id="Shader_7oj4d"]
 code = "shader_type canvas_item;
@@ -24,8 +24,8 @@ shader_parameter/flash_color = Color(1, 1, 1, 1)
 shader_parameter/flash_modifier = 0.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pr3vb"]
-atlas = ExtResource("2_hwghg")
-region = Rect2(0, 64, 32, 32)
+atlas = ExtResource("3_6h3a2")
+region = Rect2(32, 64, 32, 32)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6bxgn"]
 radius = 12.0
@@ -37,6 +37,9 @@ height = 18.0
 
 [sub_resource type="Animation" id="Animation_coldp"]
 loop_mode = 1
+
+[sub_resource type="Animation" id="Animation_c8jf2"]
+resource_name = "big_zombie_walk"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -48,21 +51,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Rect2(0, 64, 32, 32), Rect2(32, 64, 32, 32)]
-}
-
-[sub_resource type="Animation" id="Animation_c8jf2"]
-resource_name = "big_zombie_walk"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../../Sprite2D:texture:region")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Rect2(0, 64, 32, 32)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2v8e2"]
@@ -97,7 +85,7 @@ shape = SubResource("CapsuleShape2D_liixd")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
 root_node = NodePath("../HurtBox/CollisionShape2D")
-autoplay = "RESET"
+autoplay = "big_zombie_walk"
 libraries = {
 "": SubResource("AnimationLibrary_2v8e2")
 }
