@@ -56,6 +56,9 @@ func _ready() -> void:
 	is_local_authority = Synchronizer.get_multiplayer_authority() == multiplayer.get_unique_id()
 	Camera.enabled = is_local_authority
 	
+	if is_local_authority:
+		Global.in_game_ui.player = self
+	
 	health = max_health
 	_spawn_default_weapon()
 	

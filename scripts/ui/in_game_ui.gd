@@ -1,5 +1,12 @@
 extends CanvasLayer
 
+var player: IPlayer = null: set = _player_setter 
+
+func _player_setter(val) -> void:
+	if !val is IPlayer: return
+	if val.is_local_authority:
+		player = val
+
 @onready var DebugLabel: RichTextLabel = $DebugLabel
 @onready var InteractibleLabel: Label = $InteractibleLabel
 @onready var MoneyLabel: Label = $MoneyLabel
@@ -10,22 +17,23 @@ extends CanvasLayer
 @onready var BonusesOverlay: TextureRect = $BonusesOverlay
 @onready var BonusesHBox: HBoxContainer = $BonusesOverlay/BonusesHBox
 
+
 func _enter_tree():
 	Global.in_game_ui = self
 
 
 func _process(_delta):
-	if Global.players.size() == 0: return
+	if player == null: return
 	
 	# OVERLAY
 	ScoreLabel.text = str(Global.game.score)
-	MoneyLabel.text = str(Global.players[0].money)
-	HealthBar.value = Global.players[0].health
+	MoneyLabel.text = str(player.money)
+	HealthBar.value = player.health
 	MunitionLabel.text = "{0}".format([
-		Global.players[0].weapon.current_mag
+		player.weapon.current_mag
 	])
 	MunitionLabel2.text = "{0}".format([
-		Global.players[0].weapon.bullet_stock,
+		player.weapon.bullet_stock,
 	])
 	
 	# DEBUG
@@ -36,20 +44,20 @@ func _process(_delta):
 	_text += "Score: " + str(Global.game.score) + "\n"
 	_text += "Wave: " + str(Global.game.wave) + "\n"
 	
-	_text += "Money: " + str(Global.players[0].money) + "\n"
-	_text += "Health: " + str(Global.players[0].health) + "\n"
-	_text += "Speed: " + str(Global.players[0].speed) + "\n"
-	_text += "Damage Factor: " + str(Global.players[0].damage_factor) + "\n"
-	_text += "Reload Factor: " + str(Global.players[0].reload_factor) + "\n"
-	_text += "Current Mag: " + str(Global.players[0].weapon.current_mag) + "\n"
-	_text += "Mag Capacity: " + str(Global.players[0].weapon.mag_capacity) + "\n"
-	_text += "Bullet Stock: " + str(Global.players[0].weapon.bullet_stock) + "\n"
-	_text += "Max Bullet Stock: " + str(Global.players[0].weapon.max_bullet_stock) + "\n"
-	_text += "Stock Factor: " + str(Global.players[0].weapon.stock_factor) + "\n"
+	_text += "Money: " + str(player.money) + "\n"
+	_text += "Health: " + str(player.health) + "\n"
+	_text += "Speed: " + str(player.speed) + "\n"
+	_text += "Damage Factor: " + str(player.damage_factor) + "\n"
+	_text += "Reload Factor: " + str(player.reload_factor) + "\n"
+	_text += "Current Mag: " + str(player.weapon.current_mag) + "\n"
+	_text += "Mag Capacity: " + str(player.weapon.mag_capacity) + "\n"
+	_text += "Bullet Stock: " + str(player.weapon.bullet_stock) + "\n"
+	_text += "Max Bullet Stock: " + str(player.weapon.max_bullet_stock) + "\n"
+	_text += "Stock Factor: " + str(player.weapon.stock_factor) + "\n"
 
 	DebugLabel.text = _text
 
-	var active_bonuses: Array = Global.players[0].active_bonus
+	var active_bonuses: Array = player.active_bonus
 	for bonus in BonusesHBox.get_children():
 		if bonus.name.to_lower() in active_bonuses:
 			bonus.modulate = Color(1, 1, 1, 1.5)
