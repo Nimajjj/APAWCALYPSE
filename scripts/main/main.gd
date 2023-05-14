@@ -13,20 +13,18 @@ var game: Game = null
 
 
 func _ready() -> void:
-	return
-	if "--server" in OS.get_cmdline_args(): host_server()
-	else: run_client()
-		
-		
-func host_server() -> void:
 	randomize()
 	seed(1)
+	multiplayer.allow_object_decoding = true
+	
 	_create_multiplayer_game()	
+	
+		
+func host_server() -> void:
 	_create_server()
-
-
+	
+	
 func run_client() -> void:
-	_create_multiplayer_game()	
 	_create_client()
 
 
