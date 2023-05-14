@@ -2,6 +2,8 @@ extends Node
 
 var version: String = "APAWCALYPSE - dev"
 
+var server: Server = null
+
 var game: Game = null
 var map: Map = null
 var in_game_ui: CanvasLayer = null

@@ -6,15 +6,11 @@ var bonus_scene: PackedScene = preload("res://scenes/bonus/i_bonus.tscn")
 
 var dead: bool = false
 var slowed: bool = false
-var target = Global.players[0]
 var direction: String
+var target
 
-@onready var Sprite = $Sprite2D
-@onready var HealthBar = $HealthBar
-@onready var timer = $Timer
-@onready var slow_timer = $SlowTimer
-@onready var path_timer = $PathTimer
-@onready var agent := $NavigationAgent2D as NavigationAgent2D
+var spawner: ISpawner = null
+
 
 @export var max_health: int
 @export var speed_stock: int
@@ -25,17 +21,27 @@ var direction: String
 @export var knockback_direction: Vector2 = Vector2.ZERO
 @export var state: int = 0
 @export var destination: Vector2
+@export var health: int = 0 # do not change in editor
+
+@onready var Sprite = $Sprite2D
+@onready var HealthBar = $HealthBar
+@onready var timer = $Timer
+@onready var slow_timer = $SlowTimer
+@onready var path_timer = $PathTimer
+@onready var agent := $NavigationAgent2D as NavigationAgent2D
+
+@onready var Synchronizer: MultiplayerSynchronizer = $Synchronizer/MultiplayerSynchronizer
 
 #var bonus: IBonus = null
-var health: int
 
 
 func _ready():
+	Synchronizer.set_multiplayer_authority(1)
+	
 	HealthBar.visible = false
 	HealthBar.max_value = max_health
 	HealthBar.value = max_health
 	speed_stock = speed
-
 
 	Sprite.material = Sprite.material.duplicate()
 	timer.connect("timeout", func():
@@ -43,11 +49,15 @@ func _ready():
 	)
 	slow_timer.connect("timeout", func(): slow_timeout())
 	path_timer.connect("timeout", func(): retarget_timeout())
+	
 
 func _physics_process(delta):
+	if Synchronizer.get_multiplayer_authority() != 1: return
+	
 	if state == 0:
-		var _direction = (target - global_position).normalized()
-		_move(delta, _direction)
+		if target is Vector2:
+			var _direction = (target - global_position).normalized()
+			_move(delta, _direction)
 	elif state == 1:
 		var _velocity: Vector2
 		if direction == "down":
@@ -90,7 +100,14 @@ func _move(delta, _direction) -> void:
 	move_and_slide()
 
 func retarget() -> void:
-	agent.target_position = target.global_position
+	if Global.players.size() != 0:
+		for player in Global.players:
+			if target == null: target = player
+			
+			if (position - player.position).length() < (position - target.position).length():
+				target = player
+		
+		agent.target_position = target.global_position
 
 func retarget_timeout() -> void:
 	retarget()
@@ -108,6 +125,8 @@ func slow_timeout() -> void:
 	slowed = false
 
 func dies(shooter: IPlayer) -> void:
+	if multiplayer.get_unique_id() != 1: return
+	
 	if not dead:
 		dead = true
 		var blood_effect: GPUParticles2D = blood_effect_scene.instantiate()
@@ -118,7 +137,11 @@ func dies(shooter: IPlayer) -> void:
 		shooter.gain_money(money)
 		shooter.gain_score(randi_range(1, 10))
 		Global.units_alive -= 1
-		get_parent().get_parent().is_last_wave_dead()
+	
+		Global.units.erase(self)
+		
+		if spawner:
+			spawner.is_last_wave_dead()
 
 		Sprite.material.set_shader_parameter("flash_modifier", 0.0)
 

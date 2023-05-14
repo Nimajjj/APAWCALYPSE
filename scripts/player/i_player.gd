@@ -51,6 +51,7 @@ var is_local_authority: bool
 
 
 func _ready() -> void:
+	position = Global.game.FabricPlayer.global_position
 	Synchronizer.set_multiplayer_authority(str(name).to_int())
 	is_local_authority = Synchronizer.get_multiplayer_authority() == multiplayer.get_unique_id()
 	Camera.enabled = is_local_authority

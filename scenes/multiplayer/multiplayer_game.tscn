@@ -7,4 +7,4 @@
 script = ExtResource("2_cugd8")
 
 [node name="FabricPlayer" parent="." index="2"]
-position = Vector2(725, 425)
+position = Vector2(725, 435)

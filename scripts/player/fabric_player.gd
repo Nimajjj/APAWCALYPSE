@@ -17,7 +17,7 @@ func create_player(i: int = 0, node_name: String = "default") -> IPlayer:
 	
 	player.id = Global.players.size()
 	Global.players.append(player)
-	player.position = position
+	player.global_position = global_position
 	
 	return player;
 

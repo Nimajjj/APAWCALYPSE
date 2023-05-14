@@ -5,5 +5,11 @@
 [node name="Main" type="Node2D"]
 script = ExtResource("1_bhmiq")
 
+[node name="Enemies" type="Node" parent="."]
+
 [node name="PlayerMultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("res://scenes/player/bada-boom.tscn", "res://scenes/player/blade.tscn", "res://scenes/player/candy.tscn", "res://scenes/player/grey.tscn")
+
+[node name="EnemiesMultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://scenes/enemy/big_zombie.tscn", "res://scenes/enemy/floda.tscn", "res://scenes/enemy/woman_zombie.tscn", "res://scenes/enemy/zombie.tscn")
+spawn_path = NodePath("../Enemies")

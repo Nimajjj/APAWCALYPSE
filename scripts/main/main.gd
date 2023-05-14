@@ -9,9 +9,13 @@ var multiplayer_game_scene: PackedScene = preload("res://scenes/multiplayer/mult
 var game: Game = null
 
 @onready var player_ms: MultiplayerSpawner = $PlayerMultiplayerSpawner
+@onready var enemies_ms: MultiplayerSpawner = $EnemiesMultiplayerSpawner
 
 
 func _ready() -> void:
+	randomize()
+	seed(1)
+	
 	_create_game()
 	
 	if "--server" in OS.get_cmdline_args():
@@ -30,6 +34,8 @@ func _create_server() -> void:
 	var server: Server = server_scene.instantiate()
 	add_child(server)
 	server.init(game)
+	
+	server.connect("player_connected", game._new_player)
 
 
 func _create_client() -> void:

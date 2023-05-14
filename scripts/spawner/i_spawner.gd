@@ -15,6 +15,10 @@ var spawn_delay: float = 2
 @onready var fabric_enemy: Node2D = $FabricEnemy
 
 
+func _ready() -> void:
+	$MultiplayerSynchronizer.set_multiplayer_authority(1)
+
+
 func enable() -> void:
 	enabled = true
 	timer.connect("timeout", _on_timer_timeout)
@@ -28,7 +32,7 @@ func start_spawner(units_to_spawn: int, is_boss: bool) -> void:
 func stop() -> void:
 	timer.stop()
 
-func is_last_wave_dead():
+func is_last_wave_dead():	
 	if Global.is_all_units_spawned() && Global.is_all_units_dead():
 		Global.game.wave_activated = false
 		Global.game.new_wave()

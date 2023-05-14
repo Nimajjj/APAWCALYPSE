@@ -1,8 +1,14 @@
 class_name Server
 extends Node
 
+signal player_connected
+
 var game: Game = null
 var players: int = 0
+
+
+func _enter_tree() -> void:
+	Global.server = self
 
 
 func init(game_node: Node) -> void:	
@@ -31,6 +37,8 @@ func _create_player(id: int) -> void:
 	# Set the name, so players can figure out their local authority
 	game.add_child(player)
 	print("New player joined [" + str(id) + "]")
+	
+	emit_signal("player_connected")
 	
 	players += 1
 

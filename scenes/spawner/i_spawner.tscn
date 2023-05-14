@@ -1,7 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://cy3kakabvwgxc"]
+[gd_scene load_steps=4 format=3 uid="uid://cy3kakabvwgxc"]
 
 [ext_resource type="PackedScene" uid="uid://dcvqvja81x13d" path="res://scenes/enemy/fabric_enemy.tscn" id="1_kn2g1"]
 [ext_resource type="Script" path="res://scripts/spawner/i_spawner.gd" id="1_wmlks"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_1sf2m"]
+properties/0/path = NodePath(".:enabled")
+properties/0/spawn = true
+properties/0/sync = true
+properties/1/path = NodePath(".:direction")
+properties/1/spawn = true
+properties/1/sync = true
+properties/2/path = NodePath(".:destination")
+properties/2/spawn = true
+properties/2/sync = true
+properties/3/path = NodePath(".:id")
+properties/3/spawn = true
+properties/3/sync = true
 
 [node name="ISpawner" type="Node2D" groups=["spawners"]]
 script = ExtResource("1_wmlks")
@@ -9,5 +23,8 @@ script = ExtResource("1_wmlks")
 [node name="FabricEnemy" parent="." instance=ExtResource("1_kn2g1")]
 
 [node name="Timer" type="Timer" parent="."]
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_1sf2m")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

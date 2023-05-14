@@ -17,7 +17,7 @@ func _physics_process(delta):
 	for body in interaction_area.get_overlapping_bodies():
 		if body is IEnemy && body.state != 2:
 			body.state = 2
-			body.target = Global.players[0]
+			body.target = Global.players[0] if Global.players.size() != 0 else body.target 
 			body.retarget()
 			body.path_timer.start()
 	for body in hitbox.get_overlapping_bodies():

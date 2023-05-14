@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bwe1kad6agad3"]
+[gd_scene load_steps=6 format=3 uid="uid://bwe1kad6agad3"]
 
 [ext_resource type="Texture2D" uid="uid://ydmvtpa7m24w" path="res://assets/ui/progress/health_bcg.png" id="1_kohhs"]
 [ext_resource type="Texture2D" uid="uid://b7kvnccidgyd6" path="res://assets/ui/progress/health_progress.png" id="2_xebm5"]
@@ -21,6 +21,17 @@ resource_local_to_scene = true
 shader = SubResource("Shader_7oj4d")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
 shader_parameter/flash_modifier = 0.0
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_i3wql"]
+properties/0/path = NodePath("..:position")
+properties/0/spawn = true
+properties/0/sync = true
+properties/1/path = NodePath("..:max_health")
+properties/1/spawn = true
+properties/1/sync = false
+properties/2/path = NodePath("..:health")
+properties/2/spawn = false
+properties/2/sync = true
 
 [node name="IEnemy" type="CharacterBody2D" groups=["enemy"]]
 scale = Vector2(2, 2)
@@ -57,3 +68,8 @@ wait_time = 0.5
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 debug_enabled = true
+
+[node name="Synchronizer" type="Node" parent="."]
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="Synchronizer"]
+replication_config = SubResource("SceneReplicationConfig_i3wql")
