@@ -18,7 +18,7 @@ func activate(player: IPlayer) -> void:
 		# Increase the price and the next gain
 		nextGain = 10 + player.max_health * 0.01
 		price = floor(price * 1.2)
-
+		$AudioStreamPlayer.play()
 		if(player.max_health < maxHealth):
 			message = "Press [E] to buy health up bonus for {0}$ (+{1} HP)".format([price, nextGain])
 		else:

@@ -16,7 +16,7 @@ func activate(player: IPlayer) -> void:
 		# Increase the price and the next gain
 		nextGain = snappedf(0.05 + player.damage_factor * 0.01, 0.01)
 		price = floor(price * 1.2)
-
+		$AudioStreamPlayer.play()
 		if player.damage_factor < maxDamageFactor:
 			message = "Press [E] to buy damage up bonus for {0}$ (+{1}% DAMAGE)".format([price, snappedf(nextGain, 0.01)*100])
 		else:
