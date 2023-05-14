@@ -11,6 +11,7 @@ func create_enemy(posistion: Vector2, destination: Vector2, boss: bool, directio
 
 	if boss:
 		enemy = big_zombie_scene.instantiate()
+		enemy.is_boss = true
 	else:
 		var rand = randi() % 100
 		print(rand)

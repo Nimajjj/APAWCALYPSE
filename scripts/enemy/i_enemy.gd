@@ -25,6 +25,7 @@ var direction: String
 @export var knockback_direction: Vector2 = Vector2.ZERO
 @export var state: int = 0
 @export var destination: Vector2
+@export var is_boss: bool = false
 
 #var bonus: IBonus = null
 var health: int
@@ -68,7 +69,7 @@ func take_damage(dmg: int, shooter: IPlayer) -> void:
 	Sprite.material.set_shader_parameter("flash_modifier", 1.0)
 	timer.start()
 
-	if(shooter.dead_shot):
+	if(shooter.dead_shot) and !is_boss:
 		dies(shooter)
 		return
 
