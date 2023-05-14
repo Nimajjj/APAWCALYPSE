@@ -37,7 +37,6 @@ func activate(player: IPlayer) -> void:
 		isopened = false 
 		message = "Press [E] to open the box"
 		rand = randi() % 2 + 1
-		print(rand)
 		if x == rand : 
 			change_position()
 		return
@@ -110,7 +109,6 @@ func _on_second_timer_timeout():
 	isopened = false
 	message = "Press [E] to open the box"
 	rand = randi() % 2 + 1
-	print(rand)
 	if x == rand : 
 		change_position() 
 	return

@@ -3,7 +3,6 @@ extends IBonusEffect
 #MAX AMMO
 func _effect() -> void:
 	var weapon = get_parent().weapon
-	print("Max ammo started")
 	weapon.current_mag = weapon.mag_capacity
 	weapon.bullet_stock = weapon.max_bullet_stock
 
@@ -14,6 +13,5 @@ func _effect() -> void:
 
 
 func end_effect() -> void:
-	print("Max ammo ended")
 	get_parent().active_bonus.erase((self.name.trim_suffix("Effect").to_lower()))
 	queue_free()

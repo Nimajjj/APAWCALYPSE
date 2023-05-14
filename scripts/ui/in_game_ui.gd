@@ -15,6 +15,9 @@ func _enter_tree():
 
 
 func _process(_delta):
+	if Global.players.size() == 0: return
+	
+	# OVERLAY
 	ScoreLabel.text = str(Global.game.score)
 	MoneyLabel.text = str(Global.players[0].money)
 	HealthBar.value = Global.players[0].health
@@ -25,6 +28,7 @@ func _process(_delta):
 		Global.players[0].weapon.bullet_stock,
 	])
 	
+	# DEBUG
 	var _text: String = ""
 	_text += Global.version + "\n"
 	_text += "FPS: " + str(Engine.get_frames_per_second()) + "\n"
@@ -32,17 +36,16 @@ func _process(_delta):
 	_text += "Score: " + str(Global.game.score) + "\n"
 	_text += "Wave: " + str(Global.game.wave) + "\n"
 	
-	if Global.players.size() > 0:
-		_text += "Money: " + str(Global.players[0].money) + "\n"
-		_text += "Health: " + str(Global.players[0].health) + "\n"
-		_text += "Speed: " + str(Global.players[0].speed) + "\n"
-		_text += "Damage Factor: " + str(Global.players[0].damage_factor) + "\n"
-		_text += "Reload Factor: " + str(Global.players[0].reload_factor) + "\n"
-		_text += "Current Mag: " + str(Global.players[0].weapon.current_mag) + "\n"
-		_text += "Mag Capacity: " + str(Global.players[0].weapon.mag_capacity) + "\n"
-		_text += "Bullet Stock: " + str(Global.players[0].weapon.bullet_stock) + "\n"
-		_text += "Max Bullet Stock: " + str(Global.players[0].weapon.max_bullet_stock) + "\n"
-		_text += "Stock Factor: " + str(Global.players[0].weapon.stock_factor) + "\n"
+	_text += "Money: " + str(Global.players[0].money) + "\n"
+	_text += "Health: " + str(Global.players[0].health) + "\n"
+	_text += "Speed: " + str(Global.players[0].speed) + "\n"
+	_text += "Damage Factor: " + str(Global.players[0].damage_factor) + "\n"
+	_text += "Reload Factor: " + str(Global.players[0].reload_factor) + "\n"
+	_text += "Current Mag: " + str(Global.players[0].weapon.current_mag) + "\n"
+	_text += "Mag Capacity: " + str(Global.players[0].weapon.mag_capacity) + "\n"
+	_text += "Bullet Stock: " + str(Global.players[0].weapon.bullet_stock) + "\n"
+	_text += "Max Bullet Stock: " + str(Global.players[0].weapon.max_bullet_stock) + "\n"
+	_text += "Stock Factor: " + str(Global.players[0].weapon.stock_factor) + "\n"
 
 	DebugLabel.text = _text
 

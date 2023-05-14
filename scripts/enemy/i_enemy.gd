@@ -123,7 +123,6 @@ func dies(shooter: IPlayer) -> void:
 		Sprite.material.set_shader_parameter("flash_modifier", 0.0)
 
 		if randi_range(0, 1) == 0: #todo: increase drop rate (low drop rate to test)
-			print("spawn bonus")
 			Global.fabric_bonus.spawn_bonus(global_position)
 
 		queue_free()

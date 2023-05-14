@@ -13,7 +13,6 @@ func create_enemy(posistion: Vector2, destination: Vector2, boss: bool, directio
 		enemy = big_zombie_scene.instantiate()
 	else:
 		var rand = randi() % 100
-		print(rand)
 		if rand < 65:
 			enemy = zombie_scene.instantiate()
 		elif 65 <= rand && rand < 75:
@@ -34,5 +33,4 @@ func create_enemy(posistion: Vector2, destination: Vector2, boss: bool, directio
 	enemy.target = enemy.destination
 	add_child(enemy)
 	Global.units_alive += 1
-	print(enemy.speed)
 	return enemy

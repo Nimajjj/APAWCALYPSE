@@ -27,5 +27,4 @@ func _on_hitbox_area_entered(body) -> void:
 
 
 func delete_bonus() -> void:
-	print("bonus deleted : nobody picked it")
 	queue_free()
