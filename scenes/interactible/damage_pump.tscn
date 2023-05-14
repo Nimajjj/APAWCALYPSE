@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dihhgl1j62h8t" path="res://scenes/interactible/interactible.tscn" id="1_jisw0"]
 [ext_resource type="Script" path="res://scripts/interactible/damage_pump.gd" id="2_sk45w"]
 [ext_resource type="Texture2D" uid="uid://dioug1pm1lad2" path="res://assets/interactibles/damage_pump.png" id="3_hj6hg"]
-[ext_resource type="AudioStream" uid="uid://ddw4twaxow68j" path="res://assets/sounds/bonus_pump.mp3" id="4_dlbh1"]
+[ext_resource type="AudioStream" uid="uid://ddw4twaxow68j" path="res://assets/sounds/pumps/bonus_pump.mp3" id="4_2iktk"]
 
 [node name="DamagePump" instance=ExtResource("1_jisw0")]
 script = ExtResource("2_sk45w")
@@ -21,7 +21,7 @@ region_rect = Rect2(8.07968, 1.94557, 48.2416, 68.5544)
 scale = Vector2(1.845, 1.845)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="2"]
-stream = ExtResource("4_dlbh1")
+stream = ExtResource("4_2iktk")
 volume_db = -2.644
 
 [connection signal="body_entered" from="InteractionArea2D" to="." method="_on_interaction_area_2d_body_entered"]
