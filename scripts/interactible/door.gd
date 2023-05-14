@@ -10,17 +10,37 @@ func _ready():
 
 func activate(player: IPlayer) -> void:
 	if can_activate(player) :
-		open = true
 		player.money -= price
-		visible	 = false
 		
-		if spawner_id != -1:
-			var spawners := get_tree().get_nodes_in_group("spawners")
-			for spawner in spawners:
-				if spawner.id == spawner_id:
-					spawner.enabled = true
+		rpc_id(1, "_open_server", player)
+		
 
-		queue_free()
+@rpc("any_peer")
+func _open_server(player) -> void:
+	var caller_id = multiplayer.get_remote_sender_id()
+#	if str(player.name).to_int() != caller_id:
+#		print("Illegally calling shoot_server! The culprit is: " + str(caller_id))
+#		return
+	
+	_activate_spawners()
+	rpc("_open_client")
+
+
+@rpc
+func _open_client() -> void:
+	open = true
+	queue_free()
+	
+
+func _activate_spawners() -> void:
+	print("activate spawners")
+	if spawner_id != -1:
+		var spawners := get_tree().get_nodes_in_group("spawners")
+		for spawner in spawners:
+			if spawner.id == spawner_id:
+				spawner.enabled = true
+				print(spawner_id, " ", spawner.enabled)
+
 
 func can_activate(player: IPlayer) -> bool:
 	return player.money >= price && !open
