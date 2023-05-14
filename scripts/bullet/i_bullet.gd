@@ -32,7 +32,7 @@ func shoot(player: IPlayer, aim_position: Vector2, d: Vector2) -> void:
 
 
 func _on_Area2D_body_entered(body: Node) -> void:
-	if body.get_parent() is IEnemy:
+	if body.get_parent() is IEnemy && !body.get_parent().dead:
 		body.get_parent().take_damage(damage, shooter)
 		if !piercing:
 			queue_free()

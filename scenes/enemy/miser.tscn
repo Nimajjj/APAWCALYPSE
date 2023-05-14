@@ -35,6 +35,21 @@ height = 26.0
 radius = 3.0
 height = 11.0
 
+[sub_resource type="Animation" id="Animation_01krk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture:region")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 0, 32, 32)]
+}
+
 [sub_resource type="Animation" id="Animation_jpexs"]
 resource_name = "miser_walk"
 length = 0.4
@@ -50,21 +65,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Rect2(0, 0, 32, 32), Rect2(32, 0, 32, 32)]
-}
-
-[sub_resource type="Animation" id="Animation_01krk"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:texture:region")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Rect2(0, 0, 32, 32)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ybono"]

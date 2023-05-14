@@ -51,7 +51,7 @@ material = SubResource("ShaderMaterial_vrhw5")
 position = Vector2(0, -8)
 texture = ExtResource("4_wkfgx")
 region_enabled = true
-region_rect = Rect2(32, 128, 32, 32)
+region_rect = Rect2(0, 128, 32, 32)
 
 [node name="CollisionShape2D" parent="HurtBox" index="0"]
 position = Vector2(0, -8)

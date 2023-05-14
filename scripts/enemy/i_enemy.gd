@@ -6,7 +6,7 @@ var bonus_scene: PackedScene = preload("res://scenes/bonus/i_bonus.tscn")
 
 var dead: bool = false
 var slowed: bool = false
-var target = Global.players[0]
+var target
 var direction: String
 var state: int = 0
 var destination: Vector2
@@ -21,7 +21,9 @@ var speed_stock: int
 @onready var slow_timer = $SlowTimer
 @onready var path_timer = $PathTimer
 @onready var agent := $NavigationAgent2D as NavigationAgent2D
-@onready var bite_sound = $AudioStreamPlayer2D
+@onready var bite_sound: AudioStreamPlayer2D = $BiteSound
+@onready var death_sound: AudioStreamPlayer2D = $DeathSound
+
 
 @export var max_health: int
 @export var speed: int
@@ -47,8 +49,11 @@ func _ready():
 	)
 	slow_timer.connect("timeout", func(): slow_timeout())
 	path_timer.connect("timeout", func(): retarget_timeout())
+	death_sound.connect("finished", func(): death_sound_finished())
 
 func _physics_process(delta):
+	if dead:
+		return
 	if state == 0:
 		var _direction = (target - global_position).normalized()
 		_move(delta, _direction)
@@ -111,13 +116,22 @@ func slow_timeout() -> void:
 	speed = speed_stock
 	slowed = false
 
+func death_sound_finished() -> void:
+	queue_free()
+
 func dies(shooter: IPlayer) -> void:
 	if not dead:
 		dead = true
+		
+		$AnimationPlayer.stop()
+		$Hitbox.disabled = true
+		$HurtBox.get_child(0).disabled = true
+		
 		var blood_effect: GPUParticles2D = blood_effect_scene.instantiate()
 		blood_effect.global_position = global_position
 		blood_effect.rotation = global_position.angle_to_point(shooter.global_position) + PI
 		Global.blood_container.add_child(blood_effect)
+		death_sound.play()
 
 		shooter.gain_money(money)
 		shooter.gain_score(randi_range(1, 10))
@@ -130,4 +144,3 @@ func dies(shooter: IPlayer) -> void:
 			print("spawn bonus")
 			Global.fabric_bonus.spawn_bonus(global_position)
 
-		queue_free()

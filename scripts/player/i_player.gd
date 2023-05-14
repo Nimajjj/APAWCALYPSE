@@ -302,7 +302,7 @@ func _spawn_default_weapon() -> void:
 	
 
 func _on_Area2D_body_entered(body: Node) -> void:
-	if body is IEnemy && state != PC_State.DOWN && state != PC_State.DEAD:
+	if body is IEnemy && state != PC_State.DOWN && state != PC_State.DEAD && !body.dead:
 		if body.is_miser:
 			var money_lost = floor(money * 0.07)
 			money -= money_lost
