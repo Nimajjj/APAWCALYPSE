@@ -29,15 +29,23 @@ var reloading: bool = false
 var shoot_effect: GPUParticles2D = null
 var can_shoot: bool = true
 
+var player: IPlayer = null : set = _player_setter
+	
+func _player_setter(val) -> void:
+	player = val
+	if player != null:
+		Synchronizer.set_multiplayer_authority(player.name.to_int())
+	
 @onready var WeaponEnd = $WeaponEnd
 @onready var timer = $Timer
 @onready var fire_rate_timer = $FireRateTimer
+@onready var Synchronizer: MultiplayerSynchronizer = $Synchronizer/MultiplayerSynchronizer
 
 
 func _ready():
 	if ShootEffectScene != null:
 		shoot_effect = ShootEffectScene.instantiate()
-		WeaponEnd.add_child(shoot_effect)
+		WeaponEnd.add_child(shoot_effect.duplicate())
 
 	current_mag = mag_capacity
 	bullet_stock = mag_capacity * 2
@@ -51,9 +59,14 @@ func _ready():
 
 
 func _process(delta):
-
+	if player == null: return
+	if !player.is_local_authority: return
+	
+	look_at(get_global_mouse_position())
+	
 	weapon_direction = get_global_mouse_position() - global_position
 	weapon_direction = weapon_direction.normalized()
+	
 	if(current_mag == 0 && !reloading):
 		trigger_reload()
 
@@ -92,25 +105,17 @@ func reload() -> void:
 
 
 func shoot(player_damage_factor: int) -> void:
+	if player == null: return
+	if !player.is_local_authority:
+		print("Fucking huge mess somewhere, this should mever happen!")
+		return
+			
 	if reloading: return
 	if(fire_rate_timer.time_left > 0): return
 	if(can_shoot):
 		if(current_mag > 0):
-			fire_rate_timer.start()
-			can_shoot = false
-			shoot_effect.emitting = true
-			var bullet: IBullet = BulletScene.instantiate()
-			bullet.position = WeaponEnd.get_global_transform().origin
-			bullet.damage = damage * player_damage_factor
-			bullet.life_time = weapon_range
-			current_mag -= 1
-			get_tree().get_root().add_child(bullet)
-			var spread_angle = randf_range(-spread, spread)
-			var shoot_direction = weapon_direction.rotated(spread_angle)
-			bullet.shoot(get_parent(), get_global_mouse_position(), shoot_direction)
-			actual_rate = 0
-			get_parent().shake_camera(3, shake_power, shake_power, shake_power / 2)
-			$AudioStreamPlayer.play()
+			rpc_id(1, "shoot_server", player_damage_factor)
+			_shoot_impl(player_damage_factor)
 		actual_rate += 1
 
 func stop_shooting() -> void:
@@ -121,3 +126,40 @@ func reset_fire_rate() -> void:
 
 func _on_timer_timeout() -> void:
 	reload()
+
+
+@rpc("any_peer")
+func shoot_server(player_damage_factor: int) -> void:
+	var caller_id = multiplayer.get_remote_sender_id()
+	if str(player.name).to_int() != caller_id:
+		print("Illegally calling shoot_server! The culprit is: " + str(caller_id))
+		return
+
+	rpc("shoot_client", player_damage_factor)
+	_shoot_impl(player_damage_factor)
+
+
+@rpc # Called on _all_ clients
+func shoot_client(player_damage_factor: int) -> void:
+	if player.is_local_authority: return
+	_shoot_impl(player_damage_factor)
+
+
+# Handle all the effects (visual & audio)
+# This is called on all clients, including the server & the client initiating the shot
+func _shoot_impl(player_damage_factor: int) -> void:
+	fire_rate_timer.start()
+	can_shoot = false
+	shoot_effect.emitting = true
+	var bullet: IBullet = BulletScene.instantiate()
+	bullet.position = WeaponEnd.get_global_transform().origin
+	bullet.damage = damage * player_damage_factor
+	bullet.life_time = weapon_range
+	current_mag -= 1
+	get_tree().get_root().add_child(bullet)
+	var spread_angle = randf_range(-spread, spread)
+	var shoot_direction = weapon_direction.rotated(spread_angle)
+	bullet.shoot(get_parent(), get_global_mouse_position(), shoot_direction)
+	actual_rate = 0
+	get_parent().shake_camera(3, shake_power, shake_power, shake_power / 2)
+	$AudioStreamPlayer.play()

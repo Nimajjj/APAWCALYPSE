@@ -1,4 +1,9 @@
-[gd_scene format=3 uid="uid://cx15vvox6qa4r"]
+[gd_scene load_steps=2 format=3 uid="uid://cx15vvox6qa4r"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_nd8by"]
+properties/0/path = NodePath("..:rotation")
+properties/0/spawn = true
+properties/0/sync = true
 
 [node name="IWeapon" type="Node2D"]
 
@@ -13,3 +18,8 @@ one_shot = true
 
 [node name="FireRateTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="Synchronizer" type="Node" parent="."]
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="Synchronizer"]
+replication_config = SubResource("SceneReplicationConfig_nd8by")

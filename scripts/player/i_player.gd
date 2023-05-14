@@ -71,8 +71,6 @@ func _ready() -> void:
 func _physics_process(delta):
 	if !is_local_authority:
 		return
-		
-	weapon.look_at(get_global_mouse_position())
 
 	if !shaking:
 		_camera_follow_mouse()
@@ -107,6 +105,7 @@ func add_weapon(wp: IWeapon) -> void:
 	weapon = wp.duplicate()
 	weapon.position = Vector2(1, -6)
 	add_child(weapon)
+	weapon.player = self
 
 
 func drop_weapon() -> void:
