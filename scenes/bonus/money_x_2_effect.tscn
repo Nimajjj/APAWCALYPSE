@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://dsccl8ka76803"]
+[gd_scene load_steps=5 format=3 uid="uid://dsccl8ka76803"]
 
 [ext_resource type="PackedScene" uid="uid://dhhkjbore0vgo" path="res://scenes/bonus/i_bonus_effect.tscn" id="1_4kna5"]
 [ext_resource type="Script" path="res://scripts/bonus/money_x_2_effect.gd" id="2_1aav0"]
+[ext_resource type="AudioStream" uid="uid://j21dmokujelk" path="res://assets/sounds/bonuses/money_x2_effect.mp3" id="3_bm2f8"]
+[ext_resource type="Script" path="res://scripts/sound_entity/sound_entity.gd" id="4_4lble"]
 
 [node name="MoneyX2Effect" instance=ExtResource("1_4kna5")]
 script = ExtResource("2_1aav0")
@@ -9,3 +11,9 @@ effectDuration = 5.0
 
 [node name="EffectDuration" parent="." index="0"]
 wait_time = 15.0
+
+[node name="AudioStreamPlayer" parent="." index="1"]
+stream = ExtResource("3_bm2f8")
+volume_db = -1.0
+script = ExtResource("4_4lble")
+group = "sfx"

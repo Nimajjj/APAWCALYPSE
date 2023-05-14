@@ -4,6 +4,7 @@ extends IBonusEffect
 func _effect() -> void:
 	get_parent().dead_shot = true
 	print("Dead shot started")
+	$AudioStreamPlayer.play()
 
 
 func end_effect() -> void:

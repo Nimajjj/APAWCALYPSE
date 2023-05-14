@@ -4,3 +4,5 @@
 
 [node name="EffectDuration" type="Timer" parent="."]
 one_shot = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

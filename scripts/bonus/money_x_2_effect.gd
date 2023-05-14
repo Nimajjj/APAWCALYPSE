@@ -4,6 +4,7 @@ extends IBonusEffect
 func _effect() -> void:
 	get_parent().money_x2 = true
 	print("Money X2 started")
+	$AudioStreamPlayer.play()
 
 
 func end_effect() -> void:
