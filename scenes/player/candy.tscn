@@ -4,7 +4,7 @@
 [ext_resource type="Shader" path="res://resources/flash_shader.gdshader" id="2_1bvqe"]
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="2_j3tyb"]
 [ext_resource type="Texture2D" uid="uid://bca1d6mcp8yok" path="res://assets/players/candy.png" id="4_dfmcs"]
-[ext_resource type="PackedScene" uid="uid://brfif4wd4q5ha" path="res://scenes/weapon/sniper.tscn" id="4_ejmm5"]
+[ext_resource type="PackedScene" uid="uid://cnovlywgf3473" path="res://scenes/weapon/pistol.tscn" id="4_e4tys"]
 [ext_resource type="AnimationLibrary" uid="uid://2x1fvsguqtbj" path="res://resources/player_animations.res" id="5_aci77"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pdyce"]
@@ -29,7 +29,7 @@ script = ExtResource("2_j3tyb")
 speed = 10000.0
 acceleration = 0.3
 friction = 0.1
-weapon_scene = ExtResource("4_ejmm5")
+weapon_scene = ExtResource("4_e4tys")
 
 [node name="Hitbox" parent="." index="1"]
 position = Vector2(1, 8)
