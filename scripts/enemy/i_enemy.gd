@@ -21,6 +21,7 @@ var speed_stock: int
 @onready var slow_timer = $SlowTimer
 @onready var path_timer = $PathTimer
 @onready var agent := $NavigationAgent2D as NavigationAgent2D
+@onready var bite_sound = $AudioStreamPlayer2D
 
 @export var max_health: int
 @export var speed: int
