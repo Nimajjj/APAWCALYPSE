@@ -15,10 +15,10 @@
 [ext_resource type="PackedScene" uid="uid://deh0ejmvq7sma" path="res://scenes/interactible/mystery_box.tscn" id="12_b748d"]
 [ext_resource type="PackedScene" uid="uid://6vxt8i1m4ong" path="res://scenes/interactible/side_door.tscn" id="12_nj25h"]
 [ext_resource type="PackedScene" uid="uid://cy3kakabvwgxc" path="res://scenes/spawner/i_spawner.tscn" id="13_ir52n"]
-[ext_resource type="PackedScene" path="res://scenes/interactible/speed_pump.tscn" id="15_6o5p1"]
-[ext_resource type="PackedScene" path="res://scenes/interactible/damage_pump.tscn" id="16_hrdpq"]
-[ext_resource type="PackedScene" path="res://scenes/interactible/health_pump.tscn" id="17_prh6i"]
-[ext_resource type="PackedScene" path="res://scenes/interactible/reload_pump.tscn" id="18_dpikg"]
+[ext_resource type="PackedScene" uid="uid://cwcwy8abhf3l8" path="res://scenes/interactible/speed_pump.tscn" id="15_6o5p1"]
+[ext_resource type="PackedScene" uid="uid://dqkre1m4iat4l" path="res://scenes/interactible/damage_pump.tscn" id="16_hrdpq"]
+[ext_resource type="PackedScene" uid="uid://bavi0q8a7jcc2" path="res://scenes/interactible/health_pump.tscn" id="17_prh6i"]
+[ext_resource type="PackedScene" uid="uid://bki1paxby6bjh" path="res://scenes/interactible/reload_pump.tscn" id="18_dpikg"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_00qgb"]
 load_path = "res://.godot/imported/windows.png-afb923fdd61133e09f4ebebb18e5ef94.ctex"
@@ -71,7 +71,7 @@ script = ExtResource("3_s0q21")
 [node name="WeaponRack" parent="Interactibles/WeaponRacks" instance=ExtResource("5_xcr48")]
 z_index = 2
 position = Vector2(912, 912)
-price = 650
+price = 1000
 weapon_scene = ExtResource("6_b61fw")
 
 [node name="WeaponRack2" parent="Interactibles/WeaponRacks" instance=ExtResource("5_xcr48")]
@@ -83,86 +83,102 @@ weapon_scene = ExtResource("7_dfkln")
 [node name="WeaponRack3" parent="Interactibles/WeaponRacks" instance=ExtResource("5_xcr48")]
 z_index = 2
 position = Vector2(935, 792)
-price = 450
+price = 600
 weapon_scene = ExtResource("8_6ewd6")
 
 [node name="WeaponRack4" parent="Interactibles/WeaponRacks" instance=ExtResource("5_xcr48")]
 z_index = 2
 position = Vector2(3248, 855)
-price = 1000
+price = 3000
 weapon_scene = ExtResource("9_83llj")
 
 [node name="WeaponRack5" parent="Interactibles/WeaponRacks" instance=ExtResource("5_xcr48")]
 z_index = 2
 position = Vector2(2696, -8)
-price = 850
+price = 2000
 weapon_scene = ExtResource("10_fpuei")
 
 [node name="Doors" type="Node2D" parent="Interactibles"]
 
 [node name="Door" parent="Interactibles/Doors" instance=ExtResource("5_41nn5")]
 position = Vector2(2016, 729)
+price = 1750
 
 [node name="Door2" parent="Interactibles/Doors" instance=ExtResource("5_41nn5")]
 position = Vector2(2592, 312)
+price = 2400
 
 [node name="Door3" parent="Interactibles/Doors" instance=ExtResource("5_41nn5")]
 position = Vector2(3264, 312)
+price = 3500
 spawner_id = 4
 
 [node name="Door4" parent="Interactibles/Doors" instance=ExtResource("5_41nn5")]
 position = Vector2(2496, 1336)
+price = 4200
 spawner_id = 3
 
 [node name="Door8" parent="Interactibles/Doors" instance=ExtResource("5_41nn5")]
 position = Vector2(1376, 1112)
+price = 3000
 spawner_id = 5
 
 [node name="Door10" parent="Interactibles/Doors" instance=ExtResource("5_41nn5")]
 position = Vector2(1152, 921)
+price = 2300
 spawner_id = 5
 
 [node name="Door9" parent="Interactibles/Doors" instance=ExtResource("5_41nn5")]
 position = Vector2(2304, 1113)
+price = 2750
 spawner_id = 3
 
 [node name="Door6" parent="Interactibles/Doors" instance=ExtResource("5_41nn5")]
 position = Vector2(2496, 1496)
+price = 6000
 spawner_id = 7
 
 [node name="Door7" parent="Interactibles/Doors" instance=ExtResource("5_41nn5")]
 position = Vector2(3616, 1496)
+price = 6000
 spawner_id = 7
 
 [node name="Door5" parent="Interactibles/Doors" instance=ExtResource("5_41nn5")]
 position = Vector2(3616, 1337)
+price = 4200
 spawner_id = 3
 
 [node name="SideDoor" parent="Interactibles/Doors" instance=ExtResource("12_nj25h")]
 z_index = 5
 position = Vector2(1113, 840)
+price = 500
 spawner_id = 2
 
 [node name="SideDoor3" parent="Interactibles/Doors" instance=ExtResource("12_nj25h")]
 z_index = 5
 position = Vector2(615, 1320)
+price = 5400
 spawner_id = 6
 
 [node name="SideDoor4" parent="Interactibles/Doors" instance=ExtResource("12_nj25h")]
 z_index = 5
 position = Vector2(2041, 1449)
+price = 5500
 
 [node name="SideDoor5" parent="Interactibles/Doors" instance=ExtResource("12_nj25h")]
 z_index = 5
 position = Vector2(2681, 1672)
+price = 5000
 
 [node name="SideDoor6" parent="Interactibles/Doors" instance=ExtResource("12_nj25h")]
 z_index = 5
 position = Vector2(3257, 1224)
+price = 3800
 
 [node name="SideDoor2" parent="Interactibles/Doors" instance=ExtResource("12_nj25h")]
 z_index = 5
 position = Vector2(1127, 520)
+price = 500
 spawner_id = 2
 
 [node name="Windows" type="Node2D" parent="Interactibles"]
