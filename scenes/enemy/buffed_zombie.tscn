@@ -1,8 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://byp4h6ltjlwuw"]
+[gd_scene load_steps=12 format=3 uid="uid://d3e2miwq6w5wa"]
 
-[ext_resource type="PackedScene" uid="uid://bwe1kad6agad3" path="res://scenes/enemy/i_enemy.tscn" id="1_hhi50"]
-[ext_resource type="Script" path="res://scripts/enemy/floda.gd" id="2_8hq6x"]
-[ext_resource type="Texture2D" uid="uid://cr4xb16rs253j" path="res://assets/enemies/bodies/bodies.png" id="3_sa7gd"]
+[ext_resource type="PackedScene" uid="uid://bwe1kad6agad3" path="res://scenes/enemy/i_enemy.tscn" id="1_4m1bq"]
+[ext_resource type="Script" path="res://scripts/enemy/buffed_zombie.gd" id="2_au032"]
+[ext_resource type="Texture2D" uid="uid://cr4xb16rs253j" path="res://assets/enemies/bodies/bodies.png" id="3_6rylo"]
 
 [sub_resource type="Shader" id="Shader_7oj4d"]
 code = "shader_type canvas_item;
@@ -24,7 +24,7 @@ shader_parameter/flash_color = Color(1, 1, 1, 1)
 shader_parameter/flash_modifier = 0.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2mnq2"]
-atlas = ExtResource("3_sa7gd")
+atlas = ExtResource("3_6rylo")
 region = Rect2(0, 32, 32, 32)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ucssc"]
@@ -72,12 +72,12 @@ _data = {
 "floda_walk": SubResource("Animation_3plas")
 }
 
-[node name="Floda" instance=ExtResource("1_hhi50")]
-script = ExtResource("2_8hq6x")
+[node name="BuffedZombie" instance=ExtResource("1_4m1bq")]
+script = ExtResource("2_au032")
 max_health = 300
-speed = 2300
+speed = 2400
 money = 30
-damage = 30
+damage = 40
 
 [node name="Sprite2D" parent="." index="0"]
 material = SubResource("ShaderMaterial_mhmvc")

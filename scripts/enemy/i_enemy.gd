@@ -8,6 +8,12 @@ var dead: bool = false
 var slowed: bool = false
 var target = Global.players[0]
 var direction: String
+var state: int = 0
+var destination: Vector2
+var knockback_force: float = 0
+var knockback_direction: Vector2 = Vector2.ZERO
+var speed_stock: int
+
 
 @onready var Sprite = $Sprite2D
 @onready var HealthBar = $HealthBar
@@ -17,15 +23,12 @@ var direction: String
 @onready var agent := $NavigationAgent2D as NavigationAgent2D
 
 @export var max_health: int
-@export var speed_stock: int
 @export var speed: int
 @export var money: int
 @export var damage: int
-@export var knockback_force: float = 0
-@export var knockback_direction: Vector2 = Vector2.ZERO
-@export var state: int = 0
-@export var destination: Vector2
 @export var is_boss: bool = false
+@export var is_miser: bool = false
+
 
 #var bonus: IBonus = null
 var health: int
@@ -35,10 +38,9 @@ func _ready():
 	HealthBar.visible = false
 	HealthBar.max_value = max_health
 	HealthBar.value = max_health
-	speed_stock = speed
-
-
+	
 	Sprite.material = Sprite.material.duplicate()
+	
 	timer.connect("timeout", func():
 		Sprite.material.set_shader_parameter("flash_modifier", 0.0)
 	)

@@ -75,8 +75,8 @@ _data = {
 
 [node name="WomanZombie" instance=ExtResource("1_ivw80")]
 script = ExtResource("2_5bavf")
-max_health = 150
-speed = 4000
+max_health = 175
+speed = 3500
 money = 16
 damage = 20
 

@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://bytkjmnlimjdj" path="res://scenes/weapon/ak47.tscn" id="10_fpuei"]
 [ext_resource type="PackedScene" uid="uid://p4js65rf6ci7" path="res://scenes/interactible/window.tscn" id="12_6yoxn"]
 [ext_resource type="PackedScene" uid="uid://deh0ejmvq7sma" path="res://scenes/interactible/mystery_box.tscn" id="12_b748d"]
-[ext_resource type="PackedScene" uid="uid://dbanfqudrb6yr" path="res://scenes/interactible/side_door.tscn" id="12_nj25h"]
+[ext_resource type="PackedScene" uid="uid://6vxt8i1m4ong" path="res://scenes/interactible/side_door.tscn" id="12_nj25h"]
 [ext_resource type="PackedScene" uid="uid://cy3kakabvwgxc" path="res://scenes/spawner/i_spawner.tscn" id="13_ir52n"]
 [ext_resource type="PackedScene" path="res://scenes/interactible/speed_pump.tscn" id="15_6o5p1"]
 [ext_resource type="PackedScene" path="res://scenes/interactible/damage_pump.tscn" id="16_hrdpq"]
@@ -32,9 +32,9 @@ atlas = SubResource("CompressedTexture2D_00qgb")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_xck6c"]
-vertices = PackedVector2Array(622, 321, 1120, 321, 1120, 597, 896, 597, 622, 916, 896, 800, 1106, 916, 1106, 800)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 0, 3, 5), PackedInt32Array(6, 4, 5, 7)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(622, 321, 622, 916, 1106, 916, 1106, 800, 896, 800, 896, 597, 1120, 597, 1120, 321)])
+vertices = PackedVector2Array(622, 916, 621, 320, 1120, 320, 896, 597, 1120, 597, 896, 800, 1106, 916, 1106, 800)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(2, 4, 3), PackedInt32Array(0, 3, 5), PackedInt32Array(6, 0, 5, 7)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(621, 320, 622, 916, 1106, 916, 1106, 800, 896, 800, 896, 597, 1120, 597, 1120, 320)])
 
 [node name="Map" type="Node2D"]
 y_sort_enabled = true
@@ -380,7 +380,7 @@ destination = Vector2(3216, 500)
 
 [node name="Navigation" type="Node2D" parent="."]
 
-[node name="FirstRoomNavigation" type="NavigationRegion2D" parent="Navigation"]
+[node name="FirstRoom" type="NavigationRegion2D" parent="Navigation"]
 navigation_polygon = SubResource("NavigationPolygon_xck6c")
 
 [editable path="Interactibles/Windows/Window"]
