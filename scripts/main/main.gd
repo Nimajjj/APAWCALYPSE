@@ -13,20 +13,24 @@ var game: Game = null
 
 
 func _ready() -> void:
+	return
+	if "--server" in OS.get_cmdline_args(): host_server()
+	else: run_client()
+		
+		
+func host_server() -> void:
 	randomize()
 	seed(1)
-	
-	_create_game()
-	
-	multiplayer.allow_object_decoding = true
-	
-	if "--server" in OS.get_cmdline_args():
-		_create_server()
-	else:
-		_create_client()
+	_create_multiplayer_game()	
+	_create_server()
 
 
-func _create_game() -> void:
+func run_client() -> void:
+	_create_multiplayer_game()	
+	_create_client()
+
+
+func _create_multiplayer_game() -> void:
 	game = multiplayer_game_scene.instantiate()
 	add_child(game)
 	player_ms.spawn_path = game.get_path()
