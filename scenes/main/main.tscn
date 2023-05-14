@@ -13,3 +13,6 @@ _spawnable_scenes = PackedStringArray("res://scenes/player/bada-boom.tscn", "res
 [node name="EnemiesMultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("res://scenes/enemy/big_zombie.tscn", "res://scenes/enemy/floda.tscn", "res://scenes/enemy/woman_zombie.tscn", "res://scenes/enemy/zombie.tscn")
 spawn_path = NodePath("../Enemies")
+
+[connection signal="despawned" from="PlayerMultiplayerSpawner" to="." method="_on_player_multiplayer_spawner_despawned"]
+[connection signal="spawned" from="PlayerMultiplayerSpawner" to="." method="_on_player_multiplayer_spawner_spawned"]

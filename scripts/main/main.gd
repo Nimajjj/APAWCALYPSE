@@ -44,3 +44,15 @@ func _create_client() -> void:
 	var client: Client = client_scene.instantiate()
 	add_child(client)
 	client.start_network()
+
+
+func _on_player_multiplayer_spawner_spawned(node: Node) -> void:
+	if node is IPlayer:
+		if !node in Global.players:
+			Global.players.append(node)
+
+
+func _on_player_multiplayer_spawner_despawned(node: Node) -> void:
+	if node is IPlayer:
+		if node in Global.players:
+			Global.players.erase(node)

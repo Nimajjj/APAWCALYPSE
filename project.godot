@@ -19,6 +19,7 @@ config/icon="res://assets/debug/icon.svg"
 
 Global="*res://scripts/autoload/global.gd"
 SoundManager="*res://scripts/autoload/sound_manager.gd"
+Weapons="*res://scripts/autoload/weapons.gd"
 
 [display]
 

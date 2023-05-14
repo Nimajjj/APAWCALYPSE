@@ -3,11 +3,12 @@
 [ext_resource type="PackedScene" uid="uid://cx15vvox6qa4r" path="res://scenes/weapon/i_weapon.tscn" id="1_lkaav"]
 [ext_resource type="Script" path="res://scripts/weapon/debug_weapon.gd" id="2_v01m1"]
 [ext_resource type="PackedScene" uid="uid://rw64c5lmk5qu" path="res://scenes/bullet/bullet_4.tscn" id="3_etie1"]
-[ext_resource type="PackedScene" path="res://scenes/effects/machine_gun_effect.tscn" id="4_m8ogw"]
+[ext_resource type="PackedScene" uid="uid://cowwp365y2cjp" path="res://scenes/effects/machine_gun_effect.tscn" id="4_m8ogw"]
 [ext_resource type="Texture2D" uid="uid://cmle6oesfmuby" path="res://assets/weapons/machinegun.png" id="4_ocjtn"]
 
 [node name="Machine Gun" instance=ExtResource("1_lkaav")]
 script = ExtResource("2_v01m1")
+ref = "MACHINE_GUN"
 weapon_name = "DebugWeapon"
 accuracy = 100
 damage = 25

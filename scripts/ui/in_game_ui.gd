@@ -29,12 +29,13 @@ func _process(_delta):
 	ScoreLabel.text = str(Global.game.score)
 	MoneyLabel.text = str(player.money)
 	HealthBar.value = player.health
-	MunitionLabel.text = "{0}".format([
-		player.weapon.current_mag
-	])
-	MunitionLabel2.text = "{0}".format([
-		player.weapon.bullet_stock,
-	])
+	if player.weapon:
+		MunitionLabel.text = "{0}".format([
+			player.weapon.current_mag
+		])
+		MunitionLabel2.text = "{0}".format([
+			player.weapon.bullet_stock,
+		])
 	
 	# DEBUG
 	var _text: String = ""
@@ -49,11 +50,12 @@ func _process(_delta):
 	_text += "Speed: " + str(player.speed) + "\n"
 	_text += "Damage Factor: " + str(player.damage_factor) + "\n"
 	_text += "Reload Factor: " + str(player.reload_factor) + "\n"
-	_text += "Current Mag: " + str(player.weapon.current_mag) + "\n"
-	_text += "Mag Capacity: " + str(player.weapon.mag_capacity) + "\n"
-	_text += "Bullet Stock: " + str(player.weapon.bullet_stock) + "\n"
-	_text += "Max Bullet Stock: " + str(player.weapon.max_bullet_stock) + "\n"
-	_text += "Stock Factor: " + str(player.weapon.stock_factor) + "\n"
+	if player.weapon:
+		_text += "Current Mag: " + str(player.weapon.current_mag) + "\n"
+		_text += "Mag Capacity: " + str(player.weapon.mag_capacity) + "\n"
+		_text += "Bullet Stock: " + str(player.weapon.bullet_stock) + "\n"
+		_text += "Max Bullet Stock: " + str(player.weapon.max_bullet_stock) + "\n"
+		_text += "Stock Factor: " + str(player.weapon.stock_factor) + "\n"
 
 	DebugLabel.text = _text
 

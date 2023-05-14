@@ -30,7 +30,7 @@ func _ready():
 
 func activate(player: IPlayer) -> void:
 	if isopened :
-		player.add_weapon(weapon.duplicate())
+		player.add_weapon(weapon.ref)
 		weapon.queue_free()
 		secondtimer.stop()
 		sprite.region_rect.position.x = 0

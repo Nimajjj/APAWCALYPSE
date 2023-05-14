@@ -17,7 +17,8 @@ enum PC_State { IDLE, MOVE, INTERACT, DOWN, DEAD }
 @export var knockback_force: float = 0
 @export var knockback_direction: Vector2 = Vector2.ZERO
 
-var weapon: IWeapon = null
+@export var weapon: IWeapon = null
+
 var aiming_at: Vector2 = Vector2.ZERO
 var state: PC_State = PC_State.IDLE
 var active_bonus: Array[String] = []
@@ -90,6 +91,9 @@ func _physics_process(delta):
 			_down_state()
 		PC_State.DEAD:
 			_dead_state()
+			
+	if Input.is_action_just_pressed("rmb"):
+		position = get_global_mouse_position()
 
 
 func start_shooting() -> void:
@@ -104,18 +108,73 @@ func take_bonus(bonus: IBonus) -> void:
 	pass
 
 
-func add_weapon(wp: IWeapon) -> void:
+# ADD WEAPON ###################################################
+
+func add_weapon(wp: String) -> void:
+	if is_local_authority:
+		rpc_id(1, "_add_weapon_server", wp, name)
+		_add_weapon_impl(wp)
+	
+	
+@rpc("any_peer")
+func _add_weapon_server(wp: String, client: String) -> void:
+	var caller_id = multiplayer.get_remote_sender_id()
+	if str(name).to_int() != caller_id:
+		print("Illegally calling _add_weapon_client! The culprit is: " + str(caller_id))
+		return
+
+	rpc("_add_weapon_client", wp, client)
+	_add_weapon_impl(wp)
+
+
+@rpc
+func _add_weapon_client(wp: String, client: String) -> void:
+	if is_local_authority: return
+	for player in Global.players:
+		if player.name == client:
+			print("_add_weapon_client() with wp: {0} client: {1} in : {2}".format([
+				wp, client, multiplayer.get_unique_id()
+			]))
+			player.drop_weapon()
+			player._add_weapon_impl(wp)
 	drop_weapon()
-	weapon = wp.duplicate()
-	weapon.position = Vector2(1, -6)
+	_add_weapon_impl(wp)
+	
+	
+
+func _add_weapon_impl(wp: String) -> void:
+	drop_weapon()
+	weapon = Weapons.List[wp].instantiate()
 	add_child(weapon)
+	weapon.position = Vector2(1, -6)
 	weapon.player = self
 
 
 func drop_weapon() -> void:
 	if weapon != null:
+		if is_local_authority:
+			print("drop_weapon() local")
+		else:
+			print("drop_weapon() in : {0} called by {1}".format([
+					name, multiplayer.get_unique_id()
+				]))
 		weapon.queue_free()
 		weapon = null
+		
+		var to_free = []
+		for child in get_children():
+			if child is IWeapon:
+				if is_local_authority:
+					print("drop_weapon() local looking for weapon")
+				else:
+					print("drop_weapon() in {0} looking for {1}".format([
+							multiplayer.get_unique_id(), child.name
+						]))
+				child.free()
+				print(child)
+				
+		
+################################################################
 
 
 func heal(heal: float) -> void:
@@ -306,8 +365,7 @@ func _camera_follow_mouse() -> void:
 
 
 func _spawn_default_weapon() -> void:
-	add_weapon(weapon_scene.instantiate())
-	weapon.position = Vector2(1, -6)
+	add_weapon(Weapons.WPN_MP5)
 	
 
 func _on_Area2D_body_entered(body: Node) -> void:

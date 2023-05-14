@@ -3,6 +3,8 @@ extends Node2D
 
 enum Weapon_Weight {LIGHT, MEDIUM, HEAVY}
 
+@export var ref: String = ""
+
 @export var weapon_name: String = ""
 @export var accuracy: int = 0
 @export var damage: int = 0
@@ -33,7 +35,7 @@ var player: IPlayer = null : set = _player_setter
 	
 func _player_setter(val) -> void:
 	player = val
-	if player != null:
+	if player != null && Synchronizer != null:
 		Synchronizer.set_multiplayer_authority(player.name.to_int())
 	
 @onready var WeaponEnd = $WeaponEnd
@@ -43,9 +45,12 @@ func _player_setter(val) -> void:
 
 
 func _ready():
+	Synchronizer.set_multiplayer_authority(1)
+	
 	if ShootEffectScene != null:
 		shoot_effect = ShootEffectScene.instantiate()
 		WeaponEnd.add_child(shoot_effect.duplicate())
+		
 
 	current_mag = mag_capacity
 	bullet_stock = mag_capacity * 2
