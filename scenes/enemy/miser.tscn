@@ -79,6 +79,7 @@ max_health = 125
 speed = 4300
 money = 10
 damage = 10
+is_miser = true
 
 [node name="Sprite2D" parent="." index="0"]
 material = SubResource("ShaderMaterial_hf6xl")

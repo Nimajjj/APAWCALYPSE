@@ -31,6 +31,7 @@ var speed_stock: int
 @export var damage: int
 @export var is_boss: bool = false
 @export var is_miser: bool = false
+@export var is_reaper: bool = false
 
 
 #var bonus: IBonus = null

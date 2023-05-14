@@ -66,6 +66,7 @@ max_health = 5000
 speed = 1500
 money = 75
 damage = 75
+is_boss = true
 
 [node name="Sprite2D" parent="." index="0"]
 material = SubResource("ShaderMaterial_8wc3b")
