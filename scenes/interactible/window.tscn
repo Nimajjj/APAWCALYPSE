@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://p4js65rf6ci7"]
+[gd_scene load_steps=8 format=3 uid="uid://p4js65rf6ci7"]
 
 [ext_resource type="PackedScene" uid="uid://dihhgl1j62h8t" path="res://scenes/interactible/interactible.tscn" id="1_6row8"]
 [ext_resource type="Script" path="res://scripts/interactible/window.gd" id="2_qygae"]
@@ -16,11 +16,21 @@ size = Vector2(32, 9.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c65wt"]
 size = Vector2(24, 8)
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_ww8cm"]
+properties/0/path = NodePath("..:hit_possible")
+properties/0/spawn = true
+properties/0/sync = true
+properties/1/path = NodePath("..:health")
+properties/1/spawn = true
+properties/1/sync = true
+
 [node name="Window" instance=ExtResource("1_6row8")]
 z_index = 2
 y_sort_enabled = true
 scale = Vector2(2, 2)
 script = ExtResource("2_qygae")
+hit_possible = true
+health = 3
 
 [node name="Sprite2D" parent="." index="0"]
 position = Vector2(0, -16)
@@ -41,5 +51,11 @@ wait_time = 3.0
 position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_c65wt")
 
+[node name="Synchronizer" type="Node" parent="." index="4"]
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="Synchronizer" index="0"]
+replication_config = SubResource("SceneReplicationConfig_ww8cm")
+
 [connection signal="body_entered" from="InteractionArea2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="InteractionArea2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="synchronized" from="Synchronizer/MultiplayerSynchronizer" to="." method="_on_multiplayer_synchronizer_synchronized"]

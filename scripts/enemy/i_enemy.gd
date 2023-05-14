@@ -125,7 +125,7 @@ func slow_timeout() -> void:
 	slowed = false
 
 func dies(shooter: IPlayer) -> void:
-	if multiplayer.get_unique_id() != 1: return
+	if !multiplayer.is_server(): return
 	
 	if not dead:
 		dead = true

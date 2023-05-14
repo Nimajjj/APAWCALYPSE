@@ -13,7 +13,6 @@ func activate(player: IPlayer) -> void:
 		player.money -= price
 		
 		rpc_id(1, "_open_server", player)
-		
 
 @rpc("any_peer")
 func _open_server(player) -> void:

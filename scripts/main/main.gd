@@ -18,6 +18,8 @@ func _ready() -> void:
 	
 	_create_game()
 	
+	multiplayer.allow_object_decoding = true
+	
 	if "--server" in OS.get_cmdline_args():
 		_create_server()
 	else:
