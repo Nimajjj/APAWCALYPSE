@@ -60,7 +60,10 @@ func _ready():
 
 func _process(delta):
 	if player == null: return
-	if !player.is_local_authority: return
+	if !player.is_local_authority: 
+		weapon_direction = global_position * Vector2.RIGHT.rotated(rotation).normalized()
+		weapon_direction = weapon_direction.normalized()
+		return
 	
 	look_at(get_global_mouse_position())
 	
