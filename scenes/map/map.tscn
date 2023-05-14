@@ -148,11 +148,12 @@ position = Vector2(3616, 1337)
 price = 4200
 spawner_id = 3
 
-[node name="SideDoor" parent="Interactibles/Doors" instance=ExtResource("12_nj25h")]
+[node name="SideDoor" parent="Interactibles/Doors" groups=["door1"] instance=ExtResource("12_nj25h")]
 z_index = 5
 position = Vector2(1113, 840)
 price = 500
 spawner_id = 2
+door_group = "door1"
 
 [node name="SideDoor3" parent="Interactibles/Doors" instance=ExtResource("12_nj25h")]
 z_index = 5
@@ -180,6 +181,7 @@ z_index = 5
 position = Vector2(1127, 520)
 price = 500
 spawner_id = 2
+door_group = "door1"
 
 [node name="Windows" type="Node2D" parent="Interactibles"]
 
