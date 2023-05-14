@@ -58,7 +58,7 @@ func _on_wave_timer_timeout():
 		var spawner_index = 0
 		for spawner in Global.spawners:
 			if spawner.enabled:
-				if spawner_index == boss_spawn && wave % 2 == 0:
+				if spawner_index == boss_spawn && wave % 5 == 0:
 					spawner.start_spawner(Global.units_left_to_spawn / enabled_spawner, true)
 				else:
 					spawner.start_spawner(Global.units_left_to_spawn / enabled_spawner, false)

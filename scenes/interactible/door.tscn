@@ -21,6 +21,7 @@ script = ExtResource("2_jbedx")
 price = 100
 open = false
 spawner_id = -1
+door_group = ""
 
 [node name="Sprite2D" parent="." index="0"]
 position = Vector2(0, -19)

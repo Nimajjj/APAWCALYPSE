@@ -14,6 +14,7 @@ func activate(player: IPlayer) -> void:
 
 		# Increase the price
 		price = floor(price * 1.2)
+		$AudioStreamPlayer.play()
 		if(player.reload_factor > minReloadFactor):
 			message = "Press [E] to buy reload up bonus for {0}$ (-{1}% RELOAD TIME)".format([price, snappedf(nextGain*100, 0.01)])
 		else:

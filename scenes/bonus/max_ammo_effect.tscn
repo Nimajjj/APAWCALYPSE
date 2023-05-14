@@ -1,10 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://cqtxd52q368bu"]
+[gd_scene load_steps=5 format=3 uid="uid://cqtxd52q368bu"]
 
 [ext_resource type="PackedScene" uid="uid://dhhkjbore0vgo" path="res://scenes/bonus/i_bonus_effect.tscn" id="1_it0di"]
 [ext_resource type="Script" path="res://scripts/bonus/max_ammo_effect.gd" id="2_uuui4"]
+[ext_resource type="AudioStream" uid="uid://dnoymf64jc7xi" path="res://assets/sounds/bonuses/reload_effect.mp3" id="3_p5s01"]
+[ext_resource type="Script" path="res://scripts/sound_entity/sound_entity.gd" id="4_g5cwv"]
 
 [node name="MaxAmmoEffect" instance=ExtResource("1_it0di")]
 script = ExtResource("2_uuui4")
 
 [node name="EffectDuration" parent="." index="0"]
 wait_time = 0.01
+
+[node name="AudioStreamPlayer" parent="." index="1"]
+stream = ExtResource("3_p5s01")
+volume_db = -1.0
+script = ExtResource("4_g5cwv")
+group = "sfx"
+
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]

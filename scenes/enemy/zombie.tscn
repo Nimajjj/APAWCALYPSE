@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bwe1kad6agad3" path="res://scenes/enemy/i_enemy.tscn" id="1_5bvas"]
 [ext_resource type="Script" path="res://scripts/enemy/zombie.gd" id="2_6bqtj"]
 [ext_resource type="Shader" path="res://resources/flash_shader.gdshader" id="3_65vta"]
-[ext_resource type="Texture2D" uid="uid://duqpj4n3ksk4n" path="res://assets/enemies/bodies/SpriteSheetBodies.png" id="3_gxn0d"]
+[ext_resource type="Texture2D" uid="uid://cr4xb16rs253j" path="res://assets/enemies/bodies/bodies.png" id="4_wkfgx"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vrhw5"]
 shader = ExtResource("3_65vta")
@@ -31,7 +31,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Rect2(0, 0, 32, 32), Rect2(32, 0, 32, 32)]
+"values": [Rect2(0, 128, 32, 32), Rect2(32, 128, 32, 32)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_t5h4m"]
@@ -49,9 +49,9 @@ damage = 25
 [node name="Sprite2D" parent="." index="0"]
 material = SubResource("ShaderMaterial_vrhw5")
 position = Vector2(0, -8)
-texture = ExtResource("3_gxn0d")
+texture = ExtResource("4_wkfgx")
 region_enabled = true
-region_rect = Rect2(0, 0, 32, 32)
+region_rect = Rect2(0, 128, 32, 32)
 
 [node name="CollisionShape2D" parent="HurtBox" index="0"]
 position = Vector2(0, -8)

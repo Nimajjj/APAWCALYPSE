@@ -279,17 +279,23 @@ func shake_camera(duration: int, offset_x: float, offset_y: float, angle: float)
 	shaking = false
 
 
-func take_damage(damage: float, damager_pos: Vector2) -> void:
+func take_damage(damage: float, damager_pos: Vector2, sound: AudioStreamPlayer2D, is_reaper: bool) -> void:
 	if HitTimer.time_left <= 0:
 		Sprite.material.set_shader_parameter("flash_modifier", 1.0)
 		FlashTimer.start()
 		StartRegenerationTimer.start()
 		RegenerationTicksTimer.stop()
-		health -= damage
 		AnimPlayer.play("player_animations/DAMAGE")
 		HitTimer.start()
+		sound.play()		
 		receive_knockback(damager_pos)
 		shake_camera(3, 4, 4, 2)
+		
+		if is_reaper && health < max_health / 2:
+			health = 0
+		else:
+			health -= damage
+			
 
 		if health <= 0:
 			health = 0
@@ -369,5 +375,9 @@ func _spawn_default_weapon() -> void:
 	
 
 func _on_Area2D_body_entered(body: Node) -> void:
-	if body is IEnemy && state != PC_State.DOWN && state != PC_State.DEAD:
-		take_damage(body.damage, body.global_position)
+	if body is IEnemy && state != PC_State.DOWN && state != PC_State.DEAD && !body.dead:
+		if body.is_miser:
+			var money_lost = floor(money * 0.07)
+			money -= money_lost
+			body.money += floor(money_lost * 0.75)
+		take_damage(body.damage, body.global_position, body.bite_sound, body.is_reaper)

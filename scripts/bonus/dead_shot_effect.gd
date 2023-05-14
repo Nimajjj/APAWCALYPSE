@@ -3,6 +3,7 @@ extends IBonusEffect
 #DEAD SHOT
 func _effect() -> void:
 	get_parent().dead_shot = true
+	$AudioStreamPlayer.play()
 
 
 func end_effect() -> void:

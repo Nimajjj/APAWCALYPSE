@@ -15,6 +15,7 @@ func activate(player: IPlayer) -> void:
 		# Increase the price and the next gain
 		nextGain = 1000 + player.speed * 0.02
 		price = floor(price * 1.5)
+		$AudioStreamPlayer.play()
 		if(player.speed < maxSpeed):
 			message = "Press [E] to buy speed up bonus for {0}$ (+{1} SPEED)".format([price, nextGain/100])
 		else:

@@ -19,15 +19,15 @@ func _ready():
 
 
 func _physics_process(delta):
-	if !multiplayer.is_server(): return 
-	
+	if !multiplayer.is_server(): return
+
 	for body in interaction_area.get_overlapping_bodies():
 		if body is IEnemy && body.state != 2:
 			body.state = 2
-			body.target = Global.players[0] if Global.players.size() != 0 else body.target 
+			body.target = Global.players[0] if Global.players.size() != 0 else body.target
 			body.retarget()
 			body.path_timer.start()
-			
+
 	for body in hitbox.get_overlapping_bodies():
 		if body is IEnemy and body.state == 0:
 			if hit_possible:
@@ -36,12 +36,12 @@ func _physics_process(delta):
 					hit_timer.start()
 			if health == 0:
 				body.state = 1
-				
+
 
 
 func activate(player: IPlayer) -> void:
 	rpc_id(1, "_activate_server", player)
-	
+
 
 func can_activate(player: IPlayer) -> bool:
 	return health != 3
@@ -75,13 +75,13 @@ func _activate_server(player) -> void:
 	if health > 3:
 		health = 3
 	player.money += 10
-	
+
 
 func _take_damage_server() -> void:
 	if !multiplayer.is_server():
 		print("Illegaly calling _take_damage_server! Culprit is ", multiplayer.get_remote_sender_id())
 		return
-		
+
 	health -= 1
 	if health <= 0:
 		health = 0

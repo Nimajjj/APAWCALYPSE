@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://bwe1kad6agad3"]
+[gd_scene load_steps=7 format=3 uid="uid://bwe1kad6agad3"]
 
 [ext_resource type="Texture2D" uid="uid://ydmvtpa7m24w" path="res://assets/ui/progress/health_bcg.png" id="1_kohhs"]
 [ext_resource type="Texture2D" uid="uid://b7kvnccidgyd6" path="res://assets/ui/progress/health_progress.png" id="2_xebm5"]
+[ext_resource type="AudioStream" uid="uid://bmlff5jd7jpvw" path="res://assets/sounds/enemies/zombie_bite.mp3" id="3_qgwbt"]
+[ext_resource type="AudioStream" uid="uid://bj8swkncbifab" path="res://assets/sounds/enemies/default_zombie_death.mp3" id="4_qv3gl"]
 
 [sub_resource type="Shader" id="Shader_7oj4d"]
 code = "shader_type canvas_item;
@@ -68,6 +70,12 @@ wait_time = 0.5
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 debug_enabled = true
+
+[node name="BiteSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_qgwbt")
+
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_qv3gl")
 
 [node name="Synchronizer" type="Node" parent="."]
 

@@ -1,6 +1,6 @@
 extends Interactible
 
-var price: int = 100
+var price: int = 1500
 
 var weapons: Array = []
 
@@ -36,8 +36,8 @@ func activate(player: IPlayer) -> void:
 		sprite.region_rect.position.x = 0
 		isopened = false 
 		message = "Press [E] to open the box"
-		rand = randi() % 2 + 1
-		if x == rand : 
+		rand = randi() % 10 + 1
+		if x == rand :
 			change_position()
 		return
 	if can_activate(player) && !isopened:
@@ -108,7 +108,7 @@ func _on_second_timer_timeout():
 	sprite.region_rect.position.x = 0
 	isopened = false
 	message = "Press [E] to open the box"
-	rand = randi() % 2 + 1
+	rand = randi() % 10 + 1
 	if x == rand : 
 		change_position() 
 	return
