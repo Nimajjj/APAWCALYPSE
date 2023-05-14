@@ -123,7 +123,7 @@ func heal(heal: float) -> void:
 	if health > max_health:
 		health = max_health
 
-
+@rpc
 func gain_money(money: int) -> void:
 	if(money_x2): self.money += money * 2
 	else: self.money += money

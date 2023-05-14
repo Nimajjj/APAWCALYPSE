@@ -134,7 +134,7 @@ func dies(shooter: IPlayer) -> void:
 		blood_effect.rotation = global_position.angle_to_point(shooter.global_position) + PI
 		Global.blood_container.add_child(blood_effect)
 
-		shooter.gain_money(money)
+		shooter.rpc_id(str(shooter.name).to_int(), "gain_money", money)
 		shooter.gain_score(randi_range(1, 10))
 		Global.units_alive -= 1
 	
