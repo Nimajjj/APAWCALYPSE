@@ -10,6 +10,8 @@ var big_zombie_scene: PackedScene = preload("res://scenes/enemy/big_zombie.tscn"
 func create_enemy(posistion: Vector2, destination: Vector2, boss: bool, direction: String) -> IEnemy:
 	var enemy: IEnemy
 
+	enemy = big_zombie_scene.instantiate()
+	enemy.is_boss = true
 #	if boss:
 #		enemy = big_zombie_scene.instantiate()
 #		enemy.is_boss = true
@@ -23,7 +25,7 @@ func create_enemy(posistion: Vector2, destination: Vector2, boss: bool, directio
 #		else:
 #			enemy = woman_zombie_scene.instantiate()
 	
-	enemy = miser_scene.instantiate()
+#	enemy = miser_scene.instantiate()
 	enemy.is_miser = true
 	
 	posistion.x += randi_range(-50, 50)
@@ -40,5 +42,4 @@ func create_enemy(posistion: Vector2, destination: Vector2, boss: bool, directio
 	enemy.target = enemy.destination
 	add_child(enemy)
 	Global.units_alive += 1
-	print(enemy.speed)
 	return enemy

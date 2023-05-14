@@ -12,12 +12,10 @@ func _ready():
 	message = "Press [E] to repair"
 	_update_sprite()
 	hit_timer.connect("timeout", Callable(func(): _hit_timer_timeout()))
-	print("Health", health)
 
 func _physics_process(delta):
 	for body in interaction_area.get_overlapping_bodies():
 		if body is IEnemy && body.state != 2:
-			print("Changing to state 2")
 			body.state = 2
 			body.target = Global.players[0]
 			body.retarget()
@@ -29,9 +27,7 @@ func _physics_process(delta):
 					take_damage()
 					hit_timer.start()
 			if health == 0:
-				print("Changing to state 1")
 				body.state = 1
-				print("enemy direction: ", body.direction)
 
 
 func activate(player: IPlayer) -> void:
@@ -42,7 +38,6 @@ func activate(player: IPlayer) -> void:
 	_update_sprite()
 
 func take_damage() -> void:
-	print("taking damage")
 	health -= 1
 	if health <= 0:
 		health = 0
