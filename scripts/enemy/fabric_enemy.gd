@@ -6,24 +6,25 @@ var buffed_zombie_scene: PackedScene = preload("res://scenes/enemy/buffed_zombie
 var miser_scene: PackedScene = preload("res://scenes/enemy/miser.tscn")
 var big_zombie_scene: PackedScene = preload("res://scenes/enemy/big_zombie.tscn")
 
+@onready var boss_spawn_sound: AudioStreamPlayer2D = $AudioStreamPlayer2D
+
 
 func create_enemy(posistion: Vector2, destination: Vector2, boss: bool, direction: String) -> IEnemy:
 	var enemy: IEnemy
 
-	enemy = big_zombie_scene.instantiate()
-	enemy.is_boss = true
-#	if boss:
-#		enemy = big_zombie_scene.instantiate()
-#		enemy.is_boss = true
-#	else:
-#		var rand = randi() % 100
-#		print(rand)
-#		if rand < 65:
-#			enemy = zombie_scene.instantiate()
-#		elif 65 <= rand && rand < 75:
-#			enemy = buffed_zombie_scene.instantiate()
-#		else:
-#			enemy = woman_zombie_scene.instantiate()
+	if boss:
+		enemy = big_zombie_scene.instantiate()
+		enemy.is_boss = true
+		boss_spawn_sound.play()
+	else:
+		var rand = randi() % 100
+		print(rand)
+		if rand < 65:
+			enemy = zombie_scene.instantiate()
+		elif 65 <= rand && rand < 75:
+			enemy = buffed_zombie_scene.instantiate()
+		else:
+			enemy = woman_zombie_scene.instantiate()
 	
 #	enemy = miser_scene.instantiate()
 	enemy.is_miser = true
