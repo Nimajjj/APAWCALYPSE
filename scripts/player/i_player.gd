@@ -34,6 +34,10 @@ var dead_shot: bool = false
 var damage_factor: float = 1
 var reload_factor: float = 1
 
+# MULTIPLAYER RELATED
+var is_local_authority: bool
+@onready var Synchronizer: MultiplayerSynchronizer = $Synchronizer/MultiplayerSynchronizer
+
 @onready var Sprite = $Sprite2D
 @onready var AnimPlayer = $AnimationPlayer
 @onready var Camera = $Camera2D
@@ -47,6 +51,10 @@ var reload_factor: float = 1
 
 
 func _ready() -> void:
+	Synchronizer.set_multiplayer_authority(str(name).to_int())
+	is_local_authority = Synchronizer.get_multiplayer_authority() == multiplayer.get_unique_id()
+	Camera.enabled = is_local_authority
+	
 	health = max_health
 	_spawn_default_weapon()
 	
@@ -61,11 +69,10 @@ func _ready() -> void:
 	Hitbox.connect("body_entered", Callable(func(body: Node): _on_Area2D_body_entered(body)))
 
 func _physics_process(delta):
+	if !is_local_authority:
+		return
+		
 	weapon.look_at(get_global_mouse_position())
-	
-	if Input.is_action_just_pressed("rmb"):
-		position = get_global_mouse_position()
-		print(position)
 
 	if !shaking:
 		_camera_follow_mouse()

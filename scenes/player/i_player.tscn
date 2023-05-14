@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://7vehn306bqp1"]
+[gd_scene load_steps=6 format=3 uid="uid://7vehn306bqp1"]
 
 [ext_resource type="AnimationLibrary" uid="uid://2x1fvsguqtbj" path="res://resources/player_animations.res" id="1_m404w"]
 [ext_resource type="Shader" path="res://resources/flash_shader.gdshader" id="1_q6wjh"]
@@ -15,11 +15,37 @@ shader = ExtResource("1_q6wjh")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
 shader_parameter/flash_modifier = 0.0
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_2nxr8"]
+properties/0/path = NodePath("..:position")
+properties/0/spawn = true
+properties/0/sync = true
+
 [node name="IPlayer" type="CharacterBody2D"]
 z_index = 1
 y_sort_enabled = true
 material = SubResource("ShaderMaterial_fceh3")
 scale = Vector2(2, 2)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "IDLE"
+libraries = {
+"": ExtResource("1_m404w")
+}
+
+[node name="DownTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="FlashTimer" type="Timer" parent="."]
+wait_time = 0.1
+
+[node name="HitTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="StartRegenerationTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="RegenerationTicksTimer" type="Timer" parent="."]
 
 [node name="CollisionBox" type="CollisionShape2D" parent="."]
 
@@ -33,26 +59,9 @@ material = SubResource("ShaderMaterial_i0k62")
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(3, 3)
 
-[node name="DownTimer" type="Timer" parent="."]
-one_shot = true
-
-[node name="FlashTimer" type="Timer" parent="."]
-wait_time = 0.1
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "IDLE"
-libraries = {
-"": ExtResource("1_m404w")
-}
-
-[node name="HitTimer" type="Timer" parent="."]
-one_shot = true
-
 [node name="RayCast2D" type="RayCast2D" parent="."]
 
-[node name="StartRegenerationTimer" type="Timer" parent="."]
-wait_time = 5.0
-one_shot = true
+[node name="Synchronizer" type="Node" parent="."]
 
-[node name="RegenerationTicksTimer" type="Timer" parent="."]
-wait_time = 1.0
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="Synchronizer"]
+replication_config = SubResource("SceneReplicationConfig_2nxr8")

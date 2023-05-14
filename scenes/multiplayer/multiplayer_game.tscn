@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://gpnnygnrhmag"]
+
+[ext_resource type="PackedScene" uid="uid://bb22ptpaphk3v" path="res://scenes/game/game.tscn" id="1_k3i7q"]
+[ext_resource type="Script" path="res://scripts/multiplayer/multiplayer_game.gd" id="2_cugd8"]
+
+[node name="MultiplayerGame" instance=ExtResource("1_k3i7q")]
+script = ExtResource("2_cugd8")
+
+[node name="FabricPlayer" parent="." index="2"]
+position = Vector2(725, 425)

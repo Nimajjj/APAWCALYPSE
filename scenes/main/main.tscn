@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://db4gidyp4v637"]
+
+[ext_resource type="Script" path="res://scripts/main/main.gd" id="1_bhmiq"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_bhmiq")
+
+[node name="PlayerMultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://scenes/player/bada-boom.tscn", "res://scenes/player/blade.tscn", "res://scenes/player/candy.tscn", "res://scenes/player/grey.tscn")

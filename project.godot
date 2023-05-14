@@ -10,8 +10,8 @@ config_version=5
 
 [application]
 
-config/name="APAWCALYPSE"
-run/main_scene="res://scenes/game/game.tscn"
+config/name="APAWCALYPSE - multiplayer"
+run/main_scene="res://scenes/main/main.tscn"
 config/features=PackedStringArray("4.0", "Forward Plus")
 config/icon="res://assets/debug/icon.svg"
 
