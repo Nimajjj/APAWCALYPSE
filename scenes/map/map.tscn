@@ -63,7 +63,7 @@ size = Vector2(6, 7.28125)
 size = Vector2(12, 6.5625)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0im3m"]
-size = Vector2(14, 23.125)
+size = Vector2(14, 84.9995)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dlsl2"]
 size = Vector2(12, 158.563)
@@ -72,7 +72,7 @@ size = Vector2(12, 158.563)
 size = Vector2(12, 190.281)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k21p4"]
-size = Vector2(13, 253.141)
+size = Vector2(13, 192.141)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_htn7j"]
 size = Vector2(12, 908.281)
@@ -105,7 +105,7 @@ size = Vector2(9.5, 223)
 size = Vector2(13.75, 157.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cy2f2"]
-size = Vector2(13.75, 317.75)
+size = Vector2(13.75, 255.75)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xb713"]
 size = Vector2(12.875, 159)
@@ -117,7 +117,7 @@ size = Vector2(12.875, 160.5)
 size = Vector2(12.875, 116.625)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8w3jx"]
-size = Vector2(12.875, 107.313)
+size = Vector2(12.875, 155.996)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f8gti"]
 size = Vector2(12.875, 479)
@@ -190,6 +190,9 @@ size = Vector2(16, 85)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qafes"]
 size = Vector2(31, 47.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6c8f6"]
+size = Vector2(14, 62.75)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qghm1"]
 size = Vector2(42, 23)
@@ -407,7 +410,7 @@ size = Vector2(12.875, 415)
 size = Vector2(13, 296)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aqao5"]
-size = Vector2(13, 445)
+size = Vector2(13, 384)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gjn2j"]
 size = Vector2(13, 138)
@@ -423,9 +426,6 @@ size = Vector2(13, 62)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5kvvd"]
 size = Vector2(30, 56)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_slq5c"]
-size = Vector2(30, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7c2fa"]
 size = Vector2(22, 19)
@@ -559,7 +559,7 @@ position = Vector2(1040, 532)
 shape = SubResource("RectangleShape2D_1bxxu")
 
 [node name="CollisionShape2D14" type="CollisionShape2D" parent="Collisions"]
-position = Vector2(1127, 532.563)
+position = Vector2(1127, 563.5)
 shape = SubResource("RectangleShape2D_0im3m")
 
 [node name="CollisionShape2D15" type="CollisionShape2D" parent="Collisions"]
@@ -571,7 +571,7 @@ position = Vector2(1305, 702.859)
 shape = SubResource("RectangleShape2D_70t1u")
 
 [node name="CollisionShape2D44" type="CollisionShape2D" parent="Collisions"]
-position = Vector2(903.5, 671.57)
+position = Vector2(903.5, 702.07)
 shape = SubResource("RectangleShape2D_k21p4")
 
 [node name="CollisionShape2D16" type="CollisionShape2D" parent="Collisions"]
@@ -615,7 +615,7 @@ position = Vector2(2567.13, 1263.75)
 shape = SubResource("RectangleShape2D_iy18r")
 
 [node name="CollisionShape2D31" type="CollisionShape2D" parent="Collisions"]
-position = Vector2(2567, 959.875)
+position = Vector2(2567, 990.875)
 shape = SubResource("RectangleShape2D_cy2f2")
 
 [node name="CollisionShape2D32" type="CollisionShape2D" parent="Collisions"]
@@ -635,7 +635,7 @@ position = Vector2(3257, 1284.31)
 shape = SubResource("RectangleShape2D_oepup")
 
 [node name="CollisionShape2D36" type="CollisionShape2D" parent="Collisions"]
-position = Vector2(3257, 1076.66)
+position = Vector2(3257, 1101)
 shape = SubResource("RectangleShape2D_8w3jx")
 
 [node name="CollisionShape2D37" type="CollisionShape2D" parent="Collisions"]
@@ -753,6 +753,10 @@ shape = SubResource("RectangleShape2D_uv5k7")
 [node name="CollisionShape2D59" type="CollisionShape2D" parent="Collisions"]
 position = Vector2(3008.5, 22.25)
 shape = SubResource("RectangleShape2D_qafes")
+
+[node name="CollisionShape2D95" type="CollisionShape2D" parent="Collisions"]
+position = Vector2(3087, 30.625)
+shape = SubResource("RectangleShape2D_6c8f6")
 
 [node name="CollisionShape2D60" type="CollisionShape2D" parent="Collisions"]
 position = Vector2(3053, 11.5)
@@ -1319,7 +1323,7 @@ position = Vector2(2041, 1206)
 shape = SubResource("RectangleShape2D_into0")
 
 [node name="CollisionShape2D25" type="CollisionShape2D" parent="Collisions"]
-position = Vector2(2041, 1663.5)
+position = Vector2(2041, 1694)
 shape = SubResource("RectangleShape2D_aqao5")
 
 [node name="CollisionShape2D26" type="CollisionShape2D" parent="Collisions"]
@@ -1341,10 +1345,6 @@ shape = SubResource("RectangleShape2D_bt4ad")
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Collisions"]
 position = Vector2(944, 636)
 shape = SubResource("RectangleShape2D_5kvvd")
-
-[node name="CollisionShape2D95" type="CollisionShape2D" parent="Collisions"]
-position = Vector2(992, 638)
-shape = SubResource("RectangleShape2D_slq5c")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="Collisions"]
 position = Vector2(1039, 616.5)
