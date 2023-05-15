@@ -26,7 +26,7 @@ shader_parameter/flash_modifier = 0.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pr3vb"]
 atlas = ExtResource("3_6h3a2")
-region = Rect2(32, 64, 32, 32)
+region = Rect2(0, 64, 32, 32)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6bxgn"]
 radius = 12.0
@@ -41,6 +41,7 @@ loop_mode = 1
 
 [sub_resource type="Animation" id="Animation_c8jf2"]
 resource_name = "big_zombie_walk"
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -87,7 +88,7 @@ shape = SubResource("CapsuleShape2D_liixd")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
 root_node = NodePath("../HurtBox/CollisionShape2D")
-autoplay = "RESET"
+autoplay = "big_zombie_walk"
 libraries = {
 "": SubResource("AnimationLibrary_2v8e2")
 }
