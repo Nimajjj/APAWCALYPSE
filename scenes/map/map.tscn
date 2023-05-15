@@ -1,4 +1,4 @@
-[gd_scene load_steps=166 format=3 uid="uid://df4bjbuh4i7of"]
+[gd_scene load_steps=170 format=3 uid="uid://df4bjbuh4i7of"]
 
 [ext_resource type="Script" path="res://scripts/map/map.gd" id="1_oyfej"]
 [ext_resource type="PackedScene" uid="uid://coesa2k8edyng" path="res://scenes/tile_maps/tile_map_test.tscn" id="2_nrnrc"]
@@ -34,6 +34,18 @@ size = Vector2(24, 24.25)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b2355"]
 size = Vector2(26, 35.125)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ufett"]
+size = Vector2(26, 104)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yuuf4"]
+size = Vector2(26, 104)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_or08y"]
+size = Vector2(103, 36)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q6v2w"]
+size = Vector2(89.5, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_on0r3"]
 size = Vector2(52, 35.125)
@@ -509,6 +521,22 @@ shape = SubResource("RectangleShape2D_1bxxu")
 [node name="CollisionShape2D85" type="CollisionShape2D" parent="Collisions"]
 position = Vector2(847, 450.438)
 shape = SubResource("RectangleShape2D_b2355")
+
+[node name="CollisionShape2D222" type="CollisionShape2D" parent="Collisions"]
+position = Vector2(819, 428)
+shape = SubResource("RectangleShape2D_ufett")
+
+[node name="CollisionShape2D223" type="CollisionShape2D" parent="Collisions"]
+position = Vector2(941, 428)
+shape = SubResource("RectangleShape2D_yuuf4")
+
+[node name="CollisionShape2D224" type="CollisionShape2D" parent="Collisions"]
+position = Vector2(880.5, 394)
+shape = SubResource("RectangleShape2D_or08y")
+
+[node name="CollisionShape2D225" type="CollisionShape2D" parent="Collisions"]
+position = Vector2(851.25, 464)
+shape = SubResource("RectangleShape2D_q6v2w")
 
 [node name="CollisionShape2D86" type="CollisionShape2D" parent="Collisions"]
 position = Vector2(1186, 392)
