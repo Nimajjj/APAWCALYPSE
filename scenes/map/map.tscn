@@ -1663,49 +1663,49 @@ position = Vector2(0, 8.94308)
 [node name="Spawners" type="Node2D" parent="."]
 
 [node name="ISpawner" parent="Spawners" instance=ExtResource("13_ir52n")]
-position = Vector2(753, 235)
+position = Vector2(753, 249)
 enabled = true
 direction = "down"
 destination = Vector2(752, 310)
 
 [node name="ISpawner7" parent="Spawners" instance=ExtResource("13_ir52n")]
-position = Vector2(144, 992)
+position = Vector2(144, 1007)
 id = 6
 direction = "down"
 destination = Vector2(144, 1500)
 
 [node name="ISpawner8" parent="Spawners" instance=ExtResource("13_ir52n")]
-position = Vector2(464, 1632)
+position = Vector2(463, 1600)
 id = 6
 direction = "up"
 destination = Vector2(464, -500)
 
 [node name="ISpawner9" parent="Spawners" instance=ExtResource("13_ir52n")]
-position = Vector2(976, 1984)
+position = Vector2(974, 1936)
 id = 5
 direction = "up"
 destination = Vector2(976, -500)
 
 [node name="ISpawner10" parent="Spawners" instance=ExtResource("13_ir52n")]
-position = Vector2(1646, 1982)
+position = Vector2(1646, 1936)
 id = 5
 direction = "up"
 destination = Vector2(1648, -500)
 
 [node name="ISpawner11" parent="Spawners" instance=ExtResource("13_ir52n")]
-position = Vector2(2608, 1952)
+position = Vector2(2608, 1935)
 id = 7
 direction = "up"
 destination = Vector2(2608, -500)
 
 [node name="ISpawner12" parent="Spawners" instance=ExtResource("13_ir52n")]
-position = Vector2(3408, 1952)
+position = Vector2(3408, 1933)
 id = 7
 direction = "up"
 destination = Vector2(3408, -500)
 
 [node name="ISpawner2" parent="Spawners" instance=ExtResource("13_ir52n")]
-position = Vector2(1041, 236)
+position = Vector2(1041, 250)
 enabled = true
 direction = "down"
 destination = Vector2(1040, 310)
@@ -1717,19 +1717,19 @@ direction = "down"
 destination = Vector2(1648, 500)
 
 [node name="ISpawner4" parent="Spawners" instance=ExtResource("13_ir52n")]
-position = Vector2(2288, 176)
+position = Vector2(2288, 223)
 id = 3
 direction = "down"
 destination = Vector2(2288, 500)
 
 [node name="ISpawner5" parent="Spawners" instance=ExtResource("13_ir52n")]
-position = Vector2(3568, 176)
+position = Vector2(3568, 219)
 id = 3
 direction = "down"
 destination = Vector2(3568, 500)
 
 [node name="ISpawner6" parent="Spawners" instance=ExtResource("13_ir52n")]
-position = Vector2(3216, -128)
+position = Vector2(3216, -96)
 id = 4
 direction = "down"
 destination = Vector2(3216, 500)

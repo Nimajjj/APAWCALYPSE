@@ -29,7 +29,7 @@ func create_enemy(posistion: Vector2, destination: Vector2, boss: bool, directio
 		boss_spawn_sound.play()
 
 
-	posistion.x += randi_range(-50, 50)
+	posistion.x += randi_range(-100, 100)
 	enemy.position = posistion
 	enemy.max_health += Global.game.wave * 2
 	enemy.damage += Global.game.wave * 1.75
