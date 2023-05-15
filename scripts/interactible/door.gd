@@ -7,7 +7,8 @@ extends Interactible
 
 func _ready():
 	message = "Press [E] to open the door for {0}$".format([price])
-	add_to_group(door_group)
+	if door_group != "":
+		add_to_group(door_group)
 
 func activate(player: IPlayer) -> void:
 	if can_activate(player) :
@@ -16,8 +17,8 @@ func activate(player: IPlayer) -> void:
 		rpc_id(1, "_open_server", player)
 
 @rpc("any_peer")
-func _open_server(player) -> void:
-	var caller_id = multiplayer.get_remote_sender_id()
+func _open_server(_player) -> void:
+#	var caller_id = multiplayer.get_remote_sender_id()
 #	if str(player.name).to_int() != caller_id:
 #		print("Illegally calling shoot_server! The culprit is: " + str(caller_id))
 #		return
@@ -33,17 +34,14 @@ func _open_client() -> void:
 
 
 func _activate_spawners() -> void:
-	print("activate spawners")
 	if spawner_id != -1:
 		var spawners := get_tree().get_nodes_in_group("spawners")
 		for spawner in spawners:
 			if spawner.id == spawner_id:
 				spawner.enabled = true
-				print(spawner_id, " ", spawner.enabled)
 
 		# FUCKEDUP
 		if spawner_id != -1:
-			var spawners := get_tree().get_nodes_in_group("spawners")
 			for spawner in spawners:
 				if spawner.id == spawner_id:
 					spawner.enabled = true

@@ -13,11 +13,10 @@ var game: Game = null
 
 
 func _ready() -> void:
+	Utils.log("### APAWCALYPSE - dev ###".format([multiplayer.get_unique_id()]), Utils.LOG_INFO)
 	randomize()
 	seed(1)
 	multiplayer.allow_object_decoding = true
-	
-	_create_multiplayer_game()	
 	
 		
 func host_server() -> void:
@@ -35,6 +34,9 @@ func _create_multiplayer_game() -> void:
 
 
 func _create_server() -> void:
+	_create_multiplayer_game()
+	
+	Utils.log("Creating server...", Utils.LOG_INFO)
 	var server: Server = server_scene.instantiate()
 	add_child(server)
 	server.init(game)
@@ -43,9 +45,12 @@ func _create_server() -> void:
 
 
 func _create_client() -> void:
+	Utils.log("Creating client...", Utils.LOG_INFO)
 	var client: Client = client_scene.instantiate()
 	add_child(client)
 	client.start_network()
+	
+	_create_multiplayer_game()
 
 
 func _on_player_multiplayer_spawner_spawned(node: Node) -> void:

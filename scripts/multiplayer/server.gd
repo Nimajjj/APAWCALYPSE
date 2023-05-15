@@ -25,7 +25,7 @@ func _start_network() -> void:
 	multiplayer.peer_disconnected.connect(self._destroy_player)
 	
 	peer.create_server(9999)
-	print('Server listening on 127.0.0.1:9999')
+	Utils.log('Server listening on 127.0.0.1:9999', Utils.LOG_INFO)
 
 	multiplayer.set_multiplayer_peer(peer)
 
@@ -36,7 +36,7 @@ func _create_player(id: int) -> void:
 
 	# Set the name, so players can figure out their local authority
 	game.add_child(player)
-	print("New player joined [" + str(id) + "]")
+	Utils.log("New player joined [" + str(id) + "]", Utils.LOG_INFO)
 	
 	emit_signal("player_connected")
 	
@@ -47,10 +47,10 @@ func _destroy_player(id: int) -> void:
 	# Delete this peer's node.
 	game.FabricPlayer.destroy_player(str(id))
 			
-	print("Player left [" + str(id) + "]")
+	Utils.log("Player left [" + str(id) + "]", Utils.LOG_INFO)
 	
 	players -= 1
 	
 	if players == 0:
-		print("No player left, disconnecting server...")
+		Utils.log("No player left, disconnecting server...", Utils.LOG_INFO)
 		get_tree().quit()

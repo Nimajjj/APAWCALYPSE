@@ -6,5 +6,29 @@
 [node name="MultiplayerGame" instance=ExtResource("1_k3i7q")]
 script = ExtResource("2_cugd8")
 
+[node name="GameTimer" parent="." index="0"]
+autostart = true
+
 [node name="FabricPlayer" parent="." index="2"]
 position = Vector2(725, 435)
+
+[node name="ShaderRect" parent="InGameUI" index="15"]
+visible = true
+
+[editable path="Map"]
+[editable path="Map/Interactibles/Windows/Window"]
+[editable path="Map/Interactibles/Windows/Window7"]
+[editable path="Map/Interactibles/Windows/Window9"]
+[editable path="Map/Interactibles/Windows/Window10"]
+[editable path="Map/Interactibles/Windows/Window12"]
+[editable path="Map/Interactibles/Windows/Window11"]
+[editable path="Map/Interactibles/Windows/Window13"]
+[editable path="Map/Interactibles/Windows/Window2"]
+[editable path="Map/Interactibles/Windows/Window3"]
+[editable path="Map/Interactibles/Windows/Window4"]
+[editable path="Map/Interactibles/Windows/Window5"]
+[editable path="Map/Interactibles/Windows/Window6"]
+[editable path="Map/Interactibles/Pumps/SpeedPump"]
+[editable path="Map/Interactibles/Pumps/DamagePump"]
+[editable path="Map/Interactibles/Pumps/HealthPump"]
+[editable path="Map/Interactibles/Pumps/ReloadPump"]

@@ -20,6 +20,7 @@ config/icon="res://assets/debug/icon.svg"
 Global="*res://scripts/autoload/global.gd"
 SoundManager="*res://scripts/autoload/sound_manager.gd"
 Weapons="*res://scripts/autoload/weapons.gd"
+Utils="*res://scripts/autoload/utils.gd"
 
 [display]
 
@@ -103,4 +104,4 @@ esc={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
-environment/defaults/default_clear_color=Color(0.227451, 0.227451, 0.313726, 1)
+environment/defaults/default_clear_color=Color(0.196078, 0.27451, 0.231373, 1)

@@ -1,8 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://dayb8ivybi4w5"]
+[gd_scene load_steps=13 format=3 uid="uid://b44v6oeavco6n"]
 
 [ext_resource type="PackedScene" uid="uid://bwe1kad6agad3" path="res://scenes/enemy/i_enemy.tscn" id="1_jauu7"]
 [ext_resource type="Script" path="res://scripts/enemy/reaper.gd" id="2_emuv1"]
-[ext_resource type="Texture2D" uid="uid://cr4xb16rs253j" path="res://assets/enemies/bodies/bodies.png" id="2_ie0n6"]
+[ext_resource type="Texture2D" uid="uid://b03mkiokabuyc" path="res://assets/enemies/bodies/bodies.png" id="2_ie0n6"]
 [ext_resource type="AudioStream" uid="uid://1rta5fu3xs21" path="res://assets/sounds/enemies/boss_scream.mp3" id="4_psacg"]
 
 [sub_resource type="Shader" id="Shader_7oj4d"]
@@ -34,6 +34,21 @@ region = Rect2(0, 160, 32, 32)
 radius = 2.5
 height = 14.0
 
+[sub_resource type="Animation" id="Animation_yixgm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite2D:texture:region")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 160, 32, 32)]
+}
+
 [sub_resource type="Animation" id="Animation_uslam"]
 resource_name = "reaper_walk"
 length = 0.4
@@ -49,21 +64,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Rect2(0, 160, 32, 32), Rect2(32, 160, 32, 32)]
-}
-
-[sub_resource type="Animation" id="Animation_yixgm"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../Sprite2D:texture:region")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Rect2(0, 160, 32, 32)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5ismq"]

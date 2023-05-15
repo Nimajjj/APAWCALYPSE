@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bwe1kad6agad3" path="res://scenes/enemy/i_enemy.tscn" id="1_5bvas"]
 [ext_resource type="Script" path="res://scripts/enemy/zombie.gd" id="2_6bqtj"]
 [ext_resource type="Shader" path="res://resources/flash_shader.gdshader" id="3_65vta"]
-[ext_resource type="Texture2D" uid="uid://cr4xb16rs253j" path="res://assets/enemies/bodies/bodies.png" id="4_wkfgx"]
+[ext_resource type="Texture2D" uid="uid://b03mkiokabuyc" path="res://assets/enemies/bodies/bodies.png" id="4_wkfgx"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vrhw5"]
 shader = ExtResource("3_65vta")

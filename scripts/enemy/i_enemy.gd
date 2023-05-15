@@ -28,22 +28,10 @@ var spawner: ISpawner = null
 
 
 @export var max_health: int
-@export var speed_stock: int
 @export var speed: int
 @export var money: int
 @export var damage: int
-@export var knockback_force: float = 0
-@export var knockback_direction: Vector2 = Vector2.ZERO
-@export var state: int = 0
-@export var destination: Vector2
 @export var health: int = 0 # do not change in editor
-
-@onready var Sprite = $Sprite2D
-@onready var HealthBar = $HealthBar
-@onready var timer = $Timer
-@onready var slow_timer = $SlowTimer
-@onready var path_timer = $PathTimer
-@onready var agent := $NavigationAgent2D as NavigationAgent2D
 
 @onready var Synchronizer: MultiplayerSynchronizer = $Synchronizer/MultiplayerSynchronizer
 @export var is_boss: bool = false

@@ -11,7 +11,7 @@ script = ExtResource("1_bhmiq")
 _spawnable_scenes = PackedStringArray("res://scenes/player/bada-boom.tscn", "res://scenes/player/blade.tscn", "res://scenes/player/candy.tscn", "res://scenes/player/grey.tscn")
 
 [node name="EnemiesMultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://scenes/enemy/big_zombie.tscn", "res://scenes/enemy/floda.tscn", "res://scenes/enemy/woman_zombie.tscn", "res://scenes/enemy/zombie.tscn")
+_spawnable_scenes = PackedStringArray("res://scenes/enemy/big_zombie.tscn", "res://scenes/enemy/woman_zombie.tscn", "res://scenes/enemy/zombie.tscn", "res://scenes/enemy/buffed_zombie.tscn", "res://scenes/enemy/miser.tscn", "res://scenes/enemy/reaper.tscn")
 spawn_path = NodePath("../Enemies")
 
 [connection signal="despawned" from="PlayerMultiplayerSpawner" to="." method="_on_player_multiplayer_spawner_despawned"]

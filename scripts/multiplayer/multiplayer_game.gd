@@ -2,10 +2,8 @@ extends Game
 
 var started: bool = false
 
-func _ready():
-	print("Starting multiplayer game scene")
-	
-	GameTimer.start()
+func _ready():	
+	Utils.log("Starting multiplayer game scene", Utils.LOG_INFO)
 	
 	var spawners := get_tree().get_nodes_in_group("spawners")
 	for spawner in spawners:
@@ -15,8 +13,8 @@ func _ready():
 func _new_player() -> void:
 	if !started:
 		if multiplayer.is_server():
-			_new_wave()
+			new_wave()
+			GameTimer.start()
+			started = true
+			Utils.log("GameTimer.is_stopped() = {0}".format([GameTimer.is_stopped()]))
 
-func _new_wave() -> void:
-	new_wave()
-	started = true

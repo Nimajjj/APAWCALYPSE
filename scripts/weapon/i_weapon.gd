@@ -63,7 +63,7 @@ func _ready():
 	fire_rate_timer.connect("timeout", func(): reset_fire_rate())
 
 
-func _process(delta):
+func _process(_delta):
 	if player == null: return
 	if !player.is_local_authority: 
 		weapon_direction = global_position * Vector2.RIGHT.rotated(rotation).normalized()
@@ -115,7 +115,7 @@ func reload() -> void:
 func shoot(player_damage_factor: int) -> void:
 	if player == null: return
 	if !player.is_local_authority:
-		print("Fucking huge mess somewhere, this should mever happen!")
+		Utils.log("Fucking huge mess somewhere, this should mever happen!", Utils.LOG_WARN)
 		return
 			
 	if reloading: return
@@ -140,7 +140,7 @@ func _on_timer_timeout() -> void:
 func shoot_server(player_damage_factor: int) -> void:
 	var caller_id = multiplayer.get_remote_sender_id()
 	if str(player.name).to_int() != caller_id:
-		print("Illegally calling shoot_server! The culprit is: " + str(caller_id))
+		Utils.log("Illegally calling shoot_server! The culprit is: " + str(caller_id), Utils.LOG_WARN)
 		return
 
 	rpc("shoot_client", player_damage_factor)

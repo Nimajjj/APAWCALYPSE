@@ -22,8 +22,6 @@ func create_enemy(posistion: Vector2, destination: Vector2, boss: bool, directio
 		var rand = randi() % 100
 		if rand < 65:
 			enemy = zombie_scene.instantiate()
-		elif 65 <= rand && rand < 75:
-			enemy = floda_scene.instantiate()
 		else:
 			enemy = woman_zombie_scene.instantiate()
 	
@@ -60,6 +58,7 @@ func create_enemy(posistion: Vector2, destination: Vector2, boss: bool, directio
 
 	enemy.spawner = get_parent()
 	Global.units_alive += 1
+	
 	return enemy
 
 

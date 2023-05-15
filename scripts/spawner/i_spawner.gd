@@ -17,11 +17,12 @@ var spawn_delay: float = 2
 
 func _ready() -> void:
 	$MultiplayerSynchronizer.set_multiplayer_authority(1)
+	if enabled: enable()
 
 
 func enable() -> void:
 	enabled = true
-	timer.connect("timeout", _on_timer_timeout)
+	_on_timer_timeout()
 
 func start_spawner(units_to_spawn: int, is_boss: bool) -> void:
 	units_left_to_spawn = units_to_spawn

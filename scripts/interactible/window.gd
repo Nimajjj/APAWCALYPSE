@@ -18,7 +18,7 @@ func _ready():
 	hit_timer.connect("timeout", Callable(func(): _hit_timer_timeout()))
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if !multiplayer.is_server(): return
 
 	for body in interaction_area.get_overlapping_bodies():
@@ -43,7 +43,7 @@ func activate(player: IPlayer) -> void:
 	rpc_id(1, "_activate_server", player)
 
 
-func can_activate(player: IPlayer) -> bool:
+func can_activate(_player: IPlayer) -> bool:
 	return health != 3
 
 
@@ -69,7 +69,7 @@ func _update_sprite_client() -> void:
 @rpc("any_peer")
 func _activate_server(player) -> void:
 	if !multiplayer.is_server():
-		print("Illegaly calling _activate_server! Culprit is ", multiplayer.get_remote_sender_id())
+		Utils.log("Illegaly calling _activate_server! Culprit is " + str(multiplayer.get_remote_sender_id()), Utils.LOG_WARN)
 		return
 	health += 1
 	if health > 3:
@@ -79,7 +79,7 @@ func _activate_server(player) -> void:
 
 func _take_damage_server() -> void:
 	if !multiplayer.is_server():
-		print("Illegaly calling _take_damage_server! Culprit is ", multiplayer.get_remote_sender_id())
+		Utils.log("Illegaly calling _take_damage_server! Culprit is " + str(multiplayer.get_remote_sender_id()), Utils.LOG_WARN)
 		return
 
 	health -= 1

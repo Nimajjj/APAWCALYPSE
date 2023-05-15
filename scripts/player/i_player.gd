@@ -104,7 +104,7 @@ func stop_shooting() -> void:
 	weapon.stop_shooting()
 
 
-func take_bonus(bonus: IBonus) -> void:
+func take_bonus(_bonus: IBonus) -> void:
 	pass
 
 
@@ -132,9 +132,6 @@ func _add_weapon_client(wp: String, client: String) -> void:
 	if is_local_authority: return
 	for player in Global.players:
 		if player.name == client:
-			print("_add_weapon_client() with wp: {0} client: {1} in : {2}".format([
-				wp, client, multiplayer.get_unique_id()
-			]))
 			player.drop_weapon()
 			player._add_weapon_impl(wp)
 	drop_weapon()
@@ -152,26 +149,13 @@ func _add_weapon_impl(wp: String) -> void:
 
 func drop_weapon() -> void:
 	if weapon != null:
-		if is_local_authority:
-			print("drop_weapon() local")
-		else:
-			print("drop_weapon() in : {0} called by {1}".format([
-					name, multiplayer.get_unique_id()
-				]))
 		weapon.queue_free()
 		weapon = null
 		
-		var to_free = []
 		for child in get_children():
 			if child is IWeapon:
-				if is_local_authority:
-					print("drop_weapon() local looking for weapon")
-				else:
-					print("drop_weapon() in {0} looking for {1}".format([
-							multiplayer.get_unique_id(), child.name
-						]))
-				child.free()
-				print(child)
+				if !is_local_authority:
+					child.free()
 				
 		
 ################################################################
