@@ -26,6 +26,11 @@ func _ready():
 	weapons_scenes.append(preload("res://scenes/weapon/mp5.tscn"))
 	weapons_scenes.append(preload("res://scenes/weapon/shotgun.tscn"))
 	weapons_scenes.append(preload("res://scenes/weapon/pistol.tscn"))
+	weapons_scenes.append(preload("res://scenes/weapon/ak47.tscn"))
+	weapons_scenes.append(preload("res://scenes/weapon/mp5.tscn"))
+	weapons_scenes.append(preload("res://scenes/weapon/shotgun.tscn"))
+	weapons_scenes.append(preload("res://scenes/weapon/pistol.tscn"))
+	weapons_scenes.append(preload("res://scenes/weapon/machinegun.tscn"))
 	
 
 func activate(player: IPlayer) -> void:
@@ -43,7 +48,7 @@ func activate(player: IPlayer) -> void:
 	if can_activate(player) && !isopened:
 		player.money -= price
 		_update_sprite()
-		timer.start()
+		timer.start()           
 		
 
 func can_activate(player: IPlayer) -> bool:
@@ -74,6 +79,7 @@ func _on_timer_timeout():
 		timer.stop()
 		shuffle_weapon.visible = false
 		i = randi() % weapons_scenes.size() 
+		print(i)
 		weapon = weapons_scenes[i].instantiate()
 		weapon.position = shuffle_weapon.position
 		weapon.z_index = 2
