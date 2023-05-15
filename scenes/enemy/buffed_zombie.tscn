@@ -81,8 +81,11 @@ damage = 40
 
 [node name="Sprite2D" parent="." index="0"]
 material = SubResource("ShaderMaterial_mhmvc")
-position = Vector2(0, -8)
+position = Vector2(0, -9)
 texture = SubResource("AtlasTexture_2mnq2")
+
+[node name="HurtBox" parent="." index="1"]
+position = Vector2(0, -1)
 
 [node name="CollisionShape2D" parent="HurtBox" index="0"]
 position = Vector2(0, -7)
@@ -90,7 +93,6 @@ shape = SubResource("CapsuleShape2D_ucssc")
 debug_color = Color(0.992157, 0, 0.270588, 0.419608)
 
 [node name="Hitbox" parent="." index="2"]
-position = Vector2(0, 1)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_ege87")
 
@@ -100,3 +102,13 @@ autoplay = "floda_walk"
 libraries = {
 "": SubResource("AnimationLibrary_lfbnq")
 }
+
+[node name="HealthBar" parent="." index="4"]
+offset_top = -25.0
+offset_bottom = 7.0
+
+[node name="BiteSound" parent="." index="9"]
+position = Vector2(0, -1)
+
+[node name="DeathSound" parent="." index="10"]
+position = Vector2(0, -1)

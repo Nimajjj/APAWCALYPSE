@@ -25,7 +25,7 @@ shader_parameter/flash_modifier = 0.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wle0d"]
 atlas = ExtResource("3_7a10i")
-region = Rect2(0, 96, 32, 32)
+region = Rect2(0, 32, 32, 32)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4kmck"]
 radius = 8.0
@@ -33,22 +33,10 @@ height = 34.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pic7o"]
 radius = 4.0
-height = 16.0
+height = 13.0
 
 [sub_resource type="Animation" id="Animation_ggifj"]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture:region")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Rect2(0, 96, 32, 32)]
-}
 
 [sub_resource type="Animation" id="Animation_86u5h"]
 resource_name = "woman_zombie_walk"
@@ -82,8 +70,11 @@ damage = 20
 
 [node name="Sprite2D" parent="." index="0"]
 material = SubResource("ShaderMaterial_7lbas")
-position = Vector2(0, -8)
+position = Vector2(-2, -12)
 texture = SubResource("AtlasTexture_wle0d")
+
+[node name="HurtBox" parent="." index="1"]
+position = Vector2(-2, -4)
 
 [node name="CollisionShape2D" parent="HurtBox" index="0"]
 position = Vector2(2, -8)
@@ -91,7 +82,6 @@ shape = SubResource("CapsuleShape2D_4kmck")
 debug_color = Color(0.996078, 0, 0.188235, 0.419608)
 
 [node name="Hitbox" parent="." index="2"]
-position = Vector2(2, 4)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_pic7o")
 debug_color = Color(0, 0.6, 0.701961, 0.419608)
@@ -103,5 +93,7 @@ libraries = {
 }
 
 [node name="HealthBar" parent="." index="4"]
-offset_top = -29.0
-offset_bottom = 3.0
+offset_left = -10.0
+offset_top = -33.0
+offset_right = 22.0
+offset_bottom = -1.0

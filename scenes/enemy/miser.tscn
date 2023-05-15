@@ -83,8 +83,11 @@ is_miser = true
 
 [node name="Sprite2D" parent="." index="0"]
 material = SubResource("ShaderMaterial_hf6xl")
-position = Vector2(0, -15)
+position = Vector2(0, -13.5)
 texture = SubResource("AtlasTexture_qx452")
+
+[node name="HurtBox" parent="." index="1"]
+position = Vector2(0, 1.5)
 
 [node name="CollisionShape2D" parent="HurtBox" index="0"]
 position = Vector2(0, -11.5)
@@ -92,7 +95,6 @@ shape = SubResource("CapsuleShape2D_qxwrt")
 debug_color = Color(1, 0, 0.0784314, 0.419608)
 
 [node name="Hitbox" parent="." index="2"]
-position = Vector2(0, -1.5)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_3u4ba")
 
@@ -105,6 +107,12 @@ libraries = {
 
 [node name="HealthBar" parent="." index="4"]
 offset_left = -9.0
-offset_top = -35.5
+offset_top = -34.0
 offset_right = 23.0
-offset_bottom = -3.5
+offset_bottom = -2.0
+
+[node name="BiteSound" parent="." index="9"]
+position = Vector2(0, 1.5)
+
+[node name="DeathSound" parent="." index="10"]
+position = Vector2(0, 1.5)

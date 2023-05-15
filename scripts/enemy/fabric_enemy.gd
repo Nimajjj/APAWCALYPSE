@@ -31,10 +31,12 @@ func create_enemy(posistion: Vector2, destination: Vector2, boss: bool, directio
 
 	posistion.x += randi_range(-100, 100)
 	enemy.position = posistion
+
 	enemy.max_health += Global.game.wave * 2
 	enemy.damage += Global.game.wave * 1.75
 	enemy.money += Global.game.wave * randi() % 5
 	enemy.speed += randi() % 300
+
 	enemy.speed_stock = enemy.speed
 	enemy.health = enemy.max_health
 	enemy.state = 0

@@ -71,10 +71,13 @@ is_boss = true
 
 [node name="Sprite2D" parent="." index="0"]
 material = SubResource("ShaderMaterial_8wc3b")
-position = Vector2(0, -8)
+position = Vector2(0, -12)
 texture = SubResource("AtlasTexture_pr3vb")
 region_enabled = true
 region_rect = Rect2(0, 0, 32, 32)
+
+[node name="HurtBox" parent="." index="1"]
+position = Vector2(0, -4)
 
 [node name="CollisionShape2D" parent="HurtBox" index="0"]
 position = Vector2(0, -8)
@@ -82,7 +85,6 @@ shape = SubResource("CapsuleShape2D_6bxgn")
 debug_color = Color(0.992157, 0, 0.231373, 0.419608)
 
 [node name="Hitbox" parent="." index="2"]
-position = Vector2(0, 4)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_liixd")
 
@@ -94,8 +96,12 @@ libraries = {
 }
 
 [node name="HealthBar" parent="." index="4"]
-offset_top = -28.0
-offset_bottom = 4.0
+offset_top = -32.0
+offset_bottom = 0.0
+
+[node name="BiteSound" parent="." index="9"]
+position = Vector2(0, -4)
 
 [node name="DeathSound" parent="." index="10"]
+position = Vector2(0, -4)
 stream = ExtResource("4_uofy5")

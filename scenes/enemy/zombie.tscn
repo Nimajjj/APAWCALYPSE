@@ -16,7 +16,7 @@ height = 24.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_huxy6"]
 radius = 4.0
-height = 14.0
+height = 11.0
 
 [sub_resource type="Animation" id="Animation_81sqb"]
 resource_name = "zombie_walk"
