@@ -3,6 +3,9 @@ extends Node2D
 var players: Array[IPlayer] = []
 
 @export var player_scene: PackedScene
+@export var Portrait: TextureRect
+
+
 
 
 func create_player() -> IPlayer:
@@ -14,3 +17,5 @@ func create_player() -> IPlayer:
 	player.position = position
 	
 	return player;
+
+

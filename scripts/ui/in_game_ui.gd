@@ -9,6 +9,7 @@ extends CanvasLayer
 @onready var MunitionLabel2: Label = $MunitionLabel2
 @onready var BonusesOverlay: TextureRect = $BonusesOverlay
 @onready var BonusesHBox: HBoxContainer = $BonusesOverlay/BonusesHBox
+@onready var Portrait: TextureRect = $Portrait 
 
 func _enter_tree():
 	Global.in_game_ui = self
@@ -51,14 +52,17 @@ func _process(_delta):
 		if bonus.name.to_lower() in active_bonuses:
 			bonus.modulate = Color(1, 1, 1, 1.5)
 		else:
-			bonus.modulate = Color(1, 1, 1, 0.39)
-
-
-func reloading() -> void:
-	$AnimationPlayer.play("reload")
+			bonus.modulate = Color(1, 1, 1, 0.39)			
 	
-	
+	for i in range(Global.players.size()):
+			Portrait.texture.region = Rect2 (0,32 * (i + 1),32,32)
+			
 func stop_reloading() -> void:
 	$AnimationPlayer.stop()
 	$TextureRect.visible = true
 	$TextureRect2.visible = false
+	
+func reloading() -> void:
+	$AnimationPlayer.play("reload")
+
+	
