@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bcrkgx65r53b8"]
+[gd_scene load_steps=6 format=3 uid="uid://bcrkgx65r53b8"]
 
 [ext_resource type="PackedScene" uid="uid://dhhkjbore0vgo" path="res://scenes/bonus/i_bonus_effect.tscn" id="1_vgyoi"]
 [ext_resource type="Script" path="res://scripts/bonus/nuke_effect.gd" id="2_dorvw"]
 [ext_resource type="AudioStream" uid="uid://bwg3ubnf4kuom" path="res://assets/sounds/bonuses/nuke_effect.mp3" id="3_xci2k"]
 [ext_resource type="Script" path="res://scripts/sound_entity/sound_entity.gd" id="4_p8vsv"]
+[ext_resource type="AudioStream" uid="uid://yabqpf174wj4" path="res://assets/sounds/bonuses/falling-nuke.mp3" id="5_kxx24"]
 
 [node name="NukeEffect" instance=ExtResource("1_vgyoi")]
 script = ExtResource("2_dorvw")
@@ -16,5 +17,10 @@ stream = ExtResource("3_xci2k")
 volume_db = -2.0
 script = ExtResource("4_p8vsv")
 group = "sfx"
+
+[node name="BeforeAudio" type="AudioStreamPlayer" parent="." index="2"]
+stream = ExtResource("5_kxx24")
+volume_db = -2.0
+script = ExtResource("4_p8vsv")
 
 [connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]

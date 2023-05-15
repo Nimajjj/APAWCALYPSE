@@ -3,6 +3,7 @@ extends IBonusEffect
 #NUKE
 func _effect() -> void:
 	print("Nuke started")
+	$BeforeAudio.play()
 	#Nuke effect is active at the end of the bonus, nothing should appear here.
 
 
