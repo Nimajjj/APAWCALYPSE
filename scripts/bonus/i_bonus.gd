@@ -3,12 +3,10 @@ extends Node2D
 
 @onready var BonusTimer = $DispawnTimer
 
-@export var BonusDuration: float = 0.0
 @export var BonusEffect: PackedScene = null
 
 
 func _ready() -> void:
-	BonusTimer.set_wait_time(BonusDuration)
 	BonusTimer.connect("timeout", delete_bonus)
 	BonusTimer.start()
 
