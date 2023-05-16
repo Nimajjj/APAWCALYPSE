@@ -55,7 +55,7 @@ func _process(_delta):
 			bonus.modulate = Color(1, 1, 1, 0.39)			
 	
 	for i in range(Global.players.size()):
-			Portrait.texture.region = Rect2 (0,32 * (i + 1),32,32)
+			Portrait.texture.region = Rect2 (0,32 * (i + 3),32,32)
 			
 func stop_reloading() -> void:
 	$AnimationPlayer.stop()
