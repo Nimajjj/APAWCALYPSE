@@ -25,6 +25,7 @@ func _start_network() -> void:
 	multiplayer.peer_disconnected.connect(self._destroy_player)
 	
 	peer.create_server(9999)
+	peer.set_bind_ip("10.13.35.16")
 	Utils.log('Server listening on 127.0.0.1:9999', Utils.LOG_INFO)
 
 	multiplayer.set_multiplayer_peer(peer)

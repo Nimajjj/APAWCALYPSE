@@ -29,6 +29,10 @@ turbulence_enabled = true
 turbulence_noise_scale = 5.0
 
 [node name="ShootEffect" instance=ExtResource("1_qfx3s")]
+amount = 10
 process_material = SubResource("ParticleProcessMaterial_y6665")
 one_shot = false
-explosiveness = 0.15
+preprocess = 0.15
+speed_scale = 1.25
+explosiveness = 0.35
+randomness = 0.25

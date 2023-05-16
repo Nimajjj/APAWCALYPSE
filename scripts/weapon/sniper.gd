@@ -4,7 +4,8 @@ extends IWeapon
 func _shoot_impl(player_damage_factor: int) -> void:
 	fire_rate_timer.start()
 	can_shoot = false
-	shoot_effect.emitting = true
+	if shoot_effect:
+		shoot_effect.emitting = true
 	var bullet: IBullet = BulletScene.instantiate()
 	bullet.position = WeaponEnd.get_global_transform().origin
 	bullet.damage = damage * player_damage_factor

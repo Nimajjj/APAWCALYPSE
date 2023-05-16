@@ -2,7 +2,11 @@ extends Interactible
 
 @export var hit_possible: bool = true
 
-@export var health: int = 3
+@export var health: int = 3: set = _setter
+
+func _setter(val) -> void:
+	health = val
+	rpc("_update_sprite_client")
 
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var hitbox = $HitBox
@@ -20,7 +24,7 @@ func _ready():
 
 func _physics_process(_delta):
 	if !multiplayer.is_server(): return
-
+	
 	for body in interaction_area.get_overlapping_bodies():
 		if body is IEnemy && body.state != 2:
 			body.state = 2
@@ -86,7 +90,10 @@ func _take_damage_server() -> void:
 	if health <= 0:
 		health = 0
 	hit_possible = false
+	rpc("_update_sprite_client")
+	_update_sprite_client()
 
 
 func _on_multiplayer_synchronizer_synchronized() -> void:
+	_update_sprite_client()
 	rpc("_update_sprite_client")

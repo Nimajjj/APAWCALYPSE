@@ -43,7 +43,7 @@ shape = SubResource("RectangleShape2D_wsj2k")
 debug_color = Color(0.701961, 0.537255, 0, 0.419608)
 
 [node name="HitTimer" type="Timer" parent="." index="2"]
-wait_time = 3.0
+wait_time = 2.25
 
 [node name="HitBox" type="Area2D" parent="." index="3"]
 

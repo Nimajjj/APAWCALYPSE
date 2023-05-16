@@ -12,9 +12,6 @@ autostart = true
 [node name="FabricPlayer" parent="." index="2"]
 position = Vector2(725, 435)
 
-[node name="ShaderRect" parent="InGameUI" index="15"]
-visible = true
-
 [editable path="Map"]
 [editable path="Map/Interactibles/Windows/Window"]
 [editable path="Map/Interactibles/Windows/Window7"]

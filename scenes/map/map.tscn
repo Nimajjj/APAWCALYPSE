@@ -1,10 +1,11 @@
-[gd_scene load_steps=166 format=3 uid="uid://dxed168nwpuqr"]
+[gd_scene load_steps=178 format=3 uid="uid://dxed168nwpuqr"]
 
 [ext_resource type="Script" path="res://scripts/map/map.gd" id="1_oyfej"]
 [ext_resource type="PackedScene" uid="uid://coesa2k8edyng" path="res://scenes/tile_maps/tile_map_test.tscn" id="2_nrnrc"]
 [ext_resource type="Script" path="res://scripts/interactible/door.gd" id="3_s0q21"]
 [ext_resource type="PackedScene" uid="uid://627xe4481ujh" path="res://scenes/effects/blood_container.tscn" id="4_8np0e"]
 [ext_resource type="PackedScene" uid="uid://blhpxsfuysnls" path="res://scenes/interactible/door.tscn" id="5_41nn5"]
+[ext_resource type="PackedScene" uid="uid://bpw3q4ylxwqqm" path="res://scenes/effects/blink_effect.tscn" id="5_rvcuk"]
 [ext_resource type="PackedScene" uid="uid://bkmuprlamyren" path="res://scenes/interactible/weapon_rack.tscn" id="5_xcr48"]
 [ext_resource type="PackedScene" uid="uid://dfyqiwfcotw5e" path="res://scenes/weapon/mp5.tscn" id="6_b61fw"]
 [ext_resource type="PackedScene" uid="uid://cnovlywgf3473" path="res://scenes/weapon/pistol.tscn" id="7_dfkln"]
@@ -444,6 +445,59 @@ size = Vector2(14, 10)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kg7o8"]
 size = Vector2(28, 13)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_0bowp"]
+polygon = PackedVector2Array(3084, 62, 3084, -46, 3090, -46, 3090, 62)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_v770w"]
+polygon = PackedVector2Array(896, 604, 897, 544, 1120, 545, 1120, 555, 908, 555, 909, 603)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_uxpan"]
+polygon = PackedVector2Array(2463, 1449, 2047, 1451, 2046, 1814, 2035, 1813, 2036, 1440, 2464, 1437)
+
+[sub_resource type="Gradient" id="Gradient_ltcqr"]
+offsets = PackedFloat32Array(0, 0.195604, 0.410989, 0.643956)
+colors = PackedColorArray(1, 1, 1, 1, 0.696246, 0.696246, 0.696246, 1, 0.269625, 0.269625, 0.269625, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_s51uu"]
+gradient = SubResource("Gradient_ltcqr")
+width = 128
+height = 128
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_756e4"]
+offsets = PackedFloat32Array(0, 0.0967033, 0.378022, 0.676923)
+colors = PackedColorArray(0.707054, 0.707054, 0.707054, 1, 0.624113, 0.624113, 0.624113, 1, 0.472313, 0.472313, 0.472313, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_cid18"]
+gradient = SubResource("Gradient_756e4")
+width = 128
+use_hdr = true
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_cbu71"]
+offsets = PackedFloat32Array(0, 0.0967033, 0.378022, 0.676923)
+colors = PackedColorArray(0.707054, 0.707054, 0.707054, 1, 0.624113, 0.624113, 0.624113, 1, 0.472313, 0.472313, 0.472313, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_uvh66"]
+gradient = SubResource("Gradient_cbu71")
+width = 128
+use_hdr = true
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_ons0w"]
+offsets = PackedFloat32Array(0, 0.195604, 0.410989, 0.643956)
+colors = PackedColorArray(1, 1, 1, 1, 0.696246, 0.696246, 0.696246, 1, 0.269625, 0.269625, 0.269625, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_x2omy"]
+gradient = SubResource("Gradient_ons0w")
+width = 128
+height = 128
+fill = 1
+fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_00qgb"]
 load_path = "res://.godot/imported/windows.png-afb923fdd61133e09f4ebebb18e5ef94.ctex"
@@ -1372,7 +1426,94 @@ shape = SubResource("RectangleShape2D_kg7o8")
 
 [node name="LightOccluders" type="Node2D" parent="."]
 
+[node name="LightOccluder2D" type="LightOccluder2D" parent="LightOccluders"]
+occluder = SubResource("OccluderPolygon2D_0bowp")
+
+[node name="LightOccluder2D2" type="LightOccluder2D" parent="LightOccluders"]
+occluder = SubResource("OccluderPolygon2D_v770w")
+
+[node name="LightOccluder2D3" type="LightOccluder2D" parent="LightOccluders"]
+occluder = SubResource("OccluderPolygon2D_uxpan")
+
 [node name="Lights" type="Node2D" parent="."]
+
+[node name="PointLight2D" type="PointLight2D" parent="Lights"]
+position = Vector2(3051, 24)
+scale = Vector2(1.29687, 0.503906)
+color = Color(0.658824, 0.0666667, 0.0666667, 1)
+energy = 2.5
+shadow_enabled = true
+shadow_filter = 2
+texture = SubResource("GradientTexture2D_s51uu")
+
+[node name="PointLight2D2" type="PointLight2D" parent="Lights"]
+position = Vector2(493, 1375)
+scale = Vector2(1.5, 1.5)
+color = Color(0.682353, 0.878431, 0.843137, 1)
+energy = 1.1
+shadow_enabled = true
+shadow_filter = 2
+texture = SubResource("GradientTexture2D_cid18")
+
+[node name="PointLight2D3" type="PointLight2D" parent="Lights"]
+position = Vector2(171, 1214)
+scale = Vector2(1.5, 1.5)
+color = Color(0.682353, 0.878431, 0.843137, 1)
+energy = 0.75
+shadow_enabled = true
+shadow_filter = 2
+texture = SubResource("GradientTexture2D_cid18")
+
+[node name="PointLight2D5" type="PointLight2D" parent="Lights"]
+position = Vector2(2320, 1651.5)
+scale = Vector2(5.01563, 6.32812)
+color = Color(0.878431, 0.705233, 0.682353, 1)
+energy = 0.65
+shadow_enabled = true
+shadow_filter = 2
+texture = SubResource("GradientTexture2D_uvh66")
+
+[node name="PointLight2D6" type="PointLight2D" parent="Lights"]
+position = Vector2(2276, 1517)
+scale = Vector2(1.29687, 0.503906)
+color = Color(0.658824, 0.301961, 0.0666667, 1)
+energy = 2.5
+shadow_enabled = true
+shadow_filter = 2
+texture = SubResource("GradientTexture2D_x2omy")
+
+[node name="PointLight2D7" type="PointLight2D" parent="Lights"]
+position = Vector2(3674, 1358)
+scale = Vector2(1.29687, 0.503906)
+color = Color(0.0666667, 0.184314, 0.658824, 1)
+energy = 2.5
+shadow_enabled = true
+shadow_filter = 2
+texture = SubResource("GradientTexture2D_x2omy")
+
+[node name="BlinkEffect" parent="Lights/PointLight2D7" instance=ExtResource("5_rvcuk")]
+
+[node name="PointLight2D8" type="PointLight2D" parent="Lights"]
+position = Vector2(42, 1109)
+scale = Vector2(1.29687, 0.503906)
+color = Color(0.321569, 0.658824, 0.0666667, 1)
+energy = 2.5
+shadow_enabled = true
+shadow_filter = 2
+texture = SubResource("GradientTexture2D_x2omy")
+
+[node name="PointLight2D4" type="PointLight2D" parent="Lights"]
+position = Vector2(489, 1211)
+scale = Vector2(1.5, 1.5)
+color = Color(0.682353, 0.878431, 0.843137, 1)
+energy = 1.5
+shadow_enabled = true
+shadow_filter = 2
+texture = SubResource("GradientTexture2D_cid18")
+
+[node name="BlinkEffect" parent="Lights/PointLight2D4" instance=ExtResource("5_rvcuk")]
+on_rate = 200
+off_rate = 50
 
 [node name="Interactibles" type="Node2D" parent="."]
 

@@ -69,7 +69,6 @@ wait_time = 0.5
 wait_time = 0.5
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-debug_enabled = true
 
 [node name="BiteSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_qgwbt")

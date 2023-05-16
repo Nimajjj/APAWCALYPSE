@@ -28,7 +28,7 @@ enum Weapon_Weight {LIGHT, MEDIUM, HEAVY}
 var actual_rate: int = 0
 var weapon_direction: Vector2
 var reloading: bool = false
-var shoot_effect: GPUParticles2D = null
+@export var shoot_effect: GPUParticles2D = null
 var can_shoot: bool = true
 
 var player: IPlayer = null : set = _player_setter
@@ -48,8 +48,9 @@ func _ready():
 	Synchronizer.set_multiplayer_authority(1)
 	
 	if ShootEffectScene != null:
-		shoot_effect = ShootEffectScene.instantiate()
-		WeaponEnd.add_child(shoot_effect.duplicate())
+		shoot_effect = ShootEffectScene.instantiate().duplicate()
+		_add_shoot_effect(shoot_effect)
+		rpc("_add_shoot_effect", shoot_effect)
 		
 
 	current_mag = mag_capacity
@@ -62,6 +63,12 @@ func _ready():
 	timer.connect("timeout", func(): reload())
 	fire_rate_timer.connect("timeout", func(): reset_fire_rate())
 
+
+@rpc("any_peer")
+func _add_shoot_effect(effect) -> void:
+	shoot_effect = effect
+	WeaponEnd.add_child(shoot_effect)
+	Utils.log("_add_shoot_effect({0})".format([effect]), Utils.LOG_DEBUG)
 
 func _process(_delta):
 	if player == null: return
@@ -158,7 +165,8 @@ func shoot_client(player_damage_factor: int) -> void:
 func _shoot_impl(player_damage_factor: int) -> void:
 	fire_rate_timer.start()
 	can_shoot = false
-	shoot_effect.emitting = true
+	if shoot_effect:
+		shoot_effect.emitting = true
 	var bullet: IBullet = BulletScene.instantiate()
 	bullet.position = WeaponEnd.get_global_transform().origin
 	bullet.damage = damage * player_damage_factor
