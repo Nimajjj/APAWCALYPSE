@@ -42,7 +42,7 @@ func activate(player: IPlayer) -> void:
 		isopened = false 
 		message = "Press [E] to open the box"
 		rand = randi() % 10 + 1
-		if x == rand : 
+		if x == rand :  
 			change_position()
 		return
 	if can_activate(player) && !isopened:
@@ -76,7 +76,8 @@ func _on_timer_timeout():
 	shuffle_weapon.z_index = 2
 	if 	shuffle_weapon.region_rect.position.y > 96 :
 		shuffle_weapon.region_rect.position.y = 0
-	if t == 10 : 
+	if t == 20 : 
+		$AudioStreamPlayer.stop()
 		timer.stop()
 		shuffle_weapon.visible = false
 		i = randi() % weapons_scenes.size() 

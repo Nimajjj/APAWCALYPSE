@@ -15,10 +15,10 @@
 [ext_resource type="PackedScene" uid="uid://deh0ejmvq7sma" path="res://scenes/interactible/mystery_box.tscn" id="12_b748d"]
 [ext_resource type="PackedScene" uid="uid://6vxt8i1m4ong" path="res://scenes/interactible/side_door.tscn" id="12_nj25h"]
 [ext_resource type="PackedScene" uid="uid://cy3kakabvwgxc" path="res://scenes/spawner/i_spawner.tscn" id="13_ir52n"]
-[ext_resource type="PackedScene" uid="uid://cwcwy8abhf3l8" path="res://scenes/interactible/speed_pump.tscn" id="15_6o5p1"]
-[ext_resource type="PackedScene" uid="uid://dqkre1m4iat4l" path="res://scenes/interactible/damage_pump.tscn" id="16_hrdpq"]
+[ext_resource type="PackedScene" path="res://scenes/interactible/speed_pump.tscn" id="15_6o5p1"]
+[ext_resource type="PackedScene" path="res://scenes/interactible/damage_pump.tscn" id="16_hrdpq"]
 [ext_resource type="PackedScene" uid="uid://bavi0q8a7jcc2" path="res://scenes/interactible/health_pump.tscn" id="17_prh6i"]
-[ext_resource type="PackedScene" uid="uid://bki1paxby6bjh" path="res://scenes/interactible/reload_pump.tscn" id="18_dpikg"]
+[ext_resource type="PackedScene" path="res://scenes/interactible/reload_pump.tscn" id="18_dpikg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sb37l"]
 size = Vector2(33, 147)
@@ -1816,9 +1816,6 @@ navigation_polygon = SubResource("NavigationPolygon_4kp1u")
 
 [node name="NavigationRegion2D5" type="NavigationRegion2D" parent="Navigation"]
 navigation_polygon = SubResource("NavigationPolygon_dwsja")
-
-[node name="MisteryBox" parent="." instance=ExtResource("12_b748d")]
-position = Vector2(790, 805)
 
 [editable path="Interactibles/Windows/Window"]
 [editable path="Interactibles/Windows/Window7"]
