@@ -48,6 +48,7 @@ func activate(player: IPlayer) -> void:
 	if can_activate(player) && !isopened:
 		player.money -= price
 		_update_sprite()
+		$AudioStreamPlayer.play()
 		timer.start()           
 		
 
