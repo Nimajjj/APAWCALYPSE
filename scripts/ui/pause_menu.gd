@@ -2,6 +2,16 @@ extends PanelContainer
 
 var paused: bool = false
 
+
+func _ready() -> void:
+	# Bouton "Menu principal" ajoute par code, insere avant "Quitter".
+	var btn := Button.new()
+	btn.text = "MENU PRINCIPAL"
+	$VBoxContainer.add_child(btn)
+	$VBoxContainer.move_child(btn, $VBoxContainer.get_child_count() - 2)
+	btn.pressed.connect(_on_menu_button_pressed)
+
+
 func _process(_delta):
 	if Input.is_action_just_pressed("esc"):
 		if paused:
@@ -33,3 +43,8 @@ func _on_option_button_pressed():
 
 func _on_quit_button_pressed():
 	get_tree().quit()
+
+
+func _on_menu_button_pressed() -> void:
+	get_tree().paused = false
+	get_tree().change_scene_to_file("res://scenes/ui/main_menu.tscn")

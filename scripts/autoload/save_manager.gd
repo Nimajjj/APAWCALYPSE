@@ -10,6 +10,7 @@ var total_kills: int = 0
 var total_money: int = 0
 var games_played: int = 0
 var unlocked: Dictionary = {}  # id_succes -> true
+var sliders: Dictionary = {"music": 50.0, "sfx": 50.0, "gui": 50.0}  # reglages volume (0-100)
 
 
 func _ready() -> void:
@@ -29,6 +30,11 @@ func load_game() -> void:
 	var u: Variant = cfg.get_value("achievements", "unlocked", {})
 	if u is Dictionary:
 		unlocked = u
+	var s: Variant = cfg.get_value("settings", "sliders", {})
+	if s is Dictionary:
+		for k in sliders.keys():
+			if s.has(k):
+				sliders[k] = float(s[k])
 
 
 func save_game() -> void:
@@ -39,6 +45,7 @@ func save_game() -> void:
 	cfg.set_value("stats", "total_money", total_money)
 	cfg.set_value("stats", "games_played", games_played)
 	cfg.set_value("achievements", "unlocked", unlocked)
+	cfg.set_value("settings", "sliders", sliders)
 	var err := cfg.save(SAVE_PATH)
 	if err != OK:
 		push_warning("SaveManager: echec de la sauvegarde (code %d)" % err)
@@ -59,6 +66,15 @@ func record_run(score: int, wave: int, kills: int, money: int) -> Dictionary:
 	return {"new_high_score": new_high, "new_best_wave": new_best_wave}
 
 
+func get_slider(group: String) -> float:
+	return sliders.get(group, 50.0)
+
+
+func set_slider(group: String, value: float) -> void:
+	sliders[group] = value
+	save_game()
+
+
 func is_unlocked(id: String) -> bool:
 	return unlocked.get(id, false)
 
@@ -75,4 +91,5 @@ func reset() -> void:
 	total_money = 0
 	games_played = 0
 	unlocked = {}
+	sliders = {"music": 50.0, "sfx": 50.0, "gui": 50.0}
 	save_game()
