@@ -18,6 +18,29 @@ func _check(label: String, cond: bool) -> void:
 		print("  FAIL  ", label)
 
 
+## Reference : ancienne logique en dur de fabric_enemy.handle_spawn.
+func _ref_spawn(wave: int, rate: int) -> int:
+	if wave < 6:
+		return 0 if rate < 80 else 1
+	elif wave < 11:
+		if rate < 60: return 0
+		elif rate < 80: return 1
+		elif rate < 95: return 2
+		else: return 3
+	elif wave < 16:
+		if rate < 40: return 0
+		elif rate < 65: return 1
+		elif rate < 90: return 2
+		elif rate < 99: return 3
+		else: return 4
+	else:
+		if rate < 20: return 0
+		elif rate < 40: return 1
+		elif rate < 80: return 2
+		elif rate < 90: return 3
+		else: return 4
+
+
 func _initialize() -> void:
 	var sm := get_root().get_node_or_null("SaveManager")
 	var am := get_root().get_node_or_null("AchievementManager")
@@ -76,6 +99,17 @@ func _initialize() -> void:
 		sm.unlocked_characters[id] = true
 	am.on_character_bought()
 	_check("tous persos debloques -> collector", sm.is_unlocked("collector"))
+
+	print("== Table de spawn (.tres) ==")
+	var table: EnemySpawnTable = load("res://resources/enemy_spawn_table.tres")
+	_check("table de spawn chargee", table != null)
+	if table != null:
+		var ok := true
+		for wave in [1, 3, 5, 6, 10, 11, 15, 16, 20, 30]:
+			for rate in range(100):
+				if table.pick_type(wave, rate) != _ref_spawn(wave, rate):
+					ok = false
+		_check("pick_type == ancienne logique (toutes vagues x rates)", ok)
 
 	# Restauration du fichier joueur d'origine.
 	sm.reset()

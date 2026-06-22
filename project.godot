@@ -22,6 +22,7 @@ config/icon="res://assets/debug/icon.svg"
 [autoload]
 
 Global="*res://scripts/autoload/global.gd"
+EventBus="*res://scripts/autoload/event_bus.gd"
 SaveManager="*res://scripts/autoload/save_manager.gd"
 SoundManager="*res://scripts/autoload/sound_manager.gd"
 AchievementManager="*res://scripts/autoload/achievement_manager.gd"

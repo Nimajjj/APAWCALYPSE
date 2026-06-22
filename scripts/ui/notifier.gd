@@ -12,6 +12,7 @@ func _ready() -> void:
 	layer = 128
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	AchievementManager.achievement_unlocked.connect(_on_achievement_unlocked)
+	EventBus.wave_started.connect(func(w: int): show_banner("VAGUE %d" % w))
 
 
 func _on_achievement_unlocked(_id: String, title: String, desc: String) -> void:

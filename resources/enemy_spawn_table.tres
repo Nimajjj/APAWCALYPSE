@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="EnemySpawnTable" format=3]
+
+[ext_resource type="Script" path="res://scripts/data/enemy_spawn_table.gd" id="1_mcskj"]
+[ext_resource type="Script" path="res://scripts/data/enemy_spawn_tier.gd" id="2_bnm76"]
+
+[sub_resource type="Resource" id="Resource_xc5gg"]
+script = ExtResource("2_bnm76")
+max_wave = 6
+thresholds = PackedInt32Array(80, 0, 100, 1)
+
+[sub_resource type="Resource" id="Resource_035ux"]
+script = ExtResource("2_bnm76")
+max_wave = 11
+thresholds = PackedInt32Array(60, 0, 80, 1, 95, 2, 100, 3)
+
+[sub_resource type="Resource" id="Resource_o1w13"]
+script = ExtResource("2_bnm76")
+max_wave = 16
+thresholds = PackedInt32Array(40, 0, 65, 1, 90, 2, 99, 3, 100, 4)
+
+[sub_resource type="Resource" id="Resource_qgmmx"]
+script = ExtResource("2_bnm76")
+thresholds = PackedInt32Array(20, 0, 40, 1, 80, 2, 90, 3, 100, 4)
+
+[resource]
+script = ExtResource("1_mcskj")
+tiers = Array[ExtResource("2_bnm76")]([SubResource("Resource_xc5gg"), SubResource("Resource_035ux"), SubResource("Resource_o1w13"), SubResource("Resource_qgmmx")])

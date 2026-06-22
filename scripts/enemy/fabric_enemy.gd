@@ -7,6 +7,9 @@ var miser_scene: PackedScene         = preload("res://scenes/enemy/miser.tscn")
 var big_zombie_scene: PackedScene    = preload("res://scenes/enemy/big_zombie.tscn")
 var reaper_scene: PackedScene        = preload("res://scenes/enemy/reaper.tscn")
 
+# Table de spawn editable (.tres). Fallback sur l'ancienne logique si absente.
+var _spawn_table: EnemySpawnTable = load("res://resources/enemy_spawn_table.tres") as EnemySpawnTable
+
 @onready var boss_spawn_sound: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 
@@ -51,6 +54,10 @@ func handle_spawn(boss: bool) -> int:
 	if boss:
 		return 5
 	var spawn_rate = randi() % 100
+	if _spawn_table != null:
+		var wave: int = Global.game.wave if Global.game != null else 1
+		return _spawn_table.pick_type(wave, spawn_rate)
+	# Fallback (table absente) : ancienne logique en dur.
 	if Global.game.wave < 6:
 		if spawn_rate < 80:
 			return 0

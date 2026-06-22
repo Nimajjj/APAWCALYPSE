@@ -19,7 +19,6 @@ enum Weapon_Weight {LIGHT, MEDIUM, HEAVY}
 @export var weight: Weapon_Weight
 @export var shake_power: float = 0
 
-@export var secondary_weapon: IWeapon = null
 @export var BulletScene: PackedScene = null
 @export var ShootEffectScene: PackedScene
 
@@ -61,10 +60,6 @@ func _process(_delta):
 
 	if Input.is_action_just_pressed("reload"):
 		trigger_reload()
-
-
-func has_secondary_weapon() -> bool:
-	return (secondary_weapon != null)
 
 
 func trigger_reload() -> void:

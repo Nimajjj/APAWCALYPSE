@@ -21,7 +21,25 @@ func _enter_tree():
 	Global.game = self
 	
 func _ready():
+	# Reactions aux evenements de jeu (decouple des emetteurs via EventBus).
+	EventBus.enemy_killed.connect(_on_enemy_killed)
+	EventBus.score_gained.connect(_on_score_gained)
+	EventBus.money_gained.connect(_on_money_gained)
+	EventBus.player_died.connect(trigger_game_over)
 	start_game()
+
+
+func _on_enemy_killed(is_boss: bool) -> void:
+	kills += 1
+	AchievementManager.on_enemy_killed(is_boss, kills)
+
+
+func _on_score_gained(amount: int) -> void:
+	score += amount
+
+
+func _on_money_gained(amount: int) -> void:
+	run_money_earned += amount
 	
 func start_game() -> void:
 	Global.reset()
@@ -40,8 +58,7 @@ func new_wave():
 		wave_activated = true
 		spawners_activated = false
 		wave += 1
-		Notifier.show_banner("VAGUE %d" % wave)
-		AchievementManager.on_wave_reached(wave)
+		EventBus.wave_started.emit(wave)
 		enabled_spawner = 0
 		for spawner in Global.spawners:
 			if spawner.enabled:

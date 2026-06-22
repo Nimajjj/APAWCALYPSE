@@ -3,6 +3,10 @@ extends Node
 
 signal achievement_unlocked(id: String, title: String, description: String)
 
+
+func _ready() -> void:
+	EventBus.wave_started.connect(on_wave_reached)
+
 const DEFS := {
 	"first_blood":  {"title": "Premier Sang",   "desc": "Tuer un ennemi"},
 	"hunter":       {"title": "Chasseur",        "desc": "50 ennemis tues (cumul)"},

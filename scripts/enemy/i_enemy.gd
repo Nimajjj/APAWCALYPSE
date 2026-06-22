@@ -146,9 +146,7 @@ func dies(shooter: IPlayer) -> void:
 		shooter.gain_score(randi_range(1, 10))
 		Global.units_alive -= 1
 		Global.units.erase(self)
-		if Global.game != null:
-			Global.game.kills += 1
-			AchievementManager.on_enemy_killed(is_boss, Global.game.kills)
+		EventBus.enemy_killed.emit(is_boss)
 		Global.notify_enemy_died()
 
 		Sprite.material.set_shader_parameter("flash_modifier", 0.0)

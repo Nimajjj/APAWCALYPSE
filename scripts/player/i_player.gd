@@ -116,12 +116,11 @@ func heal(amount: float) -> void:
 func gain_money(amount: int) -> void:
 	var gained: int = amount * 2 if money_x2 else amount
 	self.money += gained
-	if Global.game != null:
-		Global.game.run_money_earned += gained
+	EventBus.money_gained.emit(gained)
 
 
 func gain_score(amount: int) -> void:
-	Global.game.score += amount
+	EventBus.score_gained.emit(amount)
 	self.score += amount # Personal score of the player
 
 
@@ -302,10 +301,8 @@ func _on_down_timer_timeout() -> void:
 
 
 func _dead_state() -> void:
-	# Fin de partie : declenche l'ecran de Game Over (idempotent cote game.gd).
-	# Corrige l'ancien comportement ou la mort laissait la partie figee.
-	if Global.game != null:
-		Global.game.trigger_game_over()
+	# Fin de partie via EventBus -> Game.trigger_game_over() (idempotent).
+	EventBus.player_died.emit()
 
 
 func _camera_follow_mouse() -> void:
