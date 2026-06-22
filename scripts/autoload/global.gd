@@ -19,6 +19,17 @@ var units_alive: int = 0
 
 func is_all_units_spawned() -> bool:
 	return units_left_to_spawn == 0
-	
+
 func is_all_units_dead() -> bool:
 	return units_alive == 0
+
+
+## Reinitialise l'etat inter-parties. Indispensable avant un redemarrage :
+## cet autoload survit a reload_current_scene() et garderait sinon des
+## references invalides (anciens joueurs/ennemis liberes).
+func reset() -> void:
+	players.clear()
+	spawners.clear()
+	units.clear()
+	units_left_to_spawn = 3
+	units_alive = 0

@@ -7,6 +7,11 @@ var wave_activated: bool = false
 var spawners_activated: bool = false
 var time: float = 0.0
 var enabled_spawner: int = 0
+var kills: int = 0
+var run_money_earned: int = 0
+var _game_over: bool = false
+
+const GameOverLayer := preload("res://scripts/ui/game_over_layer.gd")
 
 @onready var GameTimer: Timer = $GameTimer
 @onready var WaveTimer: Timer = $WaveTimer
@@ -19,6 +24,7 @@ func _ready():
 	start_game()
 	
 func start_game() -> void:
+	Global.reset()
 	_new_player()
 	GameTimer.start()
 	
@@ -34,6 +40,8 @@ func new_wave():
 		wave_activated = true
 		spawners_activated = false
 		wave += 1
+		Notifier.show_banner("VAGUE %d" % wave)
+		AchievementManager.on_wave_reached(wave)
 		enabled_spawner = 0
 		for spawner in Global.spawners:
 			if spawner.enabled:
@@ -44,7 +52,22 @@ func end_game() -> void:
 	wave = 0
 	time = 0.0
 	score = 0
-	
+
+func trigger_game_over() -> void:
+	if _game_over:
+		return
+	_game_over = true
+	var result := SaveManager.record_run(score, wave, kills, run_money_earned)
+	AchievementManager.on_run_recorded()
+	get_tree().paused = true
+	var layer := GameOverLayer.new()
+	add_child(layer)
+	layer.setup({
+		"wave": wave, "score": score, "kills": kills,
+		"high_score": SaveManager.high_score, "best_wave": SaveManager.best_wave,
+		"new_high_score": result.new_high_score, "new_best_wave": result.new_best_wave,
+	})
+
 func _new_player() -> void:
 	FabricPlayer.create_player()
 	

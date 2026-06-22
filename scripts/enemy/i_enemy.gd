@@ -146,6 +146,9 @@ func dies(shooter: IPlayer) -> void:
 		shooter.gain_money(money)
 		shooter.gain_score(randi_range(1, 10))
 		Global.units_alive -= 1
+		if Global.game != null:
+			Global.game.kills += 1
+			AchievementManager.on_enemy_killed(is_boss, Global.game.kills)
 		get_parent().get_parent().is_last_wave_dead()
 
 		Sprite.material.set_shader_parameter("flash_modifier", 0.0)

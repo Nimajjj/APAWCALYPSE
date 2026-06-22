@@ -115,8 +115,10 @@ func heal(amount: float) -> void:
 
 
 func gain_money(amount: int) -> void:
-	if(money_x2): self.money += amount * 2
-	else: self.money += amount
+	var gained: int = amount * 2 if money_x2 else amount
+	self.money += gained
+	if Global.game != null:
+		Global.game.run_money_earned += gained
 
 
 func gain_score(amount: int) -> void:
@@ -292,7 +294,10 @@ func _down_state() -> void:
 
 
 func _dead_state() -> void:
-	pass
+	# Fin de partie : declenche l'ecran de Game Over (idempotent cote game.gd).
+	# Corrige l'ancien comportement ou la mort laissait la partie figee.
+	if Global.game != null:
+		Global.game.trigger_game_over()
 
 
 func _camera_follow_mouse() -> void:

@@ -23,6 +23,9 @@ config/icon="res://assets/debug/icon.svg"
 
 Global="*res://scripts/autoload/global.gd"
 SoundManager="*res://scripts/autoload/sound_manager.gd"
+SaveManager="*res://scripts/autoload/save_manager.gd"
+AchievementManager="*res://scripts/autoload/achievement_manager.gd"
+Notifier="*res://scripts/ui/notifier.gd"
 
 [display]
 
