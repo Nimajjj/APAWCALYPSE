@@ -12,6 +12,10 @@ const DEFS := {
 	"boss_slayer":  {"title": "Tueur de Boss",   "desc": "Tuer un boss"},
 	"rich_cat":     {"title": "Chat Fortune",    "desc": "Gagner 10 000 d'argent (cumul)"},
 	"persistent":   {"title": "Acharne",         "desc": "Jouer 10 parties"},
+	"legend":       {"title": "Legende",         "desc": "Atteindre la vague 15"},
+	"immortal":     {"title": "Increvable",      "desc": "Atteindre la vague 20"},
+	"shopaholic":   {"title": "Acheteur",        "desc": "Acheter un personnage"},
+	"collector":    {"title": "Collectionneur",  "desc": "Debloquer tous les personnages"},
 }
 
 
@@ -43,6 +47,10 @@ func on_wave_reached(wave: int) -> void:
 		_unlock("survivor")
 	if wave >= 10:
 		_unlock("veteran")
+	if wave >= 15:
+		_unlock("legend")
+	if wave >= 20:
+		_unlock("immortal")
 
 
 ## Appele apres l'enregistrement d'une partie (totaux a jour). Verifie aussi les
@@ -56,6 +64,15 @@ func on_run_recorded() -> void:
 		_unlock("rich_cat")
 	if SaveManager.games_played >= 10:
 		_unlock("persistent")
+
+
+## Appele apres l'achat d'un personnage.
+func on_character_bought() -> void:
+	_unlock("shopaholic")
+	for id in SaveManager.CHARACTERS:
+		if not SaveManager.is_character_unlocked(id):
+			return
+	_unlock("collector")
 
 
 func unlocked_count() -> int:

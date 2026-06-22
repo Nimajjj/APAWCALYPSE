@@ -14,6 +14,10 @@ func _ready():
 	hit_timer.connect("timeout", Callable(func(): _hit_timer_timeout()))
 
 func _physics_process(_delta):
+	# Micro-perf : pas d'ennemi en vie -> rien a detecter, on saute les
+	# couteux get_overlapping_bodies() (ex. entre les vagues).
+	if Global.units_alive <= 0:
+		return
 	for body in interaction_area.get_overlapping_bodies():
 		if body is IEnemy && body.state != 2:
 			body.state = 2

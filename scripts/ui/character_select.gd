@@ -92,6 +92,7 @@ func _rebuild() -> void:
 			btn.pressed.connect(func() -> void:
 				if SaveManager.buy_character(cid):
 					SaveManager.select_character(cid)
+					AchievementManager.on_character_bought()
 				_rebuild())
 		row.add_child(btn)
 		_rows.add_child(row)

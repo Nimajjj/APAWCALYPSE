@@ -64,7 +64,7 @@ func _button(text: String, cb: Callable) -> Button:
 
 
 func _on_play() -> void:
-	get_tree().change_scene_to_file(GAME_SCENE)
+	Transitions.change_scene(GAME_SCENE)
 
 
 func _on_achievements() -> void:
