@@ -31,6 +31,7 @@ var coins: int = 0  # monnaie meta depensable (gagnee en jouant)
 var unlocked_characters: Dictionary = {"badaboom": true}
 var selected_character: String = DEFAULT_CHARACTER
 var active_modifiers: Dictionary = {}  # id_modificateur -> true
+var key_bindings: Dictionary = {}  # action -> physical_keycode (remap clavier)
 
 
 func _ready() -> void:
@@ -68,6 +69,9 @@ func load_game() -> void:
 	var am2: Variant = cfg.get_value("modifiers", "active", {})
 	if am2 is Dictionary:
 		active_modifiers = am2
+	var kb: Variant = cfg.get_value("input", "bindings", {})
+	if kb is Dictionary:
+		key_bindings = kb
 
 
 func save_game() -> void:
@@ -86,6 +90,7 @@ func save_game() -> void:
 	cfg.set_value("progression", "unlocked_characters", unlocked_characters)
 	cfg.set_value("progression", "selected_character", selected_character)
 	cfg.set_value("modifiers", "active", active_modifiers)
+	cfg.set_value("input", "bindings", key_bindings)
 	var err := cfg.save(SAVE_PATH)
 	if err != OK:
 		push_warning("SaveManager: echec de la sauvegarde (code %d)" % err)
@@ -183,6 +188,7 @@ func reset() -> void:
 	unlocked_characters = {"badaboom": true}
 	selected_character = DEFAULT_CHARACTER
 	active_modifiers = {}
+	key_bindings = {}
 	save_game()
 
 

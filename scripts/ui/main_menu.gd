@@ -8,6 +8,7 @@ const CharacterSelect := preload("res://scripts/ui/character_select.gd")
 const OptionsPanel := preload("res://scripts/ui/options_panel.gd")
 const StatsPanel := preload("res://scripts/ui/stats_panel.gd")
 const ModifiersPanel := preload("res://scripts/ui/modifiers_panel.gd")
+const ControlsPanel := preload("res://scripts/ui/controls_panel.gd")
 
 
 func _ready() -> void:
@@ -53,6 +54,7 @@ func _ready() -> void:
 	vb.add_child(_button("SUCCES", _on_achievements))
 	vb.add_child(_button("STATS", _on_stats))
 	vb.add_child(_button("OPTIONS", _on_options))
+	vb.add_child(_button("COMMANDES", _on_controls))
 	vb.add_child(_button("QUITTER", func(): get_tree().quit()))
 	play.grab_focus()
 
@@ -99,5 +101,11 @@ func _on_options() -> void:
 
 func _on_modifiers() -> void:
 	var panel := ModifiersPanel.new()
+	add_child(panel)
+	panel.setup()
+
+
+func _on_controls() -> void:
+	var panel := ControlsPanel.new()
 	add_child(panel)
 	panel.setup()

@@ -41,6 +41,13 @@ func _ref_spawn(wave: int, rate: int) -> int:
 		else: return 4
 
 
+func _action_has_physical(action: String, kc: int) -> bool:
+	for e in InputMap.action_get_events(action):
+		if e is InputEventKey and e.physical_keycode == kc:
+			return true
+	return false
+
+
 func _initialize() -> void:
 	var sm := get_root().get_node_or_null("SaveManager")
 	var am := get_root().get_node_or_null("AchievementManager")
@@ -109,6 +116,16 @@ func _initialize() -> void:
 	_check("modif persiste apres reload", sm.is_modifier_active("double_enemies"))
 	sm.toggle_modifier("double_enemies")
 	_check("toggle -> inactif", not sm.is_modifier_active("double_enemies"))
+
+	print("== Remap clavier ==")
+	var insetup := get_root().get_node_or_null("InputSetup")
+	_check("InputSetup present", insetup != null)
+	if insetup != null:
+		sm.reset()
+		insetup.rebind("interact", KEY_P)
+		_check("rebind interact -> P persiste", int(sm.key_bindings.get("interact", -1)) == KEY_P)
+		_check("InputMap: interact a la touche P", _action_has_physical("interact", KEY_P))
+		insetup.rebind("interact", KEY_E)  # restaure le defaut (E)
 
 	print("== Table de spawn (.tres) ==")
 	var table: EnemySpawnTable = load("res://resources/enemy_spawn_table.tres")
