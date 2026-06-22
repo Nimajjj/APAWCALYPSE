@@ -45,6 +45,12 @@ func setup(stats: Dictionary) -> void:
 	restart.pressed.connect(_on_restart)
 	vb.add_child(restart)
 
+	var menu := _make_button("MENU PRINCIPAL")
+	menu.pressed.connect(func():
+		get_tree().paused = false
+		get_tree().change_scene_to_file("res://scenes/ui/main_menu.tscn"))
+	vb.add_child(menu)
+
 	var quit := _make_button("QUITTER")
 	quit.pressed.connect(func(): get_tree().quit())
 	vb.add_child(quit)

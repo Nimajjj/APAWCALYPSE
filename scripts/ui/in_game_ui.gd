@@ -13,15 +13,34 @@ extends CanvasLayer
 
 var _last_player_count: int = -1
 var _last_health: float = -1.0
+var _objective_label: Label
 
 func _enter_tree():
 	Global.in_game_ui = self
+
+
+func _ready() -> void:
+	# Indicateur d'objectif (vague + ennemis restants), cree par code pour
+	# eviter de modifier la scene a la main.
+	_objective_label = Label.new()
+	_objective_label.set_anchors_and_offsets_preset(Control.PRESET_TOP_WIDE)
+	_objective_label.offset_top = 14.0
+	_objective_label.offset_bottom = 56.0
+	_objective_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_objective_label.add_theme_font_size_override("font_size", 28)
+	_objective_label.add_theme_color_override("font_color", Color(1, 0.85, 0.3))
+	_objective_label.add_theme_color_override("font_outline_color", Color.BLACK)
+	_objective_label.add_theme_constant_override("outline_size", 5)
+	add_child(_objective_label)
 
 
 func _process(_delta):
 	if Global.players.is_empty():
 		return
 	var player: IPlayer = Global.players[0]
+
+	if _objective_label != null:
+		_objective_label.text = "VAGUE %d   -   Ennemis restants : %d" % [Global.game.wave, Global.units_alive]
 
 	ScoreLabel.text = str(Global.game.score)
 	MoneyLabel.text = str(player.money)
