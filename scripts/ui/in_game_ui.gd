@@ -20,6 +20,9 @@ func _enter_tree():
 
 
 func _ready() -> void:
+	# Panneau de debug : visible seulement en build debug/editeur, bascule par F3.
+	DebugLabel.visible = OS.is_debug_build()
+
 	# Indicateur d'objectif (vague + ennemis restants), cree par code pour
 	# eviter de modifier la scene a la main.
 	_objective_label = Label.new()
@@ -101,3 +104,9 @@ func _pulse(ctrl: Control) -> void:
 	var t := create_tween()
 	t.tween_property(ctrl, "scale", Vector2(1.18, 1.18), 0.06)
 	t.tween_property(ctrl, "scale", Vector2.ONE, 0.14)
+
+
+func _input(event: InputEvent) -> void:
+	# F3 : afficher/masquer le panneau de debug.
+	if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_F3:
+		DebugLabel.visible = not DebugLabel.visible

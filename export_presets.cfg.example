@@ -1,0 +1,39 @@
+; Modele de presets d'export (Windows Desktop).
+; export_presets.cfg est volontairement gitignore (specifique a la machine) :
+; copier ce fichier en "export_presets.cfg" puis l'ajuster dans l'editeur si besoin.
+
+[preset.0]
+
+name="Windows Desktop"
+platform="Windows Desktop"
+runnable=true
+dedicated_server=false
+custom_features=""
+export_filter="all_resources"
+include_filter=""
+exclude_filter=""
+export_path="build/windows/APAWCALYPSE.exe"
+encryption_include_filters=""
+encryption_exclude_filters=""
+seed=0
+encrypt_pck=false
+encrypt_directory=false
+script_export_mode=2
+
+[preset.0.options]
+
+custom_template/debug=""
+custom_template/release=""
+debug/export_console_wrapper=1
+binary_format/embed_pck=false
+texture_format/s3tc_bptc=true
+texture_format/etc2_astc=false
+binary_format/architecture="x86_64"
+application/icon=""
+application/console_wrapper_icon=""
+application/icon_interpolation=4
+application/product_name="APAWCALYPSE"
+application/company_name=""
+application/export_angle=0
+application/export_d3d12=0
+ssh_remote_deploy/enabled=false
