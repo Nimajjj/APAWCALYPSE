@@ -3,6 +3,7 @@ extends Control
 
 const ACCENT := Color(1, 0.85, 0.3)
 const GAME_SCENE := "res://scenes/game/game.tscn"
+const MENU_SHADER := preload("res://resources/menu_bg.gdshader")
 const AchievementsPanel := preload("res://scripts/ui/achievements_panel.gd")
 const CharacterSelect := preload("res://scripts/ui/character_select.gd")
 const OptionsPanel := preload("res://scripts/ui/options_panel.gd")
@@ -15,8 +16,10 @@ func _ready() -> void:
 	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 
 	var bg := ColorRect.new()
-	bg.color = Color(0.13, 0.13, 0.18)
 	bg.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	var mat := ShaderMaterial.new()
+	mat.shader = MENU_SHADER
+	bg.material = mat
 	add_child(bg)
 
 	var center := CenterContainer.new()
@@ -68,6 +71,7 @@ func _button(text: String, cb: Callable) -> Button:
 	b.custom_minimum_size = Vector2(360, 60)
 	b.add_theme_font_size_override("font_size", 30)
 	b.pressed.connect(cb)
+	UITheme.add_button_juice(b)
 	return b
 
 

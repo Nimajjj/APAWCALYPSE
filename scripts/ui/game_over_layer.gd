@@ -76,6 +76,7 @@ func _make_button(text: String) -> Button:
 	b.text = text
 	b.custom_minimum_size = Vector2(320, 56)
 	b.add_theme_font_size_override("font_size", 28)
+	UITheme.add_button_juice(b)
 	return b
 
 

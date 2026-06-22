@@ -56,12 +56,14 @@ func show_banner(text: String) -> void:
 	lbl.add_theme_color_override("font_outline_color", Color.BLACK)
 	lbl.add_theme_constant_override("outline_size", 10)
 	lbl.modulate.a = 0.0
+	lbl.pivot_offset = get_viewport().get_visible_rect().size / 2.0
+	lbl.scale = Vector2(0.5, 0.5)
 	add_child(lbl)
 
 	var tw := create_tween()
-	tw.tween_property(lbl, "modulate:a", 1.0, 0.25)
-	tw.parallel().tween_property(lbl, "offset_top", -180.0, 0.25)
-	tw.tween_interval(0.9)
+	tw.tween_property(lbl, "modulate:a", 1.0, 0.18)
+	tw.parallel().tween_property(lbl, "scale", Vector2.ONE, 0.4).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	tw.tween_interval(0.85)
 	tw.tween_property(lbl, "modulate:a", 0.0, 0.5)
 	tw.tween_callback(lbl.queue_free)
 
