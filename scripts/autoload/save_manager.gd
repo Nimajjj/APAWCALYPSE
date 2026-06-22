@@ -12,6 +12,11 @@ const CHARACTERS := {
 	"grey": {"name": "Grey", "scene": "res://scenes/player/grey.tscn", "price": 1500},
 }
 
+const MODIFIERS := {
+	"double_enemies": {"name": "Double Ennemis", "desc": "2x plus d'ennemis par vague"},
+	"double_money": {"name": "Double Argent", "desc": "Gains d'argent x2"},
+}
+
 var high_score: int = 0
 var best_wave: int = 0
 var total_kills: int = 0
@@ -25,6 +30,7 @@ var sliders: Dictionary = {"music": 50.0, "sfx": 50.0, "gui": 50.0}  # reglages 
 var coins: int = 0  # monnaie meta depensable (gagnee en jouant)
 var unlocked_characters: Dictionary = {"badaboom": true}
 var selected_character: String = DEFAULT_CHARACTER
+var active_modifiers: Dictionary = {}  # id_modificateur -> true
 
 
 func _ready() -> void:
@@ -59,6 +65,9 @@ func load_game() -> void:
 			unlocked_characters[k] = true
 	unlocked_characters[DEFAULT_CHARACTER] = true
 	selected_character = str(cfg.get_value("progression", "selected_character", DEFAULT_CHARACTER))
+	var am2: Variant = cfg.get_value("modifiers", "active", {})
+	if am2 is Dictionary:
+		active_modifiers = am2
 
 
 func save_game() -> void:
@@ -76,6 +85,7 @@ func save_game() -> void:
 	cfg.set_value("progression", "coins", coins)
 	cfg.set_value("progression", "unlocked_characters", unlocked_characters)
 	cfg.set_value("progression", "selected_character", selected_character)
+	cfg.set_value("modifiers", "active", active_modifiers)
 	var err := cfg.save(SAVE_PATH)
 	if err != OK:
 		push_warning("SaveManager: echec de la sauvegarde (code %d)" % err)
@@ -172,4 +182,14 @@ func reset() -> void:
 	coins = 0
 	unlocked_characters = {"badaboom": true}
 	selected_character = DEFAULT_CHARACTER
+	active_modifiers = {}
+	save_game()
+
+
+func is_modifier_active(id: String) -> bool:
+	return active_modifiers.get(id, false)
+
+
+func toggle_modifier(id: String) -> void:
+	active_modifiers[id] = not is_modifier_active(id)
 	save_game()

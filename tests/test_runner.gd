@@ -100,6 +100,16 @@ func _initialize() -> void:
 	am.on_character_bought()
 	_check("tous persos debloques -> collector", sm.is_unlocked("collector"))
 
+	print("== Modificateurs ==")
+	sm.reset()
+	_check("modif inactif par defaut", not sm.is_modifier_active("double_enemies"))
+	sm.toggle_modifier("double_enemies")
+	_check("toggle -> actif", sm.is_modifier_active("double_enemies"))
+	sm.load_game()
+	_check("modif persiste apres reload", sm.is_modifier_active("double_enemies"))
+	sm.toggle_modifier("double_enemies")
+	_check("toggle -> inactif", not sm.is_modifier_active("double_enemies"))
+
 	print("== Table de spawn (.tres) ==")
 	var table: EnemySpawnTable = load("res://resources/enemy_spawn_table.tres")
 	_check("table de spawn chargee", table != null)

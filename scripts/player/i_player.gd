@@ -115,6 +115,8 @@ func heal(amount: float) -> void:
 
 func gain_money(amount: int) -> void:
 	var gained: int = amount * 2 if money_x2 else amount
+	if SaveManager.is_modifier_active("double_money"):
+		gained *= 2
 	self.money += gained
 	EventBus.money_gained.emit(gained)
 

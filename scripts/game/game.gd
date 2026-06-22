@@ -68,6 +68,8 @@ func new_wave():
 			if spawner.enabled:
 				enabled_spawner += 1
 		Global.units_left_to_spawn = enabled_spawner * 3 * wave
+		if SaveManager.is_modifier_active("double_enemies"):
+			Global.units_left_to_spawn *= 2
 	
 func end_game() -> void:
 	wave = 0
