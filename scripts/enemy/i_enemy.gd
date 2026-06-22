@@ -77,6 +77,7 @@ func take_damage(dmg: int, shooter: IPlayer) -> void:
 	HealthBar.visible = true
 	Sprite.material.set_shader_parameter("flash_modifier", 1.0)
 	timer.start()
+	Juice.spawn_floating_text(global_position, str(dmg), Color(1, 0.9, 0.4))
 
 	if(shooter.dead_shot) and !is_boss:
 		dies(shooter)
@@ -143,6 +144,7 @@ func dies(shooter: IPlayer) -> void:
 		Global.blood_container.add_child(blood_effect)
 		death_sound.play()
 
+		Juice.spawn_floating_text(global_position, "+$%d" % money, Color(0.4, 1.0, 0.5), 26)
 		shooter.gain_money(money)
 		shooter.gain_score(randi_range(1, 10))
 		Global.units_alive -= 1

@@ -12,6 +12,7 @@ extends CanvasLayer
 @onready var Portrait: TextureRect = $Portrait
 
 var _last_player_count: int = -1
+var _last_health: float = -1.0
 
 func _enter_tree():
 	Global.in_game_ui = self
@@ -25,6 +26,9 @@ func _process(_delta):
 	ScoreLabel.text = str(Global.game.score)
 	MoneyLabel.text = str(player.money)
 	HealthBar.value = player.health
+	if _last_health >= 0.0 and player.health < _last_health:
+		_pulse(HealthBar)
+	_last_health = player.health
 	MunitionLabel.text = "{0}".format([player.weapon.current_mag])
 	MunitionLabel2.text = "{0}".format([player.weapon.bullet_stock])
 
@@ -70,3 +74,11 @@ func stop_reloading() -> void:
 
 func reloading() -> void:
 	$AnimationPlayer.play("reload")
+
+
+## Petit pulse d'echelle pour attirer l'oeil (ex. barre de vie qui baisse).
+func _pulse(ctrl: Control) -> void:
+	ctrl.pivot_offset = ctrl.size / 2.0
+	var t := create_tween()
+	t.tween_property(ctrl, "scale", Vector2(1.18, 1.18), 0.06)
+	t.tween_property(ctrl, "scale", Vector2.ONE, 0.14)

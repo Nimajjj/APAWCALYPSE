@@ -223,6 +223,7 @@ func take_damage(damage: float, damager_pos: Vector2, sound: AudioStreamPlayer2D
 		sound.play()		
 		receive_knockback(damager_pos)
 		shake_camera(3, 4, 4, 2)
+		Juice.hit_stop()
 		
 		if is_reaper && health < max_health / 2:
 			health = 0

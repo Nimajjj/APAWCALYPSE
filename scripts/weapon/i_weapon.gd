@@ -28,10 +28,12 @@ var weapon_direction: Vector2
 var reloading: bool = false
 var shoot_effect: GPUParticles2D = null
 var can_shoot: bool = true
+var _recoil_tween: Tween
 
 @onready var WeaponEnd = $WeaponEnd
 @onready var timer = $Timer
 @onready var fire_rate_timer = $FireRateTimer
+@onready var _base_scale: Vector2 = scale
 
 
 func _ready():
@@ -98,6 +100,7 @@ func shoot(player_damage_factor: int) -> void:
 		if(current_mag > 0):
 			fire_rate_timer.start()
 			can_shoot = false
+			_punch()
 			if shoot_effect != null:
 				shoot_effect.emitting = true
 			var bullet: IBullet = BulletScene.instantiate()
@@ -123,3 +126,14 @@ func reset_fire_rate() -> void:
 
 func _on_timer_timeout() -> void:
 	reload()
+
+
+## Petit "punch" d'echelle a chaque tir (recul visuel). S'auto-corrige vers
+## l'echelle de base meme en tir rapide.
+func _punch() -> void:
+	if _recoil_tween != null and _recoil_tween.is_running():
+		_recoil_tween.kill()
+	scale = _base_scale
+	_recoil_tween = create_tween()
+	_recoil_tween.tween_property(self, "scale", _base_scale * 1.12, 0.04)
+	_recoil_tween.tween_property(self, "scale", _base_scale, 0.08)
