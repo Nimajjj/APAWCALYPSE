@@ -42,7 +42,6 @@ func create_enemy(posistion: Vector2, destination: Vector2, boss: bool, directio
 	enemy.state = 0
 	enemy.direction = direction
 	enemy.destination = destination
-	enemy.target = enemy.destination
 	add_child(enemy)
 	Global.units_alive += 1
 	return enemy

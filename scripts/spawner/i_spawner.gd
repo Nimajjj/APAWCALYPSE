@@ -28,11 +28,6 @@ func start_spawner(units_to_spawn: int, is_boss: bool) -> void:
 func stop() -> void:
 	timer.stop()
 
-func is_last_wave_dead():
-	if Global.is_all_units_spawned() && Global.is_all_units_dead():
-		Global.game.wave_activated = false
-		Global.game.new_wave()
-
 func is_all_spawner_units_spawned() -> bool:
 	return units_left_to_spawn == 0
 

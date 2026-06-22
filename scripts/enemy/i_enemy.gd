@@ -6,7 +6,7 @@ var bonus_scene: PackedScene = preload("res://scenes/bonus/i_bonus.tscn")
 
 var dead: bool = false
 var slowed: bool = false
-var target
+var chase_target: Node2D = null  # cible poursuivie en etat 2 (le joueur)
 var direction: String
 var state: int = 0
 var destination: Vector2
@@ -56,7 +56,7 @@ func _physics_process(delta):
 	if dead:
 		return
 	if state == 0:
-		var _direction = (target - global_position).normalized()
+		var _direction = (destination - global_position).normalized()
 		_move(delta, _direction)
 	elif state == 1:
 		var _velocity: Vector2
@@ -101,12 +101,9 @@ func _move(delta, _direction) -> void:
 	move_and_slide()
 
 func retarget() -> void:
-	# target est polymorphe : Vector2 (etat 0, destination) ou Node (etat 2, joueur).
-	# On gere les deux pour ne jamais planter sur target.global_position.
-	if target is Vector2:
-		agent.target_position = target
-	elif target != null:
-		agent.target_position = target.global_position
+	# En etat 2, on poursuit le joueur (chase_target) via le NavigationAgent2D.
+	if chase_target != null:
+		agent.target_position = chase_target.global_position
 
 func retarget_timeout() -> void:
 	retarget()
@@ -152,7 +149,7 @@ func dies(shooter: IPlayer) -> void:
 		if Global.game != null:
 			Global.game.kills += 1
 			AchievementManager.on_enemy_killed(is_boss, Global.game.kills)
-		get_parent().get_parent().is_last_wave_dead()
+		Global.notify_enemy_died()
 
 		Sprite.material.set_shader_parameter("flash_modifier", 0.0)
 

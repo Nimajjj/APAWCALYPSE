@@ -13,7 +13,7 @@ enum PC_State { IDLE, MOVE, INTERACT, DOWN, DEAD }
 @export var acceleration: float = 0
 @export var friction: float = 0
 @export var weapon_scene: PackedScene = null
-@export var down_time: float = 0
+@export var down_time: float = 2.0
 @export var knockback_force: float = 0
 @export var knockback_direction: Vector2 = Vector2.ZERO
 
@@ -25,7 +25,6 @@ var interactible_in_range: Array[Interactible] = []
 var direction = Vector2.ZERO
 var reloading: bool = false
 var score: int = 0
-var down_timer: float = 0
 var shaking = false
 
 var money_x2: bool = false
@@ -234,7 +233,9 @@ func take_damage(damage: float, damager_pos: Vector2, sound: AudioStreamPlayer2D
 		if health <= 0:
 			health = 0
 			state = PC_State.DOWN
+			DownTimer.wait_time = down_time
 			DownTimer.start()
+			Notifier.show_banner("A TERRE !")
 
 
 func _idle_state() -> void:
@@ -289,8 +290,14 @@ func _interact_state() -> void:
 
 
 func _down_state() -> void:
-	#DOWN --> DEAD
-	if down_timer >= down_time:
+	# Le joueur est a terre, incapacite. DownTimer declenche la mort (-> DEAD)
+	# apres down_time secondes ("dernier souffle"). Aucune action ici.
+	pass
+
+
+func _on_down_timer_timeout() -> void:
+	# Connecte dans les scenes joueur (methode auparavant manquante).
+	if state == PC_State.DOWN:
 		state = PC_State.DEAD
 
 
