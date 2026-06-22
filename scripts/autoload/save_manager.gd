@@ -4,6 +4,14 @@ extends Node
 
 const SAVE_PATH := "user://save.cfg"
 
+const DEFAULT_CHARACTER := "badaboom"
+const CHARACTERS := {
+	"badaboom": {"name": "Bada-Boom", "scene": "res://scenes/player/bada-boom.tscn", "price": 0},
+	"blade": {"name": "Blade", "scene": "res://scenes/player/blade.tscn", "price": 600},
+	"candy": {"name": "Candy", "scene": "res://scenes/player/candy.tscn", "price": 1000},
+	"grey": {"name": "Grey", "scene": "res://scenes/player/grey.tscn", "price": 1500},
+}
+
 var high_score: int = 0
 var best_wave: int = 0
 var total_kills: int = 0
@@ -11,6 +19,9 @@ var total_money: int = 0
 var games_played: int = 0
 var unlocked: Dictionary = {}  # id_succes -> true
 var sliders: Dictionary = {"music": 50.0, "sfx": 50.0, "gui": 50.0}  # reglages volume (0-100)
+var coins: int = 0  # monnaie meta depensable (gagnee en jouant)
+var unlocked_characters: Dictionary = {"badaboom": true}
+var selected_character: String = DEFAULT_CHARACTER
 
 
 func _ready() -> void:
@@ -35,6 +46,13 @@ func load_game() -> void:
 		for k in sliders.keys():
 			if s.has(k):
 				sliders[k] = float(s[k])
+	coins = int(cfg.get_value("progression", "coins", 0))
+	var uc: Variant = cfg.get_value("progression", "unlocked_characters", {})
+	if uc is Dictionary:
+		for k in uc:
+			unlocked_characters[k] = true
+	unlocked_characters[DEFAULT_CHARACTER] = true
+	selected_character = str(cfg.get_value("progression", "selected_character", DEFAULT_CHARACTER))
 
 
 func save_game() -> void:
@@ -46,6 +64,9 @@ func save_game() -> void:
 	cfg.set_value("stats", "games_played", games_played)
 	cfg.set_value("achievements", "unlocked", unlocked)
 	cfg.set_value("settings", "sliders", sliders)
+	cfg.set_value("progression", "coins", coins)
+	cfg.set_value("progression", "unlocked_characters", unlocked_characters)
+	cfg.set_value("progression", "selected_character", selected_character)
 	var err := cfg.save(SAVE_PATH)
 	if err != OK:
 		push_warning("SaveManager: echec de la sauvegarde (code %d)" % err)
@@ -62,8 +83,10 @@ func record_run(score: int, wave: int, kills: int, money: int) -> Dictionary:
 	total_kills += kills
 	total_money += money
 	games_played += 1
+	var coins_earned := int(money / 10.0)
+	coins += coins_earned
 	save_game()
-	return {"new_high_score": new_high, "new_best_wave": new_best_wave}
+	return {"new_high_score": new_high, "new_best_wave": new_best_wave, "coins_earned": coins_earned}
 
 
 func get_slider(group: String) -> float:
@@ -73,6 +96,35 @@ func get_slider(group: String) -> float:
 func set_slider(group: String, value: float) -> void:
 	sliders[group] = value
 	save_game()
+
+
+func is_character_unlocked(id: String) -> bool:
+	return unlocked_characters.get(id, false)
+
+
+func buy_character(id: String) -> bool:
+	if not CHARACTERS.has(id) or is_character_unlocked(id):
+		return false
+	var price: int = CHARACTERS[id].price
+	if coins < price:
+		return false
+	coins -= price
+	unlocked_characters[id] = true
+	save_game()
+	return true
+
+
+func select_character(id: String) -> void:
+	if is_character_unlocked(id):
+		selected_character = id
+		save_game()
+
+
+func get_selected_character_scene() -> String:
+	var id := selected_character
+	if not is_character_unlocked(id):
+		id = DEFAULT_CHARACTER
+	return CHARACTERS.get(id, CHARACTERS[DEFAULT_CHARACTER]).scene
 
 
 func is_unlocked(id: String) -> bool:
@@ -92,4 +144,7 @@ func reset() -> void:
 	games_played = 0
 	unlocked = {}
 	sliders = {"music": 50.0, "sfx": 50.0, "gui": 50.0}
+	coins = 0
+	unlocked_characters = {"badaboom": true}
+	selected_character = DEFAULT_CHARACTER
 	save_game()
