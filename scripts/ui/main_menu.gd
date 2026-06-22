@@ -39,6 +39,11 @@ func _ready() -> void:
 	title.add_theme_color_override("font_outline_color", Color.BLACK)
 	title.add_theme_constant_override("outline_size", 12)
 	vb.add_child(title)
+	# Pulse d'inactivite (juice facon Balatro).
+	title.resized.connect(func() -> void: title.pivot_offset = title.size / 2.0)
+	var pulse := create_tween().set_loops()
+	pulse.tween_property(title, "scale", Vector2(1.05, 1.05), 1.1).set_trans(Tween.TRANS_SINE)
+	pulse.tween_property(title, "scale", Vector2.ONE, 1.1).set_trans(Tween.TRANS_SINE)
 
 	var sub := Label.new()
 	sub.text = "Meilleur score : %d     Meilleure vague : %d     Pieces : %d" % [SaveManager.high_score, SaveManager.best_wave, SaveManager.coins]

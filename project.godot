@@ -37,15 +37,16 @@ UITheme="*res://scripts/autoload/ui_theme.gd"
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
+window/size/mode=3
 window/stretch/mode="viewport"
-
-[gui]
-
-theme/custom="res://resources/ui_theme.tres"
 
 [editor]
 
 version_control/plugin_name="GitPlugin"
+
+[gui]
+
+theme/custom="res://resources/ui_theme.tres"
 
 [input]
 
