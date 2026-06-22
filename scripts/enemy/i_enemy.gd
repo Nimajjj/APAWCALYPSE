@@ -130,8 +130,12 @@ func dies(shooter: IPlayer) -> void:
 		dead = true
 		
 		$AnimationPlayer.stop()
-		$Hitbox.disabled = true
-		$HurtBox.get_child(0).disabled = true
+		# dies() est souvent appelee depuis un callback de collision (bullet/joueur),
+		# donc pendant le flush des requetes physiques : on differe la desactivation
+		# des colliders. Le flag dead=true ci-dessus empeche tout double-traitement
+		# pendant la frame de report.
+		$Hitbox.set_deferred("disabled", true)
+		$HurtBox.get_child(0).set_deferred("disabled", true)
 		
 		var blood_effect: GPUParticles2D = blood_effect_scene.instantiate()
 		blood_effect.global_position = global_position

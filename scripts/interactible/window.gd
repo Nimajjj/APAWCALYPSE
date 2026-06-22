@@ -13,7 +13,7 @@ func _ready():
 	_update_sprite()
 	hit_timer.connect("timeout", Callable(func(): _hit_timer_timeout()))
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	for body in interaction_area.get_overlapping_bodies():
 		if body is IEnemy && body.state != 2:
 			body.state = 2
@@ -44,7 +44,7 @@ func take_damage() -> void:
 	hit_possible = false
 	_update_sprite()
 
-func can_activate(player: IPlayer) -> bool:
+func can_activate(_player: IPlayer) -> bool:
 	return health != 3
 
 func _update_sprite() -> void:

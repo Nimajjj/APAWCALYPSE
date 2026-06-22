@@ -18,7 +18,7 @@ func _on_sfx_slider_value_changed(value):
 
 func _on_gui_slider_value_changed(value):
 	var val: float = (value / 100) * (24 - (-80)) -80 + 28
-	SoundManager.change_volume("gui", value)
+	SoundManager.change_volume("gui", val)
 
 
 func _on_back_button_pressed():

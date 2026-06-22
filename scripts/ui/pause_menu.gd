@@ -2,7 +2,7 @@ extends PanelContainer
 
 var paused: bool = false
 
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_just_pressed("esc"):
 		if paused:
 			unpause()

@@ -91,7 +91,7 @@ func stop_shooting() -> void:
 	weapon.stop_shooting()
 
 
-func take_bonus(bonus: IBonus) -> void:
+func take_bonus(_bonus: IBonus) -> void:
 	pass
 
 
@@ -108,20 +108,20 @@ func drop_weapon() -> void:
 		weapon = null
 
 
-func heal(heal: float) -> void:
-	health += heal
+func heal(amount: float) -> void:
+	health += amount
 	if health > max_health:
 		health = max_health
 
 
-func gain_money(money: int) -> void:
-	if(money_x2): self.money += money * 2
-	else: self.money += money
+func gain_money(amount: int) -> void:
+	if(money_x2): self.money += amount * 2
+	else: self.money += amount
 
 
-func gain_score(score: int) -> void:
-	Global.game.score += score
-	self.score += score # Personal score of the player
+func gain_score(amount: int) -> void:
+	Global.game.score += amount
+	self.score += amount # Personal score of the player
 
 
 func add_interactible(obj: Interactible) -> void :

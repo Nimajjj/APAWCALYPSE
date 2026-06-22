@@ -50,7 +50,7 @@ func _ready():
 	fire_rate_timer.connect("timeout", func(): reset_fire_rate())
 
 
-func _process(delta):
+func _process(_delta):
 
 	weapon_direction = get_global_mouse_position() - global_position
 	weapon_direction = weapon_direction.normalized()
