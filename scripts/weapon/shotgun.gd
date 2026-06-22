@@ -1,7 +1,7 @@
 extends IWeapon
 
 
-func shoot(player_damage_factor: int) -> void:
+func shoot(player_damage_factor: float) -> void:
 	if reloading: return
 	if(fire_rate_timer.time_left > 0): return
 	if(can_shoot):
@@ -12,7 +12,7 @@ func shoot(player_damage_factor: int) -> void:
 				shoot_effect.emitting = true
 				var bullet: IBullet = BulletScene.instantiate()
 				bullet.position = WeaponEnd.get_global_transform().origin
-				bullet.damage = damage * player_damage_factor
+				bullet.damage = int(damage * player_damage_factor)
 				bullet.life_time = weapon_range
 				current_mag -= 1
 				get_tree().get_root().add_child(bullet)

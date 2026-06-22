@@ -8,7 +8,7 @@ enum PC_State { IDLE, MOVE, INTERACT, DOWN, DEAD }
 @export var health: float = 0
 @export var max_health: float = 200
 @export var regeneration: float = 0
-@export var money: int = 10000000
+@export var money: int = 500
 @export var speed: float = 0
 @export var acceleration: float = 0
 @export var friction: float = 0

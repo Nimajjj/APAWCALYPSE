@@ -148,6 +148,7 @@ func dies(shooter: IPlayer) -> void:
 		shooter.gain_money(money)
 		shooter.gain_score(randi_range(1, 10))
 		Global.units_alive -= 1
+		Global.units.erase(self)
 		if Global.game != null:
 			Global.game.kills += 1
 			AchievementManager.on_enemy_killed(is_boss, Global.game.kills)
