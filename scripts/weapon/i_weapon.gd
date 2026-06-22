@@ -109,6 +109,7 @@ func shoot(player_damage_factor: float) -> void:
 func _fire_bullet(player_damage_factor: float, pierce: bool, dir: Vector2) -> void:
 	var b := BulletPool.acquire(BulletScene)
 	b.launch(WeaponEnd.get_global_transform().origin, get_parent() as IPlayer, int(damage * player_damage_factor), weapon_range, pierce, dir)
+	EventBus.shot_fired.emit()
 
 
 func stop_shooting() -> void:

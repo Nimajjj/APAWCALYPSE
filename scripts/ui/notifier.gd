@@ -4,15 +4,39 @@ extends CanvasLayer
 
 const ACCENT := Color(1, 0.85, 0.3)
 const PANEL_BG := Color(0.12, 0.12, 0.18, 0.92)
+const WAVE_STREAM := preload("res://assets/sounds/pumps/bonus_pump.mp3")
 
 var _active_toasts: int = 0
+var _wave_sound: AudioStreamPlayer
 
 
 func _ready() -> void:
 	layer = 128
 	process_mode = Node.PROCESS_MODE_ALWAYS
+	_wave_sound = AudioStreamPlayer.new()
+	_wave_sound.stream = WAVE_STREAM
+	add_child(_wave_sound)
 	AchievementManager.achievement_unlocked.connect(_on_achievement_unlocked)
-	EventBus.wave_started.connect(func(w: int): show_banner("VAGUE %d" % w))
+	EventBus.wave_started.connect(_on_wave_started)
+
+
+func _on_wave_started(w: int) -> void:
+	show_banner("VAGUE %d" % w)
+	flash(Color(1, 1, 1, 0.45))
+	_wave_sound.volume_db = SoundManager.volumes.get("sfx", 0.0)
+	_wave_sound.play()
+
+
+## Flash plein ecran bref (feedback d'impact, ex. nouvelle vague).
+func flash(col: Color) -> void:
+	var rect := ColorRect.new()
+	rect.color = col
+	rect.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	add_child(rect)
+	var tw := rect.create_tween()
+	tw.tween_property(rect, "modulate:a", 0.0, 0.35)
+	tw.tween_callback(rect.queue_free)
 
 
 func _on_achievement_unlocked(_id: String, title: String, desc: String) -> void:

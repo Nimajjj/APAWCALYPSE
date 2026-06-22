@@ -5,6 +5,8 @@ const ACCENT := Color(1, 0.85, 0.3)
 const GAME_SCENE := "res://scenes/game/game.tscn"
 const AchievementsPanel := preload("res://scripts/ui/achievements_panel.gd")
 const CharacterSelect := preload("res://scripts/ui/character_select.gd")
+const OptionsPanel := preload("res://scripts/ui/options_panel.gd")
+const StatsPanel := preload("res://scripts/ui/stats_panel.gd")
 
 
 func _ready() -> void:
@@ -47,6 +49,8 @@ func _ready() -> void:
 	vb.add_child(play)
 	vb.add_child(_button("PERSONNAGES", _on_characters))
 	vb.add_child(_button("SUCCES", _on_achievements))
+	vb.add_child(_button("STATS", _on_stats))
+	vb.add_child(_button("OPTIONS", _on_options))
 	vb.add_child(_button("QUITTER", func(): get_tree().quit()))
 	play.grab_focus()
 
@@ -75,5 +79,17 @@ func _on_achievements() -> void:
 
 func _on_characters() -> void:
 	var panel := CharacterSelect.new()
+	add_child(panel)
+	panel.setup()
+
+
+func _on_stats() -> void:
+	var panel := StatsPanel.new()
+	add_child(panel)
+	panel.setup()
+
+
+func _on_options() -> void:
+	var panel := OptionsPanel.new()
 	add_child(panel)
 	panel.setup()

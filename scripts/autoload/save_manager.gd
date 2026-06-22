@@ -17,6 +17,9 @@ var best_wave: int = 0
 var total_kills: int = 0
 var total_money: int = 0
 var games_played: int = 0
+var total_play_time: float = 0.0
+var total_shots_fired: int = 0
+var total_shots_hit: int = 0
 var unlocked: Dictionary = {}  # id_succes -> true
 var sliders: Dictionary = {"music": 50.0, "sfx": 50.0, "gui": 50.0}  # reglages volume (0-100)
 var coins: int = 0  # monnaie meta depensable (gagnee en jouant)
@@ -38,6 +41,9 @@ func load_game() -> void:
 	total_kills = int(cfg.get_value("stats", "total_kills", 0))
 	total_money = int(cfg.get_value("stats", "total_money", 0))
 	games_played = int(cfg.get_value("stats", "games_played", 0))
+	total_play_time = float(cfg.get_value("stats", "total_play_time", 0.0))
+	total_shots_fired = int(cfg.get_value("stats", "total_shots_fired", 0))
+	total_shots_hit = int(cfg.get_value("stats", "total_shots_hit", 0))
 	var u: Variant = cfg.get_value("achievements", "unlocked", {})
 	if u is Dictionary:
 		unlocked = u
@@ -62,6 +68,9 @@ func save_game() -> void:
 	cfg.set_value("stats", "total_kills", total_kills)
 	cfg.set_value("stats", "total_money", total_money)
 	cfg.set_value("stats", "games_played", games_played)
+	cfg.set_value("stats", "total_play_time", total_play_time)
+	cfg.set_value("stats", "total_shots_fired", total_shots_fired)
+	cfg.set_value("stats", "total_shots_hit", total_shots_hit)
 	cfg.set_value("achievements", "unlocked", unlocked)
 	cfg.set_value("settings", "sliders", sliders)
 	cfg.set_value("progression", "coins", coins)
@@ -87,6 +96,19 @@ func record_run(score: int, wave: int, kills: int, money: int) -> Dictionary:
 	coins += coins_earned
 	save_game()
 	return {"new_high_score": new_high, "new_best_wave": new_best_wave, "coins_earned": coins_earned}
+
+
+func add_session_stats(play_time: float, shots_fired: int, shots_hit: int) -> void:
+	total_play_time += play_time
+	total_shots_fired += shots_fired
+	total_shots_hit += shots_hit
+	save_game()
+
+
+func accuracy_percent() -> float:
+	if total_shots_fired <= 0:
+		return 0.0
+	return float(total_shots_hit) / float(total_shots_fired) * 100.0
 
 
 func get_slider(group: String) -> float:
@@ -142,6 +164,9 @@ func reset() -> void:
 	total_kills = 0
 	total_money = 0
 	games_played = 0
+	total_play_time = 0.0
+	total_shots_fired = 0
+	total_shots_hit = 0
 	unlocked = {}
 	sliders = {"music": 50.0, "sfx": 50.0, "gui": 50.0}
 	coins = 0

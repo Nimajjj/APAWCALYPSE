@@ -9,6 +9,8 @@ var time: float = 0.0
 var enabled_spawner: int = 0
 var kills: int = 0
 var run_money_earned: int = 0
+var run_shots_fired: int = 0
+var run_shots_hit: int = 0
 var _game_over: bool = false
 
 const GameOverLayer := preload("res://scripts/ui/game_over_layer.gd")
@@ -26,6 +28,8 @@ func _ready():
 	EventBus.score_gained.connect(_on_score_gained)
 	EventBus.money_gained.connect(_on_money_gained)
 	EventBus.player_died.connect(trigger_game_over)
+	EventBus.shot_fired.connect(func(): run_shots_fired += 1)
+	EventBus.shot_hit.connect(func(): run_shots_hit += 1)
 	start_game()
 
 
@@ -75,6 +79,7 @@ func trigger_game_over() -> void:
 		return
 	_game_over = true
 	var result := SaveManager.record_run(score, wave, kills, run_money_earned)
+	SaveManager.add_session_stats(time, run_shots_fired, run_shots_hit)
 	AchievementManager.on_run_recorded()
 	get_tree().paused = true
 	var layer := GameOverLayer.new()

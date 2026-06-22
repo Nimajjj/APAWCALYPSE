@@ -8,3 +8,5 @@ signal wave_started(wave: int)
 signal score_gained(amount: int)
 signal money_gained(amount: int)
 signal player_died
+signal shot_fired
+signal shot_hit

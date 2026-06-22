@@ -58,6 +58,7 @@ func _on_area_entered(body: Node) -> void:
 		return
 	if body.get_parent() is IEnemy and not body.get_parent().dead:
 		body.get_parent().take_damage(damage, shooter)
+		EventBus.shot_hit.emit()
 		if not piercing:
 			BulletPool.release(self)
 			return
