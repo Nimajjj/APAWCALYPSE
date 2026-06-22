@@ -100,7 +100,12 @@ func _move(delta, _direction) -> void:
 	move_and_slide()
 
 func retarget() -> void:
-	agent.target_position = target.global_position
+	# target est polymorphe : Vector2 (etat 0, destination) ou Node (etat 2, joueur).
+	# On gere les deux pour ne jamais planter sur target.global_position.
+	if target is Vector2:
+		agent.target_position = target
+	elif target != null:
+		agent.target_position = target.global_position
 
 func retarget_timeout() -> void:
 	retarget()

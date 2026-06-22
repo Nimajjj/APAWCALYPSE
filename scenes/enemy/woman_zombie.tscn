@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bwe1kad6agad3" path="res://scenes/enemy/i_enemy.tscn" id="1_ivw80"]
 [ext_resource type="Script" path="res://scripts/enemy/woman_zombie.gd" id="2_5bavf"]
-[ext_resource type="Texture2D" uid="uid://cr4xb16rs253j" path="res://assets/enemies/bodies/bodies.png" id="3_7a10i"]
+[ext_resource type="Texture2D" uid="uid://b03mkiokabuyc" path="res://assets/enemies/bodies/bodies.png" id="3_7a10i"]
 
 [sub_resource type="Shader" id="Shader_7oj4d"]
 code = "shader_type canvas_item;

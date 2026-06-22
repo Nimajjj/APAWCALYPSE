@@ -36,7 +36,9 @@ func _ready():
 func activate(player: IPlayer) -> void:
 	if isopened :
 		player.add_weapon(weapon.duplicate())
-		weapon.queue_free()
+		if is_instance_valid(weapon):
+			weapon.queue_free()
+		weapon = null
 		secondtimer.stop()
 		sprite.region_rect.position.x = 0
 		isopened = false 
@@ -112,7 +114,9 @@ func change_position():
 		
 
 func _on_second_timer_timeout():
-	weapon.queue_free()
+	if is_instance_valid(weapon):
+		weapon.queue_free()
+	weapon = null
 	sprite.region_rect.position.x = 0
 	isopened = false
 	message = "Press [E] to open the box"

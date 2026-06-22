@@ -98,7 +98,8 @@ func shoot(player_damage_factor: int) -> void:
 		if(current_mag > 0):
 			fire_rate_timer.start()
 			can_shoot = false
-			shoot_effect.emitting = true
+			if shoot_effect != null:
+				shoot_effect.emitting = true
 			var bullet: IBullet = BulletScene.instantiate()
 			bullet.position = WeaponEnd.get_global_transform().origin
 			bullet.damage = damage * player_damage_factor
@@ -114,7 +115,8 @@ func shoot(player_damage_factor: int) -> void:
 		actual_rate += 1
 
 func stop_shooting() -> void:
-	shoot_effect.emitting = false
+	if shoot_effect != null:
+		shoot_effect.emitting = false
 
 func reset_fire_rate() -> void:
 	can_shoot = true

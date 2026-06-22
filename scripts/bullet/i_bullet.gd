@@ -10,10 +10,12 @@ var damage: int
 var life_time: float
 
 func _physics_process(delta):
-#	position += direction * speed * delta 
-	
-	for __ in range(speed * delta):
-		position += direction
+	# Deplacement O(1) et independant du framerate. L'ancienne boucle
+	# "for __ in range(speed * delta): position += direction" produisait la meme
+	# position finale (les positions intermediaires ne declenchent aucune
+	# detection de collision intra-frame) mais coutait jusqu'a des dizaines
+	# d'iterations par balle et par frame, et tronquait la distance en entier.
+	position += direction * speed * delta
 
 
 func shoot(player: IPlayer, aim_position: Vector2, d: Vector2) -> void:

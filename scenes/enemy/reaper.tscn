@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bwe1kad6agad3" path="res://scenes/enemy/i_enemy.tscn" id="1_jauu7"]
 [ext_resource type="Script" path="res://scripts/enemy/reaper.gd" id="2_emuv1"]
-[ext_resource type="Texture2D" uid="uid://cr4xb16rs253j" path="res://assets/enemies/bodies/bodies.png" id="2_ie0n6"]
+[ext_resource type="Texture2D" uid="uid://b03mkiokabuyc" path="res://assets/enemies/bodies/bodies.png" id="2_ie0n6"]
 [ext_resource type="AudioStream" uid="uid://1rta5fu3xs21" path="res://assets/sounds/enemies/boss_scream.mp3" id="4_psacg"]
 
 [sub_resource type="Shader" id="Shader_7oj4d"]

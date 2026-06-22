@@ -7,7 +7,10 @@ extends Interactible
 
 func _ready():
 	message = "Press [E] to open the door for {0}$".format([price])
-	add_to_group(door_group)
+	# Garde : add_to_group("") leve une erreur moteur ("empty name").
+	# Beaucoup de portes n'ont pas de door_group defini -> on ignore alors le groupe.
+	if door_group != "":
+		add_to_group(door_group)
 	
 func activate(player: IPlayer) -> void:
 	if can_activate(player) :
@@ -21,8 +24,9 @@ func activate(player: IPlayer) -> void:
 				if spawner.id == spawner_id:
 					spawner.enabled = true
 		queue_free()
-	
-		get_tree().call_group(door_group,"queue_free")
+
+		if door_group != "":
+			get_tree().call_group(door_group,"queue_free")
 			
 		
 func can_activate(player: IPlayer) -> bool:

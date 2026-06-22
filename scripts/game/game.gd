@@ -54,6 +54,11 @@ func _on_game_timer_timeout():
 	
 func _on_wave_timer_timeout():
 	if !spawners_activated:
+		# Garde anti-crash : randi() % 0 lève une erreur "Division by zero".
+		# En jeu normal la map active >= 1 spawner, mais on protege le cas limite
+		# (aucun spawner active) qui sinon ferait planter le moteur.
+		if enabled_spawner <= 0:
+			return
 		var boss_spawn = randi() % enabled_spawner
 		var spawner_index = 0
 		for spawner in Global.spawners:
