@@ -28,6 +28,7 @@ AchievementManager="*res://scripts/autoload/achievement_manager.gd"
 Notifier="*res://scripts/ui/notifier.gd"
 Juice="*res://scripts/autoload/juice.gd"
 Transitions="*res://scripts/autoload/transitions.gd"
+BulletPool="*res://scripts/autoload/bullet_pool.gd"
 
 [display]
 

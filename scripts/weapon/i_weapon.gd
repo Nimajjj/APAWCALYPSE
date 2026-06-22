@@ -103,19 +103,18 @@ func shoot(player_damage_factor: float) -> void:
 			_punch()
 			if shoot_effect != null:
 				shoot_effect.emitting = true
-			var bullet: IBullet = BulletScene.instantiate()
-			bullet.position = WeaponEnd.get_global_transform().origin
-			bullet.damage = int(damage * player_damage_factor)
-			bullet.life_time = weapon_range
+			_fire_bullet(player_damage_factor, false, weapon_direction.rotated(randf_range(-spread, spread)))
 			current_mag -= 1
-			get_tree().get_root().add_child(bullet)
-			var spread_angle = randf_range(-spread, spread)
-			var shoot_direction = weapon_direction.rotated(spread_angle)
-			bullet.shoot(get_parent(), get_global_mouse_position(), shoot_direction)
 			actual_rate = 0
 			get_parent().shake_camera(3, shake_power, shake_power, shake_power / 2)
 			$AudioStreamPlayer.play()
 		actual_rate += 1
+
+## Tire une balle depuis le pool (recyclage, voir BulletPool).
+func _fire_bullet(player_damage_factor: float, pierce: bool, dir: Vector2) -> void:
+	var b := BulletPool.acquire(BulletScene)
+	b.launch(WeaponEnd.get_global_transform().origin, get_parent() as IPlayer, int(damage * player_damage_factor), weapon_range, pierce, dir)
+
 
 func stop_shooting() -> void:
 	if shoot_effect != null:

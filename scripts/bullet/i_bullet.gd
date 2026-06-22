@@ -8,36 +8,58 @@ var shooter: IPlayer = null
 var direction: Vector2
 var damage: int
 var life_time: float
-var _fired: bool = false
+var _active: bool = false
 
-func _physics_process(delta):
-	if not _fired:
+
+func _ready() -> void:
+	# Connexion unique : les balles sont recyclees par BulletPool, on ne
+	# reconnecte donc pas a chaque tir.
+	area_entered.connect(_on_area_entered)
+	sleep()
+
+
+## (Re)lance la balle. Appele par les armes via BulletPool.acquire().
+func launch(pos: Vector2, player: IPlayer, dmg: int, life: float, pierce: bool, dir: Vector2) -> void:
+	global_position = pos
+	shooter = player
+	damage = dmg
+	life_time = life
+	piercing = pierce
+	direction = dir
+	rotation = dir.angle()
+	visible = true
+	_active = true
+	set_physics_process(true)
+	# Differe (peut etre appele pendant le flush physique).
+	set_deferred("monitoring", true)
+
+
+## Met la balle en sommeil (recyclable).
+func sleep() -> void:
+	_active = false
+	visible = false
+	set_physics_process(false)
+	set_deferred("monitoring", false)
+
+
+func _physics_process(delta: float) -> void:
+	if not _active:
 		return
-	# Deplacement O(1) et independant du framerate. L'ancienne boucle
-	# "for __ in range(speed * delta): position += direction" produisait la meme
-	# position finale (les positions intermediaires ne declenchent aucune
-	# detection de collision intra-frame) mais coutait jusqu'a des dizaines
-	# d'iterations par balle et par frame, et tronquait la distance en entier.
+	# Deplacement O(1), independant du framerate.
 	position += direction * speed * delta
-	# Duree de vie geree par decompte : evite de creer (puis liberer) un Timer
-	# node par balle -> beaucoup moins d'allocations / churn GC en tir nourri.
+	# Duree de vie par decompte (pas de Timer par balle).
 	life_time -= delta
 	if life_time <= 0.0:
-		queue_free()
+		BulletPool.release(self)
 
 
-func shoot(player: IPlayer, _aim_position: Vector2, d: Vector2) -> void:
-	direction = d
-	shooter = player
-	rotation = direction.angle()
-	_fired = true
-	connect("area_entered", Callable(func(body: Node): _on_Area2D_body_entered(body)))
-
-
-func _on_Area2D_body_entered(body: Node) -> void:
-	if body.get_parent() is IEnemy && !body.get_parent().dead:
+func _on_area_entered(body: Node) -> void:
+	if not _active:
+		return
+	if body.get_parent() is IEnemy and not body.get_parent().dead:
 		body.get_parent().take_damage(damage, shooter)
-		if !piercing:
-			queue_free()
+		if not piercing:
+			BulletPool.release(self)
+			return
 	if body.name == "WallCollisions":
-		queue_free()
+		BulletPool.release(self)
