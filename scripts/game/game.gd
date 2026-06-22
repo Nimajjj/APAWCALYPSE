@@ -14,6 +14,10 @@ var run_shots_hit: int = 0
 var _game_over: bool = false
 
 const GameOverLayer := preload("res://scripts/ui/game_over_layer.gd")
+const POST_FX := preload("res://resources/post_fx.gdshader")
+
+var _post_mat: ShaderMaterial = null
+var _flash_tween: Tween = null
 
 @onready var GameTimer: Timer = $GameTimer
 @onready var WaveTimer: Timer = $WaveTimer
@@ -30,7 +34,40 @@ func _ready():
 	EventBus.player_died.connect(trigger_game_over)
 	EventBus.shot_fired.connect(func(): run_shots_fired += 1)
 	EventBus.shot_hit.connect(func(): run_shots_hit += 1)
+	EventBus.player_damaged.connect(_on_player_damaged)
+	_setup_post_fx()
 	start_game()
+
+
+## Post-traitement plein ecran (scanlines + vignette + aberration), sous les
+## bannieres/toasts (layer 50 < Notifier 128).
+func _setup_post_fx() -> void:
+	var layer := CanvasLayer.new()
+	layer.layer = 50
+	var rect := ColorRect.new()
+	rect.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	var m := ShaderMaterial.new()
+	m.shader = POST_FX
+	rect.material = m
+	_post_mat = m
+	layer.add_child(rect)
+	add_child(layer)
+
+
+## Flash rouge plein ecran a l'encaissement (intensite ~ degats subis).
+func _on_player_damaged(amount: float) -> void:
+	if _post_mat == null:
+		return
+	var intensity: float = clamp(0.3 + amount / 120.0, 0.3, 0.7)
+	if _flash_tween != null and _flash_tween.is_valid():
+		_flash_tween.kill()
+	_post_mat.set_shader_parameter("damage_flash", intensity)
+	_flash_tween = create_tween()
+	_flash_tween.tween_method(
+		func(v: float): _post_mat.set_shader_parameter("damage_flash", v),
+		intensity, 0.0, 0.45
+	).set_ease(Tween.EASE_OUT)
 
 
 func _on_enemy_killed(is_boss: bool) -> void:

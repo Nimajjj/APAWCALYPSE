@@ -13,6 +13,8 @@ var destination: Vector2
 var knockback_force: float = 0
 var knockback_direction: Vector2 = Vector2.ZERO
 var speed_stock: int
+var _sprite_base_scale: Vector2 = Vector2.ONE
+var _hit_tween: Tween = null
 
 
 @onready var Sprite = $Sprite2D
@@ -44,7 +46,8 @@ func _ready():
 	HealthBar.value = max_health
 	
 	Sprite.material = Sprite.material.duplicate()
-	
+	_sprite_base_scale = Sprite.scale
+
 	timer.connect("timeout", func():
 		Sprite.material.set_shader_parameter("flash_modifier", 0.0)
 	)
@@ -78,6 +81,7 @@ func take_damage(dmg: int, shooter: IPlayer) -> void:
 	Sprite.material.set_shader_parameter("flash_modifier", 1.0)
 	timer.start()
 	Juice.spawn_floating_text(global_position, str(dmg), Color(1, 0.9, 0.4))
+	_hit_punch()
 
 	if(shooter.dead_shot) and !is_boss:
 		dies(shooter)
@@ -90,6 +94,17 @@ func take_damage(dmg: int, shooter: IPlayer) -> void:
 		dies(shooter)
 
 	HealthBar.value = health
+
+## Punch d'echelle bref quand l'ennemi est touche (impact "juicy").
+func _hit_punch() -> void:
+	if not is_instance_valid(Sprite):
+		return
+	if _hit_tween != null and _hit_tween.is_valid():
+		_hit_tween.kill()
+	Sprite.scale = _sprite_base_scale * 1.28
+	_hit_tween = create_tween()
+	_hit_tween.tween_property(Sprite, "scale", _sprite_base_scale, 0.18) \
+		.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 
 func _move(delta, _direction) -> void:
 	if _direction.x < 0:
