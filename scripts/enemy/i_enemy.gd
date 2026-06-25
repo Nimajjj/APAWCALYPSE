@@ -143,6 +143,12 @@ func dies(shooter: IPlayer) -> void:
 		dead = true
 		
 		$AnimationPlayer.stop()
+		# Pop de mort : la sprite gonfle et se dissout (juice). Hit-stop sur boss.
+		var pop := create_tween()
+		pop.tween_property(Sprite, "scale", _sprite_base_scale * 1.4, 0.1).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+		pop.parallel().tween_property(Sprite, "modulate:a", 0.0, 0.25)
+		if is_boss:
+			Juice.hit_stop(0.10, 0.05)
 		# dies() est souvent appelee depuis un callback de collision (bullet/joueur),
 		# donc pendant le flush des requetes physiques : on differe la desactivation
 		# des colliders. Le flag dead=true ci-dessus empeche tout double-traitement
