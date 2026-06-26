@@ -3,9 +3,9 @@ extends IBonusEffect
 #MAX AMMO
 func _effect() -> void:
 	var weapon = get_parent().weapon
-	print("Max ammo started")
+	# La reserve est desormais infinie : ce bonus se contente d'un rechargement
+	# instantane du chargeur (la limite de stock n'existe plus).
 	weapon.current_mag = weapon.mag_capacity
-	weapon.bullet_stock = weapon.max_bullet_stock
 	$AudioStreamPlayer.play()
 
 	#avoid infinite reload

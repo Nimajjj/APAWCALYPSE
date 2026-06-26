@@ -64,7 +64,9 @@ func _process(_delta):
 
 func trigger_reload() -> void:
 	if current_mag == mag_capacity: return
-	if bullet_stock == 0: return
+	if reloading: return
+	# Reserve de munitions infinie : on ne bloque plus le rechargement quand le
+	# stock est vide. Seuls le temps de recharge et la cadence de tir limitent.
 	if(get_parent() is IPlayer):
 		timer.wait_time = reload_time * get_parent().reload_factor # update reload time
 	timer.start()
@@ -73,16 +75,11 @@ func trigger_reload() -> void:
 
 
 func reload() -> void:
+	# Reserve infinie : le chargeur est toujours rempli a fond, sans puiser dans
+	# un stock limite. La cadence et le temps de recharge restent les seules
+	# contraintes.
 	if current_mag < mag_capacity:
-		var refilled_bullets: int = mag_capacity - current_mag
-		if bullet_stock > 0:
-			if bullet_stock >= refilled_bullets:
-				current_mag += refilled_bullets
-				bullet_stock -= refilled_bullets
-			else:
-				current_mag += bullet_stock
-				bullet_stock = 0
-		refilled_bullets = 0
+		current_mag = mag_capacity
 		timer.stop()
 		reloading = false
 		Global.in_game_ui.stop_reloading()

@@ -52,7 +52,8 @@ func _process(_delta):
 		_pulse(HealthBar)
 	_last_health = player.health
 	MunitionLabel.text = "{0}".format([player.weapon.current_mag])
-	MunitionLabel2.text = "{0}".format([player.weapon.bullet_stock])
+	# Reserve de munitions desormais infinie.
+	MunitionLabel2.text = "∞"
 
 	# Reconstruction coûteuse : uniquement si le panneau de debug est affiché.
 	if DebugLabel.visible:
