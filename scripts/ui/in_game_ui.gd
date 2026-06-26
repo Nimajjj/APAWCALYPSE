@@ -14,6 +14,7 @@ extends CanvasLayer
 var _last_player_count: int = -1
 var _last_health: float = -1.0
 var _objective_label: Label
+var _ability_widgets: Array = []  # [{root, icon, key, cd_fill, cd_label}]
 
 func _enter_tree():
 	Global.in_game_ui = self
@@ -36,11 +37,93 @@ func _ready() -> void:
 	_objective_label.add_theme_constant_override("outline_size", 5)
 	add_child(_objective_label)
 
+	_build_abilities_ui()
+
+
+## Construit l'UI des capacites (bas-gauche, au-dessus des bonus recuperes).
+func _build_abilities_ui() -> void:
+	var box := HBoxContainer.new()
+	box.set_anchors_and_offsets_preset(Control.PRESET_BOTTOM_LEFT)
+	box.offset_left = 12.0
+	box.offset_top = -156.0
+	box.offset_bottom = -88.0
+	box.add_theme_constant_override("separation", 10)
+	add_child(box)
+
+	for i in 2:
+		_ability_widgets.append(_make_ability_widget(box))
+
+
+func _make_ability_widget(parent: Node) -> Dictionary:
+	var root := Panel.new()
+	root.custom_minimum_size = Vector2(64, 64)
+	var sb := StyleBoxFlat.new()
+	sb.bg_color = Color(0.1, 0.1, 0.14, 0.85)
+	sb.set_corner_radius_all(10)
+	sb.set_border_width_all(2)
+	sb.border_color = Color(1, 1, 1, 0.25)
+	root.add_theme_stylebox_override("panel", sb)
+	parent.add_child(root)
+
+	# Logo (glyphe ASCII teinte).
+	var icon := Label.new()
+	icon.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	icon.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	icon.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	icon.add_theme_font_size_override("font_size", 26)
+	root.add_child(icon)
+
+	# Voile de cooldown qui se vide par le bas.
+	var cd_fill := ColorRect.new()
+	cd_fill.color = Color(0, 0, 0, 0.6)
+	cd_fill.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	cd_fill.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	root.add_child(cd_fill)
+
+	# Compteur de secondes restantes.
+	var cd_label := Label.new()
+	cd_label.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	cd_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	cd_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	cd_label.add_theme_font_size_override("font_size", 24)
+	cd_label.add_theme_color_override("font_color", Color(1, 1, 1, 0.95))
+	root.add_child(cd_label)
+
+	# Touche associee (coin bas).
+	var key := Label.new()
+	key.set_anchors_and_offsets_preset(Control.PRESET_BOTTOM_WIDE)
+	key.offset_top = -20.0
+	key.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	key.add_theme_font_size_override("font_size", 14)
+	key.add_theme_color_override("font_color", Color(1, 0.85, 0.3))
+	root.add_child(key)
+
+	return {"root": root, "icon": icon, "cd_fill": cd_fill, "cd_label": cd_label, "key": key}
+
+
+func _update_abilities_ui(player: IPlayer) -> void:
+	if not player.has_method("get_abilities_status"):
+		return
+	var st: Array = player.get_abilities_status()
+	for i in range(min(st.size(), _ability_widgets.size())):
+		var a: Dictionary = st[i]
+		var w: Dictionary = _ability_widgets[i]
+		w["icon"].text = a["icon"]
+		w["icon"].add_theme_color_override("font_color", a["color"])
+		w["key"].text = a["key"]
+		var ratio: float = 0.0 if a["total"] <= 0.0 else clampf(a["left"] / a["total"], 0.0, 1.0)
+		w["cd_fill"].visible = ratio > 0.0
+		w["cd_fill"].anchor_top = 1.0 - ratio
+		w["cd_label"].visible = a["left"] > 0.05
+		w["cd_label"].text = str(int(ceil(a["left"])))
+
 
 func _process(_delta):
 	if Global.players.is_empty():
 		return
 	var player: IPlayer = Global.players[0]
+
+	_update_abilities_ui(player)
 
 	if _objective_label != null:
 		_objective_label.text = "VAGUE %d   -   Ennemis restants : %d" % [Global.game.wave, Global.units_alive]

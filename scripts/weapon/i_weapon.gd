@@ -18,10 +18,17 @@ enum Weapon_Weight {LIGHT, MEDIUM, HEAVY}
 @export var price: int = 0
 @export var weight: Weapon_Weight
 @export var shake_power: float = 0
+## Portee de declenchement de l'auto-fire (px monde). L'arme tire seule quand
+## l'ennemi le plus proche est a cette distance ou moins. La camera ayant un zoom
+## ~5 (largeur visible ~384 px monde), ~180 couvre l'ecran sans tirer hors-champ.
+@export var fire_range: float = 180.0
+## Multiplicateur de taille des projectiles propre a l'arme.
+@export var bullet_scale: float = 1.0
 
 @export var BulletScene: PackedScene = null
 @export var ShootEffectScene: PackedScene
 
+var config_id: String = ""  # identifiant de scene (ex. "ak47") pour GameConfig
 var actual_rate: int = 0
 var weapon_direction: Vector2
 var reloading: bool = false
@@ -36,6 +43,10 @@ var _recoil_tween: Tween
 
 
 func _ready():
+	# Applique les stats persistantes (overrides du panel dev) avant tout calcul
+	# derive (chargeur, timers...).
+	GameConfig.apply_weapon(self)
+
 	if ShootEffectScene != null:
 		shoot_effect = ShootEffectScene.instantiate()
 		WeaponEnd.add_child(shoot_effect)
@@ -44,17 +55,28 @@ func _ready():
 	bullet_stock = mag_capacity * 2
 	max_bullet_stock = bullet_stock * stock_factor
 
-	fire_rate_timer.wait_time = fire_rate
+	fire_rate_timer.wait_time = fire_rate * Balance.get_v("weapon_fire_rate")
 	if(get_parent() is IPlayer):
-		timer.wait_time = reload_time * get_parent().reload_factor
+		timer.wait_time = _reload_wait_time()
 	timer.connect("timeout", func(): reload())
 	fire_rate_timer.connect("timeout", func(): reset_fire_rate())
+	Balance.changed.connect(func():
+		fire_rate_timer.wait_time = fire_rate * Balance.get_v("weapon_fire_rate"))
+
+
+## Temps de recharge effectif (modificateurs joueur + equilibrage global).
+func _reload_wait_time() -> float:
+	var f: float = get_parent().reload_factor if get_parent() is IPlayer else 1.0
+	return reload_time * f * Balance.get_v("player_reload")
 
 
 func _process(_delta):
-
-	weapon_direction = get_global_mouse_position() - global_position
-	weapon_direction = weapon_direction.normalized()
+	# Direction de tir issue de l'auto-aim du joueur (plus de visee souris).
+	var parent := get_parent()
+	if parent is IPlayer:
+		weapon_direction = (parent.aiming_at - global_position).normalized()
+	else:
+		weapon_direction = (get_global_mouse_position() - global_position).normalized()
 	if(current_mag == 0 && !reloading):
 		trigger_reload()
 
@@ -68,7 +90,7 @@ func trigger_reload() -> void:
 	# Reserve de munitions infinie : on ne bloque plus le rechargement quand le
 	# stock est vide. Seuls le temps de recharge et la cadence de tir limitent.
 	if(get_parent() is IPlayer):
-		timer.wait_time = reload_time * get_parent().reload_factor # update reload time
+		timer.wait_time = _reload_wait_time() # update reload time
 	timer.start()
 	Global.in_game_ui.reloading()
 	reloading = true
@@ -105,8 +127,15 @@ func shoot(player_damage_factor: float) -> void:
 ## Tire une balle depuis le pool (recyclage, voir BulletPool).
 func _fire_bullet(player_damage_factor: float, pierce: bool, dir: Vector2) -> void:
 	var b := BulletPool.acquire(BulletScene)
-	b.launch(WeaponEnd.get_global_transform().origin, get_parent() as IPlayer, int(damage * player_damage_factor), weapon_range, pierce, dir)
+	b.launch(WeaponEnd.get_global_transform().origin, get_parent() as IPlayer, int(damage * player_damage_factor), weapon_range, pierce, dir, bullet_scale)
 	EventBus.shot_fired.emit()
+
+
+## Change la taille affichee de l'arme (utilise par le dashboard dev). Met a jour
+## l'echelle de base pour ne pas casser le "punch" de recul.
+func set_display_scale(s: float) -> void:
+	_base_scale = Vector2(s, s)
+	scale = _base_scale
 
 
 func stop_shooting() -> void:
