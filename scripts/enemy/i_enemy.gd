@@ -16,6 +16,14 @@ var speed_stock: int
 var _sprite_base_scale: Vector2 = Vector2.ONE
 var _hit_tween: Tween = null
 
+# Valeurs de base (avant multiplicateurs Balance), capturees une fois pour le
+# reglage a chaud.
+var _base_speed: int
+var _base_max_health: int
+var _base_damage: int
+var _base_money: int
+var _balance_captured: bool = false
+
 
 @onready var Sprite = $Sprite2D
 @onready var HealthBar = $HealthBar
@@ -54,6 +62,35 @@ func _ready():
 	slow_timer.connect("timeout", func(): slow_timeout())
 	path_timer.connect("timeout", func(): retarget_timeout())
 	death_sound.connect("finished", func(): death_sound_finished())
+	Balance.changed.connect(_on_balance_changed)
+
+
+## Capture (une fois) les valeurs de base puis applique les multiplicateurs
+## d'equilibrage. Appele par la fabrique apres le scaling de vague.
+func apply_balance() -> void:
+	if not _balance_captured:
+		_base_speed = speed
+		_base_max_health = max_health
+		_base_damage = damage
+		_base_money = money
+		_balance_captured = true
+	speed = int(_base_speed * Balance.get_v("enemy_speed"))
+	max_health = int(_base_max_health * Balance.get_v("enemy_health"))
+	damage = int(_base_damage * Balance.get_v("enemy_damage"))
+	money = int(_base_money * Balance.get_v("enemy_money"))
+
+
+func _on_balance_changed() -> void:
+	if dead or not _balance_captured:
+		return
+	var ratio: float = float(health) / max(1.0, float(max_health))
+	apply_balance()
+	speed_stock = speed
+	if not slowed:
+		velocity = Vector2.ZERO
+	health = int(max_health * ratio)
+	HealthBar.max_value = max_health
+	HealthBar.value = health
 
 func _physics_process(delta):
 	if dead:

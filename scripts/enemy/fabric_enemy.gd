@@ -6,6 +6,10 @@ var buffed_zombie_scene: PackedScene = preload("res://scenes/enemy/buffed_zombie
 var miser_scene: PackedScene         = preload("res://scenes/enemy/miser.tscn")
 var big_zombie_scene: PackedScene    = preload("res://scenes/enemy/big_zombie.tscn")
 var reaper_scene: PackedScene        = preload("res://scenes/enemy/reaper.tscn")
+var runner_scene: PackedScene        = preload("res://scenes/enemy/runner.tscn")
+var brute_scene: PackedScene         = preload("res://scenes/enemy/brute.tscn")
+var charger_scene: PackedScene       = preload("res://scenes/enemy/charger.tscn")
+var exploder_scene: PackedScene      = preload("res://scenes/enemy/exploder.tscn")
 
 # Table de spawn editable (.tres). Fallback sur l'ancienne logique si absente.
 var _spawn_table: EnemySpawnTable = load("res://resources/enemy_spawn_table.tres") as EnemySpawnTable
@@ -30,15 +34,30 @@ func create_enemy(posistion: Vector2, destination: Vector2, boss: bool, directio
 	elif enemy_type == 5:
 		enemy = big_zombie_scene.instantiate()
 		boss_spawn_sound.play()
+	elif enemy_type == 6:
+		enemy = runner_scene.instantiate()
+	elif enemy_type == 7:
+		enemy = brute_scene.instantiate()
+	elif enemy_type == 8:
+		enemy = charger_scene.instantiate()
+	elif enemy_type == 9:
+		enemy = exploder_scene.instantiate()
 
 
 	posistion.x += randi_range(-100, 100)
 	enemy.position = posistion
 
+	# Stats de base persistantes (overrides dev) avant le scaling de vague.
+	GameConfig.apply_enemy(enemy)
+
 	enemy.max_health += Global.game.wave * 2
 	enemy.damage += Global.game.wave * 1.75
 	enemy.money += Global.game.wave * randi() % 5
 	enemy.speed += randi() % 300
+
+	# Applique les multiplicateurs d'equilibrage globaux (Balance) une fois le
+	# scaling de vague effectue.
+	enemy.apply_balance()
 
 	enemy.speed_stock = enemy.speed
 	enemy.health = enemy.max_health
