@@ -22,5 +22,6 @@ group = "sfx"
 stream = ExtResource("5_kxx24")
 volume_db = -2.0
 script = ExtResource("4_p8vsv")
+group = "sfx"
 
 [connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]

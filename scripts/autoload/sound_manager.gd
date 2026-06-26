@@ -1,21 +1,28 @@
 extends Node
-## Gere le volume par groupe de sons. Le volume choisi est applique aux sons
-## deja enregistres ET a ceux qui s'enregistrent ensuite, et persiste via
-## SaveManager (charge avant ce singleton dans l'ordre des autoloads).
+## Gere le volume par groupe de sons via les bus audio (Master/Music/SFX/GUI).
+## Piloter les bus garantit que TOUS les sons d'un groupe sont affectes, y compris
+## les AudioStreamPlayer bruts (armes, ennemis, pumps...) qui ne passent pas par
+## SoundEntity. Le volume choisi persiste via SaveManager (charge avant ce
+## singleton dans l'ordre des autoloads).
+
+# group logique -> nom du bus audio
+const GROUP_BUS := {"music": "Music", "sfx": "SFX", "gui": "GUI"}
 
 var groups: Dictionary = {}
 var volumes: Dictionary = {}  # group -> volume_db courant
 
 
-## Conversion valeur de slider (0-100) -> dB. 50 = 0 dB (formule historique
-## du menu d'options, centralisee ici).
+## Conversion valeur de slider (0-100) -> dB. 0 = silence total, 100 = 0 dB.
+## Echelle perceptuelle (linear_to_db) pour un fondu naturel.
 static func slider_to_db(value: float) -> float:
-	return (value / 100.0) * (24.0 - (-80.0)) - 80.0 + 28.0
+	if value <= 0.0:
+		return -80.0
+	return linear_to_db(clampf(value / 100.0, 0.0, 1.0))
 
 
 func _ready() -> void:
-	for g in ["music", "sfx", "gui"]:
-		volumes[g] = slider_to_db(SaveManager.get_slider(g))
+	for g in GROUP_BUS.keys():
+		_apply_bus(g, slider_to_db(SaveManager.get_slider(g)))
 
 
 func register(group: String, sound: SoundEntity) -> void:
@@ -23,9 +30,6 @@ func register(group: String, sound: SoundEntity) -> void:
 		groups[group].append(sound)
 	else:
 		groups[group] = [sound]
-	# Applique immediatement le volume courant du groupe au nouveau son.
-	if volumes.has(group):
-		sound.set_volume(volumes[group])
 
 
 func remove(group: String, sound: SoundEntity) -> void:
@@ -35,8 +39,16 @@ func remove(group: String, sound: SoundEntity) -> void:
 
 
 func change_volume(group: String, vol: float) -> void:
-	volumes[group] = vol
-	if !groups.has(group): return
+	_apply_bus(group, vol)
 
-	for s in groups[group]:
-		s.set_volume(vol)
+
+## Applique le volume au bus du groupe et coupe vraiment le bus au silence.
+func _apply_bus(group: String, vol: float) -> void:
+	volumes[group] = vol
+	if not GROUP_BUS.has(group):
+		return
+	var idx := AudioServer.get_bus_index(GROUP_BUS[group])
+	if idx < 0:
+		return
+	AudioServer.set_bus_mute(idx, vol <= -79.0)
+	AudioServer.set_bus_volume_db(idx, vol)

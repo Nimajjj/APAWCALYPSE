@@ -5,6 +5,9 @@ extends AudioStreamPlayer
 
 
 func _ready():
+	# Route vers le bus du groupe pour etre pilote par les sliders d'options.
+	if SoundManager.GROUP_BUS.has(group):
+		bus = SoundManager.GROUP_BUS[group]
 	SoundManager.register(group, self)
 
 func _exit_tree():

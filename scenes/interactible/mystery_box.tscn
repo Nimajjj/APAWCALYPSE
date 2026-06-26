@@ -44,6 +44,7 @@ shape = SubResource("RectangleShape2D_m54a6")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="6"]
 stream = ExtResource("4_f0xxh")
+bus = &"SFX"
 
 [connection signal="body_entered" from="InteractionArea2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="InteractionArea2D" to="." method="_on_area_2d_body_exited"]

@@ -62,6 +62,8 @@ debug_enabled = true
 
 [node name="BiteSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_qgwbt")
+bus = &"SFX"
 
 [node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_qv3gl")
+bus = &"SFX"

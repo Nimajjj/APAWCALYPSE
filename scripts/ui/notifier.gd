@@ -15,6 +15,7 @@ func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	_wave_sound = AudioStreamPlayer.new()
 	_wave_sound.stream = WAVE_STREAM
+	_wave_sound.bus = "SFX"
 	add_child(_wave_sound)
 	AchievementManager.achievement_unlocked.connect(_on_achievement_unlocked)
 	EventBus.wave_started.connect(_on_wave_started)
@@ -23,7 +24,6 @@ func _ready() -> void:
 func _on_wave_started(w: int) -> void:
 	show_banner("VAGUE %d" % w)
 	flash(Color(1, 1, 1, 0.45))
-	_wave_sound.volume_db = SoundManager.volumes.get("sfx", 0.0)
 	_wave_sound.play()
 
 
