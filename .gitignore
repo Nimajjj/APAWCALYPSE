@@ -11,3 +11,6 @@ project.godot
 addons/
 .idea/
 build/
+
+# code-review-graph knowledge graph data
+.code-review-graph/
