@@ -14,6 +14,8 @@ func _setup_gamepad() -> void:
 	_add_joy_button("shoot", JOY_BUTTON_A)
 	_add_joy_button("reload", JOY_BUTTON_X)
 	_add_joy_button("interact", JOY_BUTTON_B)
+	_add_joy_button("ability_dash", JOY_BUTTON_RIGHT_SHOULDER)
+	_add_joy_button("ability_fire", JOY_BUTTON_LEFT_SHOULDER)
 	_add_joy_button("esc", JOY_BUTTON_START)
 	_add_joy_button("move_up", JOY_BUTTON_DPAD_UP)
 	_add_joy_button("move_down", JOY_BUTTON_DPAD_DOWN)

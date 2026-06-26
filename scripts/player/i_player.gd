@@ -19,6 +19,8 @@ enum PC_State { IDLE, MOVE, INTERACT, DOWN, DEAD }
 
 var weapon: IWeapon = null
 var aiming_at: Vector2 = Vector2.ZERO
+var aim_has_target: bool = false  # vrai si un ennemi est cible (auto-aim)
+var _last_facing: Vector2 = Vector2.RIGHT  # direction de visee memorisee
 var state: PC_State = PC_State.IDLE
 var active_bonus: Array[String] = []
 var interactible_in_range: Array[Interactible] = []
@@ -30,8 +32,27 @@ var shaking = false
 var money_x2: bool = false
 var dead_shot: bool = false
 
+# --- Capacites (cooldown) ---
+@export var dash_distance: float = 230.0
+@export var dash_cooldown: float = 15.0
+@export var fire_ring_cooldown: float = 15.0
+const FireRingScene := preload("res://scripts/ability/fire_ring.gd")
+var _dash_ready: bool = true
+var _fire_ready: bool = true
+var invulnerable: bool = false
+# Cooldowns restants / totaux (pour l'UI des capacites).
+var dash_cd_left: float = 0.0
+var dash_cd_total: float = 0.0
+var fire_cd_left: float = 0.0
+var fire_cd_total: float = 0.0
+
 var damage_factor: float = 1
 var reload_factor: float = 1
+
+# Valeurs de base (avant multiplicateurs d'equilibrage Balance), capturees au
+# _ready pour permettre un reglage a chaud sans accumulation.
+var _base_speed: float = 0
+var _base_max_health: float = 0
 
 @onready var Sprite = $Sprite2D
 @onready var AnimPlayer = $AnimationPlayer
@@ -46,9 +67,16 @@ var reload_factor: float = 1
 
 
 func _ready() -> void:
+	# Stats persistantes du perso (overrides dev) avant capture des bases.
+	GameConfig.apply_player(self)
+	GameConfig.apply_abilities(self)
+	_base_speed = speed
+	_base_max_health = max_health
+	apply_balance()
 	health = max_health
 	_spawn_default_weapon()
-	
+	Balance.changed.connect(apply_balance)
+
 	Sprite.material = Sprite.material.duplicate()
 	FlashTimer.connect("timeout", func():
 		Sprite.material.set_shader_parameter("flash_modifier", 0.0)
@@ -60,14 +88,14 @@ func _ready() -> void:
 	Hitbox.connect("body_entered", Callable(func(body: Node): _on_Area2D_body_entered(body)))
 
 func _physics_process(delta):
-	weapon.look_at(get_global_mouse_position())
-	
-	if Input.is_action_just_pressed("rmb"):
-		position = get_global_mouse_position()
-		print(position)
+	# Auto-aim (style Brotato) : l'arme vise en permanence l'ennemi le plus
+	# proche. Plus aucune visee souris ; le jeu se joue au clavier/manette.
+	_update_aim()
+	_inputs_abilities()
+	_tick_cooldowns(delta)
 
 	if !shaking:
-		_camera_follow_mouse()
+		_camera_follow_aim()
 
 	match state:
 		PC_State.IDLE:
@@ -82,8 +110,17 @@ func _physics_process(delta):
 			_dead_state()
 
 
+## Recalcule les stats derivees des multiplicateurs d'equilibrage (Balance).
+## Appele au _ready et a chaque changement du dashboard dev.
+func apply_balance() -> void:
+	speed = _base_speed * Balance.get_v("player_speed")
+	var ratio: float = 1.0 if _base_max_health == 0 else health / max(1.0, max_health)
+	max_health = _base_max_health * Balance.get_v("player_max_health")
+	health = min(max_health, max_health * ratio)
+
+
 func start_shooting() -> void:
-	weapon.shoot(damage_factor)
+	weapon.shoot(damage_factor * Balance.get_v("player_damage"))
 
 
 func stop_shooting() -> void:
@@ -96,7 +133,13 @@ func take_bonus(_bonus: IBonus) -> void:
 
 func add_weapon(wp: IWeapon) -> void:
 	drop_weapon()
+	# Conserve l'identifiant de scene (perdu par duplicate()) pour que GameConfig
+	# sache quelle arme configurer.
+	var id: String = wp.config_id
+	if id == "" and wp.scene_file_path != "":
+		id = wp.scene_file_path.get_file().get_basename()
 	weapon = wp.duplicate()
+	weapon.config_id = id
 	weapon.position = Vector2(1, -6)
 	add_child(weapon)
 
@@ -153,10 +196,21 @@ func _inputs_directions() -> void:
 	direction.y = Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
 
 
+## Tir automatique (style Brotato) : on tire seul quand un ennemi est dans la
+## portee de l'arme. La touche/clic "shoot" reste un declencheur manuel optionnel
+## (utile quand aucun ennemi n'est cible). La cadence et la recharge sont gerees
+## par l'arme elle-meme.
 func _inputs_shoot() -> void:
-	if Input.is_action_pressed("shoot"):
+	if weapon == null:
+		return
+	var want_fire: bool = false
+	if aim_has_target and global_position.distance_to(aiming_at) <= weapon.fire_range:
+		want_fire = true
+	elif Input.is_action_pressed("shoot"):
+		want_fire = true
+	if want_fire:
 		start_shooting()
-	if Input.is_action_just_released("shoot"):
+	else:
 		stop_shooting()
 
 
@@ -165,6 +219,108 @@ func _inputs_reload() -> void:
 
 	if Input.is_action_just_pressed("reload"):
 		_start_reload()
+
+
+## Declenche les capacites (dash defensif / cercle de feu offensif) sur appui.
+func _inputs_abilities() -> void:
+	if state == PC_State.DOWN or state == PC_State.DEAD:
+		return
+	if Input.is_action_just_pressed("ability_dash"):
+		_do_dash()
+	if Input.is_action_just_pressed("ability_fire"):
+		_do_fire_ring()
+
+
+## Dash defensif : projection rapide dans la direction courante, bref i-frames et
+## trainee de fantomes. Cooldown defini dans GameConfig (categorie "abilities").
+func _do_dash() -> void:
+	if not _dash_ready:
+		return
+	_dash_ready = false
+	var dir: Vector2 = direction.normalized() if direction.length() > 0.0 else _last_facing
+	if dir == Vector2.ZERO:
+		dir = Vector2.RIGHT
+
+	# Limite la distance par un raycast (pas de traversee de mur).
+	var dist: float = dash_distance
+	raycast.target_position = dir * dash_distance
+	raycast.force_raycast_update()
+	if raycast.is_colliding():
+		dist = global_position.distance_to(raycast.get_collision_point()) * 0.9
+
+	dash_cd_total = dash_cooldown
+	dash_cd_left = dash_cd_total
+
+	invulnerable = true
+	velocity = Vector2.ZERO
+	var tw := create_tween()
+	tw.tween_property(self, "position", position + dir * dist, 0.12).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	# Fantomes successifs pendant le dash.
+	for i in 4:
+		_spawn_dash_ghost()
+		await get_tree().create_timer(0.03).timeout
+	invulnerable = false
+
+
+## Etat des capacites pour l'UI (nom, touche, couleur, cooldown restant/total).
+func get_abilities_status() -> Array:
+	return [
+		{"name": "Dash", "icon": ">>", "key": _ability_key("ability_dash"),
+			"color": Color(0.45, 0.78, 1.0), "left": dash_cd_left, "total": dash_cd_total},
+		{"name": "Feu", "icon": "()", "key": _ability_key("ability_fire"),
+			"color": Color(1.0, 0.55, 0.15), "left": fire_cd_left, "total": fire_cd_total},
+	]
+
+
+func _ability_key(action: String) -> String:
+	for e in InputMap.action_get_events(action):
+		if e is InputEventKey:
+			return OS.get_keycode_string(e.physical_keycode)
+	return "-"
+
+
+## Spectre semi-transparent qui s'estompe (trainee de dash).
+func _spawn_dash_ghost() -> void:
+	var ghost := Sprite2D.new()
+	ghost.texture = Sprite.texture
+	ghost.region_enabled = Sprite.region_enabled
+	if Sprite.region_enabled:
+		ghost.region_rect = Sprite.region_rect
+	ghost.flip_h = Sprite.flip_h
+	ghost.global_position = Sprite.global_position
+	ghost.scale = Sprite.global_scale
+	ghost.modulate = Color(0.5, 0.8, 1.0, 0.6)
+	ghost.z_index = 0
+	Global.blood_container.add_child(ghost)
+	var t := ghost.create_tween()
+	t.tween_property(ghost, "modulate:a", 0.0, 0.25)
+	t.tween_callback(ghost.queue_free)
+
+
+## Cercle de feu offensif autour du joueur. Cooldown eleve.
+func _do_fire_ring() -> void:
+	if not _fire_ready:
+		return
+	_fire_ready = false
+	fire_cd_total = fire_ring_cooldown
+	fire_cd_left = fire_cd_total
+	var ring: FireRing = FireRingScene.new()
+	add_child(ring)
+	shake_camera(3, 3, 3, 1)
+
+
+## Decremente les cooldowns des capacites et les remet pretes a zero.
+func _tick_cooldowns(delta: float) -> void:
+	if dash_cd_left > 0.0:
+		dash_cd_left -= delta
+		if dash_cd_left <= 0.0:
+			dash_cd_left = 0.0
+			_dash_ready = true
+	if fire_cd_left > 0.0:
+		fire_cd_left -= delta
+		if fire_cd_left <= 0.0:
+			fire_cd_left = 0.0
+			_fire_ready = true
 
 
 func _inputs_interact() -> void:
@@ -213,6 +369,8 @@ func shake_camera(duration: int, offset_x: float, offset_y: float, angle: float)
 
 
 func take_damage(damage: float, damager_pos: Vector2, sound: AudioStreamPlayer2D, is_reaper: bool) -> void:
+	if invulnerable:
+		return
 	if HitTimer.time_left <= 0:
 		Sprite.material.set_shader_parameter("flash_modifier", 1.0)
 		FlashTimer.start()
@@ -247,10 +405,6 @@ func _idle_state() -> void:
 	_inputs_interact()
 
 	AnimPlayer.play("player_animations/IDLE")
-	if Input.is_action_just_pressed("shoot"):
-		start_shooting()
-	if Input.is_action_just_released("shoot"):
-		stop_shooting()
 	if Input.is_action_just_pressed("reload"):
 		_start_reload()
 	if Input.is_action_just_pressed("interact"):
@@ -274,11 +428,7 @@ func _move_state(delta: float) -> void:
 	if direction.length() <= 0:
 		state = PC_State.IDLE
 
-	if direction.x < 0:
-		Sprite.flip_h = false
-	elif direction.x > 0:
-		Sprite.flip_h = true
-
+	# L'orientation du sprite est geree par l'auto-aim (_update_aim).
 	velocity = (lerp(velocity, direction.normalized() * (speed - (weapon.weight*8000)), acceleration)) * delta
 
 	AnimPlayer.play("player_animations/WALK")
@@ -308,10 +458,66 @@ func _dead_state() -> void:
 	EventBus.player_died.emit()
 
 
-func _camera_follow_mouse() -> void:
-	var mouse_pos = get_global_mouse_position()
-	Camera.offset.x = ((mouse_pos.x - global_position.x) / (1280.0 / 125.0)) * 0.2
-	Camera.offset.y = ((mouse_pos.y - global_position.y) / (720.0 / 125.0)) * 0.2
+## Cible l'ennemi vivant le plus proche et oriente l'arme vers lui. En l'absence
+## de cible, l'arme garde sa derniere direction (ou suit le deplacement).
+func _update_aim() -> void:
+	if weapon == null:
+		return
+	var nearest: IEnemy = _nearest_enemy()
+	# On ne vise (et ne tire) que si l'ennemi le plus proche est dans la portee
+	# de l'arme : l'arme ne pointe plus un zombie hors d'atteinte.
+	if nearest != null and global_position.distance_to(nearest.global_position) <= weapon.fire_range:
+		aim_has_target = true
+		aiming_at = nearest.global_position
+		_last_facing = (aiming_at - global_position).normalized()
+	else:
+		aim_has_target = false
+		if direction.length() > 0.0:
+			_last_facing = direction.normalized()
+		aiming_at = global_position + _last_facing * 100.0
+	weapon.look_at(aiming_at)
+	# Le personnage regarde sa cible.
+	if _last_facing.x < -0.05:
+		Sprite.flip_h = false
+	elif _last_facing.x > 0.05:
+		Sprite.flip_h = true
+
+
+const WALL_MASK := 2  # bit du layer des murs (StaticBody "Collisions")
+
+func _nearest_enemy() -> IEnemy:
+	var best: IEnemy = null
+	var best_d: float = INF
+	var range_sq: float = weapon.fire_range * weapon.fire_range
+	var space := get_world_2d().direct_space_state
+	for e in Global.units:
+		if e == null or not is_instance_valid(e) or e.dead:
+			continue
+		var d: float = global_position.distance_squared_to(e.global_position)
+		# Seuls les ennemis a portee et plus proches que le meilleur sont evalues
+		# (limite les raycasts de ligne de vue).
+		if d >= best_d or d > range_sq:
+			continue
+		if _wall_between(space, e.global_position):
+			continue
+		best_d = d
+		best = e
+	return best
+
+
+## Vrai si un mur bloque la trajectoire entre le joueur et un point (pas de tir a
+## travers les murs).
+func _wall_between(space: PhysicsDirectSpaceState2D, target: Vector2) -> bool:
+	var params := PhysicsRayQueryParameters2D.create(global_position, target, WALL_MASK)
+	params.collide_with_areas = false
+	params.collide_with_bodies = true
+	params.exclude = [self]
+	return not space.intersect_ray(params).is_empty()
+
+
+## Camera centree sur le joueur (aucun decalage vers la visee : plus confortable).
+func _camera_follow_aim() -> void:
+	Camera.offset = Camera.offset.lerp(Vector2.ZERO, 0.2)
 
 
 func _spawn_default_weapon() -> void:
