@@ -535,6 +535,7 @@ script = ExtResource("1_oyfej")
 [node name="BloodContainer" parent="." instance=ExtResource("4_8np0e")]
 
 [node name="Collisions" type="StaticBody2D" parent="."]
+collision_layer = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Collisions"]
 position = Vector2(637.5, 438.5)
