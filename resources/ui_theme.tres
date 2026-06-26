@@ -1,6 +1,6 @@
 [gd_resource type="Theme" format=3]
 
-[ext_resource type="FontFile" path="res://assets/ui/fonts/Zombie Apocalypse.ttf" id="1_cviax"]
+[ext_resource type="FontFile" uid="uid://b61g0skqfdwmd" path="res://assets/ui/fonts/balatro.otf" id="1_cviax"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cviax"]
 content_margin_left = 14.0
