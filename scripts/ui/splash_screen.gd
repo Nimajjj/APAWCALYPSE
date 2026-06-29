@@ -93,6 +93,29 @@ func _ready() -> void:
 	_subtitle.modulate.a = 0.0
 	vb.add_child(_subtitle)
 
+	# Indice de skip, discret en bas de l'ecran.
+	var hint := Label.new()
+	hint.text = "Press any key to skip"
+	hint.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	hint.add_theme_font_size_override("font_size", 22)
+	hint.add_theme_color_override("font_color", Color(0.8, 0.8, 0.85))
+	hint.add_theme_color_override("font_outline_color", Color.BLACK)
+	hint.add_theme_constant_override("outline_size", 4)
+	hint.set_anchors_and_offsets_preset(Control.PRESET_BOTTOM_WIDE)
+	hint.offset_top = -70.0
+	hint.offset_bottom = -30.0
+	hint.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	hint.modulate.a = 0.0
+	add_child(hint)
+	# Apparait apres un court delai, puis clignote doucement en boucle.
+	var ht := create_tween()
+	ht.tween_interval(1.0)
+	ht.tween_property(hint, "modulate:a", 0.55, 0.5)
+	ht.tween_callback(func() -> void:
+		var blink := create_tween().set_loops()
+		blink.tween_property(hint, "modulate:a", 0.2, 0.9).set_trans(Tween.TRANS_SINE)
+		blink.tween_property(hint, "modulate:a", 0.55, 0.9).set_trans(Tween.TRANS_SINE))
+
 	# Calque VFX au-dessus du titre (eclaboussures de sang, griffures...).
 	_vfx = Node2D.new()
 	add_child(_vfx)
