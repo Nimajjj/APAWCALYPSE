@@ -147,23 +147,35 @@ func _slam_letter(l: Label) -> void:
 	_impact_player.play()
 
 
-## Climax : gros impact + eclaboussures de sang animees en travers du titre.
+## Climax : gros impact metallique + deux salves de griffures/sang calees sur les
+## deux scratchs du son claw_scratch.mp3 (pics analyses a ~0.44s et ~1.40s ;
+## on demarre l'anim ~0.1s avant pour que le visuel culmine sur le son).
 func _climax() -> void:
 	if _done:
 		return
 	_play_oneshot(SND_CLIMAX, "SFX", 0.0)
 	_play_oneshot(SND_CLAW, "SFX", -2.0)
-	_flash(0.55)
-	_shake(16.0, 0.4)
 
-	# Griffures qui zebrent le titre (centre de ref ~ (960, 515)).
-	_spawn_claw(Vector2(960, 510), 15.0, randf_range(-0.25, 0.25))
-	_spawn_claw(Vector2(870, 560), 10.0, randf_range(2.6, 3.4))
+	# 1er scratch (modere).
+	_scratch(0.34, Vector2(990, 500), 12.0, randf_range(-0.25, 0.25), 0.4, 11.0, 4)
+	# 2e scratch (le plus fort) : griffure plus grande, plus de sang, gros flash.
+	_scratch(1.30, Vector2(900, 545), 17.0, randf_range(2.6, 3.4), 0.6, 18.0, 7)
 
-	# Eclaboussures reparties sur la largeur du titre (canvas de ref 1920x1080).
-	for i in 9:
-		var pos := Vector2(randf_range(640.0, 1280.0), randf_range(430.0, 600.0))
-		_spawn_blood(pos, randf_range(1.6, 3.4), randi() % BLOOD_VFRAMES, randf() * 0.35)
+
+## Une salve : flash + shake + griffure + eclaboussures, declenchee apres `delay`.
+func _scratch(delay: float, claw_pos: Vector2, claw_scl: float, claw_rot: float,
+		flash_str: float, shake_amt: float, blood_count: int) -> void:
+	var t := create_tween()
+	t.tween_interval(delay)
+	t.tween_callback(func() -> void:
+		if _done:
+			return
+		_flash(flash_str)
+		_shake(shake_amt, 0.35)
+		_spawn_claw(claw_pos, claw_scl, claw_rot)
+		for i in blood_count:
+			var pos := Vector2(randf_range(640.0, 1280.0), randf_range(430.0, 600.0))
+			_spawn_blood(pos, randf_range(1.6, 3.4), randi() % BLOOD_VFRAMES, randf() * 0.12))
 
 
 ## Instancie une eclaboussure : un Sprite2D qui joue une rangee de la spritesheet.
