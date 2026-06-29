@@ -9,6 +9,7 @@ export_presets.cfg
 project.godot
 
 addons/
+assets/new/
 .idea/
 build/
 

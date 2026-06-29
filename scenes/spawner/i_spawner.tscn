@@ -4,9 +4,11 @@
 [ext_resource type="Script" path="res://scripts/spawner/i_spawner.gd" id="1_wmlks"]
 
 [node name="ISpawner" type="Node2D" groups=["spawners"]]
+y_sort_enabled = true
 script = ExtResource("1_wmlks")
 
 [node name="FabricEnemy" parent="." instance=ExtResource("1_kn2g1")]
+y_sort_enabled = true
 
 [node name="Timer" type="Timer" parent="."]
 
