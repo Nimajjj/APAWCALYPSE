@@ -15,7 +15,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="APAWCALYPSE"
-run/main_scene="res://scenes/ui/main_menu.tscn"
+run/main_scene="res://scenes/ui/splash_screen.tscn"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://assets/debug/icon.svg"
 
