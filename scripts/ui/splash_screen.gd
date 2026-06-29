@@ -39,7 +39,8 @@ func _ready() -> void:
 	bg.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	var mat := ShaderMaterial.new()
 	mat.shader = MENU_SHADER
-	mat.set_shader_parameter("speed", 0.15)
+	mat.set_shader_parameter("screen_size", get_viewport().get_visible_rect().size)
+	mat.set_shader_parameter("spin_speed", 4.0)  # intro un peu plus lente que le menu
 	bg.material = mat
 	bg.modulate.a = 0.0
 	add_child(bg)

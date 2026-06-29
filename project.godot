@@ -39,6 +39,7 @@ UITheme="*res://scripts/autoload/ui_theme.gd"
 Balance="*res://scripts/autoload/balance.gd"
 GameConfig="*res://scripts/autoload/game_config.gd"
 DevWebPanel="*res://scripts/autoload/dev_web_panel.gd"
+CRTOverlay="*res://scripts/autoload/crt_overlay.gd"
 
 [display]
 
