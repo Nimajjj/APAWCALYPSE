@@ -1426,40 +1426,43 @@ shape = SubResource("RectangleShape2D_kg7o8")
 [node name="Lights" type="Node2D" parent="."]
 
 [node name="Interactibles" type="Node2D" parent="."]
+y_sort_enabled = true
 
 [node name="WeaponRacks" type="Node2D" parent="Interactibles"]
+y_sort_enabled = true
 
 [node name="WeaponRack" parent="Interactibles/WeaponRacks" instance=ExtResource("5_xcr48")]
-z_index = 2
+z_index = 0
 position = Vector2(912, 912)
 price = 1000
 weapon_scene = ExtResource("6_b61fw")
 
 [node name="WeaponRack2" parent="Interactibles/WeaponRacks" instance=ExtResource("5_xcr48")]
-z_index = 2
+z_index = 0
 position = Vector2(1896, 921)
 price = 600
 weapon_scene = ExtResource("7_dfkln")
 
 [node name="WeaponRack3" parent="Interactibles/WeaponRacks" instance=ExtResource("5_xcr48")]
-z_index = 2
+z_index = 0
 position = Vector2(935, 792)
 price = 600
 weapon_scene = ExtResource("8_6ewd6")
 
 [node name="WeaponRack4" parent="Interactibles/WeaponRacks" instance=ExtResource("5_xcr48")]
-z_index = 2
+z_index = 0
 position = Vector2(3248, 855)
 price = 3000
 weapon_scene = ExtResource("9_83llj")
 
 [node name="WeaponRack5" parent="Interactibles/WeaponRacks" instance=ExtResource("5_xcr48")]
-z_index = 2
+z_index = 0
 position = Vector2(2696, -8)
 price = 2000
 weapon_scene = ExtResource("10_fpuei")
 
 [node name="Doors" type="Node2D" parent="Interactibles"]
+y_sort_enabled = true
 
 [node name="Door" parent="Interactibles/Doors" instance=ExtResource("5_41nn5")]
 position = Vector2(2016, 729)
@@ -1510,41 +1513,42 @@ price = 4200
 spawner_id = 3
 
 [node name="SideDoor" parent="Interactibles/Doors" groups=["door1"] instance=ExtResource("12_nj25h")]
-z_index = 5
+z_index = 0
 position = Vector2(1113, 840)
 price = 500
 spawner_id = 2
 door_group = "door1"
 
 [node name="SideDoor3" parent="Interactibles/Doors" instance=ExtResource("12_nj25h")]
-z_index = 5
+z_index = 0
 position = Vector2(615, 1320)
 price = 5400
 spawner_id = 6
 
 [node name="SideDoor4" parent="Interactibles/Doors" instance=ExtResource("12_nj25h")]
-z_index = 5
+z_index = 0
 position = Vector2(2041, 1449)
 price = 5500
 
 [node name="SideDoor5" parent="Interactibles/Doors" instance=ExtResource("12_nj25h")]
-z_index = 5
+z_index = 0
 position = Vector2(2681, 1672)
 price = 5000
 
 [node name="SideDoor6" parent="Interactibles/Doors" instance=ExtResource("12_nj25h")]
-z_index = 5
+z_index = 0
 position = Vector2(3257, 1224)
 price = 3800
 
 [node name="SideDoor2" parent="Interactibles/Doors" instance=ExtResource("12_nj25h")]
-z_index = 5
+z_index = 0
 position = Vector2(1127, 520)
 price = 500
 spawner_id = 2
 door_group = "door1"
 
 [node name="Windows" type="Node2D" parent="Interactibles"]
+y_sort_enabled = true
 
 [node name="Window" parent="Interactibles/Windows" instance=ExtResource("12_6yoxn")]
 position = Vector2(752, 320)
@@ -1562,68 +1566,68 @@ position = Vector2(0, -6.5)
 position = Vector2(144, 1088)
 
 [node name="Window9" parent="Interactibles/Windows" instance=ExtResource("12_6yoxn")]
-z_index = 1
+z_index = 0
 position = Vector2(976, 1896)
 
 [node name="CollisionShape2D" parent="Interactibles/Windows/Window9/InteractionArea2D" index="0"]
-z_index = 5
+z_index = 0
 position = Vector2(0, -16)
 
 [node name="CollisionShape2D" parent="Interactibles/Windows/Window9/HitBox" index="0"]
-z_index = 5
+z_index = 0
 position = Vector2(0, -0.5)
 
 [node name="Window10" parent="Interactibles/Windows" instance=ExtResource("12_6yoxn")]
-z_index = 1
+z_index = 0
 position = Vector2(1648, 1888)
 
 [node name="InteractionArea2D" parent="Interactibles/Windows/Window10" index="1"]
-z_index = 1
+z_index = 0
 
 [node name="CollisionShape2D" parent="Interactibles/Windows/Window10/InteractionArea2D" index="0"]
 position = Vector2(0, -11.5)
 
 [node name="HitBox" parent="Interactibles/Windows/Window10" index="3"]
-z_index = 1
+z_index = 0
 
 [node name="CollisionShape2D" parent="Interactibles/Windows/Window10/HitBox" index="0"]
 position = Vector2(0.5, 4)
 
 [node name="Window12" parent="Interactibles/Windows" instance=ExtResource("12_6yoxn")]
-z_index = 1
+z_index = 0
 position = Vector2(464, 1568)
 
 [node name="CollisionShape2D" parent="Interactibles/Windows/Window12/InteractionArea2D" index="0"]
 position = Vector2(0, -12)
 
 [node name="Window11" parent="Interactibles/Windows" instance=ExtResource("12_6yoxn")]
-z_index = 1
+z_index = 0
 position = Vector2(2608, 1888)
 
 [node name="InteractionArea2D" parent="Interactibles/Windows/Window11" index="1"]
-z_index = 1
+z_index = 0
 
 [node name="CollisionShape2D" parent="Interactibles/Windows/Window11/InteractionArea2D" index="0"]
 position = Vector2(0, -11.5)
 
 [node name="HitBox" parent="Interactibles/Windows/Window11" index="3"]
-z_index = 1
+z_index = 0
 
 [node name="CollisionShape2D" parent="Interactibles/Windows/Window11/HitBox" index="0"]
 position = Vector2(0, 4.5)
 
 [node name="Window13" parent="Interactibles/Windows" instance=ExtResource("12_6yoxn")]
-z_index = 1
+z_index = 0
 position = Vector2(3408, 1891)
 
 [node name="InteractionArea2D" parent="Interactibles/Windows/Window13" index="1"]
-z_index = 1
+z_index = 0
 
 [node name="CollisionShape2D" parent="Interactibles/Windows/Window13/InteractionArea2D" index="0"]
 position = Vector2(0, -13)
 
 [node name="HitBox" parent="Interactibles/Windows/Window13" index="3"]
-z_index = 1
+z_index = 0
 
 [node name="CollisionShape2D" parent="Interactibles/Windows/Window13/HitBox" index="0"]
 position = Vector2(0, 2.5)
@@ -1656,7 +1660,8 @@ position = Vector2(3568, 323)
 position = Vector2(992, 632)
 
 [node name="Pumps" type="Node2D" parent="Interactibles"]
-z_index = 2
+y_sort_enabled = true
+z_index = 0
 scale = Vector2(2, 2)
 
 [node name="SpeedPump" parent="Interactibles/Pumps" instance=ExtResource("15_6o5p1")]
@@ -1684,6 +1689,7 @@ position = Vector2(1137.5, 744.5)
 position = Vector2(0, 8.94308)
 
 [node name="Spawners" type="Node2D" parent="."]
+y_sort_enabled = true
 
 [node name="ISpawner" parent="Spawners" instance=ExtResource("13_ir52n")]
 position = Vector2(753, 249)
@@ -1758,7 +1764,7 @@ direction = "down"
 destination = Vector2(3216, 500)
 
 [node name="Navigation" type="Node2D" parent="."]
-z_index = 5
+z_index = 0
 
 [node name="FirstRoom" type="NavigationRegion2D" parent="Navigation"]
 navigation_polygon = SubResource("NavigationPolygon_xck6c")

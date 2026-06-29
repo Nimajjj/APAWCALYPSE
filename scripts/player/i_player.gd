@@ -37,6 +37,7 @@ var dead_shot: bool = false
 @export var dash_cooldown: float = 15.0
 @export var fire_ring_cooldown: float = 15.0
 const FireRingScene := preload("res://scripts/ability/fire_ring.gd")
+const SilhouetteShader := preload("res://resources/silhouette.gdshader")
 var _dash_ready: bool = true
 var _fire_ready: bool = true
 var invulnerable: bool = false
@@ -53,6 +54,11 @@ var reload_factor: float = 1
 # _ready pour permettre un reglage a chaud sans accumulation.
 var _base_speed: float = 0
 var _base_max_health: float = 0
+
+# --- Silhouette d'occlusion (QoL : voir le joueur derriere le decor) ---
+var _silhouette: Sprite2D = null
+var _occluder_layers: Array[TileMapLayer] = []
+var _occluders_ready: bool = false
 
 @onready var Sprite = $Sprite2D
 @onready var AnimPlayer = $AnimationPlayer
@@ -87,12 +93,15 @@ func _ready() -> void:
 	
 	Hitbox.connect("body_entered", Callable(func(body: Node): _on_Area2D_body_entered(body)))
 
+	_setup_silhouette()
+
 func _physics_process(delta):
 	# Auto-aim (style Brotato) : l'arme vise en permanence l'ennemi le plus
 	# proche. Plus aucune visee souris ; le jeu se joue au clavier/manette.
 	_update_aim()
 	_inputs_abilities()
 	_tick_cooldowns(delta)
+	_update_silhouette()
 
 	if !shaking:
 		_camera_follow_aim()
@@ -518,6 +527,112 @@ func _wall_between(space: PhysicsDirectSpaceState2D, target: Vector2) -> bool:
 ## Camera centree sur le joueur (aucun decalage vers la visee : plus confortable).
 func _camera_follow_aim() -> void:
 	Camera.offset = Camera.offset.lerp(Vector2.ZERO, 0.2)
+
+
+## Cree un double "rayon X" du sprite, rendu au-dessus de tout le decor et
+## n'apparaissant que lorsque le joueur est occulte (QoL : ne jamais perdre le
+## perso de vue). Construit par code pour couvrir tous les persos jouables.
+func _setup_silhouette() -> void:
+	_silhouette = Sprite2D.new()
+	_silhouette.name = "OcclusionSilhouette"
+	var mat := ShaderMaterial.new()
+	mat.shader = SilhouetteShader
+	_silhouette.material = mat
+	_silhouette.z_index = 1000  # au-dessus du decor y-sorte (z = 0)
+	_silhouette.z_as_relative = false
+	_silhouette.visible = false
+	add_child(_silhouette)
+
+
+## Recupere (une fois) les calques de tuiles susceptibles d'occulter le joueur.
+func _resolve_occluders() -> void:
+	_occluders_ready = true
+	var map: Node = Global.map
+	if map == null:
+		return
+	for path in ["TileMap/wall", "TileMap/border", "TileMap/props", "TileMap/props2"]:
+		var layer := map.get_node_or_null(path)
+		if layer is TileMapLayer:
+			_occluder_layers.append(layer)
+
+
+## Synchronise la silhouette sur le sprite courant et l'affiche uniquement quand
+## le joueur est (partiellement) cache.
+func _update_silhouette() -> void:
+	if _silhouette == null:
+		return
+	_silhouette.texture = Sprite.texture
+	_silhouette.region_enabled = Sprite.region_enabled
+	_silhouette.region_rect = Sprite.region_rect
+	_silhouette.hframes = Sprite.hframes
+	_silhouette.vframes = Sprite.vframes
+	_silhouette.frame = Sprite.frame
+	_silhouette.flip_h = Sprite.flip_h
+	_silhouette.flip_v = Sprite.flip_v
+	_silhouette.centered = Sprite.centered
+	_silhouette.offset = Sprite.offset
+	_silhouette.position = Sprite.position
+	_silhouette.scale = Sprite.scale
+
+	# Bande (en Y monde) du corps reellement recouverte par un decor au-dessus.
+	var band: Vector2 = _occluder_band()
+	if state != PC_State.DEAD and band.y >= band.x:
+		var mat := _silhouette.material as ShaderMaterial
+		mat.set_shader_parameter("band_top", band.x)
+		mat.set_shader_parameter("band_bottom", band.y)
+		_silhouette.visible = true
+	else:
+		_silhouette.visible = false
+
+
+## Renvoie la bande verticale (Vector2(top, bottom) en Y monde) du sprite joueur
+## reellement masquee par un decor situe DEVANT lui, ou une bande vide
+## (top > bottom) si le joueur n'est pas occulte. On balaie la colonne au-dessus
+## du joueur et on ne retient que les tuiles qui trient au-dessus de lui (donc
+## effectivement dessinees par-dessus), ce qui evite les faux declenchements
+## quand on longe simplement un mur.
+func _occluder_band() -> Vector2:
+	if not _occluders_ready:
+		_resolve_occluders()
+	if _occluder_layers.is_empty():
+		return Vector2(1.0, 0.0)  # bande vide
+
+	var px: float = global_position.x
+	var player_sort_y: float = global_position.y  # y_sort_origin du joueur = 0
+	var half: float = 34.0  # demi-hauteur approx. du sprite (32 px * 2 / ~)
+	var top: float = INF
+	var bottom: float = -INF
+
+	var y: float = global_position.y - half
+	while y <= global_position.y + half:
+		if _column_occluded_at(Vector2(px, y), player_sort_y):
+			top = min(top, y)
+			bottom = max(bottom, y)
+		y += 4.0
+
+	if bottom < top:
+		return Vector2(1.0, 0.0)  # rien de recouvert
+	return Vector2(top, bottom)
+
+
+## Vrai si un point monde est recouvert par une tuile de decor qui trie au-dessus
+## du joueur (donc dessinee par-dessus lui a cet endroit).
+func _column_occluded_at(wp: Vector2, player_sort_y: float) -> bool:
+	for layer in _occluder_layers:
+		if not is_instance_valid(layer):
+			continue
+		var cell: Vector2i = layer.local_to_map(layer.to_local(wp))
+		if layer.get_cell_source_id(cell) == -1:
+			continue
+		# Position de tri de la tuile = centre de cellule + y_sort_origin.
+		var origin_y: float = 0.0
+		var td: TileData = layer.get_cell_tile_data(cell)
+		if td != null:
+			origin_y = float(td.y_sort_origin)
+		var tile_sort_y: float = layer.to_global(layer.map_to_local(cell) + Vector2(0.0, origin_y)).y
+		if tile_sort_y > player_sort_y:
+			return true
+	return false
 
 
 func _spawn_default_weapon() -> void:
