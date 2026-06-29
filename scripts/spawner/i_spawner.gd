@@ -33,9 +33,16 @@ func is_all_spawner_units_spawned() -> bool:
 
 func _on_timer_timeout():
 	if !is_all_spawner_units_spawned():
-		Global.units.append(fabric_enemy.create_enemy(fabric_enemy.position, destination, is_boss_wave, direction))
-		if is_boss_wave:
-			is_boss_wave = false
+		# Une fraction des ennemis (hors boss) apparait directement autour du
+		# joueur via un marqueur clignotant ; le reste passe par la fenetre.
+		var near_ratio: float = Balance.get_v("spawn_near_ratio")
+		var spawned_near: bool = false
+		if not is_boss_wave and randf() < near_ratio and not Global.players.is_empty():
+			spawned_near = fabric_enemy.spawn_near_player(false, direction)
+		if not spawned_near:
+			Global.units.append(fabric_enemy.create_enemy(fabric_enemy.position, destination, is_boss_wave, direction))
+			if is_boss_wave:
+				is_boss_wave = false
 		units_left_to_spawn -= 1
 		Global.units_left_to_spawn -= 1
 	else:

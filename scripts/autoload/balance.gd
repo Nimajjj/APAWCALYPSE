@@ -19,6 +19,10 @@ const DEFS := {
 	"enemy_damage":      [1.00, 0.3, 3.0, 0.05, "Degats ennemis"],
 	"enemy_money":       [1.00, 0.3, 3.0, 0.05, "Argent lache"],
 	"weapon_fire_rate":  [1.00, 0.3, 2.0, 0.05, "Cadence de tir"],
+	# Spawn "autour du joueur" (style Brotato). Ces valeurs sont des grandeurs
+	# absolues (et non des multiplicateurs) mais profitent du meme dashboard.
+	"spawn_near_ratio":  [0.20, 0.0, 1.0, 0.05, "Ratio spawn autour joueur"],
+	"spawn_near_radius": [350.0, 100.0, 1200.0, 25.0, "Rayon spawn joueur (px)"],
 }
 
 var values: Dictionary = {}

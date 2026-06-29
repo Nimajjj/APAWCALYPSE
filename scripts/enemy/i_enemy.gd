@@ -64,6 +64,24 @@ func _ready():
 	death_sound.connect("finished", func(): death_sound_finished())
 	Balance.changed.connect(_on_balance_changed)
 
+	_setup_navigation()
+
+
+## Configure le NavigationAgent2D : distances de suivi de chemin adaptees a la
+## taille des corps (scale 2x -> ~16px de rayon) pour ne pas rester coince dans
+## les angles.
+func _setup_navigation() -> void:
+	# Pas d'evitement RVO : il verrouille les goulets (fenetres) et pousse les
+	# ennemis DANS les murs (le RVO ignore la geometrie statique). On compte sur
+	# move_and_slide pour la separation.
+	#
+	# path_desired_distance > rayon du corps (~16px en scale 2x) : c'est LA cle
+	# anti-blocage dans les angles. Avec la valeur par defaut (10), un zombie ne
+	# peut jamais s'approcher assez d'un point de chemin colle a l'arete d'un mur
+	# pour le "valider" -> il n'avance jamais au point suivant et reste coince.
+	agent.path_desired_distance = 24.0
+	agent.target_desired_distance = 16.0
+
 
 ## Capture (une fois) les valeurs de base puis applique les multiplicateurs
 ## d'equilibrage. Appele par la fabrique apres le scaling de vague.
@@ -96,9 +114,16 @@ func _physics_process(delta):
 	if dead:
 		return
 	if state == 0:
+		# Approche du batiment : trajet direct vers la fenetre. Pas d'evitement RVO
+		# ici : les ennemis spawnent en grappe derriere la fenetre et le RVO se
+		# verrouillerait (immobilite). Les collisions de move_and_slide suffisent.
 		var _direction = (destination - global_position).normalized()
-		_move(delta, _direction)
+		_face(_direction)
+		velocity = _direction * speed * delta
+		move_and_slide()
 	elif state == 1:
+		# Passage de la fenetre : translation forcee (sans collision) pour
+		# franchir l'ouverture meme si d'autres ennemis s'y pressent.
 		var _velocity: Vector2
 		if direction == "down":
 			_velocity = (Vector2.DOWN * speed * delta) / 125
@@ -110,8 +135,11 @@ func _physics_process(delta):
 			_velocity = (Vector2.RIGHT * speed * delta) / 125
 		position += _velocity
 	elif state == 2:
-		var _direction = to_local(agent.get_next_path_position()).normalized()
-		_move(delta, _direction)
+		# Poursuite du joueur via NavigationAgent2D (contournement des murs).
+		var _direction = (agent.get_next_path_position() - global_position).normalized()
+		_face(_direction)
+		velocity = _direction * speed * delta
+		move_and_slide()
 
 func take_damage(dmg: int, shooter: IPlayer) -> void:
 	HealthBar.visible = true
@@ -143,14 +171,12 @@ func _hit_punch() -> void:
 	_hit_tween.tween_property(Sprite, "scale", _sprite_base_scale, 0.18) \
 		.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 
-func _move(delta, _direction) -> void:
+## Oriente la sprite selon la direction de deplacement.
+func _face(_direction: Vector2) -> void:
 	if _direction.x < 0:
 		Sprite.flip_h = false
 	elif _direction.x > 0:
 		Sprite.flip_h = true
-	var _velocity = _direction * speed * delta
-	velocity = _velocity
-	move_and_slide()
 
 func retarget() -> void:
 	# En etat 2, on poursuit le joueur (chase_target) via le NavigationAgent2D.

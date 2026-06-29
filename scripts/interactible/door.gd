@@ -7,6 +7,10 @@ extends Interactible
 
 func _ready():
 	message = "Press [E] to open the door for {0}$".format([price])
+	# Toutes les portes encore fermees appartiennent au groupe "doors" : sert a
+	# definir les zones accessibles pour le spawn autour du joueur (cf.
+	# fabric_enemy._is_reachable_open). Liberees a l'achat -> retirees du groupe.
+	add_to_group("doors")
 	# Garde : add_to_group("") leve une erreur moteur ("empty name").
 	# Beaucoup de portes n'ont pas de door_group defini -> on ignore alors le groupe.
 	if door_group != "":

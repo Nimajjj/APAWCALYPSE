@@ -25,13 +25,19 @@ func _physics_process(_delta):
 			body.retarget()
 			body.path_timer.start()
 	for body in hitbox.get_overlapping_bodies():
-		if body is IEnemy and body.state == 0:
-			if hit_possible:
-				if health > 0:
-					take_damage()
-					hit_timer.start()
-			if health == 0:
-				body.state = 1
+		if not (body is IEnemy):
+			continue
+		if health > 0:
+			# Fenetre intacte : seuls les ennemis en approche (etat 0) la cognent.
+			if body.state == 0 and hit_possible:
+				take_damage()
+				hit_timer.start()
+		elif body.state != 1:
+			# Fenetre ouverte : la HitBox est cote exterieur, donc TOUT ennemi qui
+			# s'y trouve est pousse a travers (etat 1, translation forcee sans
+			# collision). Rattrape notamment les ennemis deja en poursuite (etat 2)
+			# mais bloques dehors contre le mur, qui resteraient coinces.
+			body.state = 1
 
 
 func activate(player: IPlayer) -> void:
