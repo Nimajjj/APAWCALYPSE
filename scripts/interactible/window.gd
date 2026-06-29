@@ -12,6 +12,10 @@ func _ready():
 	message = "Press [E] to repair"
 	_update_sprite()
 	hit_timer.connect("timeout", Callable(func(): _hit_timer_timeout()))
+	# Les ennemis sont sur le layer 4 (ils ne se collisionnent pas entre eux) : les
+	# zones de detection de la fenetre doivent donc aussi masquer ce layer.
+	interaction_area.set_collision_mask_value(4, true)
+	hitbox.set_collision_mask_value(4, true)
 
 func _physics_process(_delta):
 	# Micro-perf : pas d'ennemi en vie -> rien a detecter, on saute les

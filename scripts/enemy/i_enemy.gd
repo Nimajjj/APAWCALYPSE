@@ -65,6 +65,16 @@ func _ready():
 	Balance.changed.connect(_on_balance_changed)
 
 	_setup_navigation()
+	_setup_collision()
+
+
+## Les ennemis ne se collisionnent PAS entre eux : on les place sur un layer dedie
+## (4) en gardant leur masque par defaut (layer 1) pour continuer a buter sur les
+## murs, portes et le joueur. Les Area2D qui doivent detecter les ennemis (zone de
+## degats du joueur, fenetres) masquent aussi le layer 4.
+func _setup_collision() -> void:
+	set_collision_layer_value(1, false)
+	set_collision_layer_value(4, true)
 
 
 ## Configure le NavigationAgent2D : distances de suivi de chemin adaptees a la

@@ -92,6 +92,10 @@ func _ready() -> void:
 	RegenerationTicksTimer.connect("timeout", func(): heal(self.max_health * 0.02))
 	
 	Hitbox.connect("body_entered", Callable(func(body: Node): _on_Area2D_body_entered(body)))
+	# Les ennemis sont sur le layer 4 (ils ne se collisionnent pas entre eux) : on
+	# l'ajoute ici pour rester bloque par eux (corps) et encaisser au contact (Hitbox).
+	set_collision_mask_value(4, true)
+	Hitbox.set_collision_mask_value(4, true)
 
 	_setup_silhouette()
 
