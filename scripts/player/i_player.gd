@@ -488,12 +488,22 @@ func _update_aim() -> void:
 		if direction.length() > 0.0:
 			_last_facing = direction.normalized()
 		aiming_at = global_position + _last_facing * 100.0
-	weapon.look_at(aiming_at)
-	# Le personnage regarde sa cible.
+
+	# Le personnage regarde sa cible (gauche/droite).
 	if _last_facing.x < -0.05:
 		Sprite.flip_h = false
 	elif _last_facing.x > 0.05:
 		Sprite.flip_h = true
+
+	# Orientation de l'arme :
+	#  - AVEC une cible : l'arme pointe librement vers l'ennemi (avec symetrie
+	#    verticale a gauche, cf. IWeapon.aim) ;
+	#  - SANS cible : l'arme ne pivote PAS selon les directions appuyees ; elle
+	#    reste horizontale et suit seulement le sens (gauche/droite) du perso.
+	if aim_has_target:
+		weapon.aim((aiming_at - global_position).normalized())
+	else:
+		weapon.aim(Vector2.RIGHT if Sprite.flip_h else Vector2.LEFT)
 
 
 const WALL_MASK := 2  # bit du layer des murs (StaticBody "Collisions")

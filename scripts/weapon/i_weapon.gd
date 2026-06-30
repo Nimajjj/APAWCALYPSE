@@ -35,8 +35,10 @@ var reloading: bool = false
 var shoot_effect: GPUParticles2D = null
 var can_shoot: bool = true
 var _recoil_tween: Tween
+var _facing_left: bool = false  # vrai quand l'arme vise vers la gauche (miroir)
 
 @onready var WeaponEnd = $WeaponEnd
+@onready var Sprite = $Sprite2D
 @onready var timer = $Timer
 @onready var fire_rate_timer = $FireRateTimer
 @onready var _base_scale: Vector2 = scale
@@ -131,11 +133,32 @@ func _fire_bullet(player_damage_factor: float, pierce: bool, dir: Vector2) -> vo
 	EventBus.shot_fired.emit()
 
 
+## Oriente l'arme vers `dir`. L'arme pointe vers +X par defaut (rotation 0).
+##
+## Vers la DROITE : rotation libre vers la cible.
+## Vers la GAUCHE : on ne tourne PAS l'arme de ~180deg (ce qui la mettrait a
+## l'envers ET retournerait son decalage vertical vers le bas — l'arme "passait en
+## bas"). On applique a la place une SYMETRIE selon l'axe vertical (scale.x < 0),
+## qui garde l'arme a la meme hauteur et a l'endroit. La rotation est alors decalee
+## de PI pour compenser le miroir et faire pointer le canon vers la cible.
+func aim(dir: Vector2) -> void:
+	if dir == Vector2.ZERO:
+		return
+	_facing_left = dir.x < 0.0
+	rotation = (dir.angle() + PI) if _facing_left else dir.angle()
+	scale = _facing_scale(_base_scale)
+
+
+## Echelle signee selon le sens de visee : x negatif = miroir vertical (vise gauche).
+func _facing_scale(s: Vector2) -> Vector2:
+	return Vector2(-s.x if _facing_left else s.x, s.y)
+
+
 ## Change la taille affichee de l'arme (utilise par le dashboard dev). Met a jour
 ## l'echelle de base pour ne pas casser le "punch" de recul.
 func set_display_scale(s: float) -> void:
 	_base_scale = Vector2(s, s)
-	scale = _base_scale
+	scale = _facing_scale(_base_scale)
 
 
 func stop_shooting() -> void:
@@ -154,7 +177,9 @@ func _on_timer_timeout() -> void:
 func _punch() -> void:
 	if _recoil_tween != null and _recoil_tween.is_running():
 		_recoil_tween.kill()
-	scale = _base_scale
+	# Le "punch" preserve le signe du miroir (scale.x < 0 si l'arme vise a gauche).
+	var base: Vector2 = _facing_scale(_base_scale)
+	scale = base
 	_recoil_tween = create_tween()
-	_recoil_tween.tween_property(self, "scale", _base_scale * 1.12, 0.04)
-	_recoil_tween.tween_property(self, "scale", _base_scale, 0.08)
+	_recoil_tween.tween_property(self, "scale", base * 1.12, 0.04)
+	_recoil_tween.tween_property(self, "scale", base, 0.08)

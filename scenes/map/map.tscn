@@ -1466,84 +1466,84 @@ y_sort_enabled = true
 
 [node name="Door" parent="Interactibles/Doors" instance=ExtResource("5_41nn5")]
 position = Vector2(2016, 729)
-price = 1750
+price = 1000
 
 [node name="Door2" parent="Interactibles/Doors" instance=ExtResource("5_41nn5")]
 position = Vector2(2592, 312)
-price = 2400
+price = 1400
 
 [node name="Door3" parent="Interactibles/Doors" instance=ExtResource("5_41nn5")]
 position = Vector2(3264, 312)
-price = 3500
+price = 2000
 spawner_id = 4
 
 [node name="Door4" parent="Interactibles/Doors" instance=ExtResource("5_41nn5")]
 position = Vector2(2496, 1336)
-price = 4200
+price = 2400
 spawner_id = 3
 
 [node name="Door8" parent="Interactibles/Doors" instance=ExtResource("5_41nn5")]
 position = Vector2(1376, 1112)
-price = 3000
+price = 1700
 spawner_id = 5
 
 [node name="Door10" parent="Interactibles/Doors" instance=ExtResource("5_41nn5")]
 position = Vector2(1152, 921)
-price = 2300
+price = 1300
 spawner_id = 5
 
 [node name="Door9" parent="Interactibles/Doors" instance=ExtResource("5_41nn5")]
 position = Vector2(2304, 1113)
-price = 2750
+price = 1500
 spawner_id = 3
 
 [node name="Door6" parent="Interactibles/Doors" instance=ExtResource("5_41nn5")]
 position = Vector2(2496, 1496)
-price = 6000
+price = 3300
 spawner_id = 7
 
 [node name="Door7" parent="Interactibles/Doors" instance=ExtResource("5_41nn5")]
 position = Vector2(3616, 1496)
-price = 6000
+price = 3300
 spawner_id = 7
 
 [node name="Door5" parent="Interactibles/Doors" instance=ExtResource("5_41nn5")]
 position = Vector2(3616, 1337)
-price = 4200
+price = 2400
 spawner_id = 3
 
 [node name="SideDoor" parent="Interactibles/Doors" groups=["door1"] instance=ExtResource("12_nj25h")]
 z_index = 0
 position = Vector2(1113, 840)
-price = 500
+price = 300
 spawner_id = 2
 door_group = "door1"
 
 [node name="SideDoor3" parent="Interactibles/Doors" instance=ExtResource("12_nj25h")]
 z_index = 0
 position = Vector2(615, 1320)
-price = 5400
+price = 3000
 spawner_id = 6
 
 [node name="SideDoor4" parent="Interactibles/Doors" instance=ExtResource("12_nj25h")]
 z_index = 0
 position = Vector2(2041, 1449)
-price = 5500
+price = 3000
 
 [node name="SideDoor5" parent="Interactibles/Doors" instance=ExtResource("12_nj25h")]
 z_index = 0
 position = Vector2(2681, 1672)
-price = 5000
+price = 2800
 
 [node name="SideDoor6" parent="Interactibles/Doors" instance=ExtResource("12_nj25h")]
 z_index = 0
 position = Vector2(3257, 1224)
-price = 3800
+price = 2100
 
 [node name="SideDoor2" parent="Interactibles/Doors" instance=ExtResource("12_nj25h")]
 z_index = 0
 position = Vector2(1127, 520)
-price = 500
+price = 300
 spawner_id = 2
 door_group = "door1"
 

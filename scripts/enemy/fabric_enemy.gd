@@ -81,8 +81,12 @@ func spawn_near_player(boss: bool, direction: String) -> bool:
 const _SPAWN_ATTEMPTS := 16
 # Tolerance entre la fin de l'itineraire et le point vise (point reellement atteint).
 const _REACH_TOLERANCE := 24.0
-# Une porte fermee a moins de cette distance d'un segment de l'itineraire = zone
-# verrouillee. ~ demi-largeur d'une porte (64px) + marge.
+# Marge ajoutee autour du rectangle de collision d'une porte (~ rayon d'un corps
+# en scale 2x + tolerance) : un segment de l'itineraire qui entre dans cette zone
+# est considere comme bloque par la porte fermee.
+const _DOOR_MARGIN := 20.0
+# Fallback (porte sans StaticBody/CollisionShape rectangulaire) : disque autour de
+# l'origine du noeud. ~ demi-largeur d'une porte (64px) + marge.
 const _DOOR_BLOCK_RADIUS := 48.0
 
 func _pick_point_near(player: IPlayer) -> Vector2:
@@ -107,10 +111,11 @@ func _pick_point_near(player: IPlayer) -> Vector2:
 	return Vector2(NAN, NAN)
 
 
-## Vrai si un itineraire navmesh joueur -> pos existe ET ne longe aucune porte encore
-## fermee. Definition de "zone accessible" (style COD Zombies) : la navmesh relie
-## toutes les pieces (les portes ne la decoupent pas), donc on rejette l'itineraire
-## des qu'il passe au niveau d'une porte non achetee (encore dans le groupe "doors").
+## Vrai si un itineraire navmesh joueur -> pos existe ET ne traverse aucune porte
+## encore fermee. Definition de "zone accessible" (style COD Zombies) : la navmesh
+## relie toutes les pieces (les portes ne la decoupent pas), donc on rejette
+## l'itineraire des qu'un de ses segments coupe la zone d'une porte non achetee
+## (encore dans le groupe "doors").
 func _is_reachable_open(nav_map: RID, from: Vector2, pos: Vector2, doors: Array) -> bool:
 	var path: PackedVector2Array = NavigationServer2D.map_get_path(nav_map, from, pos, true)
 	if path.size() < 2:
@@ -124,10 +129,53 @@ func _is_reachable_open(nav_map: RID, from: Vector2, pos: Vector2, doors: Array)
 		for d in doors:
 			if not is_instance_valid(d):
 				continue
-			var closest: Vector2 = Geometry2D.get_closest_point_to_segment(d.global_position, a, b)
-			if closest.distance_to(d.global_position) < _DOOR_BLOCK_RADIUS:
+			if _segment_hits_door(a, b, d):
 				return false
 	return true
+
+
+## Vrai si le segment [a, b] traverse la porte fermee `door`. On teste le rectangle
+## de collision REEL de la porte (StaticBody2D/CollisionShape2D), via sa transform
+## globale, et non l'origine du noeud : les portes (surtout les SideDoor) ont un
+## collider decale de plusieurs dizaines de px par rapport a leur origine, ce qui
+## faisait passer l'ancien test par disque a cote de l'ouverture reelle.
+func _segment_hits_door(a: Vector2, b: Vector2, door: Node) -> bool:
+	var cs := door.get_node_or_null("StaticBody2D/CollisionShape2D") as CollisionShape2D
+	if cs == null or not (cs.shape is RectangleShape2D):
+		# Fallback : disque autour de l'origine du noeud.
+		var closest: Vector2 = Geometry2D.get_closest_point_to_segment(door.global_position, a, b)
+		return closest.distance_to(door.global_position) < _DOOR_BLOCK_RADIUS
+	# On ramene le segment dans l'espace LOCAL du collider : la boite devient alors
+	# une AABB centree sur l'origine, ce qui rend le test trivial et insensible a la
+	# rotation de la porte.
+	var inv := cs.global_transform.affine_inverse()
+	var la: Vector2 = inv * a
+	var lb: Vector2 = inv * b
+	var ext: Vector2 = (cs.shape as RectangleShape2D).size * 0.5 + Vector2(_DOOR_MARGIN, _DOOR_MARGIN)
+	return _segment_intersects_box(la, lb, ext)
+
+
+## Intersection segment / AABB centree en (0,0) de demi-tailles `ext` (espace local).
+func _segment_intersects_box(a: Vector2, b: Vector2, ext: Vector2) -> bool:
+	# Une extremite dans la boite -> intersection.
+	if absf(a.x) <= ext.x and absf(a.y) <= ext.y:
+		return true
+	if absf(b.x) <= ext.x and absf(b.y) <= ext.y:
+		return true
+	# Sinon, test contre les 4 aretes de la boite.
+	var c0 := Vector2(-ext.x, -ext.y)
+	var c1 := Vector2(ext.x, -ext.y)
+	var c2 := Vector2(ext.x, ext.y)
+	var c3 := Vector2(-ext.x, ext.y)
+	if Geometry2D.segment_intersects_segment(a, b, c0, c1) != null:
+		return true
+	if Geometry2D.segment_intersects_segment(a, b, c1, c2) != null:
+		return true
+	if Geometry2D.segment_intersects_segment(a, b, c2, c3) != null:
+		return true
+	if Geometry2D.segment_intersects_segment(a, b, c3, c0) != null:
+		return true
+	return false
 
 
 func _telegraph_parent() -> Node:
@@ -163,8 +211,10 @@ func _apply_stats(enemy: IEnemy) -> void:
 
 	enemy.max_health += Global.game.wave * 2
 	enemy.damage += Global.game.wave * 1.75
-	enemy.money += Global.game.wave * randi() % 5
-	enemy.speed += randi() % 300
+	# L'argent ET la vitesse sont FIXES par type d'ennemi (valeurs de base de la
+	# scene) : pas de scaling de vague ni de hasard, pour une economie lisible et
+	# des deplacements coherents. Les seuls ajustements restent les multiplicateurs
+	# Balance "enemy_money" / "enemy_speed".
 
 	enemy.apply_balance()
 
