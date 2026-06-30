@@ -1,0 +1,153 @@
+{
+  "group_id": null,
+  "states": [
+    {
+      "character": {
+        "id": "fdc944d2-6e05-4d31-8826-7439287e3dd7",
+        "name": "Angry ant anthropomorphic, humanoid standing",
+        "prompt": "Angry ant anthropomorphic, humanoid standing on two legs like a human, full body front view, two sharp teeth, cartoon eyes",
+        "size": {
+          "width": 104,
+          "height": 104
+        },
+        "template_id": "mannequin",
+        "directions": 8,
+        "view": "high top-down",
+        "created_at": "2026-06-30T11:41:31.107965+00:00"
+      },
+      "folder": "Angry_ant_anthropomorphic_humanoid_standing",
+      "frames": {
+        "rotations": {
+          "south": "Angry_ant_anthropomorphic_humanoid_standing/rotations/south.png",
+          "south-east": "Angry_ant_anthropomorphic_humanoid_standing/rotations/south-east.png",
+          "east": "Angry_ant_anthropomorphic_humanoid_standing/rotations/east.png",
+          "north-east": "Angry_ant_anthropomorphic_humanoid_standing/rotations/north-east.png",
+          "north": "Angry_ant_anthropomorphic_humanoid_standing/rotations/north.png",
+          "north-west": "Angry_ant_anthropomorphic_humanoid_standing/rotations/north-west.png",
+          "west": "Angry_ant_anthropomorphic_humanoid_standing/rotations/west.png",
+          "south-west": "Angry_ant_anthropomorphic_humanoid_standing/rotations/south-west.png"
+        },
+        "animations": {
+          "Cross_Punch": {
+            "south": [
+              "Angry_ant_anthropomorphic_humanoid_standing/animations/Cross_Punch/south/frame_000.png",
+              "Angry_ant_anthropomorphic_humanoid_standing/animations/Cross_Punch/south/frame_001.png",
+              "Angry_ant_anthropomorphic_humanoid_standing/animations/Cross_Punch/south/frame_002.png",
+              "Angry_ant_anthropomorphic_humanoid_standing/animations/Cross_Punch/south/frame_003.png",
+              "Angry_ant_anthropomorphic_humanoid_standing/animations/Cross_Punch/south/frame_004.png",
+              "Angry_ant_anthropomorphic_humanoid_standing/animations/Cross_Punch/south/frame_005.png"
+            ],
+            "south-east": [
+              "Angry_ant_anthropomorphic_humanoid_standing/animations/Cross_Punch/south-east/frame_000.png",
+              "Angry_ant_anthropomorphic_humanoid_standing/animations/Cross_Punch/south-east/frame_001.png",
+              "Angry_ant_anthropomorphic_humanoid_standing/animations/Cross_Punch/south-east/frame_002.png",
+              "Angry_ant_anthropomorphic_humanoid_standing/animations/Cross_Punch/south-east/frame_003.png",
+              "Angry_ant_anthropomorphic_humanoid_standing/animations/Cross_Punch/south-east/frame_004.png",
+              "Angry_ant_anthropomorphic_humanoid_standing/animations/Cross_Punch/south-east/frame_005.png"
+            ],
+            "north-west": [
+              "Angry_ant_anthropomorphic_humanoid_standing/animations/Cross_Punch/north-west/frame_000.png",
+              "Angry_ant_anthropomorphic_humanoid_standing/animations/Cross_Punch/north-west/frame_001.png",
+              "Angry_ant_anthropomorphic_humanoid_standing/animations/Cross_Punch/north-west/frame_002.png",
+              "Angry_ant_anthropomorphic_humanoid_standing/animations/Cross_Punch/north-west/frame_003.png",
+              "Angry_ant_anthropomorphic_humanoid_standing/animations/Cross_Punch/north-west/frame_004.png",
+              "Angry_ant_anthropomorphic_humanoid_standing/animations/Cross_Punch/north-west/frame_005.png"
+            ],
+            "south-west": [
+              "Angry_ant_anthropomorphic_humanoid_standing/animations/Cross_Punch/south-west/frame_000.png",
+              "Angry_ant_anthropomorphic_humanoid_standing/animations/Cross_Punch/south-west/frame_001.png",
+              "Angry_ant_anthropomorphic_humanoid_standing/animations/Cross_Punch/south-west/frame_002.png",
+              "Angry_ant_anthropomorphic_humanoid_standing/animations/Cross_Punch/south-west/frame_003.png",
+              "Angry_ant_anthropomorphic_humanoid_standing/animations/Cross_Punch/south-west/frame_004.png",
+              "Angry_ant_anthropomorphic_humanoid_standing/animations/Cross_Punch/south-west/frame_005.png"
+            ],
+            "east": [
+              "Angry_ant_anthropomorphic_humanoid_standing/animations/Cross_Punch/east/frame_000.png",
+              "Angry_ant_anthropomorphic_humanoid_standing/animations/Cross_Punch/east/frame_001.png",
+              "Angry_ant_anthropomorphic_humanoid_standing/animations/Cross_Punch/east/frame_002.png",
+              "Angry_ant_anthropomorphic_humanoid_standing/animations/Cross_Punch/east/frame_003.png",
+              "Angry_ant_anthropomorphic_humanoid_standing/animations/Cross_Punch/east/frame_004.png",
+              "Angry_ant_anthropomorphic_humanoid_standing/animations/Cross_Punch/east/frame_005.png"
+            ],
+            "west": [
+              "Angry_ant_anthropomorphic_humanoid_standing/animations/Cross_Punch/west/frame_000.png",
+              "Angry_ant_anthropomorphic_humanoid_standing/animations/Cross_Punch/west/frame_001.png",
+              "Angry_ant_anthropomorphic_humanoid_standing/animations/Cross_Punch/west/frame_002.png",
+              "Angry_ant_anthropomorphic_humanoid_standing/animations/Cross_Punch/west/frame_003.png",
+              "Angry_ant_anthropomorphic_humanoid_standing/animations/Cross_Punch/west/frame_004.png",
+              "Angry_ant_anthropomorphic_humanoid_standing/animations/Cross_Punch/west/frame_005.png"
+            ],
+            "north-east": [
+              "Angry_ant_anthropomorphic_humanoid_standing/animations/Cross_Punch/north-east/frame_000.png",
+              "Angry_ant_anthropomorphic_humanoid_standing/animations/Cross_Punch/north-east/frame_001.png",
+              "Angry_ant_anthropomorphic_humanoid_standing/animations/Cross_Punch/north-east/frame_002.png",
+              "Angry_ant_anthropomorphic_humanoid_standing/animations/Cross_Punch/north-east/frame_003.png",
+              "Angry_ant_anthropomorphic_humanoid_standing/animations/Cross_Punch/north-east/frame_004.png",
+              "Angry_ant_anthropomorphic_humanoid_standing/animations/Cross_Punch/north-east/frame_005.png"
+            ],
+            "north": [
+              "Angry_ant_anthropomorphic_humanoid_standing/animations/Cross_Punch/north/frame_000.png",
+              "Angry_ant_anthropomorphic_humanoid_standing/animations/Cross_Punch/north/frame_001.png",
+              "Angry_ant_anthropomorphic_humanoid_standing/animations/Cross_Punch/north/frame_002.png",
+              "Angry_ant_anthropomorphic_humanoid_standing/animations/Cross_Punch/north/frame_003.png",
+              "Angry_ant_anthropomorphic_humanoid_standing/animations/Cross_Punch/north/frame_004.png",
+              "Angry_ant_anthropomorphic_humanoid_standing/animations/Cross_Punch/north/frame_005.png"
+            ]
+          },
+          "Running": {
+            "south": [
+              "Angry_ant_anthropomorphic_humanoid_standing/animations/Running/south/frame_000.png",
+              "Angry_ant_anthropomorphic_humanoid_standing/animations/Running/south/frame_001.png",
+              "Angry_ant_anthropomorphic_humanoid_standing/animations/Running/south/frame_002.png",
+              "Angry_ant_anthropomorphic_humanoid_standing/animations/Running/south/frame_003.png"
+            ],
+            "south-east": [
+              "Angry_ant_anthropomorphic_humanoid_standing/animations/Running/south-east/frame_000.png",
+              "Angry_ant_anthropomorphic_humanoid_standing/animations/Running/south-east/frame_001.png",
+              "Angry_ant_anthropomorphic_humanoid_standing/animations/Running/south-east/frame_002.png",
+              "Angry_ant_anthropomorphic_humanoid_standing/animations/Running/south-east/frame_003.png"
+            ],
+            "north": [
+              "Angry_ant_anthropomorphic_humanoid_standing/animations/Running/north/frame_000.png",
+              "Angry_ant_anthropomorphic_humanoid_standing/animations/Running/north/frame_001.png",
+              "Angry_ant_anthropomorphic_humanoid_standing/animations/Running/north/frame_002.png",
+              "Angry_ant_anthropomorphic_humanoid_standing/animations/Running/north/frame_003.png"
+            ],
+            "north-west": [
+              "Angry_ant_anthropomorphic_humanoid_standing/animations/Running/north-west/frame_000.png",
+              "Angry_ant_anthropomorphic_humanoid_standing/animations/Running/north-west/frame_001.png",
+              "Angry_ant_anthropomorphic_humanoid_standing/animations/Running/north-west/frame_002.png",
+              "Angry_ant_anthropomorphic_humanoid_standing/animations/Running/north-west/frame_003.png"
+            ],
+            "north-east": [
+              "Angry_ant_anthropomorphic_humanoid_standing/animations/Running/north-east/frame_000.png",
+              "Angry_ant_anthropomorphic_humanoid_standing/animations/Running/north-east/frame_001.png",
+              "Angry_ant_anthropomorphic_humanoid_standing/animations/Running/north-east/frame_002.png",
+              "Angry_ant_anthropomorphic_humanoid_standing/animations/Running/north-east/frame_003.png"
+            ],
+            "south-west": [
+              "Angry_ant_anthropomorphic_humanoid_standing/animations/Running/south-west/frame_000.png",
+              "Angry_ant_anthropomorphic_humanoid_standing/animations/Running/south-west/frame_001.png",
+              "Angry_ant_anthropomorphic_humanoid_standing/animations/Running/south-west/frame_002.png",
+              "Angry_ant_anthropomorphic_humanoid_standing/animations/Running/south-west/frame_003.png"
+            ],
+            "east": [
+              "Angry_ant_anthropomorphic_humanoid_standing/animations/Running/east/frame_000.png",
+              "Angry_ant_anthropomorphic_humanoid_standing/animations/Running/east/frame_001.png",
+              "Angry_ant_anthropomorphic_humanoid_standing/animations/Running/east/frame_002.png",
+              "Angry_ant_anthropomorphic_humanoid_standing/animations/Running/east/frame_003.png"
+            ],
+            "west": [
+              "Angry_ant_anthropomorphic_humanoid_standing/animations/Running/west/frame_000.png",
+              "Angry_ant_anthropomorphic_humanoid_standing/animations/Running/west/frame_001.png",
+              "Angry_ant_anthropomorphic_humanoid_standing/animations/Running/west/frame_002.png",
+              "Angry_ant_anthropomorphic_humanoid_standing/animations/Running/west/frame_003.png"
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "export_version": "3.0",
+  "export_date": "2026-06-30T11:55:52.894915"
+}
