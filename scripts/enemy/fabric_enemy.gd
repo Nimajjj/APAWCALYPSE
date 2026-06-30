@@ -10,6 +10,12 @@ var runner_scene: PackedScene        = preload("res://scenes/enemy/runner.tscn")
 var brute_scene: PackedScene         = preload("res://scenes/enemy/brute.tscn")
 var charger_scene: PackedScene       = preload("res://scenes/enemy/charger.tscn")
 var exploder_scene: PackedScene      = preload("res://scenes/enemy/exploder.tscn")
+# Nouveaux insectes (non animes pour l'instant, profil de stats uniquement).
+var ant_scene: PackedScene           = preload("res://scenes/enemy/ant.tscn")
+var beetle_scene: PackedScene        = preload("res://scenes/enemy/beetle.tscn")
+var explosive_fly_scene: PackedScene = preload("res://scenes/enemy/explosive_fly.tscn")
+var toxic_fly_scene: PackedScene     = preload("res://scenes/enemy/toxic_fly.tscn")
+var wasp_scene: PackedScene          = preload("res://scenes/enemy/wasp.tscn")
 
 # Table de spawn editable (.tres). Fallback sur l'ancienne logique si absente.
 var _spawn_table: EnemySpawnTable = load("res://resources/enemy_spawn_table.tres") as EnemySpawnTable
@@ -202,6 +208,16 @@ func _instantiate(enemy_type: int) -> IEnemy:
 		return charger_scene.instantiate()
 	elif enemy_type == 9:
 		return exploder_scene.instantiate()
+	elif enemy_type == 10:
+		return ant_scene.instantiate()
+	elif enemy_type == 11:
+		return beetle_scene.instantiate()
+	elif enemy_type == 12:
+		return explosive_fly_scene.instantiate()
+	elif enemy_type == 13:
+		return toxic_fly_scene.instantiate()
+	elif enemy_type == 14:
+		return wasp_scene.instantiate()
 	return zombie_scene.instantiate()
 
 

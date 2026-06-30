@@ -1,7 +1,9 @@
 class_name EnemySpawnTable
 extends Resource
 ## Table de spawn des ennemis, editable en ressource (.tres) sans toucher au code.
-## Type renvoye : 0 zombie, 1 woman, 2 buffed, 3 miser, 4 reaper (5 = boss, gere a part).
+## Type renvoye : 0 zombie, 1 woman, 2 buffed, 3 miser, 4 reaper (5 = boss, gere a
+## part), 6 runner, 7 brute, 8 charger, 9 exploder, 10 ant, 11 beetle,
+## 12 explosive_fly, 13 toxic_fly, 14 wasp.
 
 @export var tiers: Array[EnemySpawnTier] = []
 

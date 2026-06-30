@@ -6,21 +6,21 @@
 [sub_resource type="Resource" id="Resource_xc5gg"]
 script = ExtResource("2_bnm76")
 max_wave = 6
-thresholds = PackedInt32Array(75, 0, 92, 1, 100, 6)
+thresholds = PackedInt32Array(45, 0, 70, 10, 85, 1, 100, 6)
 
 [sub_resource type="Resource" id="Resource_035ux"]
 script = ExtResource("2_bnm76")
 max_wave = 11
-thresholds = PackedInt32Array(55, 0, 75, 1, 88, 6, 96, 2, 100, 3)
+thresholds = PackedInt32Array(30, 0, 50, 10, 62, 1, 74, 6, 84, 13, 92, 12, 100, 2)
 
 [sub_resource type="Resource" id="Resource_o1w13"]
 script = ExtResource("2_bnm76")
 max_wave = 16
-thresholds = PackedInt32Array(35, 0, 55, 1, 70, 6, 85, 2, 95, 8, 99, 3, 100, 4)
+thresholds = PackedInt32Array(18, 0, 33, 10, 43, 1, 53, 6, 64, 13, 74, 12, 84, 14, 91, 2, 97, 11, 100, 8)
 
 [sub_resource type="Resource" id="Resource_qgmmx"]
 script = ExtResource("2_bnm76")
-thresholds = PackedInt32Array(15, 0, 30, 1, 45, 6, 60, 2, 72, 8, 82, 3, 90, 9, 96, 7, 100, 4)
+thresholds = PackedInt32Array(10, 0, 22, 10, 30, 1, 40, 6, 52, 13, 63, 12, 75, 14, 82, 2, 90, 11, 95, 8, 98, 7, 100, 4)
 
 [resource]
 script = ExtResource("1_mcskj")
