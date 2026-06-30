@@ -14,7 +14,9 @@ var knockback_force: float = 0
 var knockback_direction: Vector2 = Vector2.ZERO
 var speed_stock: int
 var _sprite_base_scale: Vector2 = Vector2.ONE
+var _sprite_base_pos: Vector2 = Vector2.ZERO
 var _hit_tween: Tween = null
+var _flinch_tween: Tween = null
 
 # Valeurs de base (avant multiplicateurs Balance), capturees une fois pour le
 # reglage a chaud.
@@ -55,6 +57,7 @@ func _ready():
 	
 	Sprite.material = Sprite.material.duplicate()
 	_sprite_base_scale = Sprite.scale
+	_sprite_base_pos = Sprite.position
 
 	timer.connect("timeout", func():
 		Sprite.material.set_shader_parameter("flash_modifier", 0.0)
@@ -151,12 +154,14 @@ func _physics_process(delta):
 		velocity = _direction * speed * delta
 		move_and_slide()
 
-func take_damage(dmg: int, shooter: IPlayer) -> void:
+func take_damage(dmg: int, shooter: IPlayer, hit_dir: Vector2 = Vector2.ZERO) -> void:
 	HealthBar.visible = true
 	Sprite.material.set_shader_parameter("flash_modifier", 1.0)
 	timer.start()
 	Juice.spawn_floating_text(global_position, str(dmg), Color(1, 0.9, 0.4))
 	_hit_punch()
+	if hit_dir != Vector2.ZERO:
+		_hit_flinch(hit_dir)
 
 	if(shooter.dead_shot) and !is_boss:
 		dies(shooter)
@@ -180,6 +185,20 @@ func _hit_punch() -> void:
 	_hit_tween = create_tween()
 	_hit_tween.tween_property(Sprite, "scale", _sprite_base_scale, 0.18) \
 		.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+
+## Recul visuel : la sprite est repoussee dans le sens de la balle puis revient a
+## sa place. Purement cosmetique (n'affecte ni la collision ni le pathfinding), ce
+## qui rend l'impact "physique" sans risque de pousser l'ennemi dans un mur.
+func _hit_flinch(dir: Vector2) -> void:
+	if not is_instance_valid(Sprite):
+		return
+	if _flinch_tween != null and _flinch_tween.is_valid():
+		_flinch_tween.kill()
+	Sprite.position = _sprite_base_pos + dir.normalized() * 5.0
+	_flinch_tween = create_tween()
+	_flinch_tween.tween_property(Sprite, "position", _sprite_base_pos, 0.14) \
+		.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+
 
 ## Oriente la sprite selon la direction de deplacement.
 func _face(_direction: Vector2) -> void:

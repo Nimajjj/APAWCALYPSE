@@ -118,8 +118,10 @@ func _on_area_entered(body: Node) -> void:
 	if not _active:
 		return
 	if body.get_parent() is IEnemy and not body.get_parent().dead:
-		body.get_parent().take_damage(damage, shooter)
+		body.get_parent().take_damage(damage, shooter, direction)
 		EventBus.shot_hit.emit()
+		# Gerbe d'impact chaude (etincelles + flash) au point de contact.
+		Juice.spawn_impact(global_position, direction, Color(1.0, 0.55, 0.25), 1.1)
 		if not piercing:
 			BulletPool.release(self)
 			return
@@ -131,4 +133,6 @@ func _on_body_entered(body: Node) -> void:
 	if not _active:
 		return
 	if body is StaticBody2D:
+		# Etincelles froides (ricochet) plus discretes sur le decor.
+		Juice.spawn_impact(global_position, direction, Color(1.0, 0.92, 0.7), 0.7)
 		BulletPool.release(self)
