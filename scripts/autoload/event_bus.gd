@@ -11,3 +11,6 @@ signal player_died
 signal player_damaged(amount: float)
 signal shot_fired
 signal shot_hit
+## Progression roguelike : XP gagnee (a la mort d'un ennemi) et montee de niveau.
+signal xp_gained(amount: int)
+signal player_leveled_up(level: int)

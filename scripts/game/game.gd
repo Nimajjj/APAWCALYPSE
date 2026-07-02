@@ -84,6 +84,7 @@ func _on_money_gained(amount: int) -> void:
 	
 func start_game() -> void:
 	Global.reset()
+	Progression.reset()
 	_new_player()
 	GameTimer.start()
 	

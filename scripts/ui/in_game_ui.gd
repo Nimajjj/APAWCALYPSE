@@ -15,6 +15,9 @@ var _last_player_count: int = -1
 var _last_health: float = -1.0
 var _objective_label: Label
 var _ability_widgets: Array = []  # [{root, icon, key, cd_fill, cd_label}]
+var _xp_bar: ProgressBar
+var _level_label: Label
+var _last_level: int = -1
 
 func _enter_tree():
 	Global.in_game_ui = self
@@ -37,7 +40,49 @@ func _ready() -> void:
 	_objective_label.add_theme_constant_override("outline_size", 5)
 	add_child(_objective_label)
 
+	_build_xp_ui()
 	_build_abilities_ui()
+
+
+## Barre d'XP + niveau (roguelike), sous l'indicateur d'objectif en haut d'ecran.
+func _build_xp_ui() -> void:
+	var row := HBoxContainer.new()
+	row.set_anchors_and_offsets_preset(Control.PRESET_TOP_WIDE)
+	row.offset_top = 60.0
+	row.offset_bottom = 82.0
+	row.offset_left = 340.0
+	row.offset_right = -340.0
+	row.add_theme_constant_override("separation", 10)
+	add_child(row)
+
+	_level_label = Label.new()
+	_level_label.text = "Niv. 1"
+	_level_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	_level_label.custom_minimum_size = Vector2(84, 0)
+	_level_label.add_theme_font_size_override("font_size", 20)
+	_level_label.add_theme_color_override("font_color", Color(0.6, 0.85, 1.0))
+	_level_label.add_theme_color_override("font_outline_color", Color.BLACK)
+	_level_label.add_theme_constant_override("outline_size", 4)
+	row.add_child(_level_label)
+
+	_xp_bar = ProgressBar.new()
+	_xp_bar.show_percentage = false
+	_xp_bar.min_value = 0.0
+	_xp_bar.max_value = 100.0
+	_xp_bar.value = 0.0
+	_xp_bar.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_xp_bar.custom_minimum_size = Vector2(0, 16)
+	var bg := StyleBoxFlat.new()
+	bg.bg_color = Color(0.08, 0.08, 0.12, 0.85)
+	bg.set_corner_radius_all(8)
+	bg.set_border_width_all(2)
+	bg.border_color = Color(0.4, 0.6, 0.9, 0.6)
+	var fill := StyleBoxFlat.new()
+	fill.bg_color = Color(0.4, 0.7, 1.0)
+	fill.set_corner_radius_all(8)
+	_xp_bar.add_theme_stylebox_override("background", bg)
+	_xp_bar.add_theme_stylebox_override("fill", fill)
+	row.add_child(_xp_bar)
 
 
 ## Construit l'UI des capacites (bas-gauche, au-dessus des bonus recuperes).
@@ -126,7 +171,20 @@ func _process(_delta):
 	_update_abilities_ui(player)
 
 	if _objective_label != null:
-		_objective_label.text = "VAGUE %d   -   Ennemis restants : %d" % [Global.game.wave, Global.units_alive]
+		# "Restants" = ennemis pas encore apparus + ennemis en vie : c'est le total
+		# a eliminer pour terminer la vague (cf. Global.notify_enemy_died), et non le
+		# seul nombre d'ennemis actuellement a l'ecran.
+		var remaining: int = Global.units_left_to_spawn + Global.units_alive
+		_objective_label.text = "VAGUE %d   -   Ennemis restants : %d" % [Global.game.wave, remaining]
+
+	# Barre d'XP / niveau (progression roguelike).
+	if _xp_bar != null:
+		_xp_bar.max_value = maxf(1.0, float(Progression.xp_to_next))
+		_xp_bar.value = float(Progression.xp)
+		if Progression.level != _last_level:
+			_last_level = Progression.level
+			_level_label.text = "Niv. %d" % Progression.level
+			_pulse(_level_label)
 
 	ScoreLabel.text = str(Global.game.score)
 	MoneyLabel.text = str(player.money)

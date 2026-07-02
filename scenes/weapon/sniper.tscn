@@ -9,10 +9,10 @@
 [node name="Sniper" instance=ExtResource("1_8kl0v")]
 script = ExtResource("2_jpmer")
 weapon_name = "Sniper"
-fire_range = 320.0
+fire_range = 260.0
 bullet_scale = 1.3
 accuracy = 100
-damage = 500
+damage = 420
 weapon_range = 2.0
 fire_rate = 2.0
 stock_factor = 6

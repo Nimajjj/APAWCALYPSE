@@ -18,6 +18,16 @@ var _sprite_base_pos: Vector2 = Vector2.ZERO
 var _hit_tween: Tween = null
 var _flinch_tween: Tween = null
 
+# --- Anti-blocage (pathfinding, etat de poursuite) ---
+# Un ennemi qui pousse contre un mur/une porte/le joueur sans avancer bascule en
+# manoeuvre de contournement : il longe l'obstacle (glissement lateral) au lieu de
+# rester colle. Voir _update_stuck / _begin_unstick.
+var _stuck_actual: float = 0.0    # deplacement REEL cumule sur la fenetre
+var _stuck_intended: float = 0.0  # deplacement VOULU cumule sur la fenetre
+var _stuck_window: float = 0.0    # duree de la fenetre courante
+var _unstick_time: float = 0.0    # temps restant de contournement
+var _unstick_side: float = 1.0    # cote de glissement (alterne a chaque blocage)
+
 # Valeurs de base (avant multiplicateurs Balance), capturees une fois pour le
 # reglage a chaud.
 var _base_speed: int
@@ -69,6 +79,10 @@ func _ready():
 
 	_setup_navigation()
 	_setup_collision()
+
+	# Cote de contournement initial aleatoire : une grappe d'ennemis coinces au meme
+	# goulet se repartit des deux cotes de l'obstacle au lieu de s'empiler.
+	_unstick_side = 1.0 if randf() < 0.5 else -1.0
 
 
 ## Les ennemis ne se collisionnent PAS entre eux : on les place sur un layer dedie
@@ -149,10 +163,19 @@ func _physics_process(delta):
 		position += _velocity
 	elif state == 2:
 		# Poursuite du joueur via NavigationAgent2D (contournement des murs).
-		var _direction = (agent.get_next_path_position() - global_position).normalized()
-		_face(_direction)
-		velocity = _direction * speed * delta
+		var to_target: Vector2 = (agent.get_next_path_position() - global_position).normalized()
+		var move_dir: Vector2 = to_target
+		if _unstick_time > 0.0:
+			# Bloque : on longe l'obstacle (forte composante perpendiculaire, faible
+			# composante vers la cible) au lieu de pousser dedans. Le cote alterne.
+			_unstick_time -= delta
+			var perp := Vector2(-to_target.y, to_target.x) * _unstick_side
+			move_dir = (to_target * 0.35 + perp).normalized()
+		_face(move_dir)
+		velocity = move_dir * speed * delta
+		var before: Vector2 = global_position
 		move_and_slide()
+		_update_stuck(delta, before)
 
 func take_damage(dmg: int, shooter: IPlayer, hit_dir: Vector2 = Vector2.ZERO) -> void:
 	HealthBar.visible = true
@@ -215,6 +238,34 @@ func retarget() -> void:
 func retarget_timeout() -> void:
 	retarget()
 
+
+## Detecte un ennemi coince (pousse contre un mur/porte/joueur sans avancer) et
+## declenche une manoeuvre de contournement. On compare le deplacement REEL au
+## deplacement VOULU sur une courte fenetre : robuste face au ralentissement (un
+## ennemi ralenti mais qui avance n'est pas considere bloque) et aux variations de
+## framerate. `before` = position avant move_and_slide de la frame courante.
+func _update_stuck(delta: float, before: Vector2) -> void:
+	_stuck_actual += global_position.distance_to(before)
+	_stuck_intended += (velocity * delta).length()
+	_stuck_window += delta
+	if _stuck_window < 0.35:
+		return
+	# Beaucoup de mouvement voulu mais quasi rien d'accompli => obstacle : on longe.
+	if _unstick_time <= 0.0 and _stuck_intended > 0.5 and _stuck_actual < _stuck_intended * 0.35:
+		_begin_unstick()
+	_stuck_actual = 0.0
+	_stuck_intended = 0.0
+	_stuck_window = 0.0
+
+
+## Lance une breve manoeuvre de contournement : recalcul immediat du chemin +
+## glissement lateral (~0.5s). Le cote alterne a chaque blocage : si un cote reste
+## bloque, le suivant tentera l'autre, ce qui finit par degager les angles.
+func _begin_unstick() -> void:
+	_unstick_time = 0.5
+	_unstick_side *= -1.0
+	retarget()
+
 func slow() -> void:
 	slow_timer.start()
 	if not slowed:
@@ -229,6 +280,12 @@ func slow_timeout() -> void:
 
 func death_sound_finished() -> void:
 	queue_free()
+
+
+## XP lachee a la mort : proportionnelle a la "valeur" de l'ennemi (argent) avec
+## un plancher, et un gros bonus pour les boss.
+func _xp_reward() -> int:
+	return maxi(1, int(money * 0.12)) + (20 if is_boss else 2)
 
 func dies(shooter: IPlayer) -> void:
 	if not dead:
@@ -257,6 +314,13 @@ func dies(shooter: IPlayer) -> void:
 		Juice.spawn_floating_text(global_position, "+$%d" % money, Color(0.4, 1.0, 0.5), 26)
 		shooter.gain_money(money)
 		shooter.gain_score(randi_range(1, 10))
+
+		# Progression roguelike : chaque ennemi lache de l'XP (les boss beaucoup
+		# plus). Emis via EventBus pour rester decouple du systeme de niveaux.
+		var xp: int = _xp_reward()
+		Juice.spawn_floating_text(global_position + Vector2(0, -14), "+%d XP" % xp, Color(0.55, 0.8, 1.0), 20)
+		EventBus.xp_gained.emit(xp)
+
 		Global.units_alive -= 1
 		Global.units.erase(self)
 		EventBus.enemy_killed.emit(is_boss)

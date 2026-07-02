@@ -225,12 +225,23 @@ func _instantiate(enemy_type: int) -> IEnemy:
 func _apply_stats(enemy: IEnemy) -> void:
 	GameConfig.apply_enemy(enemy)
 
-	enemy.max_health += Global.game.wave * 2
-	enemy.damage += Global.game.wave * 1.75
-	# L'argent ET la vitesse sont FIXES par type d'ennemi (valeurs de base de la
-	# scene) : pas de scaling de vague ni de hasard, pour une economie lisible et
-	# des deplacements coherents. Les seuls ajustements restent les multiplicateurs
-	# Balance "enemy_money" / "enemy_speed".
+	# Scaling de vague facon Brotato : croissance LINEAIRE proportionnelle a la stat
+	# de base (PV = base * (1 + pv_par_vague * (vague-1))). Fort et previsible, il
+	# suit la montee en puissance du joueur (upgrades multiplicatives) pour eviter
+	# qu'on devienne trop fort trop vite. Les boss recoivent la moitie de la
+	# croissance PV/degats (deja tres tanky en valeur de base).
+	var waves_elapsed: int = max(0, Global.game.wave - 1)
+	var hp_step: float = Balance.get_v("enemy_hp_per_wave")
+	var dmg_step: float = Balance.get_v("enemy_dmg_per_wave")
+	if enemy.is_boss:
+		hp_step *= 0.5
+		dmg_step *= 0.5
+	enemy.max_health = int(enemy.max_health * (1.0 + hp_step * waves_elapsed))
+	enemy.damage = int(enemy.damage * (1.0 + dmg_step * waves_elapsed))
+	# L'argent ET la vitesse restent FIXES par type d'ennemi (valeurs de base de la
+	# scene) : pas de scaling de vague ni de hasard, pour une economie lisible et des
+	# deplacements coherents. Seuls les multiplicateurs Balance "enemy_money" /
+	# "enemy_speed" les ajustent.
 
 	enemy.apply_balance()
 

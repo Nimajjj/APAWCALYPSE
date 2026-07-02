@@ -18,6 +18,12 @@ const DEFS := {
 	"enemy_health":      [1.00, 0.3, 3.0, 0.05, "Vie ennemis"],
 	"enemy_damage":      [1.00, 0.3, 3.0, 0.05, "Degats ennemis"],
 	"enemy_money":       [1.00, 0.3, 3.0, 0.05, "Argent lache"],
+	# Scaling par vague facon Brotato : croissance LINEAIRE proportionnelle a la vie
+	# de base (0.30 = +30% de la base par vague apres la 1ere). Compense la montee en
+	# puissance du joueur (upgrades multiplicatives). Les boss recoivent la moitie de
+	# cette croissance (cf. FabricEnemy). Vitesse volontairement non scalee (Brotato).
+	"enemy_hp_per_wave":  [0.30, 0.0, 1.5, 0.05, "PV +/vague (x base)"],
+	"enemy_dmg_per_wave": [0.12, 0.0, 1.0, 0.02, "Degats +/vague (x base)"],
 	"weapon_fire_rate":  [1.00, 0.3, 2.0, 0.05, "Cadence de tir"],
 	# Spawn "autour du joueur" (style Brotato). Ces valeurs sont des grandeurs
 	# absolues (et non des multiplicateurs) mais profitent du meme dashboard.

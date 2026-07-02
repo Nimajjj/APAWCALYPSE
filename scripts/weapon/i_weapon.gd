@@ -21,7 +21,7 @@ enum Weapon_Weight {LIGHT, MEDIUM, HEAVY}
 ## Portee de declenchement de l'auto-fire (px monde). L'arme tire seule quand
 ## l'ennemi le plus proche est a cette distance ou moins. La camera ayant un zoom
 ## ~5 (largeur visible ~384 px monde), ~180 couvre l'ecran sans tirer hors-champ.
-@export var fire_range: float = 180.0
+@export var fire_range: float = 160.0
 ## Multiplicateur de taille des projectiles propre a l'arme.
 @export var bullet_scale: float = 1.0
 
@@ -29,6 +29,7 @@ enum Weapon_Weight {LIGHT, MEDIUM, HEAVY}
 @export var ShootEffectScene: PackedScene
 
 var config_id: String = ""  # identifiant de scene (ex. "ak47") pour GameConfig
+var base_bullet_scale: float = 1.0  # taille de balle de base (avant modif. roguelike)
 var actual_rate: int = 0
 var weapon_direction: Vector2
 var reloading: bool = false
@@ -52,6 +53,8 @@ func _ready():
 	if ShootEffectScene != null:
 		shoot_effect = ShootEffectScene.instantiate()
 		WeaponEnd.add_child(shoot_effect)
+
+	base_bullet_scale = bullet_scale  # capture avant tout modificateur roguelike
 
 	current_mag = mag_capacity
 	bullet_stock = mag_capacity * 2

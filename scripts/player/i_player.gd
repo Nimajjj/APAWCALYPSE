@@ -50,6 +50,14 @@ var fire_cd_total: float = 0.0
 var damage_factor: float = 1
 var reload_factor: float = 1
 
+# --- Modificateurs de progression roguelike (ameliorations de niveau) ---
+# Multiplicateurs/valeurs cumulables appliques par les upgrades. Persistent au
+# changement d'arme via apply_weapon_modifiers().
+var fire_rate_factor: float = 1.0    # > 1 = tir plus rapide
+var bullet_scale_factor: float = 1.0 # taille des projectiles
+var damage_reduction: float = 0.0    # 0..0.8, degats encaisses reduits d'autant
+var lifesteal: float = 0.0           # PV rendus a chaque ennemi tue
+
 # Valeurs de base (avant multiplicateurs d'equilibrage Balance), capturees au
 # _ready pour permettre un reglage a chaud sans accumulation.
 var _base_speed: float = 0
@@ -91,6 +99,11 @@ func _ready() -> void:
 	StartRegenerationTimer.connect("timeout", func(): RegenerationTicksTimer.start())
 	RegenerationTicksTimer.connect("timeout", func(): heal(self.max_health * 0.02))
 	
+	# Vol de vie : soigne a chaque ennemi tue (0 si aucun objet "Sangsue").
+	EventBus.enemy_killed.connect(func(_is_boss: bool):
+		if lifesteal > 0.0:
+			heal(lifesteal))
+
 	Hitbox.connect("body_entered", Callable(func(body: Node): _on_Area2D_body_entered(body)))
 	# Les ennemis sont sur le layer 4 (ils ne se collisionnent pas entre eux) : on
 	# l'ajoute ici pour rester bloque par eux (corps) et encaisser au contact (Hitbox).
@@ -155,6 +168,19 @@ func add_weapon(wp: IWeapon) -> void:
 	weapon.config_id = id
 	weapon.position = Vector2(1, -6)
 	add_child(weapon)
+	# Reapplique les ameliorations de progression a la nouvelle arme (cadence,
+	# taille des balles) : sinon un changement d'arme reinitialiserait les gains.
+	apply_weapon_modifiers()
+
+
+## Applique les modificateurs roguelike a l'arme courante. Recalcule toujours a
+## partir des valeurs de base stables de l'arme -> aucune accumulation si appele
+## plusieurs fois (equip + montees de niveau successives).
+func apply_weapon_modifiers() -> void:
+	if weapon == null:
+		return
+	weapon.fire_rate_timer.wait_time = weapon.fire_rate * Balance.get_v("weapon_fire_rate") / maxf(0.05, fire_rate_factor)
+	weapon.bullet_scale = weapon.base_bullet_scale * bullet_scale_factor
 
 
 func drop_weapon() -> void:
@@ -400,7 +426,8 @@ func take_damage(damage: float, damager_pos: Vector2, sound: AudioStreamPlayer2D
 		if is_reaper && health < max_health / 2:
 			health = 0
 		else:
-			health -= damage
+			# La cuirasse (objet) reduit les degats encaisses.
+			health -= damage * (1.0 - damage_reduction)
 			
 
 		if health <= 0:
